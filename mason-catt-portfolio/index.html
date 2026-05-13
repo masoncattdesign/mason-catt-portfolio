@@ -78,32 +78,47 @@
 
   /* discipline pill */
   .h-pill-disc {
-    display: inline-flex; flex-direction: column; align-items: flex-start;
+    display: inline-flex; align-items: center;
     background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25);
-    border-radius: 100px; padding: 10px 20px;
+    border-radius: 100px; padding: 10px 22px 10px 16px;
     vertical-align: middle; position: relative; top: -4px;
-    gap: 2px; transition: all 0.3s ease;
-    max-height: 44px; overflow: hidden;
+    gap: 10px; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden; cursor: default;
+    white-space: nowrap;
+    width: 136px;
+    padding: 10px 10px 10px 16px;
   }
   .h-pill-disc:hover {
-    max-height: 120px;
+    background: rgba(34,197,94,0.18);
+    border-color: rgba(34,197,94,0.4);
     border-radius: 20px;
-    background: rgba(34,197,94,0.16);
-    padding: 14px 20px;
+    padding: 14px 22px 14px 16px;
   }
-  .h-pill-disc-item {
-    display: flex; align-items: center; gap: 8px;
-    font-family: var(--sans); font-size: clamp(13px, 1.4vw, 17px);
-    font-weight: 500; color: var(--accent);
-    white-space: nowrap; line-height: 1.4;
-    opacity: 0; transition: opacity 0.2s ease;
-  }
-  .h-pill-disc-item:first-child { opacity: 1; }
-  .h-pill-disc:hover .h-pill-disc-item { opacity: 1; }
+  /* the animated dot */
   .h-pill-disc-dot {
-    width: 6px; height: 6px; border-radius: 50%;
+    width: 9px; height: 9px; border-radius: 50%;
     background: var(--accent); flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
   }
+  /* single visible label that swaps */
+  .h-pill-disc-label {
+    font-family: var(--sans); font-size: clamp(15px, 1.6vw, 20px);
+    font-weight: 500; color: var(--accent);
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s ease;
+  }
+  /* on hover: show all three stacked */
+  .h-pill-disc-all {
+    display: none; flex-direction: column; gap: 6px;
+  }
+  .h-pill-disc-all-item {
+    font-family: var(--sans); font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 500; color: var(--accent);
+    letter-spacing: -0.01em; line-height: 1.3;
+  }
+  .h-pill-disc:hover .h-pill-disc-label { display: none; }
+  .h-pill-disc:hover .h-pill-disc-all { display: flex; }
+  .h-pill-disc:hover .h-pill-disc-dot { display: none; }
 
   /* hollywood pill */
   .h-pill-place {
@@ -115,7 +130,7 @@
     transition: transform 0.3s ease;
   }
   .h-pill-place:hover { transform: scale(1.05) rotate(2deg); }
-  .h-pill-place img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .h-pill-place img, .h-pill-place svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .hero-sub {
     font-size: 18px; font-weight: 300; color: var(--cream2); max-width: 500px;
@@ -264,6 +279,66 @@
   .project-access-btn:hover { background: var(--accent); transform: translateY(-1px); }
   .project-card .project-desc em { font-style: italic; color: var(--cream); }
 
+  /* Designer — mirrors Hello */
+  .hero-designer {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Hybrid — letter scramble on hover */
+  .hero-hybrid {
+    display: inline-block;
+    cursor: default;
+    transition: color 0.2s;
+  }
+  .hero-hybrid:hover { color: var(--accent); }
+
+
+  .hero-creative {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--accent-pink);
+    text-underline-offset: 8px;
+    text-decoration-thickness: 2px;
+    transition: color 0.2s;
+    color: inherit;
+  }
+  .hero-creative:hover { color: var(--accent-pink); }
+  .hero-creative-tooltip {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%; 
+    transform: translateX(-50%) translateY(6px);
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    padding: 10px 20px;
+    white-space: nowrap;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    color: var(--cream2);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+  }
+  .hero-creative-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--border2);
+  }
+  .hero-creative:hover .hero-creative-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -287,13 +362,17 @@
   <p class="hero-eyebrow">Senior Product Designer · Los Angeles, CA</p>
 
   <h1 class="hero-headline">
-    <em>Hello!</em> I'm&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span>&nbsp;Mason,<br>
-    a Hybrid&nbsp;<span class="h-pill-disc">
-      <span class="h-pill-disc-item"><span class="h-pill-disc-dot"></span>product</span>
-      <span class="h-pill-disc-item"><span class="h-pill-disc-dot"></span>visual</span>
-      <span class="h-pill-disc-item"><span class="h-pill-disc-dot"></span>system</span>
-    </span>&nbsp;Designer<br>
-    and Creative in&nbsp;<span class="h-pill-place"><img src="img-hollywood.png" alt="Hollywood"></span>
+    <em>Hello!</em> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
+    a <span class="hero-hybrid" id="heroHybrid">Hybrid</span>&nbsp;<span class="h-pill-disc" id="discPill">
+      <span class="h-pill-disc-dot"></span>
+      <span class="h-pill-disc-label" id="discLabel">PRODUCT</span>
+      <span class="h-pill-disc-all">
+        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;PRODUCT</span>
+        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;VISUAL</span>
+        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;SYSTEM</span>
+      </span>
+    </span>&nbsp;<em class="hero-designer">Designer</em><br>
+    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-creative-tooltip">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
   </h1>
 
   <p class="hero-sub">
@@ -663,6 +742,62 @@
       if (!isOpen) item.classList.add('open');
     });
   });
+  // Hybrid letter scramble
+  const hybridEl = document.getElementById('heroHybrid');
+  const hybridOriginal = 'Hybrid';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
+  let scrambleFrame;
+
+  function scramble() {
+    let iterations = 0;
+    const totalFrames = 18;
+    clearInterval(scrambleFrame);
+    scrambleFrame = setInterval(() => {
+      hybridEl.textContent = hybridOriginal
+        .split('')
+        .map((char, i) => {
+          if (i < iterations) return hybridOriginal[i];
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join('');
+      iterations += 0.4;
+      if (iterations >= hybridOriginal.length) {
+        hybridEl.textContent = hybridOriginal;
+        clearInterval(scrambleFrame);
+      }
+    }, 30);
+  }
+
+  hybridEl.addEventListener('mouseenter', scramble);
+
+  // Discipline pill auto-rotate
+  const labels = ['PRODUCT', 'VISUAL', 'SYSTEM'];
+  const discLabel = document.getElementById('discLabel');
+  const discPill = document.getElementById('discPill');
+  let current = 0;
+  let rotateInterval;
+
+  function rotatePill() {
+    discLabel.style.opacity = '0';
+    setTimeout(() => {
+      current = (current + 1) % labels.length;
+      discLabel.textContent = labels[current];
+      discLabel.style.opacity = '1';
+    }, 180);
+  }
+
+  function startRotation() {
+    rotateInterval = setInterval(rotatePill, 1800);
+  }
+  function stopRotation() {
+    clearInterval(rotateInterval);
+  }
+
+  discPill.addEventListener('mouseenter', stopRotation);
+  discPill.addEventListener('mouseleave', startRotation);
+
+  discLabel.style.transition = 'opacity 0.18s ease';
+  startRotation();
 </script>
 </body>
 </html>
