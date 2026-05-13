@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows System Personalization · Mason Catt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
+    --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
+    --accent: #d4a853;
+    --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px; --radius-sm: 8px;
+    --col: 860px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(14,13,12,0.88); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--cream); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .nav-resume:hover { background: var(--accent); }
+
+  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--cream3); text-decoration: none; margin-bottom: 40px; transition: color 0.2s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
+  .back-link:hover { color: var(--cream2); }
+  .case-eyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
+  .etag { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ediv { color: var(--cream3); font-size: 12px; }
+  .eco { font-size: 12px; color: var(--cream3); }
+  .case-title { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .case-title em { font-style: italic; color: var(--accent); }
+  .case-subtitle { font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.7; max-width: 620px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+  .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; }
+  .meta-item { padding: 20px 0; border-right: 1px solid var(--border); }
+  .meta-item:last-child { border-right: none; }
+  .meta-item + .meta-item { padding-left: 24px; }
+  .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+  .mv { font-size: 14px; color: var(--cream); }
+  .mv.live { color: #4caf82; display:flex; align-items:center; gap:6px; }
+  .mv.live::before { content:''; width:6px; height:6px; border-radius:50%; background:#4caf82; display:inline-block; }
+
+  .hero-img-wrap { margin: 0 -48px; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; }
+  .hero-img-wrap img { width: 100%; height: auto; display: block; }
+
+  .case-body { max-width: var(--col); margin: 0 auto; padding: 80px 48px; }
+
+  .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+  .slabel::before { content: '✦'; font-size: 9px; }
+
+  .prose { margin-bottom: 64px; }
+  .prose h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px; }
+  .prose h3 { font-size: 15px; font-weight: 500; color: var(--cream); margin: 28px 0 10px; }
+  .prose p { font-size: 16px; color: var(--cream2); line-height: 1.8; margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 500; color: var(--cream); }
+
+  .thesis { background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--radius); padding: 36px 40px; margin: 32px 0; position: relative; overflow: hidden; }
+  .thesis::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,168,83,0.06) 0%, transparent 60%); pointer-events: none; }
+  .thesis-label { font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .thesis-text { font-family: var(--serif); font-size: clamp(22px, 3vw, 32px); font-style: italic; color: var(--cream); line-height: 1.3; letter-spacing: -0.01em; }
+
+  .callout { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: 20px 24px; margin: 20px 0; }
+  .callout p { font-size: 15px; color: var(--cream2); line-height: 1.75; margin: 0; }
+  .callout strong { color: var(--accent); font-weight: 500; }
+
+  .img-full { margin: 32px 0; }
+  .img-full img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
+  .img-caption { font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 10px; padding: 0 4px; line-height: 1.6; }
+
+  .img-grid { display: grid; gap: 12px; margin: 32px 0; }
+  .img-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .img-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+  .img-grid-item img { width: 100%; height: auto; display: block; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+  .img-grid-item .img-caption { margin-top: 8px; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+  .stat-cell { background: var(--bg2); padding: 28px; }
+  .stat-num { font-family: var(--serif); font-size: 42px; font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: 6px; }
+  .stat-desc { font-size: 13px; color: var(--cream2); line-height: 1.5; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+  .tag { font-size: 12px; color: var(--cream3); border: 1px solid var(--border2); padding: 5px 12px; border-radius: 100px; }
+  .tag.a { color: var(--accent); border-color: rgba(212,168,83,0.3); background: rgba(212,168,83,0.05); }
+
+  .next-project { border-top: 1px solid var(--border); background: var(--bg2); padding: 64px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .next-label { font-size: 12px; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .next-title { font-family: var(--serif); font-size: clamp(20px, 3vw, 32px); font-weight: 400; letter-spacing: -0.015em; }
+  .next-link { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--cream); color: var(--bg); font-size: 14px; font-weight: 500; border-radius: 100px; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+  .next-link:hover { background: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: var(--serif); font-size: 14px; color: var(--cream2); }
+  .footer-copy { font-size: 12px; color: var(--cream3); }
+  .footer-nav { display: flex; gap: 28px; list-style: none; }
+  .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--cream2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Mason Catt</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#work" class="back-link">← All work</a>
+  <div class="case-eyebrow">
+    <span class="etag">Design Systems · Vision Prototype</span>
+    <span class="ediv">·</span>
+    <span class="eco">Microsoft · Sep 2024 – Present</span>
+  </div>
+  <h1 class="case-title">Windows System<br><em>Personalization</em></h1>
+  <p class="case-subtitle">
+    A design prototype exploring how Windows could become genuinely, deeply personal — not just a wallpaper swap, but a complete expressive system built around the question: <em style="font-style:italic;">"What would make it yours?"</em>
+  </p>
+  <div class="meta-strip">
+    <div class="meta-item">
+      <div class="ml">Role</div>
+      <div class="mv">Senior UI/UX Designer</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Type</div>
+      <div class="mv">Vision Prototype</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Platform</div>
+      <div class="mv">Windows 11 · Fluent</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Status</div>
+      <div class="mv live">Ongoing</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-img-wrap">
+  <img src="img-matrix.png" alt="Personalization theme matrix — Nova, Gamer, Developer, LEGO, K-pop Demon Hunters, Nike across Wallpaper, Start, Account, Lock & Widget">
+</div>
+
+<div class="case-body">
+
+  <!-- THESIS -->
+  <div class="prose reveal">
+    <div class="slabel">The Idea</div>
+    <h2>It's still Windows. Now it's mine.</h2>
+    <p>
+      Personalization in Windows has always existed — wallpapers, accent colors, dark mode. But this prototype asks a bigger question: <strong>what if Windows could reflect who you actually are?</strong> Not just your color preference, but your identity — your fandoms, your profession, your mood on a Tuesday afternoon.
+    </p>
+    <p>
+      The work is a vision prototype: a designed argument for a new direction in Windows personalization, exploring what happens when themes become complete expressive worlds, when Copilot becomes the creative interface, and when saving and sharing a theme becomes a social act.
+    </p>
+    <div class="thesis">
+      <div class="thesis-label">Thesis</div>
+      <div class="thesis-text">"It's still Windows,<br>now it's mine."</div>
+    </div>
+  </div>
+
+  <!-- THE MATRIX -->
+  <div class="reveal">
+    <div class="slabel">The System</div>
+    <div class="img-full">
+      <img src="img-matrix.png" alt="Theme matrix — six complete theme identities across four Windows surfaces">
+      <div class="img-caption">The theme matrix: each column is a complete identity (Nova Base, Gamer, Developer, LEGO, K-pop Demon Hunters, Nike) applied across all four Windows surfaces — Wallpaper, Start, Account, and Lock & Widget. This single artifact is the design argument.</div>
+    </div>
+  </div>
+
+  <div class="prose reveal">
+    <p>
+      The matrix is the central design artifact. Reading across a row shows how each surface behaves within the theme system. Reading down a column shows how a single identity — say, LEGO — expresses itself differently in the wallpaper versus the lock screen versus the account screen. Both views tell you something important about <strong>whether the system is working</strong>.
+    </p>
+    <p>
+      Six themes were chosen to stress-test the architecture across vastly different cultural contexts: a gaming IP (Halo), a construction toy brand (LEGO), a sportswear brand (Nike), an anime/K-pop illustrated world, a developer identity, and the default Nova Base. If the system holds for all six, it holds for anything.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- NOVA -->
+  <div class="prose reveal">
+    <div class="slabel">The Foundation</div>
+    <h2>Nova Base — the canvas everything starts from</h2>
+    <p>
+      Nova is the default: the soft, abstract gradient world that ships with Windows 11. Its role in the prototype is important — it's the state before you've told Windows anything about yourself, and it needs to feel <strong>warm and inviting rather than generic</strong>. The invitation to personalize should feel like an opportunity, not a correction.
+    </p>
+    <p>
+      The Nova lock screen with its widget row — weather, GPU status, Teams meeting, news — shows the foundation. Calm, spacious, well-composed. The bar everything else is measured against.
+    </p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-nova-lock.png" alt="Nova Base lock screen — soft gradient wallpaper, 21:59 time, date, and four lock screen widgets">
+    <div class="img-caption">Nova Base lock screen — the default experience. The widget row (weather, system, calendar, news) is also part of the personalization system, and shifts with the chosen theme.</div>
+  </div>
+
+  <hr>
+
+  <!-- THEMES SECTION -->
+  <div class="prose reveal">
+    <div class="slabel">The Themes</div>
+    <h2>Complete worlds, not just wallpapers</h2>
+    <p>
+      Each theme is designed as a <strong>total environment</strong>. The lock screen in the Nike theme doesn't just show a Nike wallpaper — the swoosh becomes an ambient presence behind the user avatar, the color palette shifts to warm tan and burnt orange, the whole surface feels like it belongs to that brand world. The LEGO lock screen goes full red, the avatar becomes a minifig, the typography weight shifts to match the IP's energy.
+    </p>
+    <p>
+      This is the core design challenge: achieving deep theme fidelity across surfaces that have very different functional constraints. A wallpaper has all the latitude in the world. A lock screen has to remain legible and functional. The account screen is three elements: background, avatar, name. The Start menu has to stay usable. The question is how much of the theme world can live in each surface without breaking the experience.
+    </p>
+  </div>
+
+  <!-- Lock screens -->
+  <div class="reveal">
+    <div class="slabel">Lock Screen Variants</div>
+    <div class="img-grid col3">
+      <div class="img-grid-item">
+        <img src="img-lock-nike.png" alt="Nike theme lock screen — warm tan background with ambient blurred swoosh, user avatar">
+        <div class="img-caption">Nike — the swoosh becomes environmental. Brand identity as ambient texture, not logo slap.</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="img-lock-gamer.png" alt="Gamer theme lock screen — dark atmospheric background, PixelPopsicle avatar with game character art">
+        <div class="img-caption">Gamer — dark, atmospheric. The user avatar is styled to feel at home in the world of the theme.</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="img-lock-lego.png" alt="LEGO theme lock screen — bold primary red background, LEGO minifig avatar for Zane Carter">
+        <div class="img-caption">LEGO — bold and graphic. The OS matches the full energy of the IP, no hedging.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- K-pop -->
+  <div class="prose reveal" style="margin-top: 52px;">
+    <h3>K-pop Demon Hunters — designing for a different visual language</h3>
+    <p>
+      Most gaming and branded themes lean dark and saturated. K-pop Demon Hunters is the deliberate counterpoint: a richly illustrated world with a light background, anime-adjacent character design, and a palette that's soft and warm rather than high-contrast. Designing Windows surfaces for this theme required a completely different set of decisions — how does a light-background illustration become a wallpaper that the taskbar and lock chrome still read against?
+    </p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-kpop.png" alt="K-pop Demon Hunters illustration — three anime-style characters and a large blue fantasy cat on a warm cream background">
+    <div class="img-caption">K-pop Demon Hunters — the source illustration. Rich characters, warm cream background, hand-drawn quality. A deliberate contrast to the dark-and-saturated norms of gaming themes, and a meaningful test of the system's range.</div>
+  </div>
+
+  <hr>
+
+  <!-- START MENU -->
+  <div class="prose reveal">
+    <div class="slabel">Start Menu</div>
+    <h2>Start as a personal surface</h2>
+    <p>
+      The Start menu prototype (Nova Base shown) explores what happens when the surface takes on signs of life. Pinned apps, recent files, and "Topics & categories" already make Start contextual. The design question is how theme identity enters this surface: not just as a background color, but as a way of <strong>surfacing content and structure</strong> that fits who you are.
+    </p>
+    <p>
+      The "Topics & categories" section is particularly interesting — it's already doing implicit personalization based on installed apps and usage. The prototype explores how a chosen theme or expressed identity could shape this seeding, making Start feel genuinely curated rather than algorithmically configured.
+    </p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-start.png" alt="Windows Start menu — Nova Base, showing search, pinned apps, recent files, and Topics & categories">
+    <div class="img-caption">Start menu — Nova Base. The foundation state: organized by activity and relevance. The prototype explores how theme identity can enrich this without disrupting usability.</div>
+  </div>
+
+  <hr>
+
+  <!-- DESIGN QUESTIONS -->
+  <div class="prose reveal">
+    <div class="slabel">What the prototype is exploring</div>
+    <h2>The harder questions underneath the surface</h2>
+    <p>
+      The visual execution is the visible part of this work. But the prototype is also a vehicle for exploring harder product and design strategy questions about where Windows personalization should go.
+    </p>
+
+    <div class="callout">
+      <p><strong>Industry & IP themes:</strong> Can Windows host partnership themes — LEGO, Nike, gaming titles — in a way that feels elevated and native? What's the design contract that makes a branded theme feel like it belongs to Windows rather than being bolted on?</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Copilot as composer:</strong> What if the entry point to personalization wasn't Settings — it was a conversation? "Make my Windows feel like a developer who loves Halo" → Copilot composes and applies a theme. The prototype explores Copilot as the creative interface for personal expression.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Save & share:</strong> Themes as social objects. If you could package your theme and share it — or discover themes other users made — how does that change the personalization ecosystem? This treats Windows not just as a product but as a platform for creative expression.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Widgets from the composer:</strong> Rather than picking widgets from a static catalog, what if the Copilot composer suggested contextual widgets on the fly — "on the spot vibe" widgets that match the world you're building, surfaced at the moment of creation?</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- OUTCOMES -->
+  <div class="prose reveal">
+    <div class="slabel">Impact</div>
+    <h2>A new grammar for Windows identity</h2>
+    <p>
+      The prototype demonstrates that Windows can be a canvas for identity — not just preference — at scale. The matrix format is especially powerful for internal communication: six complete worlds side by side makes the design argument more compellingly than any single screen could.
+    </p>
+    <p>
+      The work has surfaced real product questions — about theme creation, distribution, the role of Copilot and AI in personal expression, partnership models with IP holders — that are actively shaping design strategy conversations at Microsoft.
+    </p>
+  </div>
+
+  <div class="stat-strip reveal">
+    <div class="stat-cell">
+      <div class="stat-num">6</div>
+      <div class="stat-desc">Complete theme identities designed end-to-end across all Windows surfaces</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">4</div>
+      <div class="stat-desc">Surface areas per theme: Wallpaper, Start, Account, Lock & Widget</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">∞</div>
+      <div class="stat-desc">Possible expressions — the design question the prototype is built to answer</div>
+    </div>
+  </div>
+
+  <div class="tags reveal">
+    <span class="tag a">Vision Prototype</span>
+    <span class="tag">Windows 11</span>
+    <span class="tag">Fluent Design</span>
+    <span class="tag">Personalization</span>
+    <span class="tag">Copilot</span>
+    <span class="tag">Theme System</span>
+    <span class="tag">IP Partnerships</span>
+    <span class="tag">Lock Screen</span>
+    <span class="tag">Start Menu</span>
+    <span class="tag">Identity Design</span>
+    <span class="tag">Microsoft</span>
+  </div>
+
+</div>
+
+<div class="next-project">
+  <div>
+    <div class="next-label">Next project</div>
+    <div class="next-title">Windows Fluent Visual System</div>
+  </div>
+  <a href="windows-fluent-visual-system.html" class="next-link">View project →</a>
+</div>
+
+<footer>
+  <span class="footer-name">Mason Catt</span>
+  <ul class="footer-nav">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 · Made with care in LA</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.04) + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

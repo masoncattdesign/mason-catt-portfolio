@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · Mason Catt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
+    --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
+    --accent: #d4a853; --accent2: #c4834a;
+    --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px; --radius-sm: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(14,13,12,0.88); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--cream); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--cream); }
+  .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .nav-resume:hover { background: var(--accent); }
+
+  /* ── ABOUT HERO ── */
+  .about-hero {
+    padding: 160px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .about-hero::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,168,83,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-hero-inner { max-width: 760px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+  .hero-tag::before { content: '✦'; font-size: 10px; }
+  .about-hero h1 {
+    font-family: var(--serif); font-size: clamp(44px, 6vw, 80px);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.025em;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.25s;
+  }
+  .about-hero h1 em { font-style: italic; color: var(--accent); }
+  .about-hero-bio {
+    font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.75;
+    max-width: 620px; margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .about-hero-bio strong { font-weight: 500; color: var(--cream); }
+  .about-hero-pills {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.55s;
+  }
+  .pill {
+    font-size: 13px; color: var(--cream2); border: 1px solid var(--border2);
+    padding: 6px 14px; border-radius: 100px;
+  }
+  .pill.accent { color: var(--accent); border-color: rgba(212,168,83,0.3); background: rgba(212,168,83,0.05); }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    padding: 0 48px 80px;
+    opacity: 0; animation: fadeIn 1s ease forwards 0.7s;
+  }
+  .photo-grid-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 12px;
+  }
+  .photo-cell {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .photo-cell.tall { grid-row: 1 / 3; }
+  .photo-cell-label {
+    font-size: 12px; color: var(--cream3); letter-spacing: 0.04em;
+    text-align: center; padding: 16px;
+    line-height: 1.5;
+  }
+  .photo-cell-hint {
+    position: absolute; bottom: 12px; left: 16px;
+    font-size: 11px; color: var(--cream3); font-style: italic;
+  }
+
+  /* ── SECTION SHARED ── */
+  .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 40px; }
+  .section-label::before { content: '✦'; font-size: 10px; }
+
+  /* ── CAREER TIMELINE ── */
+  .timeline-section { padding: 100px 48px; border-top: 1px solid var(--border); }
+  .timeline-inner { display: grid; grid-template-columns: 280px 1fr; gap: 80px; }
+  .timeline-intro h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .timeline-intro p { font-size: 14px; color: var(--cream3); line-height: 1.7; }
+  .timeline { position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border2); }
+  .timeline-item { padding-left: 28px; padding-bottom: 48px; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: -4px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); }
+  .timeline-item.current::before { background: var(--accent); border-color: var(--accent); }
+  .timeline-date { font-size: 12px; color: var(--cream3); letter-spacing: 0.05em; margin-bottom: 6px; }
+  .timeline-company { font-size: 18px; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
+  .timeline-role { font-size: 14px; color: var(--accent); margin-bottom: 10px; }
+  .timeline-desc { font-size: 14px; color: var(--cream2); line-height: 1.7; margin-bottom: 12px; }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .timeline-tag { font-size: 11px; color: var(--cream3); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 100px; }
+  .timeline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 3px 9px; border-radius: 100px; margin-left: 8px; }
+  .badge-current { color: #4caf82; border: 1px solid rgba(76,175,130,0.3); background: rgba(76,175,130,0.06); }
+  .badge-current::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4caf82; }
+  .badge-award { color: var(--accent); border: 1px solid rgba(212,168,83,0.3); background: rgba(212,168,83,0.06); }
+
+  /* ── TOOLS ── */
+  .tools-section { padding: 80px 48px; background: var(--bg2); border-top: 1px solid var(--border); }
+  .tools-section h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .tools-sub { font-size: 14px; color: var(--cream3); margin-bottom: 40px; font-style: italic; font-family: var(--serif); }
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .tool-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 14px; color: var(--cream2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tool-chip:hover { border-color: var(--border2); color: var(--cream); }
+  .tool-icon { font-size: 18px; line-height: 1; }
+
+  /* ── VALUES ── */
+  .values-section { padding: 100px 48px; border-top: 1px solid var(--border); }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+  .value-card { padding: 28px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); }
+  .value-num { font-family: var(--serif); font-size: 36px; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 12px; }
+  .value-title { font-size: 16px; font-weight: 500; color: var(--cream); margin-bottom: 8px; }
+  .value-desc { font-size: 14px; color: var(--cream2); line-height: 1.7; }
+
+  /* ── CLOSING QUOTE ── */
+  .closing-quote {
+    padding: 100px 48px; text-align: center;
+    border-top: 1px solid var(--border); background: var(--bg2);
+  }
+  .closing-quote blockquote {
+    font-family: var(--serif); font-size: clamp(24px, 3.5vw, 44px);
+    font-weight: 400; font-style: italic; line-height: 1.3; letter-spacing: -0.02em;
+    color: var(--cream2); max-width: 760px; margin: 0 auto 24px;
+  }
+  .closing-quote blockquote em { color: var(--cream); font-style: normal; }
+  .closing-quote cite { font-size: 13px; color: var(--cream3); font-style: normal; }
+
+  /* ── CONTACT CTA ── */
+  .contact-cta { padding: 80px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .contact-cta-text h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .contact-cta-text p { font-size: 15px; color: var(--cream2); }
+  .contact-cta-btns { display: flex; gap: 12px; flex-shrink: 0; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--cream); color: var(--bg); font-family: var(--sans); font-size: 14px; font-weight: 500; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 6px; padding: 14px 28px; border: 1px solid var(--border2); color: var(--cream2); font-family: var(--sans); font-size: 14px; border-radius: 100px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .btn-ghost:hover { border-color: var(--cream2); color: var(--cream); }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: var(--serif); font-size: 14px; color: var(--cream2); }
+  .footer-copy { font-size: 12px; color: var(--cream3); }
+  .footer-nav { display: flex; gap: 28px; list-style: none; }
+  .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--cream2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Mason Catt</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-inner">
+    <div class="hero-tag">About me</div>
+    <h1>Still figuring<br>things out —<br><em>beautifully.</em></h1>
+    <p class="about-hero-bio">
+      I'm <strong>Mason Catt</strong>, a Senior Product Designer and Visual Systems Designer based in <strong>Los Angeles</strong>. For 10+ years I've been building and scaling complex digital products across platforms and brands — from Amazon advertising to Microsoft's Windows design system.
+    </p>
+    <div class="about-hero-pills">
+      <span class="pill accent">Currently @ Microsoft</span>
+      <span class="pill">Los Angeles, CA</span>
+      <span class="pill">🏆 Gold Clio Award</span>
+      <span class="pill">UW Design '14</span>
+      <span class="pill">Official Beyoncé fan club member</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GRID (placeholder — swap in your Instagram/personal photos) -->
+<div class="photo-grid">
+  <div class="photo-grid-inner">
+    <div class="photo-cell tall">
+      <div>
+        <div class="photo-cell-label">[ Your portrait here ]</div>
+        <div class="photo-cell-hint">Swap in from @masoncatt</div>
+      </div>
+    </div>
+    <div class="photo-cell">
+      <div class="photo-cell-label">[ Life photo ]</div>
+    </div>
+    <div class="photo-cell">
+      <div class="photo-cell-label">[ Life photo ]</div>
+    </div>
+    <div class="photo-cell">
+      <div class="photo-cell-label">[ Work / sketch ]</div>
+    </div>
+    <div class="photo-cell">
+      <div class="photo-cell-label">[ Life photo ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAREER TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-inner">
+    <div class="timeline-intro reveal">
+      <div class="section-label">Career</div>
+      <h2>Where I've been</h2>
+      <p>A decade of building things that matter — at companies that care about craft.</p>
+    </div>
+    <div class="timeline reveal">
+
+      <div class="timeline-item current">
+        <div class="timeline-date">Sep 2024 – Present <span class="timeline-badge badge-current">Current</span></div>
+        <div class="timeline-company">Microsoft</div>
+        <div class="timeline-role">Senior UI/UX Designer</div>
+        <p class="timeline-desc">Creating and refining system components, iconography, and visual foundations for Windows design systems. Building production-aligned Figma libraries and partnering closely with engineering for pixel-accurate implementation.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Windows Design Systems</span>
+          <span class="timeline-tag">Figma Libraries</span>
+          <span class="timeline-tag">Iconography</span>
+          <span class="timeline-tag">Accessibility</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jul 2020 – Jul 2024</div>
+        <div class="timeline-company">Amazon</div>
+        <div class="timeline-role">Visual Experience Design Lead</div>
+        <p class="timeline-desc">Directed visual and UX design across global fintech and payments products. Led the visual redesign of the U.S. credit card product, elevating clarity and usability. Maintained visual consistency across international markets and localized experiences.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Amazon Business Payments</span>
+          <span class="timeline-tag">Visual Systems</span>
+          <span class="timeline-tag">Creative Direction</span>
+          <span class="timeline-tag">Global Products</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2019 – Jun 2020 · Contract</div>
+        <div class="timeline-company">Intuit Credit Karma</div>
+        <div class="timeline-role">Senior Designer</div>
+        <p class="timeline-desc">Led UX strategy, research, and launch of the new Savings product. Onboarded and established the first centralized Figma library and asset repository at the company. Contributed early vision concepts for Debit and Credit initiatives.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Savings & Tax Product</span>
+          <span class="timeline-tag">Design Systems</span>
+          <span class="timeline-tag">0→1 Product</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Oct 2018 – Feb 2019 · Contract</div>
+        <div class="timeline-company">BUCK Design</div>
+        <div class="timeline-role">UI/UX Designer</div>
+        <p class="timeline-desc">Created visual guidelines, UI assets, and custom illustrations for clients including Netflix, Facebook Libra, and Apple Home. Developed iconography and digital artwork supporting brand campaigns.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Netflix</span>
+          <span class="timeline-tag">Facebook Libra</span>
+          <span class="timeline-tag">Apple Home</span>
+          <span class="timeline-tag">Illustration</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">May 2014 – Oct 2018 <span class="timeline-badge badge-award">🏆 Gold Clio 2018</span></div>
+        <div class="timeline-company">Amazon</div>
+        <div class="timeline-role">Interaction Designer</div>
+        <p class="timeline-desc">Designed and launched advertising experiences across mobile, web, audio, and TV. Created conceptual artwork, diagrams, and marketing-ready visual assets. Won the Gold Clio Award for Theatrical Innovation.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Advertising Experience</span>
+          <span class="timeline-tag">Interaction Design</span>
+          <span class="timeline-tag">Multi-platform</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section">
+  <div class="reveal">
+    <div class="section-label">Tools</div>
+    <h2>How I create</h2>
+    <p class="tools-sub">…the stack behind the magic</p>
+    <div class="tools-grid">
+      <div class="tool-chip"><span class="tool-icon">🎨</span>Figma</div>
+      <div class="tool-chip"><span class="tool-icon">🅰️</span>Adobe Creative Suite</div>
+      <div class="tool-chip"><span class="tool-icon">🎬</span>After Effects</div>
+      <div class="tool-chip"><span class="tool-icon">🎞️</span>Premiere</div>
+      <div class="tool-chip"><span class="tool-icon">✏️</span>Procreate</div>
+      <div class="tool-chip"><span class="tool-icon">🤖</span>AI Tools</div>
+      <div class="tool-chip"><span class="tool-icon">💻</span>HTML & CSS</div>
+      <div class="tool-chip"><span class="tool-icon">✍️</span>Drawing & Sketching</div>
+      <div class="tool-chip"><span class="tool-icon">🖼️</span>Illustration</div>
+      <div class="tool-chip"><span class="tool-icon">📸</span>Photography</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="reveal">
+    <div class="section-label">What I believe</div>
+    <h2 style="font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.02em;">Design principles I live by</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <div class="value-title">Systems over surfaces</div>
+      <p class="value-desc">The best product work isn't about individual screens — it's about building foundations that make every screen better. Invest in systems early.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">02</div>
+      <div class="value-title">Clarity is kindness</div>
+      <p class="value-desc">Confusing design is a form of disrespect. Every hierarchy decision, every label, every interaction should make the user's life easier, not harder.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">03</div>
+      <div class="value-title">Ship things</div>
+      <p class="value-desc">Perfect is the enemy of good, but "good enough" isn't good enough either. Find the sweet spot — then get it in front of real people.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING QUOTE -->
+<div class="closing-quote reveal">
+  <blockquote>
+    "Knowing what you don't want is a <em>big step</em> towards getting what you do."
+  </blockquote>
+  <cite>— something that stuck with me</cite>
+</div>
+
+<!-- CONTACT CTA -->
+<div class="contact-cta">
+  <div class="contact-cta-text reveal">
+    <h2>Want to talk design?</h2>
+    <p>Work, ideas, collaboration, or just good conversation — I'm around.</p>
+  </div>
+  <div class="contact-cta-btns reveal">
+    <a href="mailto:masoncatt@gmail.com" class="btn-primary">Get in touch →</a>
+    <a href="index.html#work" class="btn-ghost">See my work</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Mason Catt</span>
+  <ul class="footer-nav">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 · Made with care in LA</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.07) + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
