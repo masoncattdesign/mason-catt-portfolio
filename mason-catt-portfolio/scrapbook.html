@@ -38,50 +38,60 @@
 
   /* PAGE HEADER */
   .page-header {
-    padding: 130px 48px 48px;
+    padding: 88px 0 0;
     position: relative;
-    overflow: visible;
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    overflow: hidden;
+    height: 260px;
+    border-bottom: 1px solid var(--border);
   }
 
-  /* CHALK TITLE IMAGE */
+  /* CHALK TITLE IMAGE — large, bleeds left */
   .chalk-title-img {
-    display: block;
-    width: clamp(280px, 38vw, 520px);
+    position: absolute;
+    left: -12px;
+    bottom: -20px;
+    width: clamp(320px, 42vw, 580px);
     height: auto;
-    mix-blend-mode: lighten; /* knocks out the black background */
-    margin-left: -16px; /* optically align with text below */
-    margin-bottom: 4px;
+    mix-blend-mode: lighten;
     opacity: 0;
-    animation: fadeUp 0.9s ease forwards 0.15s;
+    animation: fadeUp 0.8s ease forwards 0.1s;
     user-select: none;
     pointer-events: none;
-  }
-  .chalk-sub {
-    font-family: var(--sans);
-    font-size: 16px; color: var(--cream3);
-    line-height: 1.6; margin-bottom: 0;
-    font-weight: 400;
+    z-index: 2;
   }
 
-  /* CHALK DOODLES in header */
+  /* COLLAGE IMAGE — overlaps from the right, slightly into the title */
   .chalk-doodles {
     position: absolute;
-    top: 80px; right: 40px;
-    width: 340px; height: 340px;
+    top: 60px;
+    right: -20px;
+    width: clamp(360px, 52vw, 720px);
+    height: auto;
     object-fit: contain;
     pointer-events: none;
     opacity: 0;
-    animation: fadeIn 1s ease forwards 0.6s;
+    animation: fadeIn 0.9s ease forwards 0.3s;
+    z-index: 1;
+  }
+
+  /* Subtitle sits bottom-left over the title */
+  .chalk-sub {
+    position: absolute;
+    bottom: 14px;
+    left: clamp(320px, 43vw, 590px);
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--cream3);
+    line-height: 1.5;
+    font-weight: 400;
+    z-index: 3;
+    max-width: 260px;
   }
 
   /* FILTER BAR */
   .filter-bar {
     display: flex; align-items: center; gap: 10px;
-    padding: 20px 48px 24px;
+    padding: 16px 48px;
     border-bottom: 1px solid var(--border);
     flex-wrap: wrap;
   }
@@ -100,7 +110,47 @@
   .filter-btn[data-filter="animation"].active { background: var(--accent-blue); border-color: var(--accent-blue); }
 
   /* BOARD */
-  .board { padding: 56px 48px 120px; }
+  .board {
+    padding: 56px 48px 120px;
+    position: relative;
+  }
+  /* Artifacts layer — scattered shapes floating behind cards */
+  .board-artifacts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .board-artifacts img {
+    position: absolute;
+    mix-blend-mode: lighten;
+    opacity: 0.55;
+    user-select: none;
+  }
+  /* Scatter four cropped instances of the artifact sheet at different positions/sizes/rotations */
+  .board-artifacts img:nth-child(1) {
+    width: 600px; top: -60px; left: -80px;
+    transform: rotate(-8deg) scaleX(-1);
+    opacity: 0.45;
+  }
+  .board-artifacts img:nth-child(2) {
+    width: 500px; top: 300px; right: -100px;
+    transform: rotate(12deg);
+    opacity: 0.4;
+  }
+  .board-artifacts img:nth-child(3) {
+    width: 420px; bottom: 100px; left: 30%;
+    transform: rotate(-5deg);
+    opacity: 0.3;
+  }
+  .board-artifacts img:nth-child(4) {
+    width: 380px; bottom: -40px; right: 15%;
+    transform: rotate(7deg) scaleX(-1);
+    opacity: 0.35;
+  }
+  /* scraps sit above artifacts */
+  .scraps { position: relative; z-index: 1; }
   .scraps {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -120,16 +170,6 @@
     transition: opacity 0.2s, transform 0.2s;
   }
 
-  /* CHALK DECORATION — each scrap gets a small chalk SVG element */
-  .chalk-deco {
-    position: absolute;
-    pointer-events: none;
-    z-index: 3;
-  }
-  .chalk-deco.top-left  { top: -18px; left: -14px; }
-  .chalk-deco.top-right { top: -16px; right: -14px; }
-  .chalk-deco.bot-left  { bottom: -16px; left: -10px; }
-  .chalk-deco.bot-right { bottom: -14px; right: -12px; }
 
   /* POLAROID */
   .scrap-polaroid .scrap-inner {
@@ -287,10 +327,9 @@
 </nav>
 
 <div class="page-header">
-  <img class="chalk-title-img" src="img-scrapbook-title.png" alt="Scrapbook">
-  <p class="chalk-sub">Illustrations, sketches, animations & things made just for fun</p>
-
   <img class="chalk-doodles" src="img-scrapbook-header.png" alt="Scrapbook collage">
+  <img class="chalk-title-img" src="img-scrapbook-title.png" alt="Scrapbook">
+  <p class="chalk-sub">Illustrations, sketches,<br>animations & things made<br>just for fun</p>
 </div>
 
 <div class="filter-bar">
@@ -302,32 +341,17 @@
 </div>
 
 <div class="board">
+  <div class="board-artifacts">
+    <img src="img-scrap-artifacts.png" alt="">
+    <img src="img-scrap-artifacts.png" alt="">
+    <img src="img-scrap-artifacts.png" alt="">
+    <img src="img-scrap-artifacts.png" alt="">
+  </div>
   <div class="scraps" id="scraps">
 
     <!-- ILLUSTRATION 1 -->
     <div class="scrap scrap-illus" data-filter="illustration" data-rot="-2"
          data-title="Windows Personalization Matrix" data-type="Illustration" data-src="img-matrix.png">
-      <!-- Chalk star deco -->
-      <svg class="chalk-deco top-right" width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <line x1="16" y1="4"  x2="16" y2="28" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <line x1="4"  y1="16" x2="28" y2="16" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <line x1="8"  y1="8"  x2="24" y2="24" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <line x1="24" y1="8"  x2="8"  y2="24" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-      </svg>
-      <div class="scrap-inner">
-        <div class="scrap-img"><img src="img-matrix.png" alt="Windows personalization matrix"></div>
-        <div class="scrap-label"><span>Illustration</span><small>Microsoft '24</small></div>
-      </div>
-    </div>
-
-    <!-- ANIMATION 1 — orbit -->
-    <div class="scrap scrap-anim" data-filter="animation" data-rot="1" data-title="Orbit Study" data-type="SVG Animation">
-      <!-- Chalk circle deco -->
-      <svg class="chalk-deco top-left" width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 4 C20 4 24 9 24 14 C24 20 19 24 14 24 C8 24 4 19 4 14 C4 8 9 4 14 4Z"
-              stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.55"
-              stroke-dasharray="3 3"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-canvas">
           <span class="anim-badge">Live</span>
@@ -354,27 +378,15 @@
     <div class="scrap scrap-polaroid" data-filter="photo" data-rot="-3"
          data-title="Mason Catt" data-type="Photo" data-src="img-headshot.png">
       <!-- Flower deco -->
-      <svg class="chalk-deco top-right" width="30" height="36" viewBox="0 0 30 36" fill="none">
-        <path d="M15 16 C15 16 12 8 15 4 C18 8 15 16 15 16Z" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M15 16 C15 16 8 12 6 6 C12 6 15 16 15 16Z" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M15 16 C15 16 22 12 24 6 C18 6 15 16 15 16Z" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <line x1="15" y1="16" x2="15" y2="36" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-headshot.png" alt="Mason"></div>
-        <p class="scrap-caption">still figuring it out ✦</p>
+        <p class="scrap-caption">making things in LA 🌴</p>
       </div>
     </div>
 
     <!-- ILLUSTRATION — Portrait 1 -->
     <div class="scrap scrap-illus" data-filter="illustration" data-rot="2"
          data-title="Portrait Illustration" data-type="Illustration" data-src="img-scrap-illustration-1.jpg">
-      <svg class="chalk-deco bot-right" width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <line x1="14" y1="2"  x2="14" y2="26" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-        <line x1="2"  y1="14" x2="26" y2="14" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-        <line x1="6"  y1="6"  x2="22" y2="22" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-        <line x1="22" y1="6"  x2="6"  y2="22" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-scrap-illustration-1.jpg" alt="Portrait illustration"></div>
         <div class="scrap-label"><span>Illustration</span><small>Digital</small></div>
@@ -383,10 +395,6 @@
 
     <!-- ANIMATION 2 — waveform -->
     <div class="scrap scrap-anim" data-filter="animation" data-rot="-1" data-title="Waveform Study" data-type="SVG Animation">
-      <svg class="chalk-deco top-right" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="4" stroke="#e879a0" stroke-width="1.8" fill="none" opacity="0.7"/>
-        <circle cx="12" cy="12" r="9" stroke="#e879a0" stroke-width="1.2" fill="none" opacity="0.3" stroke-dasharray="2 3"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-canvas">
           <span class="anim-badge">Live</span>
@@ -407,10 +415,6 @@
     <!-- ILLUSTRATION 2 -->
     <div class="scrap scrap-illus" data-filter="illustration" data-rot="4"
          data-title="Nova Lock Screen" data-type="UI Design" data-src="img-nova-lock.png">
-      <svg class="chalk-deco bot-left" width="32" height="18" viewBox="0 0 32 18" fill="none">
-        <path d="M2 9 C5 3 9 15 13 9 C17 3 21 15 25 9 C29 3 33 15 37 9"
-              stroke="#3b82f6" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-nova-lock.png" alt="Nova lock screen"></div>
         <div class="scrap-label"><span>UI Design</span><small>Microsoft '24</small></div>
@@ -419,10 +423,6 @@
 
     <!-- ANIMATION 3 — rings -->
     <div class="scrap scrap-anim" data-filter="animation" data-rot="2" data-title="Ring Draw Study" data-type="SVG Animation">
-      <svg class="chalk-deco top-left" width="26" height="26" viewBox="0 0 26 26" fill="none">
-        <path d="M13 4 C14 4 16 6 16 10 C16 16 10 18 8 16 C6 14 8 10 11 10 C14 10 16 13 13 4Z"
-              stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.55"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-canvas">
           <span class="anim-badge">Live</span>
@@ -444,10 +444,6 @@
     <!-- ILLUSTRATION — Portrait 2 -->
     <div class="scrap scrap-illus" data-filter="illustration" data-rot="-2"
          data-title="Lion King Illustration" data-type="Illustration" data-src="img-scrap-illustration-2.jpg">
-      <svg class="chalk-deco top-left" width="28" height="16" viewBox="0 0 28 16" fill="none">
-        <path d="M2 8 C5 3 8 13 11 8 C14 3 17 13 20 8 C23 3 26 13 29 8"
-              stroke="#22c55e" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-scrap-illustration-2.jpg" alt="Lion King illustration"></div>
         <div class="scrap-label"><span>Illustration</span><small>Digital</small></div>
@@ -456,12 +452,6 @@
     <!-- ALBUM COVER — Ghost -->
     <div class="scrap scrap-illus" data-filter="illustration" data-rot="-3"
          data-title="Ghost — Frankie & Scott Hoying" data-type="Album Art" data-src="img-scrap-ghost.webp">
-      <svg class="chalk-deco top-right" width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <line x1="14" y1="3" x2="14" y2="25" stroke="#e879a0" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <line x1="3" y1="14" x2="25" y2="14" stroke="#e879a0" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <line x1="7" y1="7" x2="21" y2="21" stroke="#e879a0" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <line x1="21" y1="7" x2="7" y2="21" stroke="#e879a0" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-scrap-ghost.webp" alt="Ghost album cover"></div>
         <div class="scrap-label"><span>Album Art</span><small>Frankie & Scott Hoying</small></div>
@@ -471,10 +461,6 @@
     <!-- ALBUM COVER — Proximity -->
     <div class="scrap scrap-illus" data-filter="illustration" data-rot="3"
          data-title="Proximity — Jared Gelman" data-type="Album Art" data-src="img-scrap-proximity.webp">
-      <svg class="chalk-deco top-left" width="26" height="26" viewBox="0 0 26 26" fill="none">
-        <circle cx="13" cy="13" r="5" stroke="#3b82f6" stroke-width="1.8" fill="none" opacity="0.65"/>
-        <circle cx="13" cy="13" r="11" stroke="#3b82f6" stroke-width="1.2" fill="none" opacity="0.3" stroke-dasharray="2 3"/>
-      </svg>
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-scrap-proximity.webp" alt="Proximity album cover"></div>
         <div class="scrap-label"><span>Album Art</span><small>Jared Gelman</small></div>
@@ -484,10 +470,6 @@
     <!-- VIDEO -->
     <div class="scrap scrap-video" data-filter="animation" data-rot="-1"
          data-title="Let Me Be Your Motivation" data-type="Motion">
-      <svg class="chalk-deco top-right" width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <line x1="11" y1="2" x2="11" y2="20" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
-        <line x1="2" y1="11" x2="20" y2="11" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
-      </svg>
       <div class="scrap-inner">
         <video class="scrap-vid" autoplay muted loop playsinline>
           <source src="video-motivation.mp4" type="video/mp4">
