@@ -38,55 +38,33 @@
 
   /* PAGE HEADER */
   .page-header {
-    padding: 88px 0 0;
+    padding: 140px 48px 80px;
     position: relative;
     overflow: hidden;
-    height: 260px;
     border-bottom: 1px solid var(--border);
   }
-
-  /* CHALK TITLE IMAGE — large, bleeds left */
   .chalk-title-img {
-    position: absolute;
-    left: -12px;
-    bottom: -20px;
-    width: clamp(320px, 42vw, 580px);
+    display: block;
+    width: clamp(280px, 38vw, 520px);
     height: auto;
     mix-blend-mode: lighten;
+    margin-left: -12px;
+    margin-bottom: 0;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.1s;
     user-select: none;
     pointer-events: none;
-    z-index: 2;
   }
-
-  /* COLLAGE IMAGE — overlaps from the right, slightly into the title */
-  .chalk-doodles {
-    position: absolute;
-    top: 60px;
-    right: -20px;
-    width: clamp(360px, 52vw, 720px);
-    height: auto;
-    object-fit: contain;
-    pointer-events: none;
-    opacity: 0;
-    animation: fadeIn 0.9s ease forwards 0.3s;
-    z-index: 1;
-  }
-
-  /* Subtitle sits bottom-left over the title */
   .chalk-sub {
-    position: absolute;
-    bottom: 14px;
-    left: clamp(320px, 43vw, 590px);
     font-family: var(--sans);
-    font-size: 13px;
-    color: var(--cream3);
-    line-height: 1.5;
-    font-weight: 400;
-    z-index: 3;
-    max-width: 260px;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--cream2);
+    margin-top: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
   }
+  .chalk-doodles { display: none; }
 
   /* FILTER BAR */
   .filter-bar {
@@ -173,7 +151,7 @@
 
   /* POLAROID */
   .scrap-polaroid .scrap-inner {
-    background: #f5f0e8; padding: 10px 10px 36px;
+    background: #f5f0e8; padding: 10px;
     border-radius: 3px; box-shadow: 0 6px 28px rgba(0,0,0,0.55);
   }
   .scrap-polaroid .scrap-img {
@@ -327,9 +305,8 @@
 </nav>
 
 <div class="page-header">
-  <img class="chalk-doodles" src="img-scrapbook-header.png" alt="Scrapbook collage">
   <img class="chalk-title-img" src="img-scrapbook-title.png" alt="Scrapbook">
-  <p class="chalk-sub">Illustrations, sketches,<br>animations & things made<br>just for fun</p>
+  <p class="chalk-sub">Just for fun.</p>
 </div>
 
 <div class="filter-bar">
@@ -380,7 +357,6 @@
       <!-- Flower deco -->
       <div class="scrap-inner">
         <div class="scrap-img"><img src="img-headshot.png" alt="Mason"></div>
-        <p class="scrap-caption">making things in LA 🌴</p>
       </div>
     </div>
 
