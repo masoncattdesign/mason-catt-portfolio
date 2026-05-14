@@ -36,22 +36,22 @@
   .nav-resume:hover { background: var(--accent); }
 
   .hero {
-    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 48px 80px; position: relative; overflow: hidden;
+    min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 60px; position: relative; overflow: hidden;
   }
   .hero-eyebrow {
     display: flex; align-items: center; gap: 10px;
-    font-size: 13px; font-weight: 500; color: var(--accent);
-    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 40px;
+    font-size: 13px; font-weight: 400; color: var(--cream3);
+    letter-spacing: 0.02em; margin-bottom: 40px;
     opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
   }
-  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--cream3); }
 
   /* ── INLINE HEADLINE ── */
   .hero-headline {
     font-family: var(--serif); font-size: clamp(48px, 6.5vw, 88px); font-weight: 400;
-    line-height: 1.12; letter-spacing: -0.025em; color: var(--cream);
-    max-width: 960px; margin-bottom: 36px;
+    line-height: 1.3; letter-spacing: -0.025em; color: var(--cream);
+    max-width: 1100px; margin-bottom: 48px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s;
   }
   .hero-headline em { font-style: italic; color: var(--accent); }
@@ -66,8 +66,8 @@
   }
   /* photo pill */
   .h-pill-photo {
-    width: clamp(80px, 9vw, 120px);
-    height: clamp(56px, 6.5vw, 84px);
+    width: clamp(100px, 11vw, 150px);
+    height: clamp(72px, 8.5vw, 112px);
     border-radius: 100px; overflow: hidden;
     display: inline-block; vertical-align: middle;
     position: relative; top: -6px;
@@ -122,8 +122,8 @@
 
   /* hollywood pill */
   .h-pill-place {
-    width: clamp(90px, 10vw, 136px);
-    height: clamp(52px, 6vw, 78px);
+    width: clamp(110px, 13vw, 170px);
+    height: clamp(66px, 8vw, 102px);
     border-radius: 100px; overflow: hidden;
     display: inline-block; vertical-align: middle;
     position: relative; top: -4px;
@@ -132,12 +132,56 @@
   .h-pill-place:hover { transform: scale(1.05) rotate(2deg); }
   .h-pill-place img, .h-pill-place svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .hero-sub {
-    font-size: 18px; font-weight: 300; color: var(--cream2); max-width: 500px;
-    line-height: 1.65; margin-bottom: 48px;
-    opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+  /* Hello — outline strokes into pink on page load */
+  .hero-hello {
+    display: inline;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent-pink);
+    animation: helloFillIn 1.1s ease 0.2s forwards;
   }
-  .hero-ctas { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s; }
+  @keyframes helloFillIn {
+    0%   { color: transparent; -webkit-text-stroke: 2px var(--accent-pink); }
+    100% { color: var(--accent-pink); -webkit-text-stroke: 2px transparent; }
+  }
+
+  /* Designer — italic green */
+  .hero-designer { font-style: italic; color: var(--accent); }
+
+  /* Creative — dotted underline + spinning asterisk + tooltip */
+  .hero-creative {
+    display: inline-block; position: relative; cursor: pointer;
+    text-decoration: underline; text-decoration-style: dotted;
+    text-decoration-color: var(--accent-pink);
+    text-underline-offset: 8px; text-decoration-thickness: 2px;
+    transition: color 0.2s; color: inherit;
+  }
+  .hero-creative:hover { color: var(--accent-pink); }
+  .hero-asterisk {
+    display: inline-block; color: var(--accent-pink);
+    font-weight: 900; font-size: 0.85em; margin-left: 1px;
+    vertical-align: super; font-style: normal; line-height: 1;
+    transition: transform 0.5s ease;
+  }
+  .hero-creative:hover .hero-asterisk { transform: rotate(180deg); }
+  .hero-creative-tooltip {
+    position: absolute; bottom: calc(100% + 12px); left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: var(--bg2); border: 1px solid var(--border2);
+    border-radius: 100px; padding: 10px 20px; white-space: nowrap;
+    font-family: var(--sans); font-size: 14px; font-weight: 400;
+    font-style: normal; letter-spacing: normal; color: var(--cream2);
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease; z-index: 10;
+  }
+  .hero-creative-tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%); border: 6px solid transparent;
+    border-top-color: var(--border2);
+  }
+  .hero-creative:hover .hero-creative-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .hero-ctas { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
     background: var(--cream); color: var(--bg); font-family: var(--sans);
@@ -153,14 +197,14 @@
   }
   .btn-ghost:hover { border-color: var(--cream2); color: var(--cream); }
   .hero-meta {
-    position: absolute; bottom: 56px; right: 48px;
+    position: absolute; bottom: 40px; right: 48px;
     display: flex; flex-direction: column; align-items: flex-end; gap: 5px;
     opacity: 0; animation: fadeIn 1s ease forwards 1s;
   }
   .hero-meta span { font-size: 12px; color: var(--cream3); }
   .hero-meta strong { font-size: 13px; font-weight: 500; color: var(--cream2); }
   .hero-clients {
-    position: absolute; bottom: 56px; left: 48px;
+    position: absolute; bottom: 40px; left: 48px;
     display: flex; align-items: center; gap: 8px;
     opacity: 0; animation: fadeIn 1s ease forwards 1.1s;
   }
@@ -279,66 +323,38 @@
   .project-access-btn:hover { background: var(--accent); transform: translateY(-1px); }
   .project-card .project-desc em { font-style: italic; color: var(--cream); }
 
-  /* Designer — mirrors Hello */
-  .hero-designer {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  /* Hybrid — letter scramble on hover */
-  .hero-hybrid {
-    display: inline-block;
-    cursor: default;
-    transition: color 0.2s;
-  }
-  .hero-hybrid:hover { color: var(--accent); }
-
-
+  /* Creative — dotted underline + spinning asterisk + tooltip */
   .hero-creative {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-style: dotted;
+    display: inline-block; position: relative; cursor: pointer;
+    text-decoration: underline; text-decoration-style: dotted;
     text-decoration-color: var(--accent-pink);
-    text-underline-offset: 8px;
-    text-decoration-thickness: 2px;
-    transition: color 0.2s;
-    color: inherit;
+    text-underline-offset: 8px; text-decoration-thickness: 2px;
+    transition: color 0.2s; color: inherit;
   }
   .hero-creative:hover { color: var(--accent-pink); }
+  .hero-asterisk {
+    display: inline-block; color: var(--accent-pink);
+    font-weight: 900; font-size: 0.75em; margin-left: 1px;
+    vertical-align: super; font-style: normal; line-height: 1;
+    transition: transform 0.5s ease;
+  }
+  .hero-creative:hover .hero-asterisk { transform: rotate(180deg); }
   .hero-creative-tooltip {
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 50%; 
+    position: absolute; bottom: calc(100% + 12px); left: 50%;
     transform: translateX(-50%) translateY(6px);
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 100px;
-    padding: 10px 20px;
-    white-space: nowrap;
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: normal;
-    color: var(--cream2);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 10;
+    background: var(--bg2); border: 1px solid var(--border2);
+    border-radius: 100px; padding: 10px 20px; white-space: nowrap;
+    font-family: var(--sans); font-size: 14px; font-weight: 400;
+    font-style: normal; letter-spacing: normal; color: var(--cream2);
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease; z-index: 10;
   }
   .hero-creative-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%; left: 50%; transform: translateX(-50%);
-    border: 6px solid transparent;
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%); border: 6px solid transparent;
     border-top-color: var(--border2);
   }
-  .hero-creative:hover .hero-creative-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  .hero-creative:hover .hero-creative-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -359,11 +375,11 @@
 </nav>
 
 <section class="hero">
-  <p class="hero-eyebrow">Senior Product Designer · Los Angeles, CA</p>
+  <p class="hero-eyebrow">Making & breaking things in Los Angeles 🌴</p>
 
   <h1 class="hero-headline">
-    <em>Hello!</em> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
-    a <span class="hero-hybrid" id="heroHybrid">Hybrid</span>&nbsp;<span class="h-pill-disc" id="discPill">
+    <span class="hero-hello">Hello!</span> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
+    a Hybrid&nbsp;<span class="h-pill-disc" id="discPill">
       <span class="h-pill-disc-dot"></span>
       <span class="h-pill-disc-label" id="discLabel">PRODUCT</span>
       <span class="h-pill-disc-all">
@@ -372,12 +388,9 @@
         <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;SYSTEM</span>
       </span>
     </span>&nbsp;<em class="hero-designer">Designer</em><br>
-    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-creative-tooltip">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
+    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk">✳</span><span class="hero-creative-tooltip">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
   </h1>
 
-  <p class="hero-sub">
-    I design systems, products, and experiences at scale — currently at Microsoft, previously Amazon, Credit Karma, and BUCK Design.
-  </p>
   <div class="hero-ctas">
     <a href="#work" class="btn-primary">View my work →</a>
     <a href="about.html" class="btn-ghost">About me</a>
@@ -742,34 +755,6 @@
       if (!isOpen) item.classList.add('open');
     });
   });
-  // Hybrid letter scramble
-  const hybridEl = document.getElementById('heroHybrid');
-  const hybridOriginal = 'Hybrid';
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
-  let scrambleFrame;
-
-  function scramble() {
-    let iterations = 0;
-    const totalFrames = 18;
-    clearInterval(scrambleFrame);
-    scrambleFrame = setInterval(() => {
-      hybridEl.textContent = hybridOriginal
-        .split('')
-        .map((char, i) => {
-          if (i < iterations) return hybridOriginal[i];
-          return chars[Math.floor(Math.random() * chars.length)];
-        })
-        .join('');
-      iterations += 0.4;
-      if (iterations >= hybridOriginal.length) {
-        hybridEl.textContent = hybridOriginal;
-        clearInterval(scrambleFrame);
-      }
-    }, 30);
-  }
-
-  hybridEl.addEventListener('mouseenter', scramble);
-
   // Discipline pill auto-rotate
   const labels = ['PRODUCT', 'VISUAL', 'SYSTEM'];
   const discLabel = document.getElementById('discLabel');
