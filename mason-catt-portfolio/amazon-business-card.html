@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon Business Card · Mason Catt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
+    --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
+    --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0;
+    --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --col: 860px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(14,13,12,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--cream); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .nav-resume:hover { background: var(--accent); }
+
+  /* HERO */
+  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--cream3); text-decoration: none; margin-bottom: 40px; transition: color 0.2s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
+  .back-link:hover { color: var(--cream2); }
+  .case-eyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
+  .etag { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ediv { color: var(--cream3); }
+  .eco { font-size: 12px; color: var(--cream3); }
+  .case-title { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .case-title em { font-style: italic; color: var(--accent); }
+  .case-subtitle { font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.7; max-width: 600px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+  .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; }
+  .meta-item { padding: 18px 0; border-right: 1px solid var(--border); }
+  .meta-item:last-child { border-right: none; }
+  .meta-item + .meta-item { padding-left: 24px; }
+  .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .mv { font-size: 13px; color: var(--cream); }
+  .mv.live { color: var(--accent); display:flex; align-items:center; gap:5px; }
+  .mv.live::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+
+  .hero-img-wrap { margin: 0 -48px; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; background: #eef0f0; }
+  .hero-img-wrap img { width: 100%; height: auto; display: block; }
+
+  /* BODY */
+  .case-body { max-width: var(--col); margin: 0 auto; padding: 72px 48px; }
+
+  .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+  .slabel::before { content: '✦'; font-size: 9px; }
+
+  .prose { margin-bottom: 48px; }
+  .prose h2 { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 34px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; }
+  .prose p { font-size: 16px; color: var(--cream2); line-height: 1.8; margin-bottom: 14px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 500; color: var(--cream); }
+  .prose a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.3); }
+  .prose a:hover { border-color: var(--accent); }
+
+  .callout { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 18px 22px; margin: 24px 0; }
+  .callout p { font-size: 14px; color: var(--cream2); margin: 0; }
+
+  .img-full { margin: 28px 0; }
+  .img-full img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); background: #f5f5f5; }
+  .img-cap { font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 8px; line-height: 1.5; }
+
+  .img-grid { display: grid; gap: 14px; margin: 28px 0; }
+  .img-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .img-grid img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border); background: #f5f5f5; }
+
+  .figma-wrap { margin: 24px 0 6px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+  .figma-wrap iframe { width: 100%; height: 560px; display: block; border: none; }
+  .figma-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.25); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 36px 0; }
+  .stat-cell { background: var(--bg2); padding: 24px; }
+  .stat-num { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: 6px; }
+  .stat-desc { font-size: 13px; color: var(--cream2); line-height: 1.5; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+  .tag { font-size: 12px; color: var(--cream3); border: 1px solid var(--border2); padding: 5px 12px; border-radius: 100px; }
+  .tag.a { color: var(--accent); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+
+  /* ── INTERACTIVE: CUSTOMER PROBLEMS VENN ── */
+  .venn-section { margin: 28px 0 48px; }
+  .venn-container { position: relative; width: 100%; max-width: 560px; height: 380px; margin: 0 auto; }
+  .venn-circle {
+    position: absolute; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 14px; font-weight: 500; color: var(--cream);
+    line-height: 1.35; padding: 24px;
+    transition: all 0.4s ease;
+    opacity: 0; transform: scale(0.85);
+    cursor: default;
+  }
+  .venn-circle.visible { opacity: 1; transform: scale(1); }
+  .vc-top    { width: 200px; height: 200px; background: rgba(249,175,208,0.35); top: 0; left: 50%; transform: translateX(-50%) scale(0.85); }
+  .vc-left   { width: 200px; height: 200px; background: rgba(129,198,198,0.35); top: 90px; left: 30px; }
+  .vc-right  { width: 200px; height: 200px; background: rgba(129,198,198,0.35); top: 90px; right: 30px; }
+  .vc-bottom { width: 200px; height: 200px; background: rgba(209,180,220,0.3); bottom: 0; left: 50%; transform: translateX(-50%) scale(0.85); }
+  .vc-top.visible    { transform: translateX(-50%) scale(1); }
+  .vc-bottom.visible { transform: translateX(-50%) scale(1); }
+  .venn-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 120px; height: 120px; border-radius: 50%;
+    background: rgba(129,198,160,0.5);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 13px; font-weight: 600;
+    color: var(--cream); line-height: 1.3; z-index: 2;
+    transition: all 0.5s ease 0.8s; opacity: 0;
+  }
+  .venn-center.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .venn-label { font-size: 12px; font-weight: 400; opacity: 0.7; display: block; margin-top: 2px; }
+
+  /* ── INTERACTIVE: PRIORITY MATRIX ── */
+  .matrix-section { margin: 28px 0 48px; }
+  .matrix-wrap {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .matrix-header {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .matrix-header-cell {
+    padding: 14px 20px; font-size: 11px; font-weight: 500;
+    color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase;
+    border-right: 1px solid var(--border);
+  }
+  .matrix-header-cell:last-child { border-right: none; }
+  .matrix-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s; cursor: default;
+  }
+  .matrix-row:last-child { border-bottom: none; }
+  .matrix-row:hover { background: var(--bg3); }
+  .matrix-row:hover .matrix-feature { color: var(--cream); }
+  .matrix-row:hover .matrix-bar-fill { opacity: 1; }
+  .matrix-cell {
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .matrix-cell:last-child { border-right: none; }
+  .matrix-feature { font-size: 15px; font-weight: 500; color: var(--cream2); transition: color 0.2s; }
+  .matrix-position { font-size: 12px; color: var(--cream3); }
+  .matrix-bar-wrap { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .matrix-bar-fill {
+    height: 100%; border-radius: 3px;
+    opacity: 0.7; transition: opacity 0.2s, width 1s ease;
+  }
+  .bar-high   { background: linear-gradient(90deg, #e879a0, #f9a8d4); }
+  .bar-mid    { background: linear-gradient(90deg, #f9a8d4, #fcd9e8); }
+  .bar-low    { background: linear-gradient(90deg, #22c55e, #86efac); }
+  .matrix-tag {
+    font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+  .tag-high { background: rgba(232,121,160,0.15); color: var(--accent-pink); }
+  .tag-mid  { background: rgba(249,168,212,0.1); color: #f9a8d4; }
+  .tag-low  { background: rgba(34,197,94,0.1); color: var(--accent); }
+
+  /* NEXT / FOOTER */
+  .next-project { border-top: 1px solid var(--border); background: var(--bg2); padding: 56px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .next-label { font-size: 12px; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .next-title { font-family: var(--serif); font-size: clamp(20px, 3vw, 30px); font-weight: 400; letter-spacing: -0.015em; }
+  .next-link { display: inline-flex; align-items: center; padding: 13px 22px; background: var(--cream); color: var(--bg); font-size: 14px; font-weight: 500; border-radius: 100px; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+  .next-link:hover { background: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: var(--serif); font-size: 14px; color: var(--cream2); }
+  .footer-copy { font-size: 12px; color: var(--cream3); }
+  .footer-nav { display: flex; gap: 24px; list-style: none; }
+  .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--cream2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Mason Catt</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#work" class="back-link">← All work</a>
+  <div class="case-eyebrow">
+    <span class="etag">Product Design</span>
+    <span class="ediv">·</span>
+    <span class="eco">Amazon · 2020 – 2024</span>
+  </div>
+  <h1 class="case-title">Amazon Business<br><em>Credit Card</em></h1>
+  <p class="case-subtitle">Designing the Existing Card Member Page — a personalized hub for Business Prime card holders to manage their card, view rewards, and take action. Built end-to-end with a widget system designed for flexibility and scale.</p>
+  <div class="meta-strip">
+    <div class="meta-item">
+      <div class="ml">Role</div>
+      <div class="mv">Design Lead</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Platform</div>
+      <div class="mv">Mobile · iOS & Android</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Scope</div>
+      <div class="mv">UX, Visual, Systems</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Shipped</div>
+      <div class="mv live">Spring 2024</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-img-wrap">
+  <img src="img-abc-hero.webp" alt="Amazon Business Credit Card — final shipped design">
+</div>
+
+<div class="case-body">
+
+  <!-- OVERVIEW -->
+  <div class="prose reveal">
+    <div class="slabel">Overview</div>
+    <h2>A card management hub built for business</h2>
+    <p>The Existing Card Member (ECM) Page is where Amazon Business credit card holders manage their balance, rewards, payments, and more. I led design end-to-end — from research through production — working alongside PMs and engineers.</p>
+    <p>The existing page had a rigid layout, poor feature discoverability, and a navigation pattern that couldn't scale. The new design introduced a <strong>flexible widget system</strong> that allows extreme personalization without breaking visual consistency.</p>
+    <div class="callout">
+      <p>Shipped Spring 2024 and live in the Amazon Shopping app. <a href="https://www.figma.com/design/Hy4Nt0oWXTxYVPqb3L9mJx/Small-Business-Credit-Card?node-id=4-71208" target="_blank">Explore the Figma file →</a></p>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="reveal">
+    <div class="slabel">Research</div>
+    <div class="prose"><h2>Understanding the customer problems</h2><p>Before touching layout, I mapped the core usability failures. Poor discoverability was the intersection of three compounding issues — each making the others worse.</p></div>
+
+    <!-- INTERACTIVE VENN -->
+    <div class="venn-section">
+      <div class="venn-container" id="vennContainer">
+        <div class="venn-circle vc-top"    id="vc1">Longer<br>learning<br>curve</div>
+        <div class="venn-circle vc-left"   id="vc2">No familiar<br>flows or<br>patterns</div>
+        <div class="venn-circle vc-right"  id="vc3">Low adoption,<br>usage &<br>satisfaction</div>
+        <div class="venn-circle vc-bottom" id="vc4">Decreased<br>ease of use</div>
+        <div class="venn-center" id="vennCenter">Less<br>discoverability</div>
+      </div>
+      <p class="img-cap" style="text-align:center; margin-top:16px;">Customer problems — poor discoverability emerged as the convergence point of three separate issues.</p>
+    </div>
+  </div>
+
+  <!-- PRIORITY MATRIX -->
+  <div class="reveal">
+    <div class="prose"><h2>Functionality prioritization</h2><p>Features were mapped by frequency and user experience value to establish a clear page hierarchy. High-frequency utilitarian features go above the fold; lower-frequency inspirational content sits further down.</p></div>
+
+    <div class="matrix-section">
+      <div class="matrix-wrap">
+        <div class="matrix-header">
+          <div class="matrix-header-cell">Feature</div>
+          <div class="matrix-header-cell">Page position</div>
+          <div class="matrix-header-cell">Priority</div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell"><span class="matrix-feature">Rewards & Card Balance</span></div>
+          <div class="matrix-cell"><span class="matrix-position">Header · Above the fold</span></div>
+          <div class="matrix-cell" style="gap:12px;">
+            <div class="matrix-bar-wrap"><div class="matrix-bar-fill bar-high" style="width:95%;"></div></div>
+            <span class="matrix-tag tag-high">Utilitarian</span>
+          </div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell"><span class="matrix-feature">Transactions</span></div>
+          <div class="matrix-cell"><span class="matrix-position">ATF1 · Above the fold</span></div>
+          <div class="matrix-cell" style="gap:12px;">
+            <div class="matrix-bar-wrap"><div class="matrix-bar-fill bar-high" style="width:80%;"></div></div>
+            <span class="matrix-tag tag-high">High frequency</span>
+          </div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell"><span class="matrix-feature">Statements</span></div>
+          <div class="matrix-cell"><span class="matrix-position">ATF2 · Above the fold</span></div>
+          <div class="matrix-cell" style="gap:12px;">
+            <div class="matrix-bar-wrap"><div class="matrix-bar-fill bar-mid" style="width:55%;"></div></div>
+            <span class="matrix-tag tag-mid">Mid frequency</span>
+          </div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell"><span class="matrix-feature">Offers & Discovery</span></div>
+          <div class="matrix-cell"><span class="matrix-position">ATF3 · Below the fold</span></div>
+          <div class="matrix-cell" style="gap:12px;">
+            <div class="matrix-bar-wrap"><div class="matrix-bar-fill bar-low" style="width:30%;"></div></div>
+            <span class="matrix-tag tag-low">Inspirational</span>
+          </div>
+        </div>
+      </div>
+      <p class="img-cap" style="margin-top:10px;">Hover each row — features mapped by user experience value and usage frequency determine vertical position on the page.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- WIDGET SYSTEM -->
+  <div class="prose reveal">
+    <div class="slabel">Design System</div>
+    <h2>A widget system built for flexibility</h2>
+    <p>The core challenge: build a page that could be radically personalized per cardholder without creating fragile one-off layouts. The solution was a <strong>composable widget system</strong> — building blocks with a consistent anatomy that adapt internally based on content type.</p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-abc-widgets.webp" alt="Widget building block anatomy">
+    <div class="img-cap">Widget anatomy — configurable zones (A–H), kebab menu pattern, base specs, and accessibility annotations all defined in a single reusable component.</div>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-abc-widget-template.webp" alt="Four widget templates">
+    <div class="img-cap">Four widget templates covering the full range of content types: simple content, image + content, two-column with CTA, and scrollable/paginated.</div>
+  </div>
+
+  <hr>
+
+  <!-- PAGE ARCHITECTURE -->
+  <div class="prose reveal">
+    <div class="slabel">Architecture</div>
+    <h2>Page structure & layout decisions</h2>
+    <p>The page is split into a fixed <strong>global section</strong> (card art, balance, navigation) and a flexible widget zone below. An early decision: section dividers vs. cards. Dividers won — they accommodate multi-item content, text-heavy layouts, and scale across folds without extra margin overhead.</p>
+  </div>
+
+  <div class="img-grid col2 reveal">
+    <div>
+      <img src="img-abc-page-build-1.webp" alt="Page structure diagram">
+      <p class="img-cap">Page structure — fixed global section above, flexible widget zone below.</p>
+    </div>
+    <div>
+      <img src="img-abc-sections.webp" alt="Section dividers vs cards">
+      <p class="img-cap">Section dividers vs. cards — dividers won for flexibility and text-heavy content.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- PROTOTYPE -->
+  <div class="prose reveal">
+    <div class="slabel">Final Design</div>
+    <h2>Shipped prototype</h2>
+    <p>The final mobile prototype, shipped Spring 2024. Tap through to explore Card Overview, navigation patterns, rewards, and the widget-based content layout.</p>
+  </div>
+
+  <div class="figma-wrap reveal">
+    <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FHy4Nt0oWXTxYVPqb3L9mJx%2FSmall-Business-Credit-Card%3Fnode-id%3D4-92541%26t%3DmtrycGXlQNFeo7kE-1%26scaling%3Dcontain%26content-scaling%3Dfixed%26page-id%3D4%253A90509" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <a href="https://www.figma.com/design/Hy4Nt0oWXTxYVPqb3L9mJx/Small-Business-Credit-Card?node-id=4-71208" target="_blank" class="figma-link reveal">Explore full components & designs in Figma →</a>
+
+  <hr>
+
+  <!-- NAVIGATION -->
+  <div class="prose reveal">
+    <div class="slabel">Navigation</div>
+    <h2>Finding the right pattern</h2>
+    <p>Navigation was the key friction point in research — users struggled to find card features. Five patterns were explored and user-tested. Pattern #2 (dropdown expanded, pushes content) was selected for its familiarity, scalability, and match to customer expectations.</p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-abc-navigation.webp" alt="Five navigation pattern explorations">
+    <div class="img-cap">Five patterns tested — Pattern #2 selected. More familiar, more scalable, and avoids the scrolling limitations of the current overlay approach.</div>
+  </div>
+
+  <hr>
+
+  <!-- OUTCOMES -->
+  <div class="stat-strip reveal">
+    <div class="stat-cell">
+      <div class="stat-num">4</div>
+      <div class="stat-desc">Widget templates powering all content variations</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">5</div>
+      <div class="stat-desc">Navigation patterns explored and user-tested</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">✓</div>
+      <div class="stat-desc">Live in the Amazon Shopping app, Spring 2024</div>
+    </div>
+  </div>
+
+  <div class="tags reveal">
+    <span class="tag a">Shipped Spring 2024</span>
+    <span class="tag">Amazon</span>
+    <span class="tag">Product Design</span>
+    <span class="tag">Widget System</span>
+    <span class="tag">Mobile</span>
+    <span class="tag">UX Research</span>
+    <span class="tag">User Testing</span>
+    <span class="tag">Figma</span>
+  </div>
+
+</div>
+
+<div class="next-project">
+  <div>
+    <div class="next-label">Back to</div>
+    <div class="next-title">All work</div>
+  </div>
+  <a href="index.html#work" class="next-link">View all projects →</a>
+</div>
+
+<footer>
+  <span class="footer-name">Mason Catt</span>
+  <ul class="footer-nav">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 · Made with care in LA</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.04) + 's';
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => revealObs.observe(el));
+
+  // ── VENN DIAGRAM ANIMATION ──
+  const vennObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const circles = ['vc1','vc2','vc3','vc4'];
+        circles.forEach((id, i) => {
+          setTimeout(() => {
+            document.getElementById(id).classList.add('visible');
+          }, i * 200);
+        });
+        setTimeout(() => {
+          document.getElementById('vennCenter').classList.add('visible');
+        }, 900);
+        vennObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const vennEl = document.getElementById('vennContainer');
+  if (vennEl) vennObs.observe(vennEl);
+
+  // ── MATRIX BAR ANIMATION ──
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Bars animate in via CSS transition — triggered by setting width from 0
+        document.querySelectorAll('.matrix-bar-fill').forEach(bar => {
+          const targetW = bar.style.width;
+          bar.style.width = '0';
+          requestAnimationFrame(() => {
+            setTimeout(() => { bar.style.width = targetW; }, 100);
+          });
+        });
+        barObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const matrixEl = document.querySelector('.matrix-wrap');
+  if (matrixEl) barObs.observe(matrixEl);
+</script>
+</body>
+</html>
