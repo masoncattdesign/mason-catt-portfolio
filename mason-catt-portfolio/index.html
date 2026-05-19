@@ -80,17 +80,17 @@
   .h-pill-disc {
     display: inline-flex; align-items: center; justify-content: center;
     background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25);
-    border-radius: 100px; padding: 10px 18px;
+    border-radius: 100px; padding: 10px 14px;
     vertical-align: middle; position: relative; top: -4px;
     gap: 10px; transition: background 0.3s ease, border-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
     overflow: hidden; cursor: default;
-    white-space: nowrap; width: 152px;
+    white-space: nowrap; width: 140px;
   }
   .h-pill-disc:hover {
     background: rgba(34,197,94,0.18);
     border-color: rgba(34,197,94,0.4);
     border-radius: 20px;
-    padding: 14px 18px;
+    padding: 14px 14px;
   }
   /* the animated dot */
   .h-pill-disc-dot {
@@ -242,7 +242,46 @@
   .project-arrow { position: absolute; top: 28px; right: 28px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; color: var(--cream3); font-size: 14px; transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .project-card:hover .project-arrow { background: var(--cream); color: var(--bg); border-color: var(--cream); }
 
-  .about-strip {
+  /* NEW CONTACT */
+  .contact-new {
+    padding: 100px 48px 120px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .contact-new-inner { max-width: 960px; }
+  .contact-headline { margin-bottom: 56px; }
+  .contact-title {
+    font-family: var(--serif); font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 400; letter-spacing: -0.025em; line-height: 1.06;
+    color: var(--cream);
+  }
+  .contact-title em { font-style: italic; color: var(--accent); }
+  .contact-cards {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin-bottom: 64px;
+  }
+  .contact-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .contact-card-icon {
+    font-size: 20px; margin-bottom: 14px; color: var(--accent);
+    line-height: 1;
+  }
+  .contact-card-label {
+    font-size: 14px; font-weight: 500; color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .contact-card-desc {
+    font-size: 13px; color: var(--cream3); line-height: 1.65;
+  }
+  .contact-cta { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .contact-cta-note {
+    font-size: 14px; color: var(--cream3); font-style: italic;
+    font-family: var(--serif);
+  }
     border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     background: var(--bg2); padding: 80px 48px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -367,6 +406,7 @@
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
@@ -376,12 +416,11 @@
   <h1 class="hero-headline">
     <span class="hero-hello">Hello!</span> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
     a <em class="hero-designer">Hybrid</em>&nbsp;<span class="h-pill-disc" id="discPill">
-      <span class="h-pill-disc-dot"></span>
-      <span class="h-pill-disc-label" id="discLabel">PRODUCT</span>
+      <span class="h-pill-disc-label" id="discLabel">🛠 PRODUCT</span>
       <span class="h-pill-disc-all">
-        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;PRODUCT</span>
-        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;VISUAL</span>
-        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;SYSTEM</span>
+        <span class="h-pill-disc-all-item">🛠&nbsp;&nbsp;PRODUCT</span>
+        <span class="h-pill-disc-all-item">🎨&nbsp;&nbsp;VISUAL</span>
+        <span class="h-pill-disc-all-item">⚙️&nbsp;&nbsp;SYSTEM</span>
       </span>
     </span>&nbsp;<em class="hero-designer">Designer</em><br>
     and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk">✳</span><span class="hero-creative-tooltip">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
@@ -391,17 +430,17 @@
     <a href="#work" class="btn-primary">View my work →</a>
     <a href="about.html" class="btn-ghost">About me</a>
   </div>
-  <div class="hero-clients">
+  <div class="hero-meta" style="left:48px; right:auto; align-items:flex-start;">
+    <span>Currently</span>
+    <strong>Microsoft · Design Systems</strong>
+  </div>
+  <div class="hero-clients" style="left:auto; right:48px; justify-content:flex-end;">
     <span>Previously</span>
     <strong>Amazon</strong><span class="client-divider">·</span>
     <strong>Credit Karma</strong><span class="client-divider">·</span>
     <strong>BUCK Design</strong><span class="client-divider">·</span>
     <strong>Netflix</strong><span class="client-divider">·</span>
     <strong>Facebook</strong>
-  </div>
-  <div class="hero-meta">
-    <span>Currently</span>
-    <strong>Microsoft · Design Systems</strong>
   </div>
 </section>
 
@@ -447,7 +486,7 @@
         </div>
         <h3 class="project-name">Windows System Personalization</h3>
         <p class="project-desc">A design prototype exploring how Windows could become genuinely personal — complete theme identities across Start, Lock screen, Account, and widgets, built around the thesis <em>"It's still Windows, now it's mine."</em></p>
-        <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Windows%20Personalization" class="project-access-btn">Request access →</a>
+        <a href="mailto:hi@masoncatt.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Windows%20Personalization" class="project-access-btn">Request access →</a>
       </div>
       <div class="project-thumb">
         <img src="img-matrix.png" alt="Windows personalization theme matrix" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -466,7 +505,7 @@
       </div>
       <h3 class="project-name">Windows Fluent Visual System</h3>
       <p class="project-desc">Component architecture, token systems, and design-code parity for Windows 11's Fluent design language at scale.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Fluent%20Visual%20System" class="project-access-btn">Request access →</a>
+      <a href="mailto:hi@masoncatt.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Fluent%20Visual%20System" class="project-access-btn">Request access →</a>
     </div>
 
     <!-- Fluent Illustration & Icons -->
@@ -481,11 +520,11 @@
       </div>
       <h3 class="project-name">Fluent Illustration & Icons</h3>
       <p class="project-desc">Iconography and illustration systems built for Windows — visual foundations contributing to accessibility, hierarchy, and personality at OS scale.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Fluent%20Icons" class="project-access-btn">Request access →</a>
+      <a href="mailto:hi@masoncatt.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Fluent%20Icons" class="project-access-btn">Request access →</a>
     </div>
 
     <!-- Amazon Business Card -->
-    <div class="project-card reveal" style="cursor:default;">
+    <div class="project-card reveal" style="cursor:pointer;" onclick="window.location='amazon-business-card.html'">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#1a1200 0%,#f90 100%); display:flex; align-items:center; justify-content:center;">
         <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Amazon</span>
       </div>
@@ -496,7 +535,7 @@
       </div>
       <h3 class="project-name">Amazon Business Card</h3>
       <p class="project-desc">Comprehensive design lead for the Existing Card Member Page — a personalized hub for Amazon Business credit card holders, shipped Spring 2024.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Amazon%20Business%20Card" class="project-access-btn">Request access →</a>
+      <a href="mailto:hi@masoncatt.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Amazon%20Business%20Card" class="project-access-btn">Request access →</a>
     </div>
 
     <!-- Amazon Pay Studio -->
@@ -511,7 +550,7 @@
       </div>
       <h3 class="project-name">Amazon Pay Studio System</h3>
       <p class="project-desc">Visual and UX design across global fintech and payments products, including creative direction and cross-functional collaboration for international rollouts.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Amazon%20Pay%20Studio" class="project-access-btn">Request access →</a>
+      <a href="mailto:hi@masoncatt.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Amazon%20Pay%20Studio" class="project-access-btn">Request access →</a>
     </div>
 
     <!-- Additional Work — full width -->
@@ -526,7 +565,7 @@
         </div>
         <h3 class="project-name">Additional Work</h3>
         <p class="project-desc">Visual and brand design for Facebook Libra (BUCK Design), Savings product design at Credit Karma, and Amazon Advertising — including the Gold Clio Award–winning theatrical campaign.</p>
-        <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Additional%20Work" class="project-access-btn">Request access →</a>
+        <a href="mailto:hi@masoncatt.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Additional%20Work" class="project-access-btn">Request access →</a>
       </div>
     </div>
   </div>
@@ -587,136 +626,36 @@
   </div>
 </section>
 
-<!-- ABOUT STRIP -->
-<div class="about-strip" id="about">
-  <div class="about-text reveal">
-    <div class="section-label">A bit about me</div>
-    <h2>Designer, systems thinker, <em style="font-style:italic; font-family:var(--serif);">Beyoncé fan.</em></h2>
-    <p>I'm Mason — a Senior Product Designer with 10+ years building complex digital products across platforms and brands. Right now I'm designing Windows design systems at Microsoft.</p>
-    <p>I believe great design systems are invisible infrastructure. They let teams move fast without breaking things, and they let products feel coherent even at massive scale.</p>
-    <a href="about.html" class="btn-ghost" style="display:inline-flex; margin-top:8px;">More about me →</a>
-  </div>
-  <div class="about-stats reveal">
-    <div class="stat-box">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">Years designing at scale</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">3×</div>
-      <div class="stat-label">Amazon, twice — it's a thing</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">🏆</div>
-      <div class="stat-label">Gold Clio Award, 2018</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">UW</div>
-      <div class="stat-label">B.Design, Interaction Design '14</div>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="testimonials-header reveal">
-    <div>
-      <div class="section-label">Kind words</div>
-      <h2 class="testimonials-title">What people say</h2>
-    </div>
-    <p class="testimonials-note">…no bribes involved</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">Mason has a rare ability to hold both system-level thinking and pixel-level craft at once. He pushed our design system further than we expected, and with genuine care for how engineers would actually use it.</p>
-      <div class="testimonial-person">
-        <div class="testimonial-avatar">SK</div>
-        <div>
-          <div class="testimonial-name">Sarah K.</div>
-          <div class="testimonial-role">Design Lead · Microsoft</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">Working with Mason on Amazon's payments products was a masterclass in visual clarity. He could take the most complex financial UI and make it feel approachable without losing a single important detail.</p>
-      <div class="testimonial-person">
-        <div class="testimonial-avatar">JR</div>
-        <div>
-          <div class="testimonial-name">James R.</div>
-          <div class="testimonial-role">Product Manager · Amazon</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">Mason's illustration and iconography work on our campaigns stood out immediately. He brings a point of view that elevates everything around it, and he's collaborative in the best possible way.</p>
-      <div class="testimonial-person">
-        <div class="testimonial-avatar">LM</div>
-        <div>
-          <div class="testimonial-name">Lena M.</div>
-          <div class="testimonial-role">Creative Director · BUCK Design</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-  <div class="faq-inner">
-    <div class="faq-intro reveal">
-      <div class="section-label">FAQ</div>
-      <h2>Got questions?</h2>
-      <p>Some basics, answered. Reach out for anything else.</p>
-    </div>
-    <ul class="faq-list reveal">
-      <li class="faq-item">
-        <button class="faq-question">What kind of work do you do? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Primarily product design, design systems, and visual systems at scale. I specialize in building and maintaining Figma libraries, component architectures, and the documentation that makes them actually get adopted. I also love illustration and iconography.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">What are you looking for next? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Roles where design systems and product craft both matter — teams that invest in foundations and ship things people love. I thrive in cross-functional environments working closely with engineering and product leadership.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">What tools do you use? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Figma is my home base for everything from explorations to production-ready specs. Adobe Creative Suite, After Effects, and Premiere for motion and illustration. Procreate for sketching and ideation. I also know basic HTML & CSS and use AI tools extensively in my workflow.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">Do you take freelance work? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Occasionally, for the right projects — particularly design system audits, visual system buildouts, or illustration. Drop me a line and we can figure out if it's a fit.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">Where are you based? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Los Angeles, CA. I'm open to remote roles and the right in-person or hybrid opportunity in LA or nearby.</p></div>
-      </li>
-    </ul>
-  </div>
-</section>
-
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-text reveal">
-    <div class="section-label">Let's talk</div>
-    <h2>Want to work together?</h2>
-    <p>Whether it's a full-time role, a freelance engagement, or just a conversation about design systems and craft — I'm always happy to chat.</p>
-    <a href="mailto:masoncatt@gmail.com" class="btn-primary" style="display:inline-flex;">masoncatt@gmail.com →</a>
-  </div>
-  <div class="contact-links reveal">
-    <a class="contact-link" href="https://www.linkedin.com/in/masoncatt" target="_blank">
-      <span class="contact-link-label">LinkedIn</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a class="contact-link" href="https://www.instagram.com/masoncatt" target="_blank">
-      <span class="contact-link-label">Instagram</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a class="contact-link" href="https://masoncatt.com" target="_blank">
-      <span class="contact-link-label">masoncatt.com</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a class="contact-link" href="mason-catt-resume.pdf" target="_blank">
-      <span class="contact-link-label">Download Resume</span>
-      <span class="contact-link-arrow">↓</span>
-    </a>
+<section class="contact-new" id="contact">
+  <div class="contact-new-inner">
+
+    <div class="contact-headline reveal">
+      <div class="section-label">Let's make something</div>
+      <h2 class="contact-title">Got a project<br>in mind<em>?</em></h2>
+    </div>
+
+    <div class="contact-cards reveal">
+
+      <div class="contact-card">
+        <div class="contact-card-icon" style="color:var(--accent);">◎</div>
+        <div class="contact-card-label">Product & Visual Systems</div>
+        <p class="contact-card-desc">My full-time focus — design systems, component architecture, Figma libraries, iconography, and product design at scale.</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon" style="color:var(--accent-pink);">✦</div>
+        <div class="contact-card-label">Freelance — Illustration & Visual</div>
+        <p class="contact-card-desc">I take select freelance work in illustration, graphic design, and visual branding. If you have something creative and interesting, let's talk.</p>
+      </div>
+
+    </div>
+
+    <div class="contact-cta reveal">
+      <p class="contact-cta-note">Taking select freelance projects alongside my full-time work.</p>
+      <a href="mailto:hi@masoncatt.com" class="btn-primary" style="display:inline-flex; font-size:16px; padding:16px 32px;">hi@masoncatt.com →</a>
+    </div>
+
   </div>
 </section>
 
@@ -725,6 +664,7 @@
   <ul class="footer-nav">
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <span class="footer-copy">© 2025 · Made with care in LA</span>
@@ -752,7 +692,7 @@
     });
   });
   // Discipline pill auto-rotate
-  const labels = ['PRODUCT', 'VISUAL', 'SYSTEM'];
+  const labels = ['🛠 PRODUCT', '🎨 VISUAL', '⚙️ SYSTEM'];
   const discLabel = document.getElementById('discLabel');
   const discPill = document.getElementById('discPill');
   let current = 0;
