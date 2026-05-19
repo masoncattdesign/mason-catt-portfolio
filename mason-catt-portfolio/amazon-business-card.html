@@ -50,7 +50,7 @@
   .mv.live { color: var(--accent); display:flex; align-items:center; gap:5px; }
   .mv.live::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
 
-  .hero-img-wrap { margin: 0 -48px; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; background: #eef0f0; }
+  .hero-img-wrap { margin: 0 -48px; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; background: #1a9be8; }
   .hero-img-wrap img { width: 100%; height: auto; display: block; }
 
   /* BODY */
@@ -76,7 +76,96 @@
 
   .img-grid { display: grid; gap: 14px; margin: 28px 0; }
   .img-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .img-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
   .img-grid img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border); background: #f5f5f5; }
+
+  <!-- WIDGET CAROUSEL -->
+  .widget-carousel {
+    margin: 28px 0 8px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .widget-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid var(--border);
+  }
+  .widget-nav-tabs { display: flex; gap: 6px; }
+  .widget-tab {
+    font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px;
+    border: 1px solid var(--border2); background: none; color: var(--cream3);
+    cursor: pointer; transition: all 0.2s; font-family: var(--sans);
+  }
+  .widget-tab.active { background: var(--cream); color: var(--bg); border-color: var(--cream); }
+  .widget-nav-arrows { display: flex; gap: 6px; }
+  .widget-arrow {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid var(--border2); background: none; color: var(--cream2);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; transition: all 0.2s; font-family: var(--sans);
+  }
+  .widget-arrow:hover { background: var(--cream); color: var(--bg); border-color: var(--cream); }
+  .widget-slides { position: relative; }
+  .widget-slide {
+    display: none;
+    grid-template-columns: 240px 1fr;
+    gap: 0;
+  }
+  .widget-slide.active { display: grid; }
+  .widget-slide-meta {
+    padding: 28px 24px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .widget-template-num {
+    font-size: 11px; font-weight: 500; color: var(--accent-pink);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .widget-template-name {
+    font-family: var(--serif); font-size: 18px; font-weight: 400;
+    color: var(--cream); line-height: 1.3;
+  }
+  .widget-template-sub {
+    font-size: 13px; color: var(--cream3); font-style: italic; margin-top: -12px;
+  }
+  .widget-zone-list { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+  .widget-zone {
+    padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg3);
+  }
+  .widget-zone-label {
+    font-size: 11px; font-weight: 500; color: var(--accent-pink);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px;
+  }
+  .widget-zone-desc { font-size: 12px; color: var(--cream3); line-height: 1.5; }
+  .widget-slide-preview {
+    padding: 28px; display: flex; align-items: center; justify-content: center;
+    background: #f8f8f8; min-height: 340px;
+  }
+  /* Wireframe mockup styles */
+  .wf { background: white; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,0.1); overflow: hidden; width: 100%; max-width: 320px; }
+  .wf-row { padding: 12px 14px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .wf-row:last-child { border-bottom: none; }
+  .wf-bar { background: #ccc; border-radius: 3px; height: 10px; }
+  .wf-bar.wide { flex: 1; }
+  .wf-bar.short { width: 60px; }
+  .wf-bar.xs { width: 20px; height: 20px; border-radius: 3px; }
+  .wf-block { background: #ccc; border-radius: 4px; width: 100%; height: 70px; }
+  .wf-block.sm { height: 48px; }
+  .wf-block.sq { width: 56px; height: 56px; flex-shrink: 0; }
+  .wf-block.tall { height: 90px; }
+  .wf-dots { display: flex; gap: 5px; justify-content: center; }
+  .wf-dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; }
+  .wf-dot.active { background: #0077b6; }
+  .wf-cta { background: #f0f0f0; border: 1px solid #ddd; border-radius: 6px; text-align: center; padding: 10px; font-size: 12px; color: #666; font-family: sans-serif; }
+  .wf-btn { background: #0077b6; border-radius: 3px; height: 8px; width: 64px; }
+  .wf-header { background: #0077b6; height: 8px; border-radius: 3px; flex: 1; }
+  .wf-kebab { color: #999; font-size: 14px; flex-shrink: 0; }
+  .wf-col { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .wf-dismiss { color: #bbb; font-size: 12px; margin-left: auto; flex-shrink: 0; }
+  .wf-pagination-row { display: flex; justify-content: center; padding: 8px; }
+  /* slide transition */
+  .widget-slide { animation: none; }
+  .widget-slide.active { animation: slideIn 0.25s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
   .figma-wrap { margin: 24px 0 6px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
   .figma-wrap iframe { width: 100%; height: 560px; display: block; border: none; }
@@ -238,7 +327,7 @@
 </div>
 
 <div class="hero-img-wrap">
-  <img src="img-abc-hero.webp" alt="Amazon Business Credit Card — final shipped design">
+  <img src="img-abc-hero.png" alt="Amazon Business Credit Card — My Card, Card Details, and Points & Rewards screens">
 </div>
 
 <div class="case-body">
@@ -329,14 +418,179 @@
     <p>The core challenge: build a page that could be radically personalized per cardholder without creating fragile one-off layouts. The solution was a <strong>composable widget system</strong> — building blocks with a consistent anatomy that adapt internally based on content type.</p>
   </div>
 
-  <div class="img-full reveal">
-    <img src="img-abc-widgets.webp" alt="Widget building block anatomy">
-    <div class="img-cap">Widget anatomy — configurable zones (A–H), kebab menu pattern, base specs, and accessibility annotations all defined in a single reusable component.</div>
+  <div class="img-full reveal" style="margin-bottom:0;">
+    <div class="widget-carousel">
+      <!-- Nav -->
+      <div class="widget-nav">
+        <div class="widget-nav-tabs">
+          <button class="widget-tab active" onclick="goToSlide(0)">Template 01</button>
+          <button class="widget-tab" onclick="goToSlide(1)">Template 02</button>
+          <button class="widget-tab" onclick="goToSlide(2)">Template 03</button>
+          <button class="widget-tab" onclick="goToSlide(3)">Template 04</button>
+        </div>
+        <div class="widget-nav-arrows">
+          <button class="widget-arrow" onclick="prevSlide()">←</button>
+          <button class="widget-arrow" onclick="nextSlide()">→</button>
+        </div>
+      </div>
+
+      <!-- SLIDE 1: Simple content block -->
+      <div class="widget-slide active" id="slide-0">
+        <div class="widget-slide-meta">
+          <div>
+            <div class="widget-template-num">Widget Template 01</div>
+            <div class="widget-template-name">Simple content block</div>
+            <div class="widget-template-sub">Single content area</div>
+          </div>
+          <div class="widget-zone-list">
+            <div class="widget-zone">
+              <div class="widget-zone-label">Widget header</div>
+              <div class="widget-zone-desc">Section title with optional kebab menu</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Content area</div>
+              <div class="widget-zone-desc">Account info banner, transactions, benefits</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Link</div>
+              <div class="widget-zone-desc">Single action CTA at bottom</div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-slide-preview">
+          <div class="wf">
+            <div class="wf-row"><div class="wf-bar wide"></div><span class="wf-kebab">⋮</span></div>
+            <div class="wf-row"><div class="wf-block"></div></div>
+            <div class="wf-row"><div class="wf-btn"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Image + content block -->
+      <div class="widget-slide" id="slide-1">
+        <div class="widget-slide-meta">
+          <div>
+            <div class="widget-template-num">Widget Template 02</div>
+            <div class="widget-template-name">Image + content block</div>
+            <div class="widget-template-sub">Without section header</div>
+          </div>
+          <div class="widget-zone-list">
+            <div class="widget-zone">
+              <div class="widget-zone-label">Widget header</div>
+              <div class="widget-zone-desc">Optional — can be hidden for card-art widgets</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Content area</div>
+              <div class="widget-zone-desc">Card image and details side by side</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Link</div>
+              <div class="widget-zone-desc">Action CTA below content</div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-slide-preview">
+          <div class="wf">
+            <div class="wf-row"><div class="wf-bar wide"></div><span class="wf-kebab">⋮</span></div>
+            <div class="wf-row" style="gap:10px; align-items:flex-start;">
+              <div class="wf-block sq"></div>
+              <div class="wf-col">
+                <div class="wf-bar wide"></div>
+                <div class="wf-btn"></div>
+              </div>
+            </div>
+            <div class="wf-row"><div class="wf-btn"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Two column + CTA -->
+      <div class="widget-slide" id="slide-2">
+        <div class="widget-slide-meta">
+          <div>
+            <div class="widget-template-num">Widget Template 03</div>
+            <div class="widget-template-name">Two column + CTA</div>
+            <div class="widget-template-sub">Card balance details</div>
+          </div>
+          <div class="widget-zone-list">
+            <div class="widget-zone">
+              <div class="widget-zone-label">Widget header</div>
+              <div class="widget-zone-desc">Section title with kebab menu</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Content area</div>
+              <div class="widget-zone-desc">Two-column layout, e.g. card balance details</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">CTA</div>
+              <div class="widget-zone-desc">Full-width primary CTA button</div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-slide-preview">
+          <div class="wf">
+            <div class="wf-row"><div class="wf-bar wide"></div><span class="wf-kebab">⋮</span></div>
+            <div class="wf-row" style="gap:8px;">
+              <div class="wf-block" style="height:56px;flex:2;"></div>
+              <div class="wf-block" style="height:56px;flex:1;"></div>
+            </div>
+            <div class="wf-row"><div class="wf-cta" style="flex:1;">CTA</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Scrollable content -->
+      <div class="widget-slide" id="slide-3">
+        <div class="widget-slide-meta">
+          <div>
+            <div class="widget-template-num">Widget Template 04</div>
+            <div class="widget-template-name">Scrollable content</div>
+            <div class="widget-template-sub">Offers and notifications</div>
+          </div>
+          <div class="widget-zone-list">
+            <div class="widget-zone">
+              <div class="widget-zone-label">Widget header</div>
+              <div class="widget-zone-desc">Section title with optional subhead</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Content area</div>
+              <div class="widget-zone-desc">Scrollable. Optional dismiss. Offers and notifications</div>
+            </div>
+            <div class="widget-zone">
+              <div class="widget-zone-label">Pagination</div>
+              <div class="widget-zone-desc">Dot indicators for multiple items</div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-slide-preview">
+          <div class="wf">
+            <div class="wf-row"><div class="wf-bar wide"></div><span class="wf-kebab">⋮</span></div>
+            <div class="wf-row"><div class="wf-bar wide" style="height:8px;"></div></div>
+            <div class="wf-row" style="gap:8px; align-items:flex-start;">
+              <div class="wf-block tall" style="flex:2;"></div>
+              <div class="wf-block tall" style="flex:1; opacity:0.4;"></div>
+              <span class="wf-dismiss">✕</span>
+            </div>
+            <div class="wf-pagination-row">
+              <div class="wf-dots">
+                <div class="wf-dot active"></div>
+                <div class="wf-dot"></div>
+                <div class="wf-dot"></div>
+                <div class="wf-dot"></div>
+              </div>
+            </div>
+            <div class="wf-row"><div class="wf-btn"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /widget-carousel -->
+    <p class="img-cap">Four widget templates — each adapts its internal layout to the content type while sharing the same outer anatomy. Click through or use the arrows to explore.</p>
   </div>
 
   <div class="img-full reveal">
-    <img src="img-abc-widget-template.webp" alt="Four widget templates">
-    <div class="img-cap">Four widget templates covering the full range of content types: simple content, image + content, two-column with CTA, and scrollable/paginated.</div>
+    <img src="img-abc-system.png" alt="Amazon Business Prime Card — full design system spread showing components, navigation, charts, and UI elements" style="background:#f0f4f8;">
+    <div class="img-cap">Design system spread — the full component library built for the Prime Card experience, including navigation patterns, buttons, status alerts, charts, transaction lists, and offers.</div>
   </div>
 
   <hr>
@@ -361,11 +615,32 @@
 
   <hr>
 
-  <!-- PROTOTYPE -->
+  <!-- FINAL SCREENS -->
   <div class="prose reveal">
     <div class="slabel">Final Design</div>
-    <h2>Shipped prototype</h2>
-    <p>The final mobile prototype, shipped Spring 2024. Tap through to explore Card Overview, navigation patterns, rewards, and the widget-based content layout.</p>
+    <h2>Shipped screens</h2>
+    <p>The three core screens of the shipped experience — My Card overview, Card Details, and Points & Rewards — each powered by the widget system and designed to adapt per cardholder.</p>
+  </div>
+
+  <div class="img-grid col3 reveal">
+    <div>
+      <img src="img-abc-screen-1.png" alt="My Card screen" style="border-radius:16px; background:#e8f4fc;">
+      <p class="img-cap" style="margin-top:8px;">My Card — primary hub with balance, payment info, and quick actions.</p>
+    </div>
+    <div>
+      <img src="img-abc-screen-2.png" alt="Card Details screen" style="border-radius:16px; background:#e8f4fc;">
+      <p class="img-cap" style="margin-top:8px;">Card Details — full card number, account details, and autopay management.</p>
+    </div>
+    <div>
+      <img src="img-abc-screen-3.png" alt="Points and Rewards screen" style="border-radius:16px; background:#e8f4fc;">
+      <p class="img-cap" style="margin-top:8px;">Points & Rewards — earnings by category with donut chart visualization.</p>
+    </div>
+  </div>
+
+  <!-- PROTOTYPE -->
+  <div class="prose reveal" style="margin-top:48px;">
+    <h2>Interactive prototype</h2>
+    <p>Tap through the final shipped prototype to experience the full flow.</p>
   </div>
 
   <div class="figma-wrap reveal">
@@ -373,50 +648,6 @@
   </div>
   <a href="https://www.figma.com/design/Hy4Nt0oWXTxYVPqb3L9mJx/Small-Business-Credit-Card?node-id=4-71208" target="_blank" class="figma-link reveal">Explore full components & designs in Figma →</a>
 
-  <hr>
-
-  <!-- NAVIGATION -->
-  <div class="prose reveal">
-    <div class="slabel">Navigation</div>
-    <h2>Finding the right pattern</h2>
-    <p>Navigation was the key friction point in research — users struggled to find card features. Five patterns were explored and user-tested. Pattern #2 (dropdown expanded, pushes content) was selected for its familiarity, scalability, and match to customer expectations.</p>
-  </div>
-
-  <div class="img-full reveal">
-    <img src="img-abc-navigation.webp" alt="Five navigation pattern explorations">
-    <div class="img-cap">Five patterns tested — Pattern #2 selected. More familiar, more scalable, and avoids the scrolling limitations of the current overlay approach.</div>
-  </div>
-
-  <hr>
-
-  <!-- OUTCOMES -->
-  <div class="stat-strip reveal">
-    <div class="stat-cell">
-      <div class="stat-num">4</div>
-      <div class="stat-desc">Widget templates powering all content variations</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num">5</div>
-      <div class="stat-desc">Navigation patterns explored and user-tested</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num">✓</div>
-      <div class="stat-desc">Live in the Amazon Shopping app, Spring 2024</div>
-    </div>
-  </div>
-
-  <div class="tags reveal">
-    <span class="tag a">Shipped Spring 2024</span>
-    <span class="tag">Amazon</span>
-    <span class="tag">Product Design</span>
-    <span class="tag">Widget System</span>
-    <span class="tag">Mobile</span>
-    <span class="tag">UX Research</span>
-    <span class="tag">User Testing</span>
-    <span class="tag">Figma</span>
-  </div>
-
-</div>
 
 <div class="next-project">
   <div>
@@ -451,7 +682,26 @@
   }, { threshold: 0.07 });
   reveals.forEach(el => revealObs.observe(el));
 
-  // ── VENN DIAGRAM ANIMATION ──
+  // ── WIDGET CAROUSEL ──
+  let currentSlide = 0;
+  const totalSlides = 4;
+
+  function goToSlide(n) {
+    document.getElementById('slide-' + currentSlide).classList.remove('active');
+    document.querySelectorAll('.widget-tab')[currentSlide].classList.remove('active');
+    currentSlide = n;
+    document.getElementById('slide-' + currentSlide).classList.add('active');
+    document.querySelectorAll('.widget-tab')[currentSlide].classList.add('active');
+  }
+  function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+  function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); }
+
+  // Keyboard nav when hovering carousel
+  document.querySelector('.widget-carousel').addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
   const vennObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
