@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Libra · Mason Catt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
+    --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
+    --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0;
+    --libra: #1877f2;
+    --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --col: 860px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(14,13,12,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--cream); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .nav-resume:hover { background: var(--accent); }
+
+  /* HERO */
+  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--cream3); text-decoration: none; margin-bottom: 40px; transition: color 0.2s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
+  .back-link:hover { color: var(--cream2); }
+  .case-eyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
+  .etag { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ediv { color: var(--cream3); }
+  .eco { font-size: 12px; color: var(--cream3); }
+  .case-title { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .case-title em { font-style: italic; color: var(--accent-blue); }
+  .case-subtitle { font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.7; max-width: 600px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+
+  .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; margin-bottom: 48px; }
+  .meta-item { padding: 18px 0; border-right: 1px solid var(--border); }
+  .meta-item:last-child { border-right: none; }
+  .meta-item + .meta-item { padding-left: 24px; }
+  .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .mv { font-size: 13px; color: var(--cream); }
+
+  /* HERO VISUAL — dark card with homepage gif placeholder */
+  .hero-visual {
+    max-width: calc(var(--col) + 96px);
+    margin: 0 auto;
+    padding: 0 48px 64px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards 0.7s;
+  }
+  .hero-visual-inner {
+    background: #3b2a8a;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 360px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual-inner img { width: 100%; height: auto; display: block; }
+  .hero-visual-inner video { width: 100%; height: auto; display: block; }
+  .placeholder-hero {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    color: var(--cream3); font-size: 13px; text-align: center; padding: 80px 40px;
+  }
+  .placeholder-hero .ph-icon { font-size: 32px; opacity: 0.3; }
+  .placeholder-hero .ph-label { font-size: 12px; color: var(--cream3); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* BODY */
+  .case-body { max-width: var(--col); margin: 0 auto; padding: 0 48px 80px; }
+
+  .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+  .slabel::before { content: '✦'; font-size: 9px; }
+  .slabel.blue { color: var(--accent-blue); }
+  .slabel.blue::before { color: var(--accent-blue); }
+
+  .prose { margin-bottom: 48px; }
+  .prose h2 { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 34px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; }
+  .prose p { font-size: 16px; color: var(--cream2); line-height: 1.8; margin-bottom: 14px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 500; color: var(--cream); }
+  .prose a { color: var(--accent-blue); text-decoration: none; border-bottom: 1px solid rgba(59,130,246,0.3); }
+  .prose a:hover { border-color: var(--accent-blue); }
+
+  .img-full { margin: 28px 0; }
+  .img-full img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
+  .img-full.dark img { border: none; background: #3b2a8a; }
+  .img-full.light img { background: #f5f5f5; }
+  .img-cap { font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 8px; line-height: 1.5; }
+
+  .img-grid { display: grid; gap: 14px; margin: 28px 0; }
+  .img-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .img-grid.col4 { grid-template-columns: repeat(4, 1fr); }
+  .img-grid-item img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border); }
+  .img-grid-item.light img { background: #f5f5f5; border: 1px solid var(--border); }
+  .img-grid-item .img-cap { margin-top: 6px; }
+
+  /* placeholder slot */
+  .ph-slot {
+    border-radius: var(--radius); border: 1px dashed var(--border2);
+    background: var(--bg2);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 200px; padding: 32px;
+    flex-direction: column; gap: 8px;
+    color: var(--cream3); font-size: 12px; text-align: center;
+  }
+  .ph-slot .ph-icon { font-size: 24px; opacity: 0.25; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+  .callout { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--accent-blue); border-radius: 8px; padding: 18px 22px; margin: 24px 0; }
+  .callout p { font-size: 14px; color: var(--cream2); margin: 0; }
+
+  .collab-strip {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 32px; margin: 32px 0;
+    display: flex; align-items: center; gap: 32px;
+  }
+  .collab-logo {
+    font-family: var(--serif); font-size: 28px; font-weight: 400;
+    color: var(--cream3); flex-shrink: 0; letter-spacing: -0.02em;
+  }
+  .collab-divider { width: 1px; height: 40px; background: var(--border2); flex-shrink: 0; }
+  .collab-text { font-size: 14px; color: var(--cream2); line-height: 1.7; }
+  .collab-text a { color: var(--accent-blue); text-decoration: none; }
+
+  /* NEXT / FOOTER */
+  .next-project { border-top: 1px solid var(--border); background: var(--bg2); padding: 56px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .next-label { font-size: 12px; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .next-title { font-family: var(--serif); font-size: clamp(20px, 3vw, 30px); font-weight: 400; letter-spacing: -0.015em; }
+  .next-link { display: inline-flex; align-items: center; padding: 13px 22px; background: var(--cream); color: var(--bg); font-size: 14px; font-weight: 500; border-radius: 100px; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+  .next-link:hover { background: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: var(--serif); font-size: 14px; color: var(--cream2); }
+  .footer-copy { font-size: 12px; color: var(--cream3); }
+  .footer-nav { display: flex; gap: 24px; list-style: none; }
+  .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--cream2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Mason Catt</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#work" class="back-link">← All work</a>
+  <div class="case-eyebrow">
+    <span class="etag">Iconography · Illustration · Web</span>
+    <span class="ediv">·</span>
+    <span class="eco">BUCK Design · Facebook · 2019</span>
+  </div>
+  <h1 class="case-title">Facebook<br><em>Libra</em></h1>
+  <p class="case-subtitle">Web design, iconography, and illustration for Facebook's global cryptocurrency initiative — designed and shipped at BUCK Design over three months in 2019.</p>
+  <div class="meta-strip">
+    <div class="meta-item">
+      <div class="ml">Role</div>
+      <div class="mv">UI/UX Designer</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Studio</div>
+      <div class="mv">BUCK Design</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Scope</div>
+      <div class="mv">Web, Icons, Illustration</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Timeline</div>
+      <div class="mv">2018 – 2020</div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO VISUAL — homepage animation -->
+<div class="hero-visual">
+  <div class="hero-visual-inner">
+    <img src="img-libra-homepage.gif" alt="Libra homepage animation"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="placeholder-hero" style="display:none;">
+      <div class="ph-icon">🌐</div>
+      <div class="ph-label">Upload img-libra-homepage.gif</div>
+    </div>
+  </div>
+</div>
+
+<div class="case-body">
+
+  <!-- OVERVIEW -->
+  <div class="prose reveal">
+    <div class="slabel blue">Overview</div>
+    <h2>Building a visual identity for a new kind of money</h2>
+    <p>
+      In 2019, Facebook announced <strong>Libra</strong> — a global cryptocurrency backed by a reserve of assets, designed to enable simple, low-cost financial transactions for anyone with a smartphone. The scale of the ambition demanded a visual identity to match: a website, a comprehensive icon system, and a set of editorial illustrations explaining the technology to a global audience.
+    </p>
+    <p>
+      Working at <strong>BUCK Design</strong> as UI/UX Designer, I contributed across the full visual scope of the project — from the motion-forward homepage experience to the icon library and supporting illustrations used across libra.org. The project was later rebranded as <strong>Diem</strong> in 2020, for which I also produced motion and visual assets.
+    </p>
+  </div>
+
+  <div class="collab-strip reveal">
+    <div class="collab-logo">BUCK</div>
+    <div class="collab-divider"></div>
+    <div class="collab-text">
+      Developed in collaboration with <a href="https://buck.tv" target="_blank">BUCK Design</a> — a creative studio known for brand, motion, and digital work at the intersection of design and technology.
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ICONS -->
+  <div class="prose reveal">
+    <div class="slabel blue">Iconography</div>
+    <h2>A custom icon system for a global product</h2>
+    <p>
+      The Libra icon set was built to communicate complex financial and technical concepts clearly and accessibly. Each icon was designed on a consistent grid with careful attention to weight, optical balance, and legibility at small sizes — supporting both the website and any downstream product surfaces.
+    </p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-libra-icons.webp" alt="Facebook Libra icon sheet" style="background:#fff;"
+      onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🎨</div><span>Upload img-libra-icons.webp</span></div>'">
+    <div class="img-cap">Full Libra icon set — designed on a consistent grid for use across libra.org and product surfaces. Weight, optical balance, and legibility were primary considerations.</div>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-libra-icons-load.gif" alt="Libra icons load animation"
+      onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>✨</div><span>Upload img-libra-icons-load.gif</span></div>'">
+    <div class="img-cap">Icon load animation — a staggered entrance sequence giving the icon set motion and personality on page load.</div>
+  </div>
+
+  <hr>
+
+  <!-- WHITEPAPER / WEB -->
+  <div class="prose reveal">
+    <div class="slabel blue">Web Design</div>
+    <h2>Motion-forward web experience</h2>
+    <p>
+      The libra.org homepage and white papers section were designed to make dense technical content feel approachable. Animated transitions, scroll-triggered reveals, and a clean typographic system gave the site a modern, trustworthy feel appropriate for a global financial product.
+    </p>
+  </div>
+
+  <div class="img-full reveal">
+    <img src="img-libra-whitepapers.gif" alt="Libra white papers page animation"
+      onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>📄</div><span>Upload img-libra-whitepapers.gif</span></div>'">
+    <div class="img-cap">White papers section — animated content reveals and a typographic system designed to make technical documentation feel clear and credible.</div>
+  </div>
+
+  <hr>
+
+  <!-- ILLUSTRATIONS -->
+  <div class="prose reveal">
+    <div class="slabel blue">Illustration</div>
+    <h2>Editorial illustrations explaining the technology</h2>
+    <p>
+      Four hero illustrations were created to explain the core pillars of the Libra ecosystem — vision, blockchain infrastructure, reserve backing, and the role of the Libra Association. Each one needed to be technically accurate, globally legible, and visually consistent with the broader Libra brand.
+    </p>
+  </div>
+
+  <div class="img-grid col2 reveal">
+    <div class="img-grid-item light">
+      <img src="img-libra-vision.webp" style="background:#fff; padding:20px;" alt="Vision illustration"
+        onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🌍</div><span>Upload img-libra-vision.webp</span></div>'">
+      <p class="img-cap">Vision — Libra's mission to provide financial access to everyone.</p>
+    </div>
+    <div class="img-grid-item light">
+      <img src="img-libra-blockchain.webp" style="background:#fff; padding:20px;" alt="Blockchain illustration"
+        onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🔗</div><span>Upload img-libra-blockchain.webp</span></div>'">
+      <p class="img-cap">Blockchain — the distributed ledger technology underlying Libra.</p>
+    </div>
+    <div class="img-grid-item light">
+      <img src="img-libra-reserve.webp" style="background:#fff; padding:20px;" alt="Reserve illustration"
+        onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🏦</div><span>Upload img-libra-reserve.webp</span></div>'">
+      <p class="img-cap">Reserve — the asset-backed reserve model that stabilizes Libra's value.</p>
+    </div>
+    <div class="img-grid-item light">
+      <img src="img-libra-role.webp" style="background:#fff; padding:20px;" alt="Role illustration"
+        onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🤝</div><span>Upload img-libra-role.webp</span></div>'">
+      <p class="img-cap">Role — the governance structure of the Libra Association.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- DIEM VIDEO -->
+  <div class="prose reveal">
+    <div class="slabel blue">Diem</div>
+    <h2>Rebrand — Libra becomes Diem</h2>
+    <p>
+      In December 2020, the Libra Association rebranded as the <strong>Diem Association</strong>, with an updated visual identity and renewed focus. I produced visual assets and motion graphics for the rebrand rollout — including this statistics explainer video, where I generated the majority of the visual elements.
+    </p>
+  </div>
+
+  <div class="img-full reveal" style="margin-bottom: 8px;">
+    <video
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+      style="width:100%; height:auto; display:block; border-radius: var(--radius); border: 1px solid var(--border); background: #1a1530;">
+      <source src="img-libra-diem-video.mp4" type="video/mp4">
+    </video>
+    <div class="img-cap">Why Diem — a motion statistics piece produced for the Diem rebrand in December 2020. Visual assets largely generated and designed by Mason Catt.</div>
+  </div>
+
+  <div class="callout reveal">
+    <p>Work completed at <strong>BUCK Design</strong>, Oct 2018 – Feb 2019, with additional Diem rebrand motion work in Dec 2020. Originally at <a href="https://libra.org" target="_blank">libra.org</a>, later rebranded as the Diem Association.</p>
+  </div>
+
+</div>
+
+<div class="next-project">
+  <div>
+    <div class="next-label">Back to</div>
+    <div class="next-title">All work</div>
+  </div>
+  <a href="index.html#work" class="next-link">View all projects →</a>
+</div>
+
+<footer>
+  <span class="footer-name">Mason Catt</span>
+  <ul class="footer-nav">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 · Made with care in LA</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.04) + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
