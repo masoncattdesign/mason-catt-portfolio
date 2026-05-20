@@ -207,10 +207,10 @@
 
   .marquee-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 0; overflow: hidden; background: var(--bg2); }
   .marquee-track { display: flex; align-items: center; width: max-content; animation: marquee 30s linear infinite; }
-  .marquee-item { display: flex; align-items: center; gap: 20px; padding: 0 40px; font-size: 13px; font-weight: 500; color: var(--cream3); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; line-height: 1; }
-  .marquee-dot { font-size: 9px; color: var(--accent); flex-shrink: 0; line-height: 1; display: flex; align-items: center; }
+  .marquee-item { display: flex; align-items: center; font-size: 13px; font-weight: 500; color: var(--cream3); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; line-height: 1; padding: 0 32px; }
+  .marquee-dot { font-size: 9px; color: var(--accent); line-height: 1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-  .section { padding: 100px 48px; }
+  .section { padding: 72px 48px; }
   .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 48px; }
   .section-label::before { content: '✦'; font-size: 10px; }
 
@@ -288,7 +288,7 @@
   .stat-num { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: 6px; }
   .stat-label { font-size: 12px; color: var(--cream3); line-height: 1.5; }
 
-  .exp-section { padding: 100px 48px; }
+  .exp-section { padding: 72px 48px; }
   .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .exp-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color 0.2s; }
   .exp-card:hover { border-color: var(--border2); }
@@ -346,12 +346,11 @@
   .footer-nav a:hover { color: var(--cream2); }
 
   .project-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
-  .project-protected { font-size: 12px; color: var(--cream3); display: inline-flex; align-items: center; gap: 5px; line-height: 1; }
+  .project-protected { font-size: 12px; color: var(--cream3); display: inline-flex; align-items: center; gap: 5px; line-height: 1; align-self: center; }
   .project-request-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.25); font-size: 12px; transition: border-color 0.2s; }
   .project-request-link:hover { border-color: var(--accent); }
   .project-access-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 20px;
     font-size: 13px; font-weight: 500; color: var(--bg);
     background: var(--cream); padding: 9px 18px; border-radius: 100px;
     text-decoration: none; transition: background 0.2s, transform 0.15s;
@@ -442,22 +441,22 @@
 
 <div class="marquee-strip">
   <div class="marquee-track">
-    <div class="marquee-item"><span>Design Systems</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Visual Systems</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Platform Architecture</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Figma Libraries</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Iconography</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Interaction Design</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Creative Direction</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Accessibility</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Design Systems</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Visual Systems</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Platform Architecture</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Figma Libraries</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Iconography</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Interaction Design</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Creative Direction</span><span class="marquee-dot">✦</span></div>
-    <div class="marquee-item"><span>Accessibility</span><span class="marquee-dot">✦</span></div>
+    <span class="marquee-item">Design Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Platform Architecture</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Figma Libraries</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Iconography</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Interaction Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Accessibility</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Design Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Platform Architecture</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Figma Libraries</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Iconography</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Interaction Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Accessibility</span><span class="marquee-dot">✦</span>
   </div>
 </div>
 
@@ -476,9 +475,9 @@
     <!-- FEATURED: Windows Personalization — Current project -->
     <div class="project-card featured reveal" style="cursor:default;">
       <div>
-        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:100px; padding:4px 10px; margin-bottom:14px;">
-          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>
-          <span style="font-size:11px;font-weight:500;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;">Current project</span>
+        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(232,121,160,0.1); border:1px solid rgba(232,121,160,0.25); border-radius:100px; padding:4px 10px; margin-bottom:14px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-pink);display:inline-block;"></span>
+          <span style="font-size:11px;font-weight:500;color:var(--accent-pink);letter-spacing:0.06em;text-transform:uppercase;">Current project</span>
         </div>
         <div class="project-tags">
           <span class="tag hi">Microsoft</span>
@@ -562,7 +561,7 @@
     </div>
 
     <!-- Facebook Libra -->
-    <div class="project-card reveal" style="cursor:default;">
+    <div class="project-card reveal" style="cursor:pointer;" onclick="window.location='facebook-libra.html'">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#0d1f42 0%,#1877f2 100%); display:flex; align-items:center; justify-content:center;">
         <span style="font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.05em;">BUCK Design · Facebook</span>
       </div>
@@ -572,7 +571,7 @@
       <h3 class="project-name">Facebook Libra</h3>
       <p class="project-desc">Iconography, visual guidelines, and digital artwork supporting brand campaigns for Facebook's Libra initiative — developed at BUCK Design with pixel-perfect production deliverables.</p>
       <div class="project-cta-row">
-        <a href="mailto:hi@masoncatt.com?subject=View%20Project%20—%20Facebook%20Libra" class="project-access-btn">View project →</a>
+        <a href="facebook-libra.html" class="project-access-btn">View project →</a>
         <span class="project-protected">🔒 Password protected · <a href="mailto:hi@masoncatt.com?subject=Access%20Request%20—%20Facebook%20Libra" class="project-request-link">request access</a></span>
       </div>
     </div>
