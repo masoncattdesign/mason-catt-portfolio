@@ -219,7 +219,7 @@
   .view-all { font-size: 14px; color: var(--cream2); text-decoration: none; border-bottom: 1px solid var(--border2); padding-bottom: 2px; transition: color 0.2s; }
   .view-all:hover { color: var(--cream); }
 
-  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .project-card {
     background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
     padding: 28px; text-decoration: none; display: block;
@@ -345,8 +345,8 @@
   .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
   .footer-nav a:hover { color: var(--cream2); }
 
-  .project-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 16px; }
-  .project-protected { font-size: 12px; color: var(--cream3); display: flex; align-items: center; gap: 5px; }
+  .project-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+  .project-protected { font-size: 12px; color: var(--cream3); display: inline-flex; align-items: center; gap: 5px; line-height: 1; }
   .project-request-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.25); font-size: 12px; transition: border-color 0.2s; }
   .project-request-link:hover { border-color: var(--accent); }
   .project-access-btn {
@@ -432,7 +432,7 @@
   <div class="hero-clients">
     <span>Currently</span>
     <strong>Microsoft · Windows Design Systems</strong>
-    <span class="client-section-div"></span>
+    <div style="flex:1;"></div>
     <span>Previously</span>
     <strong>Amazon</strong><span class="client-divider">·</span>
     <strong>Credit Karma</strong><span class="client-divider">·</span>
@@ -476,14 +476,14 @@
     <!-- FEATURED: Windows Personalization — Current project -->
     <div class="project-card featured reveal" style="cursor:default;">
       <div>
+        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:100px; padding:4px 10px; margin-bottom:14px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>
+          <span style="font-size:11px;font-weight:500;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;">Current project</span>
+        </div>
         <div class="project-tags">
           <span class="tag hi">Microsoft</span>
           <span class="tag">Design Systems</span>
           <span class="tag">Vision Prototype</span>
-        </div>
-        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:100px; padding:4px 10px; margin-bottom:10px;">
-          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>
-          <span style="font-size:11px;font-weight:500;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;">Current project</span>
         </div>
         <h3 class="project-name">Windows System Personalization</h3>
         <p class="project-desc">A design prototype exploring how Windows could become genuinely personal — complete theme identities across Start, Lock screen, and widgets, built around the thesis <em>"It's still Windows, now it's mine."</em></p>
