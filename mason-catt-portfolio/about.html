@@ -12,7 +12,7 @@
   :root {
     --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
     --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
-    --accent: #d4a853; --accent2: #c4834a;
+    --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0; --accent2: #3b82f6;
     --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
     --serif: 'Libre Baskerville', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
@@ -43,10 +43,30 @@
   .about-hero::before {
     content: ''; position: absolute; top: 0; right: 0;
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(212,168,83,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
-  .about-hero-inner { max-width: 760px; }
+  .about-hero-inner {
+    max-width: 900px;
+  }
+  .about-hero-headline-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    margin-bottom: 28px;
+  }
+  .about-hero-copy { flex: 1; }
+  .about-hero-photo {
+    flex-shrink: 0;
+    width: clamp(120px, 14vw, 180px);
+    height: clamp(160px, 18vw, 240px);
+    border-radius: 120px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+  .about-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 12px; font-weight: 500; color: var(--accent);
@@ -57,10 +77,9 @@
   .about-hero h1 {
     font-family: var(--serif); font-size: clamp(44px, 6vw, 80px);
     font-weight: 400; line-height: 1.08; letter-spacing: -0.025em;
-    margin-bottom: 28px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.25s;
   }
-  .about-hero h1 em { font-style: italic; color: var(--accent); }
+  .about-hero h1 em { font-style: italic; color: var(--accent-pink); }
   .about-hero-bio {
     font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.75;
     max-width: 620px; margin-bottom: 40px;
@@ -75,7 +94,7 @@
     font-size: 13px; color: var(--cream2); border: 1px solid var(--border2);
     padding: 6px 14px; border-radius: 100px;
   }
-  .pill.accent { color: var(--accent); border-color: rgba(212,168,83,0.3); background: rgba(212,168,83,0.05); }
+  .pill.accent { color: var(--accent); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
 
   /* ── PHOTO GRID ── */
   .photo-grid {
@@ -127,9 +146,9 @@
   .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .timeline-tag { font-size: 11px; color: var(--cream3); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 100px; }
   .timeline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 3px 9px; border-radius: 100px; margin-left: 8px; }
-  .badge-current { color: #4caf82; border: 1px solid rgba(76,175,130,0.3); background: rgba(76,175,130,0.06); }
-  .badge-current::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4caf82; }
-  .badge-award { color: var(--accent); border: 1px solid rgba(212,168,83,0.3); background: rgba(212,168,83,0.06); }
+  .badge-current { color: var(--accent); border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.06); }
+  .badge-current::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+  .badge-award { color: var(--accent); border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.06); }
 
   /* ── TOOLS ── */
   .tools-section { padding: 80px 48px; background: var(--bg2); border-top: 1px solid var(--border); }
@@ -163,7 +182,7 @@
     font-weight: 400; font-style: italic; line-height: 1.3; letter-spacing: -0.02em;
     color: var(--cream2); max-width: 760px; margin: 0 auto 24px;
   }
-  .closing-quote blockquote em { color: var(--cream); font-style: normal; }
+  .closing-quote blockquote em { color: var(--accent-pink); font-style: normal; }
   .closing-quote cite { font-size: 13px; color: var(--cream3); font-style: normal; }
 
   /* ── CONTACT CTA ── */
@@ -196,6 +215,7 @@
   <ul class="nav-links">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html" class="active">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
@@ -205,43 +225,24 @@
 <section class="about-hero">
   <div class="about-hero-inner">
     <div class="hero-tag">About me</div>
-    <h1>Still figuring<br>things out —<br><em>beautifully.</em></h1>
+    <div class="about-hero-headline-row">
+      <h1>Making things<br>and <em>breaking</em><br>things.</h1>
+      <div class="about-hero-photo">
+        <img src="img-headshot.png" alt="Mason Catt">
+      </div>
+    </div>
     <p class="about-hero-bio">
       I'm <strong>Mason Catt</strong>, a Senior Product Designer and Visual Systems Designer based in <strong>Los Angeles</strong>. For 10+ years I've been building and scaling complex digital products across platforms and brands — from Amazon advertising to Microsoft's Windows design system.
     </p>
     <div class="about-hero-pills">
       <span class="pill accent">Currently @ Microsoft</span>
       <span class="pill">Los Angeles, CA</span>
-      <span class="pill">🏆 Gold Clio Award</span>
       <span class="pill">UW Design '14</span>
       <span class="pill">Official Beyoncé fan club member</span>
     </div>
   </div>
 </section>
 
-<!-- PHOTO GRID (placeholder — swap in your Instagram/personal photos) -->
-<div class="photo-grid">
-  <div class="photo-grid-inner">
-    <div class="photo-cell tall">
-      <div>
-        <div class="photo-cell-label">[ Your portrait here ]</div>
-        <div class="photo-cell-hint">Swap in from @masoncatt</div>
-      </div>
-    </div>
-    <div class="photo-cell">
-      <div class="photo-cell-label">[ Life photo ]</div>
-    </div>
-    <div class="photo-cell">
-      <div class="photo-cell-label">[ Life photo ]</div>
-    </div>
-    <div class="photo-cell">
-      <div class="photo-cell-label">[ Work / sketch ]</div>
-    </div>
-    <div class="photo-cell">
-      <div class="photo-cell-label">[ Life photo ]</div>
-    </div>
-  </div>
-</div>
 
 <!-- CAREER TIMELINE -->
 <section class="timeline-section">
@@ -332,7 +333,10 @@
       <div class="tool-chip"><span class="tool-icon">🎬</span>After Effects</div>
       <div class="tool-chip"><span class="tool-icon">🎞️</span>Premiere</div>
       <div class="tool-chip"><span class="tool-icon">✏️</span>Procreate</div>
-      <div class="tool-chip"><span class="tool-icon">🤖</span>AI Tools</div>
+      <div class="tool-chip"><span class="tool-icon">✦</span>Midjourney</div>
+      <div class="tool-chip"><span class="tool-icon">⚡</span>Cursor</div>
+      <div class="tool-chip"><span class="tool-icon">🤖</span>ChatGPT</div>
+      <div class="tool-chip"><span class="tool-icon">🧠</span>Claude</div>
       <div class="tool-chip"><span class="tool-icon">💻</span>HTML & CSS</div>
       <div class="tool-chip"><span class="tool-icon">✍️</span>Drawing & Sketching</div>
       <div class="tool-chip"><span class="tool-icon">🖼️</span>Illustration</div>
@@ -393,7 +397,7 @@
     <li><a href="about.html">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <span class="footer-copy">© 2025 · Made with care in LA</span>
+  <span class="footer-copy">© 2026 · Made with care in LA</span>
 </footer>
 
 <script>
