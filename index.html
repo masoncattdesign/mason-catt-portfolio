@@ -36,22 +36,22 @@
   .nav-resume:hover { background: var(--accent); }
 
   .hero {
-    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 48px 80px; position: relative; overflow: hidden;
+    min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 60px; position: relative; overflow: hidden;
   }
   .hero-eyebrow {
     display: flex; align-items: center; gap: 10px;
-    font-size: 13px; font-weight: 500; color: var(--accent);
-    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 40px;
+    font-size: 13px; font-weight: 400; color: var(--cream3);
+    letter-spacing: 0.02em; margin-bottom: 40px;
     opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
   }
-  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--cream3); }
 
   /* ── INLINE HEADLINE ── */
   .hero-headline {
     font-family: var(--serif); font-size: clamp(48px, 6.5vw, 88px); font-weight: 400;
-    line-height: 1.12; letter-spacing: -0.025em; color: var(--cream);
-    max-width: 960px; margin-bottom: 36px;
+    line-height: 1.3; letter-spacing: -0.025em; color: var(--cream);
+    max-width: 1100px; margin-bottom: 48px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s;
   }
   .hero-headline em { font-style: italic; color: var(--accent); }
@@ -66,8 +66,8 @@
   }
   /* photo pill */
   .h-pill-photo {
-    width: clamp(80px, 9vw, 120px);
-    height: clamp(56px, 6.5vw, 84px);
+    width: clamp(100px, 11vw, 150px);
+    height: clamp(72px, 8.5vw, 112px);
     border-radius: 100px; overflow: hidden;
     display: inline-block; vertical-align: middle;
     position: relative; top: -6px;
@@ -78,21 +78,19 @@
 
   /* discipline pill */
   .h-pill-disc {
-    display: inline-flex; align-items: center;
+    display: inline-flex; align-items: center; justify-content: center;
     background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25);
-    border-radius: 100px; padding: 10px 22px 10px 16px;
+    border-radius: 100px; padding: 10px 14px;
     vertical-align: middle; position: relative; top: -4px;
-    gap: 10px; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    gap: 10px; transition: background 0.3s ease, border-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
     overflow: hidden; cursor: default;
-    white-space: nowrap;
-    width: 136px;
-    padding: 10px 10px 10px 16px;
+    white-space: nowrap; width: 140px;
   }
   .h-pill-disc:hover {
     background: rgba(34,197,94,0.18);
     border-color: rgba(34,197,94,0.4);
     border-radius: 20px;
-    padding: 14px 22px 14px 16px;
+    padding: 14px 14px;
   }
   /* the animated dot */
   .h-pill-disc-dot {
@@ -122,8 +120,8 @@
 
   /* hollywood pill */
   .h-pill-place {
-    width: clamp(90px, 10vw, 136px);
-    height: clamp(52px, 6vw, 78px);
+    width: clamp(110px, 13vw, 170px);
+    height: clamp(66px, 8vw, 102px);
     border-radius: 100px; overflow: hidden;
     display: inline-block; vertical-align: middle;
     position: relative; top: -4px;
@@ -132,12 +130,56 @@
   .h-pill-place:hover { transform: scale(1.05) rotate(2deg); }
   .h-pill-place img, .h-pill-place svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .hero-sub {
-    font-size: 18px; font-weight: 300; color: var(--cream2); max-width: 500px;
-    line-height: 1.65; margin-bottom: 48px;
-    opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+  /* Hello — outline strokes into pink on page load */
+  .hero-hello {
+    display: inline;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent-pink);
+    animation: helloFillIn 1.1s ease 0.2s forwards;
   }
-  .hero-ctas { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s; }
+  @keyframes helloFillIn {
+    0%   { color: transparent; -webkit-text-stroke: 2px var(--accent-pink); }
+    100% { color: var(--accent-pink); -webkit-text-stroke: 2px transparent; }
+  }
+
+  /* Designer — italic green */
+  .hero-designer { font-style: italic; color: var(--accent); }
+
+  /* Creative — dotted underline + spinning asterisk + tooltip */
+  .hero-creative {
+    display: inline-block; position: relative; cursor: pointer;
+    text-decoration: underline; text-decoration-style: dotted;
+    text-decoration-color: var(--accent-pink);
+    text-underline-offset: 8px; text-decoration-thickness: 2px;
+    transition: color 0.2s; color: inherit;
+  }
+  .hero-creative:hover { color: var(--accent-pink); }
+  .hero-asterisk {
+    display: inline-block; color: var(--accent-pink);
+    font-weight: 900; font-size: 0.85em; margin-left: 1px;
+    vertical-align: super; font-style: normal; line-height: 1;
+    transition: transform 0.5s ease;
+  }
+  .hero-creative:hover .hero-asterisk { transform: rotate(180deg); }
+  .hero-creative-tooltip {
+    position: absolute; bottom: calc(100% + 12px); left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: var(--bg2); border: 1px solid var(--border2);
+    border-radius: 100px; padding: 10px 20px; white-space: nowrap;
+    font-family: var(--sans); font-size: 14px; font-weight: 400;
+    font-style: normal; letter-spacing: normal; color: var(--cream2);
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease; z-index: 10;
+  }
+  .hero-creative-tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%); border: 6px solid transparent;
+    border-top-color: var(--border2);
+  }
+  .hero-creative:hover .hero-creative-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .hero-ctas { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s; margin-bottom: 80px; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
     background: var(--cream); color: var(--bg); font-family: var(--sans);
@@ -152,28 +194,23 @@
     transition: border-color 0.2s, color 0.2s;
   }
   .btn-ghost:hover { border-color: var(--cream2); color: var(--cream); }
-  .hero-meta {
-    position: absolute; bottom: 56px; right: 48px;
-    display: flex; flex-direction: column; align-items: flex-end; gap: 5px;
+  .hero-meta { display: none; }
+  .hero-clients {
+    position: absolute; bottom: 48px; left: 48px; right: 48px;
+    display: flex; align-items: center; gap: 8px;
     opacity: 0; animation: fadeIn 1s ease forwards 1s;
   }
-  .hero-meta span { font-size: 12px; color: var(--cream3); }
-  .hero-meta strong { font-size: 13px; font-weight: 500; color: var(--cream2); }
-  .hero-clients {
-    position: absolute; bottom: 56px; left: 48px;
-    display: flex; align-items: center; gap: 8px;
-    opacity: 0; animation: fadeIn 1s ease forwards 1.1s;
-  }
-  .hero-clients span { font-size: 12px; color: var(--cream3); margin-right: 4px; }
+  .hero-clients span { font-size: 12px; color: var(--cream3); }
   .hero-clients strong { font-size: 12px; font-weight: 500; color: var(--cream2); }
   .client-divider { color: var(--cream3); font-size: 11px; }
+  .client-section-div { width: 1px; height: 12px; background: var(--border2); margin: 0 6px; }
 
   .marquee-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 0; overflow: hidden; background: var(--bg2); }
-  .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
-  .marquee-item { display: flex; align-items: center; gap: 16px; padding: 0 40px; font-size: 13px; font-weight: 500; color: var(--cream3); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
-  .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .marquee-track { display: flex; align-items: center; width: max-content; animation: marquee 30s linear infinite; }
+  .marquee-item { display: flex; align-items: center; font-size: 13px; font-weight: 500; color: var(--cream3); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; line-height: 1; padding: 0 32px; }
+  .marquee-dot { font-size: 9px; color: var(--accent); line-height: 1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-  .section { padding: 100px 48px; }
+  .section { padding: 72px 48px; }
   .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 48px; }
   .section-label::before { content: '✦'; font-size: 10px; }
 
@@ -182,7 +219,7 @@
   .view-all { font-size: 14px; color: var(--cream2); text-decoration: none; border-bottom: 1px solid var(--border2); padding-bottom: 2px; transition: color 0.2s; }
   .view-all:hover { color: var(--cream); }
 
-  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .project-card {
     background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
     padding: 28px; text-decoration: none; display: block;
@@ -200,7 +237,46 @@
   .project-arrow { position: absolute; top: 28px; right: 28px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; color: var(--cream3); font-size: 14px; transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .project-card:hover .project-arrow { background: var(--cream); color: var(--bg); border-color: var(--cream); }
 
-  .about-strip {
+  /* NEW CONTACT */
+  .contact-new {
+    padding: 100px 48px 120px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .contact-new-inner { max-width: 960px; }
+  .contact-headline { margin-bottom: 56px; }
+  .contact-title {
+    font-family: var(--serif); font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 400; letter-spacing: -0.025em; line-height: 1.06;
+    color: var(--cream);
+  }
+  .contact-title em { font-style: italic; color: var(--accent); }
+  .contact-cards {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin-bottom: 64px;
+  }
+  .contact-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .contact-card-icon {
+    font-size: 20px; margin-bottom: 14px; color: var(--accent);
+    line-height: 1;
+  }
+  .contact-card-label {
+    font-size: 14px; font-weight: 500; color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .contact-card-desc {
+    font-size: 13px; color: var(--cream3); line-height: 1.65;
+  }
+  .contact-cta { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .contact-cta-note {
+    font-size: 14px; color: var(--cream3); font-style: italic;
+    font-family: var(--serif);
+  }
     border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     background: var(--bg2); padding: 80px 48px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -212,7 +288,7 @@
   .stat-num { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: 6px; }
   .stat-label { font-size: 12px; color: var(--cream3); line-height: 1.5; }
 
-  .exp-section { padding: 100px 48px; }
+  .exp-section { padding: 72px 48px; }
   .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .exp-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color 0.2s; }
   .exp-card:hover { border-color: var(--border2); }
@@ -269,9 +345,12 @@
   .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
   .footer-nav a:hover { color: var(--cream2); }
 
+  .project-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+  .project-protected { font-size: 12px; color: var(--cream3); display: inline-flex; align-items: center; gap: 5px; line-height: 1; align-self: center; }
+  .project-request-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.25); font-size: 12px; transition: border-color 0.2s; }
+  .project-request-link:hover { border-color: var(--accent); }
   .project-access-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 20px;
     font-size: 13px; font-weight: 500; color: var(--bg);
     background: var(--cream); padding: 9px 18px; border-radius: 100px;
     text-decoration: none; transition: background 0.2s, transform 0.15s;
@@ -279,66 +358,38 @@
   .project-access-btn:hover { background: var(--accent); transform: translateY(-1px); }
   .project-card .project-desc em { font-style: italic; color: var(--cream); }
 
-  /* Designer — mirrors Hello */
-  .hero-designer {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  /* Hybrid — letter scramble on hover */
-  .hero-hybrid {
-    display: inline-block;
-    cursor: default;
-    transition: color 0.2s;
-  }
-  .hero-hybrid:hover { color: var(--accent); }
-
-
+  /* Creative — dotted underline + spinning asterisk + tooltip */
   .hero-creative {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-style: dotted;
+    display: inline-block; position: relative; cursor: pointer;
+    text-decoration: underline; text-decoration-style: dotted;
     text-decoration-color: var(--accent-pink);
-    text-underline-offset: 8px;
-    text-decoration-thickness: 2px;
-    transition: color 0.2s;
-    color: inherit;
+    text-underline-offset: 8px; text-decoration-thickness: 2px;
+    transition: color 0.2s; color: inherit;
   }
   .hero-creative:hover { color: var(--accent-pink); }
+  .hero-asterisk {
+    display: inline-block; color: var(--accent-pink);
+    font-weight: 900; font-size: 0.75em; margin-left: 1px;
+    vertical-align: super; font-style: normal; line-height: 1;
+    transition: transform 0.5s ease;
+  }
+  .hero-creative:hover .hero-asterisk { transform: rotate(180deg); }
   .hero-creative-tooltip {
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 50%; 
+    position: absolute; bottom: calc(100% + 12px); left: 50%;
     transform: translateX(-50%) translateY(6px);
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 100px;
-    padding: 10px 20px;
-    white-space: nowrap;
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: normal;
-    color: var(--cream2);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 10;
+    background: var(--bg2); border: 1px solid var(--border2);
+    border-radius: 100px; padding: 10px 20px; white-space: nowrap;
+    font-family: var(--sans); font-size: 14px; font-weight: 400;
+    font-style: normal; letter-spacing: normal; color: var(--cream2);
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease; z-index: 10;
   }
   .hero-creative-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%; left: 50%; transform: translateX(-50%);
-    border: 6px solid transparent;
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%); border: 6px solid transparent;
     border-top-color: var(--border2);
   }
-  .hero-creative:hover .hero-creative-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  .hero-creative:hover .hero-creative-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -353,67 +404,59 @@
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
 </nav>
 
 <section class="hero">
-  <p class="hero-eyebrow">Senior Product Designer · Los Angeles, CA</p>
-
   <h1 class="hero-headline">
-    <em>Hello!</em> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
-    a <span class="hero-hybrid" id="heroHybrid">Hybrid</span>&nbsp;<span class="h-pill-disc" id="discPill">
-      <span class="h-pill-disc-dot"></span>
-      <span class="h-pill-disc-label" id="discLabel">PRODUCT</span>
+    <span class="hero-hello">Hello!</span> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
+    a <em class="hero-designer">Hybrid</em>&nbsp;<span class="h-pill-disc" id="discPill">
+      <span class="h-pill-disc-label" id="discLabel">🛠 PRODUCT</span>
       <span class="h-pill-disc-all">
-        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;PRODUCT</span>
-        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;VISUAL</span>
-        <span class="h-pill-disc-all-item">✅&nbsp;&nbsp;SYSTEM</span>
+        <span class="h-pill-disc-all-item">🛠&nbsp;&nbsp;PRODUCT</span>
+        <span class="h-pill-disc-all-item">🎨&nbsp;&nbsp;VISUAL</span>
+        <span class="h-pill-disc-all-item">⚙️&nbsp;&nbsp;SYSTEM</span>
       </span>
     </span>&nbsp;<em class="hero-designer">Designer</em><br>
-    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-creative-tooltip">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
+    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk">✳</span><span class="hero-creative-tooltip">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
   </h1>
 
-  <p class="hero-sub">
-    I design systems, products, and experiences at scale — currently at Microsoft, previously Amazon, Credit Karma, and BUCK Design.
-  </p>
   <div class="hero-ctas">
     <a href="#work" class="btn-primary">View my work →</a>
     <a href="about.html" class="btn-ghost">About me</a>
   </div>
   <div class="hero-clients">
+    <span>Currently</span>
+    <strong>Microsoft · Windows Design Systems</strong>
+    <div style="flex:1;"></div>
     <span>Previously</span>
     <strong>Amazon</strong><span class="client-divider">·</span>
     <strong>Credit Karma</strong><span class="client-divider">·</span>
-    <strong>BUCK Design</strong><span class="client-divider">·</span>
-    <strong>Netflix</strong><span class="client-divider">·</span>
-    <strong>Facebook</strong>
-  </div>
-  <div class="hero-meta">
-    <span>Currently</span>
-    <strong>Microsoft · Design Systems</strong>
+    <strong>BUCK Design</strong>
   </div>
 </section>
 
 <div class="marquee-strip">
   <div class="marquee-track">
-    <div class="marquee-item"><span>Design Systems</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Visual Systems</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Platform Architecture</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Figma Libraries</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Iconography</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Interaction Design</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Creative Direction</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Accessibility</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Design Systems</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Visual Systems</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Platform Architecture</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Figma Libraries</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Iconography</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Interaction Design</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Creative Direction</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Accessibility</span><div class="marquee-dot"></div></div>
+    <span class="marquee-item">Design Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Platform Architecture</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Figma Libraries</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Iconography</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Interaction Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Accessibility</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Design Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Platform Architecture</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Figma Libraries</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Iconography</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Interaction Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Accessibility</span><span class="marquee-dot">✦</span>
   </div>
 </div>
 
@@ -424,21 +467,29 @@
       <div class="section-label">Selected work</div>
       <h2 class="work-title">Recent projects</h2>
     </div>
-    <span style="font-size:13px; color:var(--cream3); font-style:italic; font-family:var(--serif);">Case studies in progress</span>
+
   </div>
 
   <div class="projects-grid">
-    <!-- FEATURED: Windows Personalization -->
+
+    <!-- FEATURED: Windows Personalization — Current project -->
     <div class="project-card featured reveal" style="cursor:default;">
       <div>
+        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(232,121,160,0.1); border:1px solid rgba(232,121,160,0.25); border-radius:100px; padding:4px 10px; margin-bottom:14px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-pink);display:inline-block;"></span>
+          <span style="font-size:11px;font-weight:500;color:var(--accent-pink);letter-spacing:0.06em;text-transform:uppercase;">Current project</span>
+        </div>
         <div class="project-tags">
           <span class="tag hi">Microsoft</span>
           <span class="tag">Design Systems</span>
           <span class="tag">Vision Prototype</span>
         </div>
         <h3 class="project-name">Windows System Personalization</h3>
-        <p class="project-desc">A design prototype exploring how Windows could become genuinely personal — complete theme identities across Start, Lock screen, Account, and widgets, built around the thesis <em>"It's still Windows, now it's mine."</em></p>
-        <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Windows%20Personalization" class="project-access-btn">Request access →</a>
+        <p class="project-desc">A design prototype exploring how Windows could become genuinely personal — complete theme identities across Start, Lock screen, and widgets, built around the thesis <em>"It's still Windows, now it's mine."</em></p>
+        <div class="project-cta-row">
+          <a href="windows-system-personalization.html" class="project-access-btn">View project →</a>
+          <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Personalization" class="project-request-link">request access</a></span>
+        </div>
       </div>
       <div class="project-thumb">
         <img src="img-matrix.png" alt="Windows personalization theme matrix" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -451,13 +502,14 @@
         <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Microsoft</span>
       </div>
       <div class="project-tags">
-        <span class="tag hi">Microsoft</span>
-        <span class="tag">Fluent</span>
-        <span class="tag">Visual Systems</span>
+        <span class="tag hi">Microsoft</span><span class="tag">Fluent</span><span class="tag">Visual Systems</span>
       </div>
       <h3 class="project-name">Windows Fluent Visual System</h3>
       <p class="project-desc">Component architecture, token systems, and design-code parity for Windows 11's Fluent design language at scale.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Fluent%20Visual%20System" class="project-access-btn">Request access →</a>
+      <div class="project-cta-row">
+        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Fluent%20Visual%20System" class="project-access-btn">View project →</a>
+        <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Visual%20System" class="project-request-link">request access</a></span>
+      </div>
     </div>
 
     <!-- Fluent Illustration & Icons -->
@@ -466,64 +518,102 @@
         <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Microsoft</span>
       </div>
       <div class="project-tags">
-        <span class="tag hi">Microsoft</span>
-        <span class="tag">Iconography</span>
-        <span class="tag">Illustration</span>
+        <span class="tag hi">Microsoft</span><span class="tag">Iconography</span><span class="tag">Illustration</span>
       </div>
       <h3 class="project-name">Fluent Illustration & Icons</h3>
-      <p class="project-desc">Iconography and illustration systems built for Windows — visual foundations contributing to accessibility, hierarchy, and personality at OS scale.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Fluent%20Icons" class="project-access-btn">Request access →</a>
+      <p class="project-desc">Iconography and illustration systems built for Windows — visual foundations for accessibility, hierarchy, and personality at OS scale.</p>
+      <div class="project-cta-row">
+        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Fluent%20Icons" class="project-access-btn">View project →</a>
+        <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Icons" class="project-request-link">request access</a></span>
+      </div>
     </div>
 
-    <!-- Amazon Business Card -->
-    <div class="project-card reveal" style="cursor:default;">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#1a1200 0%,#f90 100%); display:flex; align-items:center; justify-content:center;">
-        <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Amazon</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag hi">Amazon</span>
-        <span class="tag">Fintech</span>
-        <span class="tag">Product Design</span>
-      </div>
-      <h3 class="project-name">Amazon Business Card</h3>
-      <p class="project-desc">Comprehensive design lead for the Existing Card Member Page — a personalized hub for Amazon Business credit card holders, shipped Spring 2024.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Amazon%20Business%20Card" class="project-access-btn">Request access →</a>
-    </div>
-
-    <!-- Amazon Pay Studio -->
+    <!-- Amazon Pay Studio — before Business Card -->
     <div class="project-card reveal" style="cursor:default;">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#0d1f0d 0%,#1a6b2a 100%); display:flex; align-items:center; justify-content:center;">
         <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Amazon</span>
       </div>
       <div class="project-tags">
-        <span class="tag hi">Amazon</span>
-        <span class="tag">Payments</span>
-        <span class="tag">Visual Systems</span>
+        <span class="tag hi">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
       </div>
       <h3 class="project-name">Amazon Pay Studio System</h3>
-      <p class="project-desc">Visual and UX design across global fintech and payments products, including creative direction and cross-functional collaboration for international rollouts.</p>
-      <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Amazon%20Pay%20Studio" class="project-access-btn">Request access →</a>
-    </div>
-
-    <!-- Additional Work — full width -->
-    <div class="project-card reveal" style="cursor:default; grid-column: 1 / -1;">
-      <div style="max-width:560px;">
-        <div class="project-tags">
-          <span class="tag hi">🏆 Gold Clio Award</span>
-          <span class="tag">BUCK Design</span>
-          <span class="tag">Credit Karma</span>
-          <span class="tag">Amazon</span>
-          <span class="tag">Visual Design</span>
-        </div>
-        <h3 class="project-name">Additional Work</h3>
-        <p class="project-desc">Visual and brand design for Facebook Libra (BUCK Design), Savings product design at Credit Karma, and Amazon Advertising — including the Gold Clio Award–winning theatrical campaign.</p>
-        <a href="mailto:masoncatt@gmail.com?subject=Portfolio%20Access%20Request%20%E2%80%94%20Additional%20Work" class="project-access-btn">Request access →</a>
+      <p class="project-desc">Visual and UX design across global fintech and payments products — creative direction and cross-functional collaboration for international rollouts.</p>
+      <div class="project-cta-row">
+        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Amazon%20Pay%20Studio" class="project-access-btn">View project →</a>
+        <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Amazon%20Pay%20Studio" class="project-request-link">request access</a></span>
       </div>
     </div>
+
+    <!-- Amazon Business Card — after Pay Studio -->
+    <div class="project-card reveal" style="cursor:pointer;" onclick="window.location='amazon-business-card.html'">
+      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#f0f4f8;">
+        <img src="img-abc-system.png" alt="Amazon Business Card" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      </div>
+      <div class="project-tags">
+        <span class="tag hi">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
+      </div>
+      <h3 class="project-name">Amazon Business Card</h3>
+      <p class="project-desc">Comprehensive design lead for the Existing Card Member Page — a personalized hub for Amazon Business credit card holders. Shipped Spring 2024.</p>
+      <div class="project-cta-row">
+        <a href="amazon-business-card.html" class="project-access-btn">View project →</a>
+        <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Amazon%20Business%20Card" class="project-request-link">request access</a></span>
+      </div>
+    </div>
+
+    <!-- Facebook Libra -->
+    <div class="project-card reveal" style="cursor:pointer;" onclick="window.location='facebook-libra.html'">
+      <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#0d1f42 0%,#1877f2 100%); display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.05em;">BUCK Design · Facebook</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag hi">BUCK Design</span><span class="tag">Facebook</span><span class="tag">Brand</span>
+      </div>
+      <h3 class="project-name">Facebook Libra</h3>
+      <p class="project-desc">Iconography, visual guidelines, and digital artwork supporting brand campaigns for Facebook's Libra initiative — developed at BUCK Design with pixel-perfect production deliverables.</p>
+      <div class="project-cta-row">
+        <a href="facebook-libra.html" class="project-access-btn">View project →</a>
+        <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Facebook%20Libra" class="project-request-link">request access</a></span>
+      </div>
+    </div>
+
+    <!-- Amazon Advertising -->
+    <div class="project-card reveal" style="cursor:default;">
+      <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#1a0800 0%,#e85d04 100%); display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Amazon · 🏆 Gold Clio</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag hi">🏆 Gold Clio</span><span class="tag">Amazon</span><span class="tag">Advertising</span>
+      </div>
+      <h3 class="project-name">Amazon Advertising</h3>
+      <p class="project-desc">Advertising experiences across mobile, web, audio, and TV — including the Gold Clio Award–winning theatrical campaign. Conceptual artwork, diagrams, and pixel-perfect production delivery.</p>
+      <div class="project-cta-row">
+        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Amazon%20Advertising" class="project-access-btn">View project →</a>
+        <span class="project-protected">🔒 Password protected · <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Amazon%20Advertising" class="project-request-link">request access</a></span>
+      </div>
+    </div>
+
+    <!-- Additional & Freelance — full width -->
+    <div class="project-card reveal" style="cursor:default; grid-column: 1 / -1;">
+      <div style="max-width:600px;">
+        <div class="project-tags">
+          <span class="tag hi">Freelance</span>
+          <span class="tag">Illustration</span>
+          <span class="tag">Visual Design</span>
+          <span class="tag">Brand Identity</span>
+          <span class="tag">Credit Karma</span>
+        </div>
+        <h3 class="project-name">Additional & Freelance Work</h3>
+        <p class="project-desc">Select freelance illustration, graphic design, and visual branding projects — album artwork, editorial illustration, brand identity, and more.</p>
+        <div style="margin-top:20px;">
+          <a href="mailto:masoncatt@gmail.com?subject=Freelance%20Work%20Sample%20Request" class="project-access-btn">Request sample of freelance work →</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+
 <section class="exp-section" id="experience">
   <div class="reveal">
     <div class="section-label">Career</div>
@@ -578,136 +668,36 @@
   </div>
 </section>
 
-<!-- ABOUT STRIP -->
-<div class="about-strip" id="about">
-  <div class="about-text reveal">
-    <div class="section-label">A bit about me</div>
-    <h2>Designer, systems thinker, <em style="font-style:italic; font-family:var(--serif);">Beyoncé fan.</em></h2>
-    <p>I'm Mason — a Senior Product Designer with 10+ years building complex digital products across platforms and brands. Right now I'm designing Windows design systems at Microsoft.</p>
-    <p>I believe great design systems are invisible infrastructure. They let teams move fast without breaking things, and they let products feel coherent even at massive scale.</p>
-    <a href="about.html" class="btn-ghost" style="display:inline-flex; margin-top:8px;">More about me →</a>
-  </div>
-  <div class="about-stats reveal">
-    <div class="stat-box">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">Years designing at scale</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">3×</div>
-      <div class="stat-label">Amazon, twice — it's a thing</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">🏆</div>
-      <div class="stat-label">Gold Clio Award, 2018</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">UW</div>
-      <div class="stat-label">B.Design, Interaction Design '14</div>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="testimonials-header reveal">
-    <div>
-      <div class="section-label">Kind words</div>
-      <h2 class="testimonials-title">What people say</h2>
-    </div>
-    <p class="testimonials-note">…no bribes involved</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">Mason has a rare ability to hold both system-level thinking and pixel-level craft at once. He pushed our design system further than we expected, and with genuine care for how engineers would actually use it.</p>
-      <div class="testimonial-person">
-        <div class="testimonial-avatar">SK</div>
-        <div>
-          <div class="testimonial-name">Sarah K.</div>
-          <div class="testimonial-role">Design Lead · Microsoft</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">Working with Mason on Amazon's payments products was a masterclass in visual clarity. He could take the most complex financial UI and make it feel approachable without losing a single important detail.</p>
-      <div class="testimonial-person">
-        <div class="testimonial-avatar">JR</div>
-        <div>
-          <div class="testimonial-name">James R.</div>
-          <div class="testimonial-role">Product Manager · Amazon</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">Mason's illustration and iconography work on our campaigns stood out immediately. He brings a point of view that elevates everything around it, and he's collaborative in the best possible way.</p>
-      <div class="testimonial-person">
-        <div class="testimonial-avatar">LM</div>
-        <div>
-          <div class="testimonial-name">Lena M.</div>
-          <div class="testimonial-role">Creative Director · BUCK Design</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-  <div class="faq-inner">
-    <div class="faq-intro reveal">
-      <div class="section-label">FAQ</div>
-      <h2>Got questions?</h2>
-      <p>Some basics, answered. Reach out for anything else.</p>
-    </div>
-    <ul class="faq-list reveal">
-      <li class="faq-item">
-        <button class="faq-question">What kind of work do you do? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Primarily product design, design systems, and visual systems at scale. I specialize in building and maintaining Figma libraries, component architectures, and the documentation that makes them actually get adopted. I also love illustration and iconography.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">What are you looking for next? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Roles where design systems and product craft both matter — teams that invest in foundations and ship things people love. I thrive in cross-functional environments working closely with engineering and product leadership.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">What tools do you use? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Figma is my home base for everything from explorations to production-ready specs. Adobe Creative Suite, After Effects, and Premiere for motion and illustration. Procreate for sketching and ideation. I also know basic HTML & CSS and use AI tools extensively in my workflow.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">Do you take freelance work? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Occasionally, for the right projects — particularly design system audits, visual system buildouts, or illustration. Drop me a line and we can figure out if it's a fit.</p></div>
-      </li>
-      <li class="faq-item">
-        <button class="faq-question">Where are you based? <span class="faq-icon">+</span></button>
-        <div class="faq-answer"><p>Los Angeles, CA. I'm open to remote roles and the right in-person or hybrid opportunity in LA or nearby.</p></div>
-      </li>
-    </ul>
-  </div>
-</section>
-
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-text reveal">
-    <div class="section-label">Let's talk</div>
-    <h2>Want to work together?</h2>
-    <p>Whether it's a full-time role, a freelance engagement, or just a conversation about design systems and craft — I'm always happy to chat.</p>
-    <a href="mailto:masoncatt@gmail.com" class="btn-primary" style="display:inline-flex;">masoncatt@gmail.com →</a>
-  </div>
-  <div class="contact-links reveal">
-    <a class="contact-link" href="https://www.linkedin.com/in/masoncatt" target="_blank">
-      <span class="contact-link-label">LinkedIn</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a class="contact-link" href="https://www.instagram.com/masoncatt" target="_blank">
-      <span class="contact-link-label">Instagram</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a class="contact-link" href="https://masoncatt.com" target="_blank">
-      <span class="contact-link-label">masoncatt.com</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a class="contact-link" href="mason-catt-resume.pdf" target="_blank">
-      <span class="contact-link-label">Download Resume</span>
-      <span class="contact-link-arrow">↓</span>
-    </a>
+<section class="contact-new" id="contact">
+  <div class="contact-new-inner">
+
+    <div class="contact-headline reveal">
+      <div class="section-label">Let's make something</div>
+      <h2 class="contact-title">Got a project<br>in mind<em>?</em></h2>
+    </div>
+
+    <div class="contact-cards reveal">
+
+      <div class="contact-card">
+        <div class="contact-card-icon" style="color:var(--accent);">◎</div>
+        <div class="contact-card-label">Product & Visual Systems</div>
+        <p class="contact-card-desc">My full-time focus — design systems, component architecture, Figma libraries, iconography, and product design at scale.</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon" style="color:var(--accent-pink);">✦</div>
+        <div class="contact-card-label">Freelance — Illustration & Visual</div>
+        <p class="contact-card-desc">I take select freelance work in illustration, graphic design, and visual branding. If you have something creative and interesting, let's talk.</p>
+      </div>
+
+    </div>
+
+    <div class="contact-cta reveal">
+      <p class="contact-cta-note">Taking select freelance projects alongside my full-time work.</p>
+      <a href="mailto:masoncatt@gmail.com" class="btn-primary" style="display:inline-flex; font-size:16px; padding:16px 32px;">masoncatt@gmail.com →</a>
+    </div>
+
   </div>
 </section>
 
@@ -716,9 +706,10 @@
   <ul class="footer-nav">
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <span class="footer-copy">© 2025 · Made with care in LA</span>
+  <span class="footer-copy">© 2026 · Made with care in LA</span>
 </footer>
 
 <script>
@@ -742,36 +733,8 @@
       if (!isOpen) item.classList.add('open');
     });
   });
-  // Hybrid letter scramble
-  const hybridEl = document.getElementById('heroHybrid');
-  const hybridOriginal = 'Hybrid';
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
-  let scrambleFrame;
-
-  function scramble() {
-    let iterations = 0;
-    const totalFrames = 18;
-    clearInterval(scrambleFrame);
-    scrambleFrame = setInterval(() => {
-      hybridEl.textContent = hybridOriginal
-        .split('')
-        .map((char, i) => {
-          if (i < iterations) return hybridOriginal[i];
-          return chars[Math.floor(Math.random() * chars.length)];
-        })
-        .join('');
-      iterations += 0.4;
-      if (iterations >= hybridOriginal.length) {
-        hybridEl.textContent = hybridOriginal;
-        clearInterval(scrambleFrame);
-      }
-    }, 30);
-  }
-
-  hybridEl.addEventListener('mouseenter', scramble);
-
   // Discipline pill auto-rotate
-  const labels = ['PRODUCT', 'VISUAL', 'SYSTEM'];
+  const labels = ['🛠 PRODUCT', '🎨 VISUAL', '⚙️ SYSTEM'];
   const discLabel = document.getElementById('discLabel');
   const discPill = document.getElementById('discPill');
   let current = 0;
