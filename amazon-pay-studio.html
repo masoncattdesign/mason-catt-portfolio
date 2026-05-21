@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon Pay Studio · Mason Catt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
+    --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
+    --accent: #22c55e; --accent-blue: #3b82f6;
+    --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --col: 860px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(14,13,12,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--cream); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .nav-resume:hover { background: var(--accent); }
+
+  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--cream3); text-decoration: none; margin-bottom: 40px; transition: color 0.2s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
+  .back-link:hover { color: var(--cream2); }
+  .case-eyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
+  .etag { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ediv { color: var(--cream3); }
+  .eco { font-size: 12px; color: var(--cream3); }
+  .case-title { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .case-title em { font-style: italic; color: var(--accent); }
+  .case-subtitle { font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.7; max-width: 640px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+
+  .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; margin-bottom: 48px; }
+  .meta-item { padding: 18px 0; border-right: 1px solid var(--border); }
+  .meta-item:last-child { border-right: none; }
+  .meta-item + .meta-item { padding-left: 24px; }
+  .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .mv { font-size: 13px; color: var(--cream); }
+
+  .hero-visual {
+    max-width: calc(var(--col) + 96px);
+    margin: 0 auto;
+    padding: 0 48px 64px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards 0.7s;
+  }
+  .hero-visual-inner {
+    background: linear-gradient(135deg, #0d1f0d 0%, #1a4d2e 55%, #0e0d0c 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(34,197,94,0.12);
+  }
+  .hero-visual-inner img { width: 100%; height: auto; display: block; }
+
+  .case-body { max-width: var(--col); margin: 0 auto; padding: 72px 48px 0; }
+
+  .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+  .slabel::before { content: '✦'; font-size: 9px; }
+
+  .prose { margin-bottom: 48px; }
+  .prose h2 { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 34px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; }
+  .prose h3 { font-family: var(--serif); font-size: clamp(18px, 2.2vw, 24px); font-weight: 400; letter-spacing: -0.015em; line-height: 1.25; margin-bottom: 12px; }
+  .prose p { font-size: 16px; color: var(--cream2); line-height: 1.8; margin-bottom: 14px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 500; color: var(--cream); }
+  .prose a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.3); }
+  .prose a:hover { border-color: var(--accent); }
+
+  .callout { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 18px 22px; margin: 24px 0; }
+  .callout p { font-size: 14px; color: var(--cream2); margin: 0; }
+  .callout a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.3); }
+
+  .img-full { margin: 28px 0; }
+  .img-full img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); background: #f5f5f5; }
+  .img-cap { font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 8px; line-height: 1.5; }
+
+  .element-block { margin-bottom: 56px; }
+  .element-block:last-child { margin-bottom: 0; }
+
+  .figma-wrap { margin: 24px 0 6px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+  .figma-wrap iframe { width: 100%; height: 560px; display: block; border: none; }
+  .figma-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; margin-bottom: 80px; font-size: 13px; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.25); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+  .next-project { border-top: 1px solid var(--border); background: var(--bg2); padding: 56px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .next-label { font-size: 12px; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .next-title { font-family: var(--serif); font-size: clamp(20px, 3vw, 30px); font-weight: 400; letter-spacing: -0.015em; }
+  .next-link { display: inline-flex; align-items: center; padding: 13px 22px; background: var(--cream); color: var(--bg); font-size: 14px; font-weight: 500; border-radius: 100px; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+  .next-link:hover { background: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: var(--serif); font-size: 14px; color: var(--cream2); }
+  .footer-copy { font-size: 12px; color: var(--cream3); }
+  .footer-nav { display: flex; gap: 24px; list-style: none; }
+  .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--cream2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .case-hero, .hero-visual, .case-body { padding-left: 24px; padding-right: 24px; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-item + .meta-item { padding-left: 0; }
+    .next-project { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+    footer { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Mason Catt</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#work" class="back-link">← All work</a>
+  <div class="case-eyebrow">
+    <span class="etag">Visual Systems · Payments</span>
+    <span class="ediv">·</span>
+    <span class="eco">Amazon Business · 2023</span>
+  </div>
+  <h1 class="case-title">Amazon Business<br><em>Pay Studio</em></h1>
+  <p class="case-subtitle">A design system organized in an atomic structure to enable rapid construction of payment method use cases — with pre-defined components, templates, and use cases that let teams ship payment products quickly.</p>
+  <div class="meta-strip">
+    <div class="meta-item">
+      <div class="ml">Role</div>
+      <div class="mv">Visual Systems Designer</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Team</div>
+      <div class="mv">Amazon Business</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Scope</div>
+      <div class="mv">Wireframes, Prototype, Production</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Deliverables</div>
+      <div class="mv">18 Components · Templates · Use Cases</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-visual">
+  <div class="hero-visual-inner">
+    <img src="img-pay-studio-hero.png" alt="Amazon Business Pay Studio design system overview">
+  </div>
+</div>
+
+<div class="case-body">
+
+  <div class="prose reveal">
+    <div class="slabel">Overview</div>
+    <h2>A payment design system built for speed</h2>
+    <p>
+      The Amazon Business Pay Studio is a design system organized in an atomic structure to enable rapid construction of payment method use cases with pre-defined <strong>components</strong>, <strong>templates</strong>, and <strong>use cases</strong>. Payment solutions are preconfigured to enable quick building of payment products.
+    </p>
+    <p>
+      Work completed in 2023 with Amazon Business. I was responsible for component and template wireframing, design prototyping, and final production.
+    </p>
+    <div class="callout">
+      <p>Explore the full system in <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=0-1&t=eJX10cmsrvSaherZ-1" target="_blank">Figma →</a></p>
+    </div>
+    <p style="margin-top:14px;">This system informed later product work including the <a href="amazon-business-card.html">Amazon Business Credit Card</a> ECM experience (2024).</p>
+  </div>
+
+  <hr>
+
+  <div class="prose reveal">
+    <div class="slabel">Core Elements</div>
+    <h2>Components, templates, and use cases</h2>
+    <p>The system is organized in three layers — each building on the last to move from atomic UI pieces to complete payment journeys.</p>
+  </div>
+
+  <div class="element-block reveal">
+    <div class="prose" style="margin-bottom:20px;">
+      <h3>Components</h3>
+      <p>Components are the building blocks of the Amazon Business Pay Studio. I created <strong>18 unique components</strong> — explore them in the <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=0-1" target="_blank">Figma file</a>.</p>
+    </div>
+    <div class="img-full">
+      <img src="img-pay-studio-components.png" alt="Amazon Business Pay Studio components">
+      <div class="img-cap">Component library — 18 unique building blocks for payment method interfaces.</div>
+    </div>
+  </div>
+
+  <div class="element-block reveal">
+    <div class="prose" style="margin-bottom:20px;">
+      <h3>Templates</h3>
+      <p>Templates are standalone interfaces for users to perform specific tasks. Templates were divided into task groups — <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=1-132679" target="_blank">explore here</a>.</p>
+    </div>
+    <div class="img-full">
+      <img src="img-pay-studio-templates.png" alt="Amazon Business Pay Studio templates">
+      <div class="img-cap">Template library — standalone task interfaces grouped by workflow.</div>
+    </div>
+  </div>
+
+  <div class="element-block reveal">
+    <div class="prose" style="margin-bottom:20px;">
+      <h3>Use Cases</h3>
+      <p>Use cases connect templates in a journey for a user to complete a payment task — <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=1-106014" target="_blank">see more use cases here</a>.</p>
+    </div>
+    <div class="img-full">
+      <img src="img-pay-studio-use-cases.png" alt="Amazon Business Pay Studio use cases">
+      <div class="img-cap">Use case pathways — templates connected into end-to-end payment journeys.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="prose reveal">
+    <div class="slabel">Prototype</div>
+    <h2>Adding a new payment method</h2>
+    <p>Explore the use case pathway for adding a new payment method. Click through the flow or use arrow keys to navigate.</p>
+  </div>
+
+  <div class="figma-wrap reveal">
+    <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FInpjVVuOhgr47my9jXNmPp%2FPay-Studio-Library%3Fnode-id%3D27-93991%26t%3D3LR7wSSC1cSaVCw9-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D7%253A1457%26starting-point-node-id%3D27%253A93991" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=0-1&t=eJX10cmsrvSaherZ-1" target="_blank" class="figma-link reveal">Explore full system in Figma →</a>
+
+</div>
+
+<div class="next-project">
+  <div>
+    <div class="next-label">Next project</div>
+    <div class="next-title">Amazon Business Credit Card</div>
+  </div>
+  <a href="amazon-business-card.html" class="next-link">View project →</a>
+</div>
+
+<footer>
+  <span class="footer-name">Mason Catt</span>
+  <ul class="footer-nav">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 · Made with care in LA</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.04) + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
