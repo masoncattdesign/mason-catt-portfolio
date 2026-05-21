@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project-gate.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -131,6 +132,24 @@
   </ul>
   <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
 </nav>
+
+<div id="project-gate" class="project-gate">
+  <div class="project-gate-panel">
+    <div class="project-gate-icon" aria-hidden="true">🔒</div>
+    <h1 class="project-gate-title">Windows System Personalization</h1>
+    <p class="project-gate-desc">This case study is password protected. Request access to view the full project — password entry coming soon.</p>
+    <div class="project-gate-actions">
+      <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Personalization" class="project-gate-primary">Request access →</a>
+      <a href="index.html#work" class="project-gate-secondary">← Back to all work</a>
+    </div>
+    <form id="project-gate-form" class="project-gate-form" hidden aria-hidden="true">
+      <!-- Password field will be enabled when case studies go live -->
+    </form>
+    <p class="project-gate-note">Portfolio · Mason Catt</p>
+  </div>
+</div>
+
+<div id="project-content" class="project-gate-content" hidden aria-hidden="true">
 
 <div class="case-hero">
   <a href="index.html#work" class="back-link">← All work</a>
@@ -377,6 +396,9 @@
   <span class="footer-copy">© 2026 · Made with care in LA</span>
 </footer>
 
+</div><!-- /project-content -->
+
+<script src="project-gate.js" data-project="windows-system-personalization"></script>
 <script>
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
