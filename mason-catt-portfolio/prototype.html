@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mason Catt — Windows SP card prototype</title>
+
+<!-- Mason's actual font stack -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     Prototype — sandbox for iterating on the Windows SP featured card
+     Uses Mason's actual design tokens from masoncatt.com.
+     The card itself (.win-sp-card) is the part that ships to the site.
+     ============================================================ */
+
+  :root {
+    /* Mason's tokens */
+    --bg:        #0e0d0c;
+    --bg-2:      #161512;
+    --bg-3:      #1e1c18;
+    --cream:     #f0ebe2;
+    --cream-2:   #b8b0a4;
+    --cream-3:   #6b6560;
+    --green:     #22c55e;
+    --blue:      #3b82f6;
+    --pink:      #e879a0;
+    --font-serif: 'Libre Baskerville', Georgia, serif;
+    --font-sans:  'DM Sans', system-ui, sans-serif;
+
+    /* Card-specific (scoped under .win-sp-card too, for portability) */
+    --win-grid:        #1f5230;   /* deep, muted forest green */
+    --win-grid-bright: #2d7a45;
+    --win-grid-haze:   rgba(34, 197, 94, 0.04);
+    --win-card-bg:     #0a1109;
+    --win-card-border: rgba(34, 197, 94, 0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+
+  /* Page chrome — just for the prototype, not part of the snippet */
+  .prototype-chrome {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+  .prototype-eyebrow {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .prototype-eyebrow::before {
+    content: "+";
+    color: var(--green);
+  }
+  .prototype-title {
+    font-family: var(--font-serif);
+    font-size: 56px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+
+  /* ============================================================
+     FEATURED PROJECT CARD — Windows System Personalization
+     This whole .win-sp-card block is what ships to your homepage.
+     ============================================================ */
+
+  .win-sp-card {
+    background: var(--bg-2);
+    border: 1px solid rgba(240, 235, 226, 0.06);
+    border-radius: 16px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+    transition: border-color 400ms ease;
+  }
+  .win-sp-card:hover {
+    border-color: rgba(34, 197, 94, 0.18);
+  }
+
+  /* ---- Left column: project metadata ---- */
+  .win-sp-meta { display: flex; flex-direction: column; gap: 16px; }
+
+  .win-sp-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(232, 121, 160, 0.10);
+    border: 1px solid rgba(232, 121, 160, 0.25);
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .win-sp-status::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--pink);
+  }
+
+  .win-sp-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .win-sp-tag {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(240, 235, 226, 0.12);
+    color: var(--cream-2);
+  }
+  .win-sp-tag.is-primary {
+    background: rgba(34, 197, 94, 0.10);
+    border-color: rgba(34, 197, 94, 0.30);
+    color: var(--green);
+  }
+
+  .win-sp-title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .win-sp-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--cream-2);
+    max-width: 44ch;
+  }
+  .win-sp-desc em { font-style: italic; color: var(--cream); }
+
+  .win-sp-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .win-sp-btn {
+    background: var(--cream);
+    color: var(--bg);
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 200ms ease, background 200ms ease;
+  }
+  .win-sp-btn:hover { transform: translateX(2px); background: #fff; }
+  .win-sp-lock {
+    font-size: 12px;
+    color: var(--cream-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .win-sp-lock a { color: var(--green); text-decoration: none; }
+  .win-sp-lock a:hover { text-decoration: underline; }
+
+  /* ============================================================
+     SCENE — the animated right column
+     This is the part with the layered images + grid background.
+     ============================================================ */
+
+  .win-sp-scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--win-card-bg);
+    border: 1px solid var(--win-card-border);
+    isolation: isolate;
+    --mx: 0;
+    --my: 0;
+  }
+
+  /* ---- Layer 1: SVG perspective grid ---- */
+  .win-sp-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transform: translate3d(calc(var(--mx) * -8px), calc(var(--my) * -6px), 0) scale(1.05);
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .win-sp-grid svg {
+    width: 100%; height: 100%; display: block;
+    animation: winGridDrift 22s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes winGridDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25%      { transform: translate(-5px, 2px) scale(1.004); }
+    50%      { transform: translate(2px, -4px) scale(1.008); }
+    75%      { transform: translate(4px, 3px) scale(1.004); }
+  }
+
+  /* Soft vignette */
+  .win-sp-scene::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ---- Floating layers ---- */
+  .win-sp-layer {
+    position: absolute;
+    z-index: 3;
+    will-change: transform, filter, opacity;
+    opacity: 0;
+    filter: blur(22px);
+    animation: winFocusIn 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 400ms ease;
+    transform: translate3d(
+      calc(var(--mx) * var(--depth, 8) * 1px),
+      calc(var(--my) * var(--depth, 8) * 1px),
+      0
+    );
+  }
+  @keyframes winFocusIn {
+    0%   { opacity: 0;  filter: blur(22px); transform: translate3d(0,0,0) scale(0.96); }
+    60%  { opacity: 1;  filter: blur(6px); }
+    100% { opacity: 1;  filter: blur(0);   transform: translate3d(0,0,0) scale(1); }
+  }
+
+  /* Per-layer positioning and depth */
+  .win-sp-layer.is-hero    { top: 16%; left: 22%; width: 58%; --depth: 6;
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
+    animation-delay: 200ms; }
+  .win-sp-layer.is-widgets { top: 14%; right: 12%; width: 17%; --depth: 14;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.45));
+    animation-delay: 500ms; }
+  .win-sp-layer.is-seed    { bottom: 14%; right: 6%; width: 30%; --depth: 18;
+    filter: drop-shadow(0 10px 22px rgba(0,0,0,0.5));
+    animation-delay: 950ms; }
+  .win-sp-layer.is-chat    { top: 28%; left: 12%; width: 22%; --depth: 22;
+    filter: drop-shadow(0 18px 36px rgba(0,0,0,0.55));
+    animation-delay: 750ms; }
+
+  .win-sp-layer img { width: 100%; height: auto; display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .win-sp-grid svg { animation: none; }
+    .win-sp-layer {
+      animation: none !important;
+      opacity: 1; filter: none; transform: none;
+    }
+  }
+
+  /* Responsive: stack on narrow viewports */
+  @media (max-width: 860px) {
+    .win-sp-card { grid-template-columns: 1fr; gap: 24px; }
+    .win-sp-scene { aspect-ratio: 16 / 10; }
+  }
+</style>
+</head>
+<body>
+
+<div class="prototype-chrome">
+  <div class="prototype-eyebrow">Selected work</div>
+  <h1 class="prototype-title">Recent projects</h1>
+
+  <!-- ======================================================
+       Begin .win-sp-card — drop this whole block into index.html
+       ====================================================== -->
+  <article class="win-sp-card">
+
+    <div class="win-sp-meta">
+      <span class="win-sp-status">Current project</span>
+      <div class="win-sp-tags">
+        <span class="win-sp-tag is-primary">Microsoft</span>
+        <span class="win-sp-tag">Design Systems</span>
+        <span class="win-sp-tag">Vision Prototype</span>
+      </div>
+      <h2 class="win-sp-title">Windows System Personalization</h2>
+      <p class="win-sp-desc">
+        A design prototype exploring how Windows could become genuinely
+        personal — complete theme identities across Start, Lock screen,
+        and widgets, built around the thesis
+        <em>"It's still Windows, now it's mine."</em>
+      </p>
+      <div class="win-sp-actions">
+        <a href="windows-system-personalization.html" class="win-sp-btn">
+          View project <span>→</span>
+        </a>
+        <span class="win-sp-lock">
+          🔒 Password protected · <a href="#">request access</a>
+        </span>
+      </div>
+    </div>
+
+    <div class="win-sp-scene" id="winSpScene">
+
+      <!-- Layer 1: Perspective grid -->
+      <div class="win-sp-grid" aria-hidden="true">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"
+             xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="winCenterFade" cx="50%" cy="50%" r="42%">
+              <stop offset="0%"   stop-color="#000" stop-opacity="1"/>
+              <stop offset="55%"  stop-color="#000" stop-opacity="0.92"/>
+              <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+            </radialGradient>
+            <mask id="winFadeMask">
+              <rect width="1600" height="900" fill="white"/>
+              <rect width="1600" height="900" fill="url(#winCenterFade)"/>
+            </mask>
+            <filter id="winGlow" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="0.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <rect width="1600" height="900" fill="#000"/>
+
+          <g stroke="var(--win-grid)" stroke-width="1.1"
+             fill="none" filter="url(#winGlow)" mask="url(#winFadeMask)">
+
+            <!-- FLOOR -->
+            <g opacity="0.9">
+              <line x1="0"   y1="900" x2="1600" y2="900"/>
+              <line x1="80"  y1="800" x2="1520" y2="800"/>
+              <line x1="170" y1="720" x2="1430" y2="720"/>
+              <line x1="260" y1="670" x2="1340" y2="670"/>
+              <line x1="350" y1="635" x2="1250" y2="635"/>
+              <line x1="430" y1="610" x2="1170" y2="610"/>
+              <line x1="510" y1="592" x2="1090" y2="592"/>
+              <line x1="590" y1="580" x2="1010" y2="580"/>
+              <line x1="670" y1="572" x2="930"  y2="572"/>
+            </g>
+            <g opacity="0.95">
+              <line x1="0"    y1="900" x2="800" y2="560"/>
+              <line x1="160"  y1="900" x2="800" y2="560"/>
+              <line x1="320"  y1="900" x2="800" y2="560"/>
+              <line x1="480"  y1="900" x2="800" y2="560"/>
+              <line x1="640"  y1="900" x2="800" y2="560"/>
+              <line x1="800"  y1="900" x2="800" y2="560"/>
+              <line x1="960"  y1="900" x2="800" y2="560"/>
+              <line x1="1120" y1="900" x2="800" y2="560"/>
+              <line x1="1280" y1="900" x2="800" y2="560"/>
+              <line x1="1440" y1="900" x2="800" y2="560"/>
+              <line x1="1600" y1="900" x2="800" y2="560"/>
+            </g>
+
+            <!-- CEILING -->
+            <g opacity="0.9">
+              <line x1="0"   y1="0"   x2="1600" y2="0"/>
+              <line x1="80"  y1="100" x2="1520" y2="100"/>
+              <line x1="170" y1="180" x2="1430" y2="180"/>
+              <line x1="260" y1="230" x2="1340" y2="230"/>
+              <line x1="350" y1="265" x2="1250" y2="265"/>
+              <line x1="430" y1="290" x2="1170" y2="290"/>
+              <line x1="510" y1="308" x2="1090" y2="308"/>
+              <line x1="590" y1="320" x2="1010" y2="320"/>
+              <line x1="670" y1="328" x2="930"  y2="328"/>
+            </g>
+            <g opacity="0.95">
+              <line x1="0"    y1="0" x2="800" y2="340"/>
+              <line x1="160"  y1="0" x2="800" y2="340"/>
+              <line x1="320"  y1="0" x2="800" y2="340"/>
+              <line x1="480"  y1="0" x2="800" y2="340"/>
+              <line x1="640"  y1="0" x2="800" y2="340"/>
+              <line x1="800"  y1="0" x2="800" y2="340"/>
+              <line x1="960"  y1="0" x2="800" y2="340"/>
+              <line x1="1120" y1="0" x2="800" y2="340"/>
+              <line x1="1280" y1="0" x2="800" y2="340"/>
+              <line x1="1440" y1="0" x2="800" y2="340"/>
+              <line x1="1600" y1="0" x2="800" y2="340"/>
+            </g>
+
+            <!-- LEFT WALL -->
+            <g opacity="0.9">
+              <line x1="0"   y1="0"   x2="0"   y2="900"/>
+              <line x1="80"  y1="80"  x2="80"  y2="820"/>
+              <line x1="170" y1="160" x2="170" y2="740"/>
+              <line x1="260" y1="225" x2="260" y2="675"/>
+              <line x1="350" y1="265" x2="350" y2="635"/>
+              <line x1="430" y1="290" x2="430" y2="610"/>
+              <line x1="510" y1="308" x2="510" y2="592"/>
+              <line x1="590" y1="320" x2="590" y2="580"/>
+            </g>
+            <g opacity="0.95">
+              <line x1="0" y1="0"   x2="800" y2="340"/>
+              <line x1="0" y1="150" x2="800" y2="395"/>
+              <line x1="0" y1="300" x2="800" y2="445"/>
+              <line x1="0" y1="450" x2="800" y2="480"/>
+              <line x1="0" y1="600" x2="800" y2="510"/>
+              <line x1="0" y1="750" x2="800" y2="540"/>
+              <line x1="0" y1="900" x2="800" y2="560"/>
+            </g>
+
+            <!-- RIGHT WALL -->
+            <g opacity="0.9">
+              <line x1="1600" y1="0"   x2="1600" y2="900"/>
+              <line x1="1520" y1="80"  x2="1520" y2="820"/>
+              <line x1="1430" y1="160" x2="1430" y2="740"/>
+              <line x1="1340" y1="225" x2="1340" y2="675"/>
+              <line x1="1250" y1="265" x2="1250" y2="635"/>
+              <line x1="1170" y1="290" x2="1170" y2="610"/>
+              <line x1="1090" y1="308" x2="1090" y2="592"/>
+              <line x1="1010" y1="320" x2="1010" y2="580"/>
+            </g>
+            <g opacity="0.95">
+              <line x1="1600" y1="0"   x2="800" y2="340"/>
+              <line x1="1600" y1="150" x2="800" y2="395"/>
+              <line x1="1600" y1="300" x2="800" y2="445"/>
+              <line x1="1600" y1="450" x2="800" y2="480"/>
+              <line x1="1600" y1="600" x2="800" y2="510"/>
+              <line x1="1600" y1="750" x2="800" y2="540"/>
+              <line x1="1600" y1="900" x2="800" y2="560"/>
+            </g>
+          </g>
+
+          <!-- Subtle accent-green haze at the horizon -->
+          <ellipse cx="800" cy="450" rx="380" ry="140"
+                   fill="var(--green)" opacity="0.04"/>
+        </svg>
+      </div>
+
+      <!-- Layered assets — order matters (back → front) -->
+      <div class="win-sp-layer is-hero">
+        <img src="assets/img-win-hero.png" alt="Personalized Windows wallpaper preview" />
+      </div>
+      <div class="win-sp-layer is-widgets">
+        <img src="assets/img-win-widgets.png" alt="App tinting widgets" />
+      </div>
+      <div class="win-sp-layer is-seed">
+        <img src="assets/img-win-seed.png" alt="Seed and mode indicator" />
+      </div>
+      <div class="win-sp-layer is-chat">
+        <img src="assets/img-win-chat-icon.png" alt="Themed chat app icon" />
+      </div>
+
+    </div>
+  </article>
+  <!-- ====== End .win-sp-card ====== -->
+</div>
+
+<script>
+  /* Hover parallax — single listener writes --mx/--my; CSS does the math.
+     Eased with rAF to ~60fps, decays smoothly on mouseleave. */
+  (function () {
+    const scene = document.getElementById('winSpScene');
+    if (!scene) return;
+
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = null, active = false;
+
+    const onMove = (e) => {
+      const r = scene.getBoundingClientRect();
+      tx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2)));
+      ty = Math.max(-1, Math.min(1, (e.clientY - (r.top  + r.height / 2)) / (r.height / 2)));
+      if (!active) loop();
+    };
+    const onLeave = () => { tx = 0; ty = 0; if (!active) loop(); };
+
+    const loop = () => {
+      active = true;
+      cx += (tx - cx) * 0.08;
+      cy += (ty - cy) * 0.08;
+      scene.style.setProperty('--mx', cx.toFixed(4));
+      scene.style.setProperty('--my', cy.toFixed(4));
+      if (Math.abs(cx - tx) < 0.001 && Math.abs(cy - ty) < 0.001 && tx === 0 && ty === 0) {
+        active = false; cancelAnimationFrame(raf); return;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+
+    scene.addEventListener('mousemove', onMove);
+    scene.addEventListener('mouseleave', onLeave);
+  })();
+</script>
+</body>
+</html>
