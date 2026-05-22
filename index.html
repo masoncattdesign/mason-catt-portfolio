@@ -250,6 +250,7 @@
   .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
   .tag { font-size: 11px; font-weight: 500; color: var(--cream3); border: 1px solid var(--border2); padding: 4px 10px; border-radius: 100px; }
   .tag.hi { color: var(--accent); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+  .tag.brand { color: var(--accent-blue); border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.05); }
   .project-name { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--cream); line-height: 1.25; margin-bottom: 10px; }
   .project-desc { font-size: 14px; color: var(--cream2); line-height: 1.65; }
   .project-arrow { position: absolute; top: 28px; right: 28px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; color: var(--cream3); font-size: 14px; transition: background 0.2s, color 0.2s, border-color 0.2s; }
@@ -316,9 +317,6 @@
   .footer-nav a:hover { color: var(--cream2); }
 
   .project-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
-  .project-protected { font-size: 12px; color: var(--cream3); display: inline-flex; align-items: center; gap: 5px; line-height: 1; align-self: center; }
-  .project-request-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34,197,94,0.25); font-size: 12px; transition: border-color 0.2s; }
-  .project-request-link:hover { border-color: var(--accent); }
   .project-access-btn {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 13px; font-weight: 500; color: var(--bg);
@@ -326,24 +324,20 @@
     text-decoration: none; transition: background 0.2s, transform 0.15s;
   }
   .project-access-btn:hover { background: var(--accent); transform: translateY(-1px); }
-  .project-cta-row--locked { gap: 12px; }
-  .project-cta-row--locked .project-protected { width: 100%; margin-bottom: 2px; }
-  .project-request-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 500; color: var(--bg);
-    background: var(--cream); padding: 9px 18px; border-radius: 100px;
-    text-decoration: none; transition: background 0.2s;
-  }
-  .project-request-btn:hover { background: var(--accent); }
   .project-access-btn--locked {
-    font-size: 12px; font-weight: 400; color: var(--cream3);
-    background: transparent; border: 1px solid var(--border);
-    padding: 7px 14px; transform: none;
+    color: var(--cream3); background: transparent;
+    border: 1px solid var(--border2);
+    cursor: not-allowed; transform: none;
   }
   .project-access-btn--locked:hover {
-    color: var(--cream2); background: rgba(240,235,226,0.04);
-    border-color: var(--border2); transform: none;
+    background: transparent; transform: none;
   }
+  .project-request-link {
+    font-size: 13px; color: var(--cream2); text-decoration: none;
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+  }
+  .project-request-link:hover { color: var(--cream); border-color: var(--cream2); }
   .project-card .project-desc em { font-style: italic; color: var(--cream); }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -431,25 +425,21 @@
     <!-- FEATURED: Windows Personalization — Current project -->
     <div class="project-card featured reveal" style="cursor:default;">
       <div>
-        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(232,121,160,0.1); border:1px solid rgba(232,121,160,0.25); border-radius:100px; padding:4px 10px; margin-bottom:14px;">
-          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-pink);display:inline-block;"></span>
-          <span style="font-size:11px;font-weight:500;color:var(--accent-pink);letter-spacing:0.06em;text-transform:uppercase;">Current project</span>
-        </div>
         <div class="project-tags">
-          <span class="tag hi">Microsoft</span>
+          <span class="tag brand">Microsoft</span>
+          <span class="exp-current">Current</span>
           <span class="tag">Design Systems</span>
           <span class="tag">Vision Prototype</span>
         </div>
         <h3 class="project-name">Windows System Personalization</h3>
         <p class="project-desc">A design prototype exploring how Windows could become genuinely personal — complete theme identities across Start, Lock screen, and widgets, built around the thesis <em>"It's still Windows, now it's mine."</em></p>
-        <div class="project-cta-row project-cta-row--locked">
-          <span class="project-protected">🔒 Password protected</span>
-          <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Personalization" class="project-request-btn">Request access →</a>
-          <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Windows%20Personalization" class="project-access-btn project-access-btn--locked">View project →</a>
+        <div class="project-cta-row">
+          <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
+          <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Personalization" class="project-request-link">Request access</a>
         </div>
       </div>
       <div class="project-thumb">
-        <img src="img-matrix.png" alt="Windows personalization theme matrix" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img src="img-wsp-thumb.png" alt="Windows personalization theme prototype" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
 
@@ -459,14 +449,13 @@
         <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Microsoft</span>
       </div>
       <div class="project-tags">
-        <span class="tag hi">Microsoft</span><span class="tag">Fluent</span><span class="tag">Visual Systems</span>
+        <span class="tag brand">Microsoft</span><span class="tag">Fluent</span><span class="tag">Visual Systems</span>
       </div>
       <h3 class="project-name">Windows Fluent Visual System</h3>
       <p class="project-desc">Component architecture, token systems, and design-code parity for Windows 11's Fluent design language at scale.</p>
-      <div class="project-cta-row project-cta-row--locked">
-        <span class="project-protected">🔒 Password protected</span>
-        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Visual%20System" class="project-request-btn">Request access →</a>
-        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Fluent%20Visual%20System" class="project-access-btn project-access-btn--locked">View project →</a>
+      <div class="project-cta-row">
+        <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
+        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Visual%20System" class="project-request-link">Request access</a>
       </div>
     </div>
 
@@ -476,14 +465,13 @@
         <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Microsoft</span>
       </div>
       <div class="project-tags">
-        <span class="tag hi">Microsoft</span><span class="tag">Iconography</span><span class="tag">Illustration</span>
+        <span class="tag brand">Microsoft</span><span class="tag">Iconography</span><span class="tag">Illustration</span>
       </div>
       <h3 class="project-name">Fluent Illustration & Icons</h3>
       <p class="project-desc">Iconography and illustration systems built for Windows — visual foundations for accessibility, hierarchy, and personality at OS scale.</p>
-      <div class="project-cta-row project-cta-row--locked">
-        <span class="project-protected">🔒 Password protected</span>
-        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Icons" class="project-request-btn">Request access →</a>
-        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Fluent%20Icons" class="project-access-btn project-access-btn--locked">View project →</a>
+      <div class="project-cta-row">
+        <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
+        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Icons" class="project-request-link">Request access</a>
       </div>
     </div>
 
@@ -493,7 +481,7 @@
         <img src="img-pay-studio-hero.png" alt="Amazon Pay Studio" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
       </div>
       <div class="project-tags">
-        <span class="tag hi">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
+        <span class="tag brand">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
       </div>
       <h3 class="project-name">Amazon Business Pay Studio</h3>
       <p class="project-desc">Atomic design system for Amazon Business payments — 18 components, task templates, and use case journeys to ship payment products quickly. Completed 2023.</p>
@@ -505,10 +493,10 @@
     <!-- Amazon Business Card — after Pay Studio -->
     <a href="amazon-business-card.html" class="project-card reveal">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#f0f4f8;">
-        <img src="img-abc-system.png" alt="Amazon Business Card" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <img src="img-abc-thumb.png" alt="Amazon Business Card design system components" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
       </div>
       <div class="project-tags">
-        <span class="tag hi">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
+        <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
       </div>
       <h3 class="project-name">Amazon Business Credit Card</h3>
       <p class="project-desc">Design lead for the Existing Card Member Page — a flexible widget system for card management, rewards, and personalization. Shipped Spring 2024.</p>
@@ -519,11 +507,11 @@
 
     <!-- Facebook Libra -->
     <a href="facebook-libra.html" class="project-card reveal">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#0d1f42 0%,#1877f2 100%); display:flex; align-items:center; justify-content:center;">
-        <span style="font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.05em;">BUCK Design · Facebook</span>
+      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#dde4f0;">
+        <img src="img-libra-thumb.png" alt="Facebook Libra brand artwork" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="project-tags">
-        <span class="tag hi">BUCK Design</span><span class="tag">Facebook</span><span class="tag">Brand</span>
+        <span class="tag brand">BUCK</span><span class="tag">Facebook</span><span class="tag">Brand</span>
       </div>
       <h3 class="project-name">Facebook Libra</h3>
       <p class="project-desc">Iconography, visual guidelines, and digital artwork supporting brand campaigns for Facebook's Libra initiative — developed at BUCK Design with pixel-perfect production deliverables.</p>
@@ -535,17 +523,16 @@
     <!-- Amazon Advertising -->
     <div class="project-card reveal" style="cursor:default;">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; background:linear-gradient(135deg,#1a0800 0%,#e85d04 100%); display:flex; align-items:center; justify-content:center;">
-        <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Amazon · 🏆 Gold Clio</span>
+        <span style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">Amazon</span>
       </div>
       <div class="project-tags">
-        <span class="tag hi">🏆 Gold Clio</span><span class="tag">Amazon</span><span class="tag">Advertising</span>
+        <span class="tag brand">Amazon</span><span class="tag">Advertising</span>
       </div>
       <h3 class="project-name">Amazon Advertising</h3>
       <p class="project-desc">Advertising experiences across mobile, web, audio, and TV — including the Gold Clio Award–winning theatrical campaign. Conceptual artwork, diagrams, and pixel-perfect production delivery.</p>
-      <div class="project-cta-row project-cta-row--locked">
-        <span class="project-protected">🔒 Password protected</span>
-        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Amazon%20Advertising" class="project-request-btn">Request access →</a>
-        <a href="mailto:masoncatt@gmail.com?subject=View%20Project%20—%20Amazon%20Advertising" class="project-access-btn project-access-btn--locked">View project →</a>
+      <div class="project-cta-row">
+        <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
+        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Amazon%20Advertising" class="project-request-link">Request access</a>
       </div>
     </div>
 
