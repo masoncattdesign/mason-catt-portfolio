@@ -4,18 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Windows Visual Systems &amp; Assets · Mason Catt</title>
-<meta name="description" content="Six connected workstreams inside Windows Design Systems: marketing compendiums, expressive icon and illustration systems, component libraries, tooling and personalization.">
+<meta name="description" content="Case study in progress. Design systems and visual language work at Microsoft on Windows.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://masoncatt.com/windows-visual-systems.html">
 <meta property="og:title" content="Windows Visual Systems & Assets · Mason Catt">
-<meta property="og:description" content="Six connected workstreams inside Windows Design Systems: marketing compendiums, expressive icon and illustration systems, component libraries, tooling and personalization.">
+<meta property="og:description" content="Case study in progress. Design systems and visual language work at Microsoft on Windows.">
 <meta property="og:image" content="https://masoncatt.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Windows Visual Systems & Assets · Mason Catt">
-<meta name="twitter:description" content="Six connected workstreams inside Windows Design Systems: marketing compendiums, expressive icon and illustration systems, component libraries, tooling and personalization.">
+<meta name="twitter:description" content="Case study in progress. Design systems and visual language work at Microsoft on Windows.">
 <meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="project-gate.css">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -272,6 +273,21 @@
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
 </div>
+
+<div id="project-gate" class="project-gate">
+  <div class="project-gate-panel">
+    <div class="project-gate-icon" aria-hidden="true">🚧</div>
+    <h1 class="project-gate-title">Windows Visual Systems &amp; Assets</h1>
+    <p class="project-gate-desc">This case study is still under construction. Some of the work is unannounced, so it is not public yet. Happy to walk through it directly.</p>
+    <div class="project-gate-actions">
+      <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20walkthrough" class="project-gate-primary">Request a walkthrough →</a>
+      <a href="index.html#work" class="project-gate-secondary">← Back to all work</a>
+    </div>
+    <p class="project-gate-note">Portfolio · Mason Catt</p>
+  </div>
+</div>
+
+<div id="project-content" class="project-gate-content" hidden aria-hidden="true">
 
 <div class="case-hero">
   <a href="index.html#work" class="back-link">← All work</a>
@@ -641,6 +657,8 @@
   <div class="footer-copy">© 2026</div>
 </footer>
 
+</div><!-- /project-content -->
+
 <script>
   const io = new IntersectionObserver((es) => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
@@ -666,6 +684,8 @@
     m.addEventListener('click', function (e) { if (e.target === m) set(false); });
   })();
 </script>
+
+<script src="project-gate.js" data-project="windows-visual-systems"></script>
 
 </body>
 </html>
