@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Windows System Personalization · Mason Catt</title>
+<meta name="description" content="A prototype exploring how Windows could become genuinely personal: complete theme identities across Start, Lock screen and widgets.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://masoncatt.com/windows-system-personalization.html">
+<meta property="og:title" content="Windows System Personalization · Mason Catt">
+<meta property="og:description" content="A prototype exploring how Windows could become genuinely personal: complete theme identities across Start, Lock screen and widgets.">
+<meta property="og:image" content="https://masoncatt.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Windows System Personalization · Mason Catt">
+<meta name="twitter:description" content="A prototype exploring how Windows could become genuinely personal: complete theme identities across Start, Lock screen and widgets.">
+<meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -127,6 +137,86 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+  }
+
+  /* Mobile layout. These pages were desktop-only, which produced a sideways
+     scroll on a phone. Selectors that do not exist on a given page are inert. */
+  @media (max-width: 900px) {
+    .case-hero { padding: 108px 20px 0; }
+    .case-body { padding: 56px 20px; }
+    .hero-img-wrap { margin: 0; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-item:nth-child(2n) { border-right: none; }
+    .meta-item + .meta-item { padding-left: 0; }
+    .meta-item:nth-child(2n) { padding-left: 20px; }
+    .img-grid.col3, .stat-strip { grid-template-columns: 1fr 1fr; }
+    .next-project { flex-direction: column; align-items: flex-start; padding: 48px 20px; }
+    footer { flex-direction: column; gap: 14px; align-items: flex-start; padding: 28px 20px; }
+
+    /* about.html */
+    .timeline-section { padding: 64px 20px; }
+    .timeline-inner { grid-template-columns: 1fr; gap: 40px; }
+
+    /* amazon-business-card.html: let the tab bar scroll inside itself
+       instead of pushing the page sideways */
+    .widget-nav { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
+    .widget-nav-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .widget-tab { flex: 0 0 auto; }
+    .matrix-cell { padding: 14px 12px; }
+  }
+  @media (max-width: 560px) {
+    .img-grid.col2, .img-grid.col3, .stat-strip { grid-template-columns: 1fr; }
+    .meta-strip { grid-template-columns: 1fr; }
+    .meta-item { border-right: none; padding-left: 0 !important; }
+  }
+
+  /* ---- mobile nav, ported from the homepage so every page navigates on a phone ---- */
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-toggle {
+    display: none; background: none; border: 1px solid var(--border2);
+    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; padding: 0;
+    align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+    transition: border-color 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--cream2); }
+  .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--cream); border-radius: 1px; transition: transform 0.25s, opacity 0.2s; }
+  body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; background: rgba(14,13,12,0.96); backdrop-filter: blur(20px);
+    z-index: 90; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+  }
+  body.menu-open .mobile-menu { opacity: 1; pointer-events: auto; }
+  .mobile-menu-links { list-style: none; display: flex; flex-direction: column; gap: 28px; text-align: center; padding: 0; }
+  .mobile-menu-links a { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+  .mobile-menu-links a:hover { color: var(--accent); }
+
+  /* Touch sizing: standalone controls get a 40px minimum on a phone. */
+  @media (max-width: 900px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-resume { padding: 10px 16px; min-height: 40px; display: inline-flex; align-items: center; }
+    .widget-tab, .filter-btn { min-height: 40px; padding-top: 9px; padding-bottom: 9px; }
+    .widget-arrow { width: 40px; height: 40px; }
+    .footer-nav { gap: 20px; }
+    .footer-nav a { display: inline-block; padding: 8px 0; }
+    .back-link { padding: 8px 0; }
+  }
+
+  /* Touch sizing for the remaining standalone controls. */
+  @media (max-width: 900px) {
+    .nav-resume { min-height: 42px; padding: 11px 18px; display: inline-flex; align-items: center; }
+    .project-access-btn, .project-request-link, .next-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-nav { gap: 22px; flex-wrap: wrap; }
+    .footer-nav a { display: inline-block; padding: 10px 0; }
+    .back-link { min-height: 44px; }
+    .filter-btn { min-height: 40px; }
+  }
 </style>
 </head>
 <body>
@@ -139,16 +229,30 @@
     <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+  <div class="nav-right">
+    <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
 
 <div id="project-gate" class="project-gate">
   <div class="project-gate-panel">
     <div class="project-gate-icon" aria-hidden="true">🔒</div>
     <h1 class="project-gate-title">Windows System Personalization</h1>
-    <p class="project-gate-desc">This case study is password protected. Request access to view the full project — password entry coming soon.</p>
+    <p class="project-gate-desc">This case study is password protected. Request access to view the full project, password entry coming soon.</p>
     <div class="project-gate-actions">
-      <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Personalization" class="project-gate-primary">Request access →</a>
+      <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20,%20Windows%20Personalization" class="project-gate-primary">Request access →</a>
       <a href="index.html#work" class="project-gate-secondary">← Back to all work</a>
     </div>
     <form id="project-gate-form" class="project-gate-form" hidden aria-hidden="true">
@@ -169,7 +273,7 @@
   </div>
   <h1 class="case-title">Windows System<br><em>Personalization</em></h1>
   <p class="case-subtitle">
-    A design prototype exploring how Windows could become genuinely, deeply personal — not just a wallpaper swap, but a complete expressive system built around the question: <em style="font-style:italic;">"What would make it yours?"</em>
+    A design prototype exploring how Windows could become genuinely, deeply personal, not just a wallpaper swap, but a complete expressive system built around the question: <em style="font-style:italic;">"What would make it yours?"</em>
   </p>
   <div class="meta-strip">
     <div class="meta-item">
@@ -192,7 +296,7 @@
 </div>
 
 <div class="hero-img-wrap">
-  <img src="img-matrix.png" alt="Personalization theme matrix — Nova, Gamer, Developer, LEGO, K-pop Demon Hunters, Nike across Wallpaper, Start, Account, Lock & Widget">
+  <img src="img-matrix.png" alt="Personalization theme matrix: Nova, Gamer, Developer, LEGO, K-pop Demon Hunters, Nike across Wallpaper, Start, Account, Lock & Widget">
 </div>
 
 <div class="case-body">
@@ -202,7 +306,7 @@
     <div class="slabel">The Idea</div>
     <h2>It's still Windows. Now it's mine.</h2>
     <p>
-      Personalization in Windows has always existed — wallpapers, accent colors, dark mode. But this prototype asks a bigger question: <strong>what if Windows could reflect who you actually are?</strong> Not just your color preference, but your identity — your fandoms, your profession, your mood on a Tuesday afternoon.
+      Personalization in Windows has always existed, wallpapers, accent colors, dark mode. But this prototype asks a bigger question: <strong>what if Windows could reflect who you actually are?</strong> Not just your color preference, but your identity, your fandoms, your profession, your mood on a Tuesday afternoon.
     </p>
     <p>
       The work is a vision prototype: a designed argument for a new direction in Windows personalization, exploring what happens when themes become complete expressive worlds, when Copilot becomes the creative interface, and when saving and sharing a theme becomes a social act.
@@ -217,14 +321,14 @@
   <div class="reveal">
     <div class="slabel">The System</div>
     <div class="img-full">
-      <img src="img-matrix.png" alt="Theme matrix — six complete theme identities across four Windows surfaces">
-      <div class="img-caption">The theme matrix: each column is a complete identity (Nova Base, Gamer, Developer, LEGO, K-pop Demon Hunters, Nike) applied across all four Windows surfaces — Wallpaper, Start, Account, and Lock & Widget. This single artifact is the design argument.</div>
+      <img src="img-matrix.png" alt="Theme matrix: six complete theme identities across four Windows surfaces">
+      <div class="img-caption">The theme matrix: each column is a complete identity (Nova Base, Gamer, Developer, LEGO, K-pop Demon Hunters, Nike) applied across all four Windows surfaces: Wallpaper, Start, Account, and Lock & Widget. This single artifact is the design argument.</div>
     </div>
   </div>
 
   <div class="prose reveal">
     <p>
-      The matrix is the central design artifact. Reading across a row shows how each surface behaves within the theme system. Reading down a column shows how a single identity — say, LEGO — expresses itself differently in the wallpaper versus the lock screen versus the account screen. Both views tell you something important about <strong>whether the system is working</strong>.
+      The matrix is the central design artifact. Reading across a row shows how each surface behaves within the theme system. Reading down a column shows how a single identity, say, LEGO, expresses itself differently in the wallpaper versus the lock screen versus the account screen. Both views tell you something important about <strong>whether the system is working</strong>.
     </p>
     <p>
       Six themes were chosen to stress-test the architecture across vastly different cultural contexts: a gaming IP (Halo), a construction toy brand (LEGO), a sportswear brand (Nike), an anime/K-pop illustrated world, a developer identity, and the default Nova Base. If the system holds for all six, it holds for anything.
@@ -236,18 +340,18 @@
   <!-- NOVA -->
   <div class="prose reveal">
     <div class="slabel">The Foundation</div>
-    <h2>Nova Base — the canvas everything starts from</h2>
+    <h2>Nova Base, the canvas everything starts from</h2>
     <p>
-      Nova is the default: the soft, abstract gradient world that ships with Windows 11. Its role in the prototype is important — it's the state before you've told Windows anything about yourself, and it needs to feel <strong>warm and inviting rather than generic</strong>. The invitation to personalize should feel like an opportunity, not a correction.
+      Nova is the default: the soft, abstract gradient world that ships with Windows 11. Its role in the prototype is important, it's the state before you've told Windows anything about yourself, and it needs to feel <strong>warm and inviting rather than generic</strong>. The invitation to personalize should feel like an opportunity, not a correction.
     </p>
     <p>
-      The Nova lock screen with its widget row — weather, GPU status, Teams meeting, news — shows the foundation. Calm, spacious, well-composed. The bar everything else is measured against.
+      The Nova lock screen with its widget row, weather, GPU status, Teams meeting, news, shows the foundation. Calm, spacious, well-composed. The bar everything else is measured against.
     </p>
   </div>
 
   <div class="img-full reveal">
-    <img src="img-nova-lock.png" alt="Nova Base lock screen — soft gradient wallpaper, 21:59 time, date, and four lock screen widgets">
-    <div class="img-caption">Nova Base lock screen — the default experience. The widget row (weather, system, calendar, news) is also part of the personalization system, and shifts with the chosen theme.</div>
+    <img src="img-nova-lock.png" alt="Nova Base lock screen: soft gradient wallpaper, 21:59 time, date, and four lock screen widgets">
+    <div class="img-caption">Nova Base lock screen: the default experience. The widget row (weather, system, calendar, news) is also part of the personalization system, and shifts with the chosen theme.</div>
   </div>
 
   <hr>
@@ -257,7 +361,7 @@
     <div class="slabel">The Themes</div>
     <h2>Complete worlds, not just wallpapers</h2>
     <p>
-      Each theme is designed as a <strong>total environment</strong>. The lock screen in the Nike theme doesn't just show a Nike wallpaper — the swoosh becomes an ambient presence behind the user avatar, the color palette shifts to warm tan and burnt orange, the whole surface feels like it belongs to that brand world. The LEGO lock screen goes full red, the avatar becomes a minifig, the typography weight shifts to match the IP's energy.
+      Each theme is designed as a <strong>total environment</strong>. The lock screen in the Nike theme doesn't just show a Nike wallpaper, the swoosh becomes an ambient presence behind the user avatar, the color palette shifts to warm tan and burnt orange, the whole surface feels like it belongs to that brand world. The LEGO lock screen goes full red, the avatar becomes a minifig, the typography weight shifts to match the IP's energy.
     </p>
     <p>
       This is the core design challenge: achieving deep theme fidelity across surfaces that have very different functional constraints. A wallpaper has all the latitude in the world. A lock screen has to remain legible and functional. The account screen is three elements: background, avatar, name. The Start menu has to stay usable. The question is how much of the theme world can live in each surface without breaking the experience.
@@ -269,31 +373,31 @@
     <div class="slabel">Lock Screen Variants</div>
     <div class="img-grid col3">
       <div class="img-grid-item">
-        <img src="img-lock-nike.png" alt="Nike theme lock screen — warm tan background with ambient blurred swoosh, user avatar">
-        <div class="img-caption">Nike — the swoosh becomes environmental. Brand identity as ambient texture, not logo slap.</div>
+        <img src="img-lock-nike.png" alt="Nike theme lock screen: warm tan background with ambient blurred swoosh, user avatar">
+        <div class="img-caption">Nike: the swoosh becomes environmental. Brand identity as ambient texture, not logo slap.</div>
       </div>
       <div class="img-grid-item">
-        <img src="img-lock-gamer.png" alt="Gamer theme lock screen — dark atmospheric background, PixelPopsicle avatar with game character art">
-        <div class="img-caption">Gamer — dark, atmospheric. The user avatar is styled to feel at home in the world of the theme.</div>
+        <img src="img-lock-gamer.png" alt="Gamer theme lock screen: dark atmospheric background, PixelPopsicle avatar with game character art">
+        <div class="img-caption">Gamer: dark, atmospheric. The user avatar is styled to feel at home in the world of the theme.</div>
       </div>
       <div class="img-grid-item">
-        <img src="img-lock-lego.png" alt="LEGO theme lock screen — bold primary red background, LEGO minifig avatar for Zane Carter">
-        <div class="img-caption">LEGO — bold and graphic. The OS matches the full energy of the IP, no hedging.</div>
+        <img src="img-lock-lego.png" alt="LEGO theme lock screen: bold primary red background, LEGO minifig avatar for Zane Carter">
+        <div class="img-caption">LEGO: bold and graphic. The OS matches the full energy of the IP, no hedging.</div>
       </div>
     </div>
   </div>
 
   <!-- K-pop -->
   <div class="prose reveal" style="margin-top: 52px;">
-    <h3>K-pop Demon Hunters — designing for a different visual language</h3>
+    <h3>K-pop Demon Hunters, designing for a different visual language</h3>
     <p>
-      Most gaming and branded themes lean dark and saturated. K-pop Demon Hunters is the deliberate counterpoint: a richly illustrated world with a light background, anime-adjacent character design, and a palette that's soft and warm rather than high-contrast. Designing Windows surfaces for this theme required a completely different set of decisions — how does a light-background illustration become a wallpaper that the taskbar and lock chrome still read against?
+      Most gaming and branded themes lean dark and saturated. K-pop Demon Hunters is the deliberate counterpoint: a richly illustrated world with a light background, anime-adjacent character design, and a palette that's soft and warm rather than high-contrast. Designing Windows surfaces for this theme required a completely different set of decisions, how does a light-background illustration become a wallpaper that the taskbar and lock chrome still read against?
     </p>
   </div>
 
   <div class="img-full reveal">
-    <img src="img-kpop.png" alt="K-pop Demon Hunters illustration — three anime-style characters and a large blue fantasy cat on a warm cream background">
-    <div class="img-caption">K-pop Demon Hunters — the source illustration. Rich characters, warm cream background, hand-drawn quality. A deliberate contrast to the dark-and-saturated norms of gaming themes, and a meaningful test of the system's range.</div>
+    <img src="img-kpop.png" alt="K-pop Demon Hunters illustration: three anime-style characters and a large blue fantasy cat on a warm cream background">
+    <div class="img-caption">K-pop Demon Hunters: the source illustration. Rich characters, warm cream background, hand-drawn quality. A deliberate contrast to the dark-and-saturated norms of gaming themes, and a meaningful test of the system's range.</div>
   </div>
 
   <hr>
@@ -306,13 +410,13 @@
       The Start menu prototype (Nova Base shown) explores what happens when the surface takes on signs of life. Pinned apps, recent files, and "Topics & categories" already make Start contextual. The design question is how theme identity enters this surface: not just as a background color, but as a way of <strong>surfacing content and structure</strong> that fits who you are.
     </p>
     <p>
-      The "Topics & categories" section is particularly interesting — it's already doing implicit personalization based on installed apps and usage. The prototype explores how a chosen theme or expressed identity could shape this seeding, making Start feel genuinely curated rather than algorithmically configured.
+      The "Topics & categories" section is particularly interesting, it's already doing implicit personalization based on installed apps and usage. The prototype explores how a chosen theme or expressed identity could shape this seeding, making Start feel genuinely curated rather than algorithmically configured.
     </p>
   </div>
 
   <div class="img-full reveal">
-    <img src="img-start.png" alt="Windows Start menu — Nova Base, showing search, pinned apps, recent files, and Topics & categories">
-    <div class="img-caption">Start menu — Nova Base. The foundation state: organized by activity and relevance. The prototype explores how theme identity can enrich this without disrupting usability.</div>
+    <img src="img-start.png" alt="Windows Start menu: Nova Base, showing search, pinned apps, recent files, and Topics & categories">
+    <div class="img-caption">Start menu: Nova Base. The foundation state: organized by activity and relevance. The prototype explores how theme identity can enrich this without disrupting usability.</div>
   </div>
 
   <hr>
@@ -326,19 +430,19 @@
     </p>
 
     <div class="callout">
-      <p><strong>Industry & IP themes:</strong> Can Windows host partnership themes — LEGO, Nike, gaming titles — in a way that feels elevated and native? What's the design contract that makes a branded theme feel like it belongs to Windows rather than being bolted on?</p>
+      <p><strong>Industry & IP themes:</strong> Can Windows host partnership themes, LEGO, Nike, gaming titles, in a way that feels elevated and native? What's the design contract that makes a branded theme feel like it belongs to Windows rather than being bolted on?</p>
     </div>
 
     <div class="callout">
-      <p><strong>Copilot as composer:</strong> What if the entry point to personalization wasn't Settings — it was a conversation? "Make my Windows feel like a developer who loves Halo" → Copilot composes and applies a theme. The prototype explores Copilot as the creative interface for personal expression.</p>
+      <p><strong>Copilot as composer:</strong> What if the entry point to personalization wasn't Settings, it was a conversation? "Make my Windows feel like a developer who loves Halo" → Copilot composes and applies a theme. The prototype explores Copilot as the creative interface for personal expression.</p>
     </div>
 
     <div class="callout">
-      <p><strong>Save & share:</strong> Themes as social objects. If you could package your theme and share it — or discover themes other users made — how does that change the personalization ecosystem? This treats Windows not just as a product but as a platform for creative expression.</p>
+      <p><strong>Save & share:</strong> Themes as social objects. If you could package your theme and share it, or discover themes other users made, how does that change the personalization ecosystem? This treats Windows not just as a product but as a platform for creative expression.</p>
     </div>
 
     <div class="callout">
-      <p><strong>Widgets from the composer:</strong> Rather than picking widgets from a static catalog, what if the Copilot composer suggested contextual widgets on the fly — "on the spot vibe" widgets that match the world you're building, surfaced at the moment of creation?</p>
+      <p><strong>Widgets from the composer:</strong> Rather than picking widgets from a static catalog, what if the Copilot composer suggested contextual widgets on the fly, "on the spot vibe" widgets that match the world you're building, surfaced at the moment of creation?</p>
     </div>
   </div>
 
@@ -349,10 +453,10 @@
     <div class="slabel">Impact</div>
     <h2>A new grammar for Windows identity</h2>
     <p>
-      The prototype demonstrates that Windows can be a canvas for identity — not just preference — at scale. The matrix format is especially powerful for internal communication: six complete worlds side by side makes the design argument more compellingly than any single screen could.
+      The prototype demonstrates that Windows can be a canvas for identity, not just preference, at scale. The matrix format is especially powerful for internal communication: six complete worlds side by side makes the design argument more compellingly than any single screen could.
     </p>
     <p>
-      The work has surfaced real product questions — about theme creation, distribution, the role of Copilot and AI in personal expression, partnership models with IP holders — that are actively shaping design strategy conversations at Microsoft.
+      The work has surfaced real product questions, about theme creation, distribution, the role of Copilot and AI in personal expression, partnership models with IP holders, that are actively shaping design strategy conversations at Microsoft.
     </p>
   </div>
 
@@ -367,7 +471,7 @@
     </div>
     <div class="stat-cell">
       <div class="stat-num">∞</div>
-      <div class="stat-desc">Possible expressions — the design question the prototype is built to answer</div>
+      <div class="stat-desc">Possible expressions, the design question the prototype is built to answer</div>
     </div>
   </div>
 
@@ -421,5 +525,24 @@
   }, { threshold: 0.07 });
   reveals.forEach(el => obs.observe(el));
 </script>
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function set(open) {
+      document.body.classList.toggle('menu-open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      m.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    t.addEventListener('click', function () { set(!document.body.classList.contains('menu-open')); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    m.addEventListener('click', function (e) { if (e.target === m) set(false); });
+  })();
+</script>
+
 </body>
 </html>

@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Facebook Libra · Mason Catt</title>
+<meta name="description" content="A custom icon system and editorial illustration set built to explain a global cryptocurrency, plus the visual guidelines holding it together. Built at BUCK Design.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://masoncatt.com/facebook-libra.html">
+<meta property="og:title" content="Facebook Libra · Mason Catt">
+<meta property="og:description" content="A custom icon system and editorial illustration set built to explain a global cryptocurrency, plus the visual guidelines holding it together. Built at BUCK Design.">
+<meta property="og:image" content="https://masoncatt.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Facebook Libra · Mason Catt">
+<meta name="twitter:description" content="A custom icon system and editorial illustration set built to explain a global cryptocurrency, plus the visual guidelines holding it together. Built at BUCK Design.">
+<meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -59,7 +69,7 @@
   .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
   .mv { font-size: 13px; color: var(--cream); }
 
-  /* HERO VISUAL — dark card with homepage gif placeholder */
+  /* HERO VISUAL, dark card with homepage gif placeholder */
   .hero-visual {
     max-width: calc(var(--col) + 96px);
     margin: 0 auto;
@@ -159,6 +169,86 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+  }
+
+  /* Mobile layout. These pages were desktop-only, which produced a sideways
+     scroll on a phone. Selectors that do not exist on a given page are inert. */
+  @media (max-width: 900px) {
+    .case-hero { padding: 108px 20px 0; }
+    .case-body { padding: 56px 20px; }
+    .hero-img-wrap { margin: 0; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-item:nth-child(2n) { border-right: none; }
+    .meta-item + .meta-item { padding-left: 0; }
+    .meta-item:nth-child(2n) { padding-left: 20px; }
+    .img-grid.col3, .stat-strip { grid-template-columns: 1fr 1fr; }
+    .next-project { flex-direction: column; align-items: flex-start; padding: 48px 20px; }
+    footer { flex-direction: column; gap: 14px; align-items: flex-start; padding: 28px 20px; }
+
+    /* about.html */
+    .timeline-section { padding: 64px 20px; }
+    .timeline-inner { grid-template-columns: 1fr; gap: 40px; }
+
+    /* amazon-business-card.html: let the tab bar scroll inside itself
+       instead of pushing the page sideways */
+    .widget-nav { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
+    .widget-nav-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .widget-tab { flex: 0 0 auto; }
+    .matrix-cell { padding: 14px 12px; }
+  }
+  @media (max-width: 560px) {
+    .img-grid.col2, .img-grid.col3, .stat-strip { grid-template-columns: 1fr; }
+    .meta-strip { grid-template-columns: 1fr; }
+    .meta-item { border-right: none; padding-left: 0 !important; }
+  }
+
+  /* ---- mobile nav, ported from the homepage so every page navigates on a phone ---- */
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-toggle {
+    display: none; background: none; border: 1px solid var(--border2);
+    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; padding: 0;
+    align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+    transition: border-color 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--cream2); }
+  .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--cream); border-radius: 1px; transition: transform 0.25s, opacity 0.2s; }
+  body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; background: rgba(14,13,12,0.96); backdrop-filter: blur(20px);
+    z-index: 90; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+  }
+  body.menu-open .mobile-menu { opacity: 1; pointer-events: auto; }
+  .mobile-menu-links { list-style: none; display: flex; flex-direction: column; gap: 28px; text-align: center; padding: 0; }
+  .mobile-menu-links a { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+  .mobile-menu-links a:hover { color: var(--accent); }
+
+  /* Touch sizing: standalone controls get a 40px minimum on a phone. */
+  @media (max-width: 900px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-resume { padding: 10px 16px; min-height: 40px; display: inline-flex; align-items: center; }
+    .widget-tab, .filter-btn { min-height: 40px; padding-top: 9px; padding-bottom: 9px; }
+    .widget-arrow { width: 40px; height: 40px; }
+    .footer-nav { gap: 20px; }
+    .footer-nav a { display: inline-block; padding: 8px 0; }
+    .back-link { padding: 8px 0; }
+  }
+
+  /* Touch sizing for the remaining standalone controls. */
+  @media (max-width: 900px) {
+    .nav-resume { min-height: 42px; padding: 11px 18px; display: inline-flex; align-items: center; }
+    .project-access-btn, .project-request-link, .next-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-nav { gap: 22px; flex-wrap: wrap; }
+    .footer-nav a { display: inline-block; padding: 10px 0; }
+    .back-link { min-height: 44px; }
+    .filter-btn { min-height: 40px; }
+  }
 </style>
 </head>
 <body>
@@ -171,8 +261,22 @@
     <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+  <div class="nav-right">
+    <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
 
 <div class="case-hero">
   <a href="index.html#work" class="back-link">← All work</a>
@@ -182,7 +286,7 @@
     <span class="eco">BUCK Design · Facebook · 2019</span>
   </div>
   <h1 class="case-title">Facebook<br><em>Libra</em></h1>
-  <p class="case-subtitle">Web design, iconography, and illustration for Facebook's global cryptocurrency initiative — designed and shipped at BUCK Design over three months in 2019.</p>
+  <p class="case-subtitle">Iconography, illustration and web design for Facebook's global cryptocurrency initiative. A custom icon system and an editorial illustration set built to explain something most people had never seen before. Shipped at BUCK Design over three months in 2019.</p>
   <div class="meta-strip">
     <div class="meta-item">
       <div class="ml">Role</div>
@@ -203,7 +307,7 @@
   </div>
 </div>
 
-<!-- HERO VISUAL — homepage animation -->
+<!-- HERO VISUAL, homepage animation -->
 <div class="hero-visual">
   <div class="hero-visual-inner">
     <img src="img-libra-homepage.gif" alt="Libra homepage animation"
@@ -222,10 +326,10 @@
     <div class="slabel blue">Overview</div>
     <h2>Building a visual identity for a new kind of money</h2>
     <p>
-      In 2019, Facebook announced <strong>Libra</strong> — a global cryptocurrency backed by a reserve of assets, designed to enable simple, low-cost financial transactions for anyone with a smartphone. The scale of the ambition demanded a visual identity to match: a website, a comprehensive icon system, and a set of editorial illustrations explaining the technology to a global audience.
+      In 2019, Facebook announced <strong>Libra</strong>, a global cryptocurrency backed by a reserve of assets, designed to enable simple, low-cost financial transactions for anyone with a smartphone. The scale of the ambition demanded a visual identity to match: a website, a comprehensive icon system, and a set of editorial illustrations explaining the technology to a global audience.
     </p>
     <p>
-      Working at <strong>BUCK Design</strong> as UI/UX Designer, I contributed across the full visual scope of the project — from the motion-forward homepage experience to the icon library and supporting illustrations used across libra.org. The project was later rebranded as <strong>Diem</strong> in 2020, for which I also produced motion and visual assets.
+      Working at <strong>BUCK Design</strong> as UI/UX Designer, I contributed across the full visual scope of the project, from the motion-forward homepage experience to the icon library and supporting illustrations used across libra.org. The project was later rebranded as <strong>Diem</strong> in 2020, for which I also produced motion and visual assets.
     </p>
   </div>
 
@@ -233,7 +337,7 @@
     <div class="collab-logo">BUCK</div>
     <div class="collab-divider"></div>
     <div class="collab-text">
-      Developed in collaboration with <a href="https://buck.tv" target="_blank">BUCK Design</a> — a creative studio known for brand, motion, and digital work at the intersection of design and technology.
+      Developed in collaboration with <a href="https://buck.tv" target="_blank">BUCK Design</a>, a creative studio known for brand, motion, and digital work at the intersection of design and technology.
     </div>
   </div>
 
@@ -244,20 +348,20 @@
     <div class="slabel blue">Iconography</div>
     <h2>A custom icon system for a global product</h2>
     <p>
-      The Libra icon set was built to communicate complex financial and technical concepts clearly and accessibly. Each icon was designed on a consistent grid with careful attention to weight, optical balance, and legibility at small sizes — supporting both the website and any downstream product surfaces.
+      The Libra icon set was built to communicate complex financial and technical concepts clearly and accessibly. Each icon was designed on a consistent grid with careful attention to weight, optical balance, and legibility at small sizes, supporting both the website and any downstream product surfaces.
     </p>
   </div>
 
   <div class="img-full reveal">
     <img src="img-libra-icons.webp" alt="Facebook Libra icon sheet" style="background:#fff;"
       onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🎨</div><span>Upload img-libra-icons.webp</span></div>'">
-    <div class="img-cap">Full Libra icon set — designed on a consistent grid for use across libra.org and product surfaces. Weight, optical balance, and legibility were primary considerations.</div>
+    <div class="img-cap">Full Libra icon set: designed on a consistent grid for use across libra.org and product surfaces. Weight, optical balance, and legibility were primary considerations.</div>
   </div>
 
   <div class="img-full reveal">
     <img src="img-libra-icons-load.gif" alt="Libra icons load animation"
       onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>✨</div><span>Upload img-libra-icons-load.gif</span></div>'">
-    <div class="img-cap">Icon load animation — a staggered entrance sequence giving the icon set motion and personality on page load.</div>
+    <div class="img-cap">Icon load animation: a staggered entrance sequence giving the icon set motion and personality on page load.</div>
   </div>
 
   <hr>
@@ -274,7 +378,7 @@
   <div class="img-full reveal">
     <img src="img-libra-whitepapers.gif" alt="Libra white papers page animation"
       onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>📄</div><span>Upload img-libra-whitepapers.gif</span></div>'">
-    <div class="img-cap">White papers section — animated content reveals and a typographic system designed to make technical documentation feel clear and credible.</div>
+    <div class="img-cap">White papers section: animated content reveals and a typographic system designed to make technical documentation feel clear and credible.</div>
   </div>
 
   <hr>
@@ -284,7 +388,7 @@
     <div class="slabel blue">Illustration</div>
     <h2>Editorial illustrations explaining the technology</h2>
     <p>
-      Four hero illustrations were created to explain the core pillars of the Libra ecosystem — vision, blockchain infrastructure, reserve backing, and the role of the Libra Association. Each one needed to be technically accurate, globally legible, and visually consistent with the broader Libra brand.
+      Four hero illustrations were created to explain the core pillars of the Libra ecosystem, vision, blockchain infrastructure, reserve backing, and the role of the Libra Association. Each one needed to be technically accurate, globally legible, and visually consistent with the broader Libra brand.
     </p>
   </div>
 
@@ -292,22 +396,22 @@
     <div class="img-grid-item light">
       <img src="img-libra-vision.webp" style="background:#fff; padding:20px;" alt="Vision illustration"
         onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🌍</div><span>Upload img-libra-vision.webp</span></div>'">
-      <p class="img-cap">Vision — Libra's mission to provide financial access to everyone.</p>
+      <p class="img-cap">Vision: Libra's mission to provide financial access to everyone.</p>
     </div>
     <div class="img-grid-item light">
       <img src="img-libra-blockchain.webp" style="background:#fff; padding:20px;" alt="Blockchain illustration"
         onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🔗</div><span>Upload img-libra-blockchain.webp</span></div>'">
-      <p class="img-cap">Blockchain — the distributed ledger technology underlying Libra.</p>
+      <p class="img-cap">Blockchain: the distributed ledger technology underlying Libra.</p>
     </div>
     <div class="img-grid-item light">
       <img src="img-libra-reserve.webp" style="background:#fff; padding:20px;" alt="Reserve illustration"
         onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🏦</div><span>Upload img-libra-reserve.webp</span></div>'">
-      <p class="img-cap">Reserve — the asset-backed reserve model that stabilizes Libra's value.</p>
+      <p class="img-cap">Reserve: the asset-backed reserve model that stabilizes Libra's value.</p>
     </div>
     <div class="img-grid-item light">
       <img src="img-libra-role.webp" style="background:#fff; padding:20px;" alt="Role illustration"
         onerror="this.parentElement.innerHTML='<div class=\'ph-slot\'><div class=\'ph-icon\'>🤝</div><span>Upload img-libra-role.webp</span></div>'">
-      <p class="img-cap">Role — the governance structure of the Libra Association.</p>
+      <p class="img-cap">Role: the governance structure of the Libra Association.</p>
     </div>
   </div>
 
@@ -316,9 +420,9 @@
   <!-- DIEM VIDEO -->
   <div class="prose reveal">
     <div class="slabel blue">Diem</div>
-    <h2>Rebrand — Libra becomes Diem</h2>
+    <h2>Rebrand, Libra becomes Diem</h2>
     <p>
-      In December 2020, the Libra Association rebranded as the <strong>Diem Association</strong>, with an updated visual identity and renewed focus. I produced visual assets and motion graphics for the rebrand rollout — including this statistics explainer video, where I generated the majority of the visual elements.
+      In December 2020, the Libra Association rebranded as the <strong>Diem Association</strong>, with an updated visual identity and renewed focus. I produced visual assets and motion graphics for the rebrand rollout, including this statistics explainer video, where I generated the majority of the visual elements.
     </p>
   </div>
 
@@ -332,7 +436,7 @@
       style="width:100%; height:auto; display:block; border-radius: var(--radius); border: 1px solid var(--border); background: #1a1530;">
       <source src="img-libra-diem-video.mp4" type="video/mp4">
     </video>
-    <div class="img-cap">Why Diem — a motion statistics piece produced for the Diem rebrand in December 2020. Visual assets largely generated and designed by Mason Catt.</div>
+    <div class="img-cap">Why Diem: a motion statistics piece produced for the Diem rebrand in December 2020. Visual assets largely generated and designed by Mason Catt.</div>
   </div>
 
   <div class="callout reveal">
@@ -373,5 +477,24 @@
   }, { threshold: 0.07 });
   reveals.forEach(el => obs.observe(el));
 </script>
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function set(open) {
+      document.body.classList.toggle('menu-open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      m.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    t.addEventListener('click', function () { set(!document.body.classList.contains('menu-open')); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    m.addEventListener('click', function (e) { if (e.target === m) set(false); });
+  })();
+</script>
+
 </body>
 </html>

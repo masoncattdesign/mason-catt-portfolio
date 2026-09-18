@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amazon Business Card · Mason Catt</title>
+<meta name="description" content="A personalized hub for Business Prime card holders, built end to end on a composable widget system so the page could keep growing without being redesigned.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://masoncatt.com/amazon-business-card.html">
+<meta property="og:title" content="Amazon Business Credit Card · Mason Catt">
+<meta property="og:description" content="A personalized hub for Business Prime card holders, built end to end on a composable widget system so the page could keep growing without being redesigned.">
+<meta property="og:image" content="https://masoncatt.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amazon Business Credit Card · Mason Catt">
+<meta name="twitter:description" content="A personalized hub for Business Prime card holders, built end to end on a composable widget system so the page could keep growing without being redesigned.">
+<meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -327,6 +337,97 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+  }
+
+  /* Mobile layout. These pages were desktop-only, which produced a sideways
+     scroll on a phone. Selectors that do not exist on a given page are inert. */
+  @media (max-width: 900px) {
+    .case-hero { padding: 108px 20px 0; }
+    .case-body { padding: 56px 20px; }
+    .hero-img-wrap { margin: 0; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-item:nth-child(2n) { border-right: none; }
+    .meta-item + .meta-item { padding-left: 0; }
+    .meta-item:nth-child(2n) { padding-left: 20px; }
+    .img-grid.col3, .stat-strip { grid-template-columns: 1fr 1fr; }
+    .next-project { flex-direction: column; align-items: flex-start; padding: 48px 20px; }
+    footer { flex-direction: column; gap: 14px; align-items: flex-start; padding: 28px 20px; }
+
+    /* about.html */
+    .timeline-section { padding: 64px 20px; }
+    .timeline-inner { grid-template-columns: 1fr; gap: 40px; }
+
+    /* amazon-business-card.html: let the tab bar scroll inside itself
+       instead of pushing the page sideways */
+    .widget-nav { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
+    .widget-nav-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .widget-tab { flex: 0 0 auto; }
+    .matrix-cell { padding: 14px 12px; }
+  }
+  @media (max-width: 560px) {
+    .img-grid.col2, .img-grid.col3, .stat-strip { grid-template-columns: 1fr; }
+    .meta-strip { grid-template-columns: 1fr; }
+    .meta-item { border-right: none; padding-left: 0 !important; }
+  }
+
+  @media (max-width: 900px) {
+    /* about.html */
+    .values-section { padding: 64px 20px; }
+    .values-grid { grid-template-columns: 1fr; gap: 14px; }
+    .contact-cta-btns { flex-wrap: wrap; flex-shrink: 1; }
+
+    /* amazon-business-card.html: the slide is a fixed two-column split */
+    .widget-slide.active { grid-template-columns: 1fr; }
+    .widget-slide-preview { min-height: 0; padding: 20px; }
+  }
+
+  /* ---- mobile nav, ported from the homepage so every page navigates on a phone ---- */
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-toggle {
+    display: none; background: none; border: 1px solid var(--border2);
+    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; padding: 0;
+    align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+    transition: border-color 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--cream2); }
+  .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--cream); border-radius: 1px; transition: transform 0.25s, opacity 0.2s; }
+  body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; background: rgba(14,13,12,0.96); backdrop-filter: blur(20px);
+    z-index: 90; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+  }
+  body.menu-open .mobile-menu { opacity: 1; pointer-events: auto; }
+  .mobile-menu-links { list-style: none; display: flex; flex-direction: column; gap: 28px; text-align: center; padding: 0; }
+  .mobile-menu-links a { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+  .mobile-menu-links a:hover { color: var(--accent); }
+
+  /* Touch sizing: standalone controls get a 40px minimum on a phone. */
+  @media (max-width: 900px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-resume { padding: 10px 16px; min-height: 40px; display: inline-flex; align-items: center; }
+    .widget-tab, .filter-btn { min-height: 40px; padding-top: 9px; padding-bottom: 9px; }
+    .widget-arrow { width: 40px; height: 40px; }
+    .footer-nav { gap: 20px; }
+    .footer-nav a { display: inline-block; padding: 8px 0; }
+    .back-link { padding: 8px 0; }
+  }
+
+  /* Touch sizing for the remaining standalone controls. */
+  @media (max-width: 900px) {
+    .nav-resume { min-height: 42px; padding: 11px 18px; display: inline-flex; align-items: center; }
+    .project-access-btn, .project-request-link, .next-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-nav { gap: 22px; flex-wrap: wrap; }
+    .footer-nav a { display: inline-block; padding: 10px 0; }
+    .back-link { min-height: 44px; }
+    .filter-btn { min-height: 40px; }
+  }
 </style>
 </head>
 <body>
@@ -339,8 +440,22 @@
     <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+  <div class="nav-right">
+    <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
 
 <div class="case-hero">
   <a href="index.html#work" class="back-link">← All work</a>
@@ -350,7 +465,7 @@
     <span class="eco">Amazon · 2020 – 2024</span>
   </div>
   <h1 class="case-title">Amazon Business<br><em>Credit Card</em></h1>
-  <p class="case-subtitle">Designing the Existing Card Member Page — a personalized hub for Business Prime card holders to manage their card, view rewards, and take action. Built end-to-end with a widget system designed for flexibility and scale.</p>
+  <p class="case-subtitle">A personalized hub for Business Prime card holders to manage their card, track rewards and act on their account. Built end to end on a composable widget system, so the page could keep growing without being redesigned.</p>
   <div class="meta-strip">
     <div class="meta-item">
       <div class="ml">Role</div>
@@ -391,7 +506,7 @@
   <div class="prose reveal">
     <div class="slabel">Overview</div>
     <h2>A card management hub built for business</h2>
-    <p>The Existing Card Member (ECM) Page is where Amazon Business credit card holders manage their balance, rewards, payments, and more. I led design end-to-end — from research through production — working alongside PMs and engineers.</p>
+    <p>The Existing Card Member (ECM) Page is where Amazon Business credit card holders manage their balance, rewards, payments, and more. I led design end-to-end, from research through production, working alongside PMs and engineers.</p>
     <p>The existing page had a rigid layout, poor feature discoverability, and a navigation pattern that couldn't scale. The new design introduced a <strong>flexible widget system</strong> that allows extreme personalization without breaking visual consistency.</p>
     <div class="callout">
       <p>Shipped Spring 2024 and live in the Amazon Shopping app. <a href="https://www.figma.com/design/Hy4Nt0oWXTxYVPqb3L9mJx/Small-Business-Credit-Card?node-id=4-71208" target="_blank">Explore the Figma file →</a></p>
@@ -402,7 +517,7 @@
   <!-- RESEARCH -->
   <div class="reveal">
     <div class="slabel">Research</div>
-    <div class="prose"><h2>Understanding the customer problems</h2><p>Before touching layout, I mapped the core usability failures. Poor discoverability was the intersection of three compounding issues — each making the others worse.</p></div>
+    <div class="prose"><h2>Understanding the customer problems</h2><p>Before touching layout, I mapped the core usability failures. Poor discoverability was the intersection of three compounding issues, each making the others worse.</p></div>
 
     <!-- INTERACTIVE VENN -->
     <div class="venn-section">
@@ -413,7 +528,7 @@
         <div class="venn-circle vc-bottom" id="vc4">Decreased<br>ease of use</div>
         <div class="venn-center" id="vennCenter">Less<br>discoverability</div>
       </div>
-      <p class="img-cap" style="text-align:center; margin-top:16px;">Customer problems — poor discoverability emerged as the convergence point of three separate issues.</p>
+      <p class="img-cap" style="text-align:center; margin-top:16px;">Customer problems: poor discoverability emerged as the convergence point of three separate issues.</p>
     </div>
   </div>
 
@@ -461,7 +576,7 @@
           </div>
         </div>
       </div>
-      <p class="img-cap" style="margin-top:10px;">Hover each row — features mapped by user experience value and usage frequency determine vertical position on the page.</p>
+      <p class="img-cap" style="margin-top:10px;">Hover each row: features mapped by user experience value and usage frequency determine vertical position on the page.</p>
     </div>
   </div>
 
@@ -471,7 +586,7 @@
   <div class="prose reveal">
     <div class="slabel">Design System</div>
     <h2>A widget system built for flexibility</h2>
-    <p>The core challenge: build a page that could be radically personalized per cardholder without creating fragile one-off layouts. The solution was a <strong>composable widget system</strong> — building blocks with a consistent anatomy that adapt internally based on content type.</p>
+    <p>The core challenge: build a page that could be radically personalized per cardholder without creating fragile one-off layouts. The solution was a <strong>composable widget system</strong>, building blocks with a consistent anatomy that adapt internally based on content type.</p>
   </div>
 
   <div class="img-full reveal" style="margin-bottom:0;">
@@ -533,7 +648,7 @@
           <div class="widget-zone-list">
             <div class="widget-zone">
               <div class="widget-zone-label">Widget header</div>
-              <div class="widget-zone-desc">Optional — can be hidden for card-art widgets</div>
+              <div class="widget-zone-desc">Optional, can be hidden for card-art widgets</div>
             </div>
             <div class="widget-zone">
               <div class="widget-zone-label">Content area</div>
@@ -641,12 +756,12 @@
       </div>
 
     </div><!-- /widget-carousel -->
-    <p class="img-cap">Four widget templates — each adapts its internal layout to the content type while sharing the same outer anatomy. Click through or use the arrows to explore.</p>
+    <p class="img-cap">Four widget templates: each adapts its internal layout to the content type while sharing the same outer anatomy. Click through or use the arrows to explore.</p>
   </div>
 
   <div class="img-full reveal">
-    <img src="img-abc-system.png" alt="Amazon Business Prime Card — full design system spread showing components, navigation, charts, and UI elements" style="background:#f0f4f8;">
-    <div class="img-cap">Design system spread — the full component library built for the Prime Card experience, including navigation patterns, buttons, status alerts, charts, transaction lists, and offers.</div>
+    <img src="img-abc-system.png" alt="Amazon Business Prime Card: full design system spread showing components, navigation, charts, and UI elements" style="background:#f0f4f8;">
+    <div class="img-cap">Design system spread: the full component library built for the Prime Card experience, including navigation patterns, buttons, status alerts, charts, transaction lists, and offers.</div>
   </div>
 
   <hr>
@@ -655,17 +770,17 @@
   <div class="prose reveal">
     <div class="slabel">Architecture</div>
     <h2>Page structure & layout decisions</h2>
-    <p>The page is split into a fixed <strong>global section</strong> (card art, balance, navigation) and a flexible widget zone below. An early decision: section dividers vs. cards. Dividers won — they accommodate multi-item content, text-heavy layouts, and scale across folds without extra margin overhead.</p>
+    <p>The page is split into a fixed <strong>global section</strong> (card art, balance, navigation) and a flexible widget zone below. An early decision: section dividers vs. cards. Dividers won, because they accommodate multi-item content, text-heavy layouts, and scale across folds without extra margin overhead.</p>
   </div>
 
   <div class="img-grid col2 reveal">
     <div>
       <img src="img-abc-page-build-1.webp" alt="Page structure diagram">
-      <p class="img-cap">Page structure — fixed global section above, flexible widget zone below.</p>
+      <p class="img-cap">Page structure: fixed global section above, flexible widget zone below.</p>
     </div>
     <div>
       <img src="img-abc-sections.webp" alt="Section dividers vs cards">
-      <p class="img-cap">Section dividers vs. cards — dividers won for flexibility and text-heavy content.</p>
+      <p class="img-cap">Section dividers vs. cards: dividers won for flexibility and text-heavy content.</p>
     </div>
   </div>
 
@@ -675,21 +790,21 @@
   <div class="prose reveal">
     <div class="slabel">Final Design</div>
     <h2>Shipped screens</h2>
-    <p>The three core screens of the shipped experience — My Card overview, Card Details, and Points & Rewards — each powered by the widget system and designed to adapt per cardholder.</p>
+    <p>The three core screens of the shipped experience, My Card overview, Card Details, and Points & Rewards, each powered by the widget system and designed to adapt per cardholder.</p>
   </div>
 
   <div class="img-grid col3 reveal">
     <div>
       <img src="img-abc-screen-1.png" alt="My Card screen" style="border-radius:16px; background:#e8f4fc;">
-      <p class="img-cap" style="margin-top:8px;">My Card — primary hub with balance, payment info, and quick actions.</p>
+      <p class="img-cap" style="margin-top:8px;">My Card: primary hub with balance, payment info, and quick actions.</p>
     </div>
     <div>
       <img src="img-abc-screen-2.png" alt="Card Details screen" style="border-radius:16px; background:#e8f4fc;">
-      <p class="img-cap" style="margin-top:8px;">Card Details — full card number, account details, and autopay management.</p>
+      <p class="img-cap" style="margin-top:8px;">Card Details: full card number, account details, and autopay management.</p>
     </div>
     <div>
       <img src="img-abc-screen-3.png" alt="Points and Rewards screen" style="border-radius:16px; background:#e8f4fc;">
-      <p class="img-cap" style="margin-top:8px;">Points & Rewards — earnings by category with donut chart visualization.</p>
+      <p class="img-cap" style="margin-top:8px;">Points & Rewards: earnings by category with donut chart visualization.</p>
     </div>
   </div>
 
@@ -782,7 +897,7 @@
   const barObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Bars animate in via CSS transition — triggered by setting width from 0
+        // Bars animate in via CSS transition, triggered by setting width from 0
         document.querySelectorAll('.matrix-bar-fill').forEach(bar => {
           const targetW = bar.style.width;
           bar.style.width = '0';
@@ -797,5 +912,24 @@
   const matrixEl = document.querySelector('.matrix-wrap');
   if (matrixEl) barObs.observe(matrixEl);
 </script>
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function set(open) {
+      document.body.classList.toggle('menu-open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      m.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    t.addEventListener('click', function () { set(!document.body.classList.contains('menu-open')); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    m.addEventListener('click', function (e) { if (e.target === m) set(false); });
+  })();
+</script>
+
 </body>
 </html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows Visual Systems &amp; Assets · Mason Catt</title>
+<meta name="description" content="Six connected workstreams inside Windows Design Systems: marketing compendiums, expressive icon and illustration systems, component libraries, tooling and personalization.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://masoncatt.com/windows-visual-systems.html">
+<meta property="og:title" content="Windows Visual Systems & Assets · Mason Catt">
+<meta property="og:description" content="Six connected workstreams inside Windows Design Systems: marketing compendiums, expressive icon and illustration systems, component libraries, tooling and personalization.">
+<meta property="og:image" content="https://masoncatt.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Windows Visual Systems & Assets · Mason Catt">
+<meta name="twitter:description" content="Six connected workstreams inside Windows Design Systems: marketing compendiums, expressive icon and illustration systems, component libraries, tooling and personalization.">
+<meta name="twitter:image" content="https://masoncatt.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bolt: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M15.82%201.5L5.98%2012.56L9.27%2013.91L7.55%2022.5L18.02%2010.28L14.57%209.52Z'%20fill='%23000'%20stroke='%23000'%20stroke-width='2'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E");
+    --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
+    --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
+    --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0;
+    --border: rgba(240,235,226,0.08); --border2: rgba(240,235,226,0.14);
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px; --radius-sm: 8px;
+    --col: 860px;
+  }
+
+  /* The bolt is drawn by masking currentColor. Without mask support those
+     elements would render as solid colored squares, so hide them instead. */
+  @supports not ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+    .section-label::before, .slabel::before, .hero-tag::before,
+    .hero-asterisk, .tip-bolt,
+    .contact-card-icon.is-bolt, .tool-icon.is-bolt { display: none; }
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(14,13,12,0.88); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--cream); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .nav-resume:hover { background: var(--accent); }
+
+  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--cream3); text-decoration: none; margin-bottom: 40px; transition: color 0.2s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
+  .back-link:hover { color: var(--cream2); }
+  .case-eyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
+  .etag { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ediv { color: var(--cream3); font-size: 12px; }
+  .eco { font-size: 12px; color: var(--cream3); }
+  .case-title { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .case-title em { font-style: italic; color: var(--accent); }
+  .case-subtitle { font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.7; max-width: 620px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+  .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; }
+  .meta-item { padding: 20px 0; border-right: 1px solid var(--border); }
+  .meta-item:last-child { border-right: none; }
+  .meta-item + .meta-item { padding-left: 24px; }
+  .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+  .mv { font-size: 14px; color: var(--cream); }
+  .mv.live { color: var(--accent); display:flex; align-items:center; gap:6px; }
+  .mv.live::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+
+  .hero-img-wrap { margin: 0; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; }
+  .hero-img-wrap img { width: 100%; height: auto; display: block; }
+
+  .case-body { max-width: var(--col); margin: 0 auto; padding: 80px 48px; }
+
+  .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+  .slabel::before { content: ''; width: 9px; height: 9px; flex-shrink: 0; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
+
+  .prose { margin-bottom: 64px; }
+  .prose h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px; }
+  .prose h3 { font-size: 15px; font-weight: 500; color: var(--cream); margin: 28px 0 10px; }
+  .prose p { font-size: 16px; color: var(--cream2); line-height: 1.8; margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 500; color: var(--cream); }
+
+  .thesis { background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--radius); padding: 36px 40px; margin: 32px 0; position: relative; overflow: hidden; }
+  .thesis::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(34,197,94,0.06) 0%, transparent 60%); pointer-events: none; }
+  .thesis-label { font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .thesis-text { font-family: var(--serif); font-size: clamp(22px, 3vw, 32px); font-style: italic; color: var(--cream); line-height: 1.3; letter-spacing: -0.01em; }
+
+  .callout { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: 20px 24px; margin: 20px 0; }
+  .callout p { font-size: 15px; color: var(--cream2); line-height: 1.75; margin: 0; }
+  .callout strong { color: var(--accent); font-weight: 500; }
+
+  .img-full { margin: 32px 0; }
+  .img-full img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
+  .img-caption { font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 10px; padding: 0 4px; line-height: 1.6; }
+
+  .img-grid { display: grid; gap: 12px; margin: 32px 0; }
+  .img-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .img-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+  .img-grid-item img { width: 100%; height: auto; display: block; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+  .img-grid-item .img-caption { margin-top: 8px; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+  .stat-cell { background: var(--bg2); padding: 28px; }
+  .stat-num { font-family: var(--serif); font-size: 42px; font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: 6px; }
+  .stat-desc { font-size: 13px; color: var(--cream2); line-height: 1.5; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+  .tag { font-size: 12px; color: var(--cream3); border: 1px solid var(--border2); padding: 5px 12px; border-radius: 100px; }
+  .tag.a { color: var(--accent); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+
+  .next-project { border-top: 1px solid var(--border); background: var(--bg2); padding: 64px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .next-label { font-size: 12px; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .next-title { font-family: var(--serif); font-size: clamp(20px, 3vw, 32px); font-weight: 400; letter-spacing: -0.015em; }
+  .next-link { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--cream); color: var(--bg); font-size: 14px; font-weight: 500; border-radius: 100px; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+  .next-link:hover { background: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: var(--serif); font-size: 14px; color: var(--cream2); }
+  .footer-copy { font-size: 12px; color: var(--cream3); }
+  .footer-nav { display: flex; gap: 28px; list-style: none; }
+  .footer-nav a { font-size: 12px; color: var(--cream3); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--cream2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+<style>
+  /* ---- additions for this page ---- */
+
+  /* Jump index across the streams */
+  .stream-index { max-width: var(--col); margin: -32px auto 0; padding: 0 48px; }
+  .stream-index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .sx { background: var(--bg2); padding: 20px 22px; text-decoration: none; display: block; transition: background 0.2s; }
+  .sx:hover { background: var(--bg3); }
+  .sx-num { font-family: var(--serif); font-size: 13px; color: var(--accent); margin-bottom: 8px; }
+  .sx-name { font-size: 14px; font-weight: 500; color: var(--cream); line-height: 1.35; margin-bottom: 4px; }
+  .sx-note { font-size: 12px; color: var(--cream3); line-height: 1.5; }
+
+  /* Stream heading */
+  .stream-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+  .stream-num { font-family: var(--serif); font-size: 13px; color: var(--accent); flex-shrink: 0; letter-spacing: 0.06em; }
+  .stream-rule { border: none; border-top: 1px solid var(--border2); margin: 0 0 40px; }
+
+  /* Two-column fact rows */
+  .facts { display: grid; grid-template-columns: 160px 1fr; gap: 14px 28px; margin: 24px 0; }
+  .facts dt { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; padding-top: 3px; }
+  .facts dd { font-size: 15px; color: var(--cream2); line-height: 1.7; }
+  .facts dd strong { color: var(--cream); font-weight: 500; }
+
+  /* Pull quote from a named person */
+  .quote { border-left: 3px solid var(--accent-pink); padding: 4px 0 4px 22px; margin: 28px 0; }
+  .quote p { font-family: var(--serif); font-size: 19px; font-style: italic; color: var(--cream); line-height: 1.5; margin: 0 0 8px; }
+  .quote cite { font-size: 12px; color: var(--cream3); font-style: normal; letter-spacing: 0.04em; }
+
+  .stat-strip.col4 { grid-template-columns: repeat(4, 1fr); }
+  .stat-num.sm { font-size: 30px; }
+
+  /* Responsive. The other case study pages have none, so this one sets the pattern. */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .case-hero { padding: 108px 20px 0; }
+    .case-body { padding: 56px 20px; }
+    .stream-index { padding: 0 20px; margin-top: -20px; }
+    .stream-index-grid { grid-template-columns: 1fr 1fr; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-item { border-bottom: 1px solid var(--border); }
+    .meta-item:nth-child(2n) { border-right: none; }
+    .meta-item:nth-child(n+3) { border-bottom: none; }
+    .meta-item + .meta-item { padding-left: 0; }
+    .meta-item:nth-child(2n) { padding-left: 24px; }
+    .img-grid.col3, .stat-strip, .stat-strip.col4 { grid-template-columns: 1fr 1fr; }
+    .facts { grid-template-columns: 1fr; gap: 4px 0; }
+    .facts dd { margin-bottom: 14px; }
+    .next-project { flex-direction: column; align-items: flex-start; padding: 48px 20px; }
+    footer { flex-direction: column; gap: 14px; align-items: flex-start; padding: 28px 20px; }
+  }
+  @media (max-width: 560px) {
+    .stream-index-grid, .img-grid.col2, .img-grid.col3, .stat-strip, .stat-strip.col4 { grid-template-columns: 1fr; }
+    .meta-strip { grid-template-columns: 1fr; }
+    .meta-item { border-right: none; padding-left: 0 !important; }
+    .stream-head { flex-direction: column; gap: 4px; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+  }
+
+  /* ---- mobile nav, ported from the homepage so every page navigates on a phone ---- */
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-toggle {
+    display: none; background: none; border: 1px solid var(--border2);
+    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; padding: 0;
+    align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+    transition: border-color 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--cream2); }
+  .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--cream); border-radius: 1px; transition: transform 0.25s, opacity 0.2s; }
+  body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; background: rgba(14,13,12,0.96); backdrop-filter: blur(20px);
+    z-index: 90; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+  }
+  body.menu-open .mobile-menu { opacity: 1; pointer-events: auto; }
+  .mobile-menu-links { list-style: none; display: flex; flex-direction: column; gap: 28px; text-align: center; padding: 0; }
+  .mobile-menu-links a { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+  .mobile-menu-links a:hover { color: var(--accent); }
+
+  /* Touch sizing: standalone controls get a 40px minimum on a phone. */
+  @media (max-width: 900px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-resume { padding: 10px 16px; min-height: 40px; display: inline-flex; align-items: center; }
+    .widget-tab, .filter-btn { min-height: 40px; padding-top: 9px; padding-bottom: 9px; }
+    .widget-arrow { width: 40px; height: 40px; }
+    .footer-nav { gap: 20px; }
+    .footer-nav a { display: inline-block; padding: 8px 0; }
+    .back-link { padding: 8px 0; }
+  }
+
+  /* Touch sizing for the remaining standalone controls. */
+  @media (max-width: 900px) {
+    .nav-resume { min-height: 42px; padding: 11px 18px; display: inline-flex; align-items: center; }
+    .project-access-btn, .project-request-link, .next-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-nav { gap: 22px; flex-wrap: wrap; }
+    .footer-nav a { display: inline-block; padding: 10px 0; }
+    .back-link { min-height: 44px; }
+    .filter-btn { min-height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Mason Catt</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="mason-catt-resume.pdf" target="_blank" class="nav-resume">Resume ↗</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
+
+<div class="case-hero">
+  <a href="index.html#work" class="back-link">← All work</a>
+  <div class="case-eyebrow">
+    <span class="etag">Design Systems · Visual Systems · Iconography</span>
+    <span class="ediv">·</span>
+    <span class="eco">Microsoft · Sep 2024 – Present</span>
+  </div>
+  <h1 class="case-title">Windows Visual<br>Systems <em>&amp; Assets</em></h1>
+  <p class="case-subtitle">
+    Six connected workstreams inside Windows Design Systems, all pointed at the same problem: how visual language holds its quality when it has to cover more surfaces than any one person can draw by hand.
+  </p>
+  <div class="meta-strip">
+    <div class="meta-item">
+      <div class="ml">Role</div>
+      <div class="mv">Senior UI/UX Designer</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Scope</div>
+      <div class="mv">Systems, assets, tooling</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Surface</div>
+      <div class="mv">Windows, OS-wide</div>
+    </div>
+    <div class="meta-item">
+      <div class="ml">Status</div>
+      <div class="mv live">Ongoing</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-img-wrap">
+  <img src="img-fluent-system-thumb.png" alt="Windows visual system: spacing scale, color and type tokens, iconography, taskbar and shell components">
+</div>
+
+<div class="case-body" style="padding-bottom:40px;">
+
+  <!-- THESIS -->
+  <div class="prose" style="margin-bottom:0;">
+    <div class="slabel">The through line</div>
+    <div class="thesis">
+      <div class="thesis-label">The problem all six share</div>
+      <p class="thesis-text">Windows has more surfaces than any one person can hand-craft, and the quality bar is set at the level of a single corner radius.</p>
+    </div>
+    <p>
+      Those two facts are in tension, and most of what I build here is an attempt to resolve it. Catch what slips. Make expression generatable without making it generic. Know what is worth keeping when the system gets rebuilt underneath you.
+    </p>
+    <p>
+      What follows is six workstreams. Some are shipped libraries other teams pull from every day. Some are prototypes arguing a position. They share a color model, a set of tools, and a view about where craft belongs in an automated pipeline.
+    </p>
+  </div>
+
+</div>
+
+<!-- STREAM INDEX -->
+<div class="stream-index">
+  <div class="stream-index-grid">
+    <a class="sx" href="#compendiums"><div class="sx-num">01</div><div class="sx-name">Marketing Compendiums</div><div class="sx-note">Product-accurate asset libraries, and the audit that built them</div></a>
+    <a class="sx" href="#expressive"><div class="sx-num">02</div><div class="sx-name">Expressive Assets</div><div class="sx-note">Icon personalization across six style systems</div></a>
+    <a class="sx" href="#illustration"><div class="sx-num">03</div><div class="sx-name">Windows Illustrations</div><div class="sx-note">An illustration system and the builder behind it</div></a>
+    <a class="sx" href="#components"><div class="sx-num">04</div><div class="sx-name">Component Libraries</div><div class="sx-note">Production-aligned Figma libraries and the patterns gap</div></a>
+    <a class="sx" href="#tooling"><div class="sx-num">05</div><div class="sx-name">Tooling</div><div class="sx-note">Plugins and generators that make the systems usable</div></a>
+    <a class="sx" href="#personalization"><div class="sx-num">06</div><div class="sx-name">Personalization</div><div class="sx-note">What all of it is ultimately for</div></a>
+  </div>
+</div>
+
+<div class="case-body" style="padding-top:64px;">
+
+  <!-- 01 COMPENDIUMS -->
+  <div class="prose" id="compendiums">
+    <div class="slabel">Product accuracy at scale</div>
+    <div class="stream-head">
+      <span class="stream-num">01</span>
+      <h2>Marketing Compendiums, and the audit underneath them</h2>
+    </div>
+    <p>
+      Marketing needs assets that are accurate to shipped product, across the full landscape of features and surfaces. That accuracy decays constantly, because product keeps moving and nothing is watching the gap.
+    </p>
+    <p>
+      So I started auditing the compendium against product's plan of record, surface by surface. <strong>The gaps kept turning up.</strong> Corners that did not match the spec. Materials applied inconsistently across shells. Color drift between what was designed and what shipped. States that got cut somewhere between design and build and were never reconciled.
+    </p>
+
+    <div class="callout">
+      <p><strong>The framing that matters:</strong> this was never about cleaning up someone else's work. The system should have caught these and did not. So the response was to build the thing that catches them.</p>
+    </div>
+
+    <p>
+      That response is the component, template and screen libraries, plus a pipeline that keeps product-accurate screens and flows synchronized between marketing and product. The audit is a discovery method. It produced documented findings, and those findings changed both the product and the system.
+    </p>
+
+    <h3>What it became</h3>
+    <p>
+      It stopped being a marketing deliverable. Design Systems and product design partners now pull from the same library, which is not what it was scoped to be and is the more interesting outcome.
+    </p>
+
+    <dl class="facts">
+      <dt>Owned</dt><dd>Audit method, library architecture, and the sync pipeline between marketing and product surfaces.</dd>
+      <dt>Shared with</dt><dd>Marketing partners on production scope, product design on plan-of-record accuracy.</dd>
+      <dt>Output</dt><dd>Component library, template library, screen library, and the compendium itself.</dd>
+    </dl>
+
+    <div class="tags">
+      <span class="tag a">Craft audit</span><span class="tag">Figma libraries</span><span class="tag">Product accuracy</span><span class="tag">Templates</span><span class="tag">Pipeline</span>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 02 EXPRESSIVE ASSETS -->
+  <div class="prose" id="expressive">
+    <div class="slabel">Color systems</div>
+    <div class="stream-head">
+      <span class="stream-num">02</span>
+      <h2>Expressive Assets, or how to theme an icon set without killing it</h2>
+    </div>
+    <p>
+      Every icon in Windows has to hold up across themes, light and dark modes, accent colors, and contrast requirements. Building that matrix by hand is not difficult, it is combinatorially impossible. Automating it naively is worse, because the fastest path produces output that is technically correct and visually dead.
+    </p>
+
+    <div class="img-full">
+      <img src="img-scrap-glass-icons.png" alt="Icon set rendered across multiple style systems and color modes">
+      <div class="img-caption">One icon set, rendered across style systems and color modes from a single seed color.</div>
+    </div>
+
+    <h3>Six style systems, driven by a seed</h3>
+    <p>
+      Default, Flat, Outline, Tinted, Chroma and Acrylic. A single seed color drives the whole set. The number six is not arbitrary and it is the part nobody sees: three collapsed distinctions that matter, twelve produced variants users could not tell apart and designers could not maintain.
+    </p>
+
+    <h3>The color work</h3>
+    <p>
+      The system runs on <strong>OKLCH</strong> rather than HSL or LAB. Perceptual uniformity is the whole reason. In HSL, holding lightness constant while rotating hue produces swatches that read as wildly different brightnesses, which means an automated theming pass makes some icons look heavy and others look washed out. OKLCH gives you a lightness value that actually corresponds to perceived lightness, so a generated ramp stays even across the hue wheel.
+    </p>
+    <p>
+      Underneath that sits a Figma palette and mode system: ten color modes across Base, Chromatic, Accented and Contrasting categories, built on a four-fill subtle tint ramp and six rainbow-ordered base accents.
+    </p>
+
+    <div class="callout">
+      <p><strong>Accessibility is not a mode you bolt on.</strong> High Contrast and Dichromic are generated from the same model as everything else, which is the only way they stay correct as the set grows.</p>
+    </div>
+
+    <h3>Gallery and Customizer</h3>
+    <p>
+      The Gallery is where the library is browsed. The Customizer is where someone drives it themselves, picks a seed, and sees the full matrix resolve. Both have been socialized well beyond my own team.
+    </p>
+
+    <dl class="facts">
+      <dt>Owned</dt><dd>Color model, style system definitions, the Gallery and the Customizer, plugin and export pipeline.</dd>
+      <dt>Collaborators</dt><dd><strong>Alex</strong> on technical and risk review, and Windows app icons. <strong>Carlo</strong> on visual direction. <strong>Ada</strong> and <strong>Sihan</strong> on asset anatomy vocabulary and naming.</dd>
+      <dt>Cadence</dt><dd>Daily updates to the team, with a published library and a shareable status page.</dd>
+    </dl>
+
+    <div class="tags">
+      <span class="tag a">OKLCH</span><span class="tag">Iconography</span><span class="tag">Theming</span><span class="tag">Accessibility modes</span><span class="tag">Figma plugins</span><span class="tag">SVG pipeline</span>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 03 ILLUSTRATION -->
+  <div class="prose" id="illustration">
+    <div class="slabel">Illustration</div>
+    <div class="stream-head">
+      <span class="stream-num">03</span>
+      <h2>Windows Illustrations</h2>
+    </div>
+    <p>
+      The illustration work spun out of Expressive Assets into its own system. It shares the color role model, and it will share the same contract with the underlying design system, but illustration has its own problems that icons do not.
+    </p>
+
+    <div class="img-full">
+      <img src="img-fluent-icons-thumb.png" alt="Illustration and icon construction: rounded corners, stroke weight, layer breakdown, isometric geometry">
+      <div class="img-caption">Construction rules: corner radius, stroke weight, plate geometry and layer breakdown.</div>
+    </div>
+
+    <h3>A shape taxonomy instead of a drawing guide</h3>
+    <p>
+      Three tiers. <strong>Base shapes</strong> are the backgrounds. <strong>Secondary shapes</strong> lay over the base and stay movable and scalable. <strong>Tertiary shapes</strong> are small emblem-like containers, either the element itself or a holder for an icon, and the icons they hold are always system icons.
+    </p>
+    <p>
+      Structuring it this way is what makes generation possible later. If the pieces are typed, a recipe can assemble them. If the system is just a folder of finished drawings, it cannot.
+    </p>
+
+    <h3>One asset, both surfaces</h3>
+    <p>
+      The previous approach carried light and dark variants of every illustration. I moved away from that. A single asset now has to land on both, which is a real constraint on palette and contrast and makes the library half the size and considerably easier to keep honest.
+    </p>
+
+    <h3>The Builder</h3>
+    <p>
+      A generator that composes assets from the shape taxonomy once there are good recipes and foundational elements. The test case I set for it was simple: ask for a concept like "safety" and get three usable options back. It is being built as a Windows-specific mode first, then folded into the wider Expressive Assets builder so both streams can run in parallel.
+    </p>
+
+    <dl class="facts">
+      <dt>Owned</dt><dd>Style direction, shape taxonomy, pilot asset set, guidelines, and the builder.</dd>
+      <dt>Alongside</dt><dd>The M365 illustration direction, developed in tandem. Influence rather than instruction, with the goal that the two systems work together rather than diverge.</dd>
+      <dt>Approach</dt><dd>Twelve interim assets as the pilot. Perfect those, use them to populate the guidelines, then rebuild the back catalog from the simplified principles.</dd>
+    </dl>
+
+    <div class="tags">
+      <span class="tag a">Illustration system</span><span class="tag">Shape taxonomy</span><span class="tag">Generative assembly</span><span class="tag">Guidelines</span>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 04 COMPONENTS -->
+  <div class="prose" id="components">
+    <div class="slabel">Components and patterns</div>
+    <div class="stream-head">
+      <span class="stream-num">04</span>
+      <h2>Component libraries, and the gap between a kit and a system</h2>
+    </div>
+    <p>
+      I build and maintain production-aligned Figma libraries. I do not hand these to engineering directly. They go to product design partners who carry them through to implementation, which means the bar is that a designer can build a real screen from them without inventing anything.
+    </p>
+    <p>
+      That bar is where most component kits fall down. A kit gives you buttons and inputs. A system gives you the compositions people actually need, so nobody has to reassemble the same layout from primitives every time.
+    </p>
+
+    <div class="callout">
+      <p><strong>The live problem:</strong> the new system needs to be at least on par with the visual library it replaces, and in most cases better. Right now it is short on patterns people can take off the shelf and use. Settings is the surface most likely to lack enough base components to compose from.</p>
+    </div>
+
+    <p>
+      This is an area I have been pushing on, and the shape of the fix is a component priority list built from where people are actually blocked, rather than from what looks incomplete on a coverage chart.
+    </p>
+
+    <dl class="facts">
+      <dt>Owned</dt><dd>Marketing-side component and template libraries, and the documentation and adoption workflows around them.</dd>
+      <dt>Contributing to</dt><dd>Gap analysis and component prioritization on the newer system.</dd>
+      <dt>Principle</dt><dd>Reusable building blocks first, compositions on top, new components only where composition genuinely cannot get there.</dd>
+    </dl>
+
+    <div class="tags">
+      <span class="tag a">Component architecture</span><span class="tag">Design tokens</span><span class="tag">Documentation</span><span class="tag">Adoption</span>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 05 TOOLING -->
+  <div class="prose" id="tooling">
+    <div class="slabel">Plugins and generators</div>
+    <div class="stream-head">
+      <span class="stream-num">05</span>
+      <h2>Tooling, which is a means and not the point</h2>
+    </div>
+    <p>
+      None of the systems above survive contact with real scale unless someone builds the thing that operates them. So I build plugins. They are not the achievement, they are what makes the achievement usable by anyone other than me.
+    </p>
+
+    <div class="img-grid col2">
+      <div class="img-grid-item">
+        <img src="seed-pill.png" alt="Seed color control driving the generated palette">
+        <div class="img-caption">Seed control. One input, the full matrix downstream.</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="app-grid.png" alt="Generated icon grid across app set">
+        <div class="img-caption">Generated output across a full app set.</div>
+      </div>
+    </div>
+
+    <h3>What exists</h3>
+    <dl class="facts">
+      <dt>Icon Palette Builder</dt><dd>Generates monochromatic palettes from a seed, following the color model rather than eyeballing tints.</dd>
+      <dt>Icon Mode Switcher</dt><dd>Variable mode management and hex remapping across a library, so a mode change is one operation instead of hundreds.</dd>
+      <dt>Display mode prototype</dt><dd>Greyscale, monotone, duotone and high-contrast modes, with export-all-modes-as-layers and SVG output.</dd>
+      <dt>Builders</dt><dd>The Expressive Assets and Illustration builders, plus the export pipeline that gets assets out of Figma and into a usable library.</dd>
+    </dl>
+
+    <h3>The unglamorous part</h3>
+    <p>
+      Figma's plugin sandbox is ES5-only, paint proxies are read-only, and instances detach in ways that will quietly ruin a library if you are not watching. A meaningful share of this work is working around those constraints without leaving a mess for whoever maintains it next.
+    </p>
+
+    <div class="callout">
+      <p><strong>On AI in this work:</strong> it accelerated the generation and refactoring passes substantially. It was also confidently wrong about color math more than once, in ways that looked plausible until the output was rendered side by side. The useful posture is to let it draft and to verify everything that touches perceptual values by eye.</p>
+    </div>
+
+    <div class="tags">
+      <span class="tag a">Figma plugin development</span><span class="tag">Export pipelines</span><span class="tag">AI-assisted production</span><span class="tag">SVG</span>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 06 PERSONALIZATION -->
+  <div class="prose" id="personalization">
+    <div class="slabel">The argument</div>
+    <div class="stream-head">
+      <span class="stream-num">06</span>
+      <h2>Personalization, which is what all of it is for</h2>
+    </div>
+    <p>
+      The systems above are infrastructure. This is the argument they exist to make.
+    </p>
+
+    <div class="thesis">
+      <div class="thesis-label">The thesis</div>
+      <p class="thesis-text">It's still Windows. Now it's mine.</p>
+    </div>
+
+    <p>
+      A prototype exploring how Windows could become genuinely personal, rather than personalized in the wallpaper-swap sense. A theme is a complete identity that holds across Start, the Lock screen, widgets and the account surface, and it stays recognizably Windows the whole way through. That second half is the hard part. Anyone can make a skin. Very few can make a skin that does not feel like a costume.
+    </p>
+
+    <div class="img-full">
+      <img src="img-matrix.png" alt="Theme matrix across wallpaper, Start, account, lock screen and widgets for multiple theme identities">
+      <div class="img-caption">The matrix. Each row is one identity resolved across every surface it has to touch.</div>
+    </div>
+
+    <p>
+      Pushing on distinct visual languages is what stress-tests the model. A theme built around a soft, illustrative property and one built around hard industrial sportswear break a personalization system in completely different places, and finding those breaks is the point of building it.
+    </p>
+
+    <div class="img-grid col3">
+      <div class="img-grid-item"><img src="img-lock-gamer.png" alt="Gamer theme lock screen"></div>
+      <div class="img-grid-item"><img src="img-lock-lego.png" alt="Construction toy theme lock screen"></div>
+      <div class="img-grid-item"><img src="img-lock-nike.png" alt="Sportswear theme lock screen"></div>
+    </div>
+    <div class="img-caption">Three identities against the same surface, each testing a different failure mode.</div>
+
+    <h3>Why it connects back</h3>
+    <p>
+      Personalization at this level is only affordable if the assets underneath it can be generated. Expressive Assets is what makes a theme more than a wallpaper. The illustration system is what gives it a voice. The component libraries are what keep it from drifting. This stream is the reason the other five are worth doing.
+    </p>
+
+    <div class="tags">
+      <span class="tag a">Vision prototype</span><span class="tag">Theming</span><span class="tag">Shell surfaces</span><span class="tag">Expressive systems</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- CLOSE -->
+  <div class="prose">
+    <div class="slabel">What it adds up to</div>
+    <h2>A single question, answered six ways</h2>
+    <p>
+      Every stream here is the same problem viewed from a different angle: how do you hold a quality bar across a surface area that has outgrown hand craft. The audit catches what slips. The color model makes expression generatable. The taxonomy makes illustration composable. The libraries keep it from drifting. The tooling makes it operable by people other than me. The prototype argues why it is worth the trouble.
+    </p>
+    <p>
+      Most of this was built in the margins of a role scoped to something narrower. That is the part I would change.
+    </p>
+  </div>
+
+</div>
+
+<div class="next-project">
+  <div>
+    <div class="next-label">Next project</div>
+    <div class="next-title">Amazon Pay Studio</div>
+  </div>
+  <a href="amazon-pay-studio.html" class="next-link">View project →</a>
+</div>
+
+<footer>
+  <div class="footer-name">Mason Catt</div>
+  <ul class="footer-nav">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
+    <li><a href="mason-catt-resume.pdf" target="_blank">Resume</a></li>
+  </ul>
+  <div class="footer-copy">© 2026</div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function set(open) {
+      document.body.classList.toggle('menu-open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      m.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    t.addEventListener('click', function () { set(!document.body.classList.contains('menu-open')); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    m.addEventListener('click', function (e) { if (e.target === m) set(false); });
+  })();
+</script>
+
+</body>
+</html>

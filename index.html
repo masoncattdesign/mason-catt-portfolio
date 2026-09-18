@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mason Catt · Senior Product Designer</title>
-<meta name="description" content="Mason Catt — Senior product, visual, and systems designer working on Windows at Microsoft. Previously Amazon, Credit Karma, BUCK Design. Based in Los Angeles.">
+<title>Mason Catt · Senior Visual Designer</title>
+<meta name="description" content="Mason Catt, Senior product, visual, and systems designer working on Windows at Microsoft. Previously Amazon, Credit Karma, BUCK Design. Based in Los Angeles.">
 <link rel="canonical" href="https://masoncatt.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://masoncatt.com/">
-<meta property="og:title" content="Mason Catt · Senior Product Designer">
-<meta property="og:description" content="Hybrid product, visual, and systems designer. Currently at Microsoft on Windows Design Systems.">
-<meta property="og:image" content="https://masoncatt.com/img-headshot.png">
+<meta property="og:title" content="Mason Catt · Senior Visual Designer">
+<meta property="og:description" content="Senior Visual Designer working in design systems and brand. Visual systems, iconography and illustration at OS scale, currently at Microsoft on Windows Design Systems.">
+<meta property="og:image" content="https://masoncatt.com/og-image.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mason Catt · Senior Product Designer">
-<meta name="twitter:description" content="Hybrid product, visual, and systems designer. Currently at Microsoft on Windows Design Systems.">
-<meta name="twitter:image" content="https://masoncatt.com/img-headshot.png">
+<meta name="twitter:title" content="Mason Catt · Senior Visual Designer">
+<meta name="twitter:description" content="Senior Visual Designer working in design systems and brand. Visual systems, iconography and illustration at OS scale, currently at Microsoft on Windows Design Systems.">
+<meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -125,7 +125,7 @@
   }
   .hero-headline em { font-style: italic; color: var(--accent); }
 
-  /* inline pill — shared base */
+  /* inline pill, shared base */
   .h-pill {
     display: inline-flex; align-items: center;
     border-radius: 100px; overflow: hidden;
@@ -199,7 +199,7 @@
   .h-pill-place:hover { transform: scale(1.05) rotate(2deg); }
   .h-pill-place img, .h-pill-place svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  /* Hello — outline strokes into pink on page load */
+  /* Hello, outline strokes into pink on page load */
   .hero-hello {
     display: inline;
     font-style: italic;
@@ -212,10 +212,10 @@
     100% { color: var(--accent-pink); -webkit-text-stroke: 2px transparent; }
   }
 
-  /* Designer — italic green */
+  /* Designer, italic green */
   .hero-designer { font-style: italic; color: var(--accent); }
 
-  /* Creative — dotted underline + spinning asterisk + tooltip */
+  /* Creative, dotted underline + spinning asterisk + tooltip */
   .hero-creative {
     display: inline-block; position: relative; cursor: pointer;
     text-decoration: underline; text-decoration-style: dotted;
@@ -407,7 +407,7 @@
 
   /* ─────────── RESPONSIVE ─────────── */
 
-  /* Tablet: ≤1024px — drop work grid to 2 cols */
+  /* Tablet: ≤1024px, drop work grid to 2 cols */
   @media (max-width: 1024px) {
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
     .project-card.featured { grid-column: 1 / -1; }
@@ -501,9 +501,19 @@
     .hero-creative-tooltip { display: none; }
   }
 
-  /* Very narrow phones: ≤380px — slightly tighter still */
+  /* Very narrow phones: ≤380px, slightly tighter still */
   @media (max-width: 380px) {
     .hero-headline { font-size: 32px; }
+  }
+
+  /* Touch sizing for the remaining standalone controls. */
+  @media (max-width: 900px) {
+    .nav-resume { min-height: 42px; padding: 11px 18px; display: inline-flex; align-items: center; }
+    .project-access-btn, .project-request-link, .next-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-nav { gap: 22px; flex-wrap: wrap; }
+    .footer-nav a { display: inline-block; padding: 10px 0; }
+    .back-link { min-height: 44px; }
+    .filter-btn { min-height: 40px; }
   }
 </style>
 </head>
@@ -576,60 +586,28 @@
 
   <div class="projects-grid">
 
-    <!-- FEATURED: Windows Personalization — Current project -->
-    <div class="project-card featured reveal" style="cursor:default;">
+    <!-- FEATURED: Windows Visual Systems & Assets, Current -->
+    <a href="windows-visual-systems.html" class="project-card featured reveal">
       <div>
         <div class="project-tags">
           <span class="tag brand">Microsoft</span>
           <span class="exp-current">Current</span>
           <span class="tag">Design Systems</span>
-          <span class="tag">Vision Prototype</span>
+          <span class="tag">Visual Systems</span>
+          <span class="tag">Iconography</span>
+          <span class="tag">Illustration</span>
         </div>
-        <h3 class="project-name">Windows System Personalization</h3>
-        <p class="project-desc">A design prototype exploring how Windows could become genuinely personal — complete theme identities across Start, Lock screen, and widgets, built around the thesis <em>"It's still Windows, now it's mine."</em></p>
+        <h3 class="project-name">Windows Visual Systems &amp; Assets</h3>
+        <p class="project-desc">Six connected workstreams inside Windows Design Systems: marketing compendiums and the craft audit behind them, expressive icon and illustration systems, production-aligned component libraries, the tooling that operates all of it, and the personalization work it is ultimately for.</p>
         <div class="project-cta-row">
-          <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
-          <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Personalization" class="project-request-link">Request access</a>
+          <span class="project-access-btn">View project →</span>
         </div>
       </div>
       <div class="project-thumb">
-        <img src="img-wsp-thumb.png" alt="Windows personalization theme prototype" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img src="img-fluent-system-thumb.png" alt="Windows visual system: spacing scale, tokens, iconography and shell components" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-    </div>
+    </a>
 
-    <!-- Windows Fluent Visual System -->
-    <div class="project-card reveal" style="cursor:default;">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#dde6f4;">
-        <img src="img-fluent-system-thumb.png" alt="Windows Fluent design system tokens and components" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="project-tags">
-        <span class="tag brand">Microsoft</span><span class="tag">Fluent</span><span class="tag">Visual Systems</span>
-      </div>
-      <h3 class="project-name">Windows Fluent Visual System</h3>
-      <p class="project-desc">Component architecture, token systems, and design-code parity for Windows 11's Fluent design language at scale.</p>
-      <div class="project-cta-row">
-        <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
-        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Fluent%20Visual%20System" class="project-request-link">Request access</a>
-      </div>
-    </div>
-
-    <!-- Windows Illustration & Icons -->
-    <div class="project-card reveal" style="cursor:default;">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#d6e4f4;">
-        <img src="img-fluent-icons-thumb.png" alt="Windows illustration and icon system blueprints" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="project-tags">
-        <span class="tag brand">Microsoft</span><span class="tag">Illustration</span><span class="tag">Iconography</span>
-      </div>
-      <h3 class="project-name">Windows Illustration & Icons</h3>
-      <p class="project-desc">Illustration and iconography systems built for Windows — visual foundations for accessibility, hierarchy, and personality at OS scale.</p>
-      <div class="project-cta-row">
-        <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
-        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Windows%20Illustration%20%26%20Icons" class="project-request-link">Request access</a>
-      </div>
-    </div>
-
-    <!-- Amazon Pay Studio — before Business Card -->
     <a href="amazon-pay-studio.html" class="project-card reveal">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#0d1f0d;">
         <img src="img-pay-studio-hero.png" alt="Amazon Pay Studio" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
@@ -638,13 +616,13 @@
         <span class="tag brand">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
       </div>
       <h3 class="project-name">Amazon Business Pay Studio</h3>
-      <p class="project-desc">Atomic design system for Amazon Business payments — 18 components, task templates, and use case journeys to ship payment products quickly. Completed 2023.</p>
+      <p class="project-desc">Atomic design system for Amazon Business payments, 18 components, task templates, and use case journeys to ship payment products quickly. Completed 2023.</p>
       <div class="project-cta-row">
         <span class="project-access-btn">View project →</span>
       </div>
     </a>
 
-    <!-- Amazon Business Card — after Pay Studio -->
+    <!-- Amazon Business Card, after Pay Studio -->
     <a href="amazon-business-card.html" class="project-card reveal">
       <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#f0f4f8;">
         <img src="img-abc-thumb.png" alt="Amazon Business Card design system components" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
@@ -653,7 +631,7 @@
         <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
       </div>
       <h3 class="project-name">Amazon Business Credit Card</h3>
-      <p class="project-desc">Design lead for the Existing Card Member Page — a flexible widget system for card management, rewards, and personalization. Shipped Spring 2024.</p>
+      <p class="project-desc">Design lead for the Existing Card Member Page, a flexible widget system for card management, rewards, and personalization. Shipped Spring 2024.</p>
       <div class="project-cta-row">
         <span class="project-access-btn">View project →</span>
       </div>
@@ -668,29 +646,13 @@
         <span class="tag brand">BUCK</span><span class="tag">Facebook</span><span class="tag">Brand</span>
       </div>
       <h3 class="project-name">Facebook Libra</h3>
-      <p class="project-desc">Iconography, visual guidelines, and digital artwork supporting brand campaigns for Facebook's Libra initiative — developed at BUCK Design with pixel-perfect production deliverables.</p>
+      <p class="project-desc">A custom icon system and an editorial illustration set built to explain a global cryptocurrency to people who had never seen one, plus the visual guidelines holding it together. Built at BUCK Design.</p>
       <div class="project-cta-row">
         <span class="project-access-btn">View project →</span>
       </div>
     </a>
 
-    <!-- Amazon Advertising -->
-    <div class="project-card reveal" style="cursor:default;">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#2c3e50;">
-        <img src="img-amazon-ads-thumb.png" alt="Amazon Advertising illustration of runners with arrow" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="project-tags">
-        <span class="tag brand">Amazon</span><span class="tag">Advertising</span>
-      </div>
-      <h3 class="project-name">Amazon Advertising</h3>
-      <p class="project-desc">Advertising experiences across mobile, web, audio, and TV — including the Gold Clio Award–winning theatrical campaign. Conceptual artwork, diagrams, and pixel-perfect production delivery.</p>
-      <div class="project-cta-row">
-        <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🔒 View project →</span>
-        <a href="mailto:masoncatt@gmail.com?subject=Access%20Request%20—%20Amazon%20Advertising" class="project-request-link">Request access</a>
-      </div>
-    </div>
-
-    <!-- Additional & Freelance — full width -->
+    <!-- Additional & Freelance, full width -->
     <div class="project-card reveal" style="cursor:default; grid-column: 1 / -1;">
       <div style="max-width:600px;">
         <div class="project-tags">
@@ -701,7 +663,7 @@
           <span class="tag">Credit Karma</span>
         </div>
         <h3 class="project-name">Additional & Freelance Work</h3>
-        <p class="project-desc">Select freelance illustration, graphic design, and visual branding projects — album artwork, editorial illustration, brand identity, and more.</p>
+        <p class="project-desc">Select freelance illustration, graphic design, and visual branding projects, album artwork, editorial illustration, brand identity, and more.</p>
         <div style="margin-top:20px;">
           <a href="mailto:masoncatt@gmail.com?subject=Freelance%20Work%20Sample%20Request" class="project-access-btn">Request sample of freelance work →</a>
         </div>
@@ -780,12 +742,12 @@
       <div class="contact-card">
         <div class="contact-card-icon" style="color:var(--accent);" aria-hidden="true">◎</div>
         <div class="contact-card-label">Product & Visual Systems</div>
-        <p class="contact-card-desc">My full-time focus — design systems, component architecture, Figma libraries, iconography, and product design at scale.</p>
+        <p class="contact-card-desc">My full-time focus, design systems, component architecture, Figma libraries, iconography, and product design at scale.</p>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-icon is-bolt" style="color:var(--accent-pink);" aria-hidden="true"></div>
-        <div class="contact-card-label">Freelance — Illustration & Visual</div>
+        <div class="contact-card-label">Freelance, Illustration & Visual</div>
         <p class="contact-card-desc">I take select freelance work in illustration, graphic design, and visual branding. If you have something creative and interesting, let's talk.</p>
       </div>
 
