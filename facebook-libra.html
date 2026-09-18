@@ -10,6 +10,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
+    --bolt: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M15.82%201.5L5.98%2012.56L9.27%2013.91L7.55%2022.5L18.02%2010.28L14.57%209.52Z'%20fill='%23000'%20stroke='%23000'%20stroke-width='2'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E");
     --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
     --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
     --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0;
@@ -19,6 +20,14 @@
     --sans: 'DM Sans', system-ui, sans-serif;
     --radius: 12px;
     --col: 860px;
+  }
+
+  /* The bolt is drawn by masking currentColor. Without mask support those
+     elements would render as solid colored squares, so hide them instead. */
+  @supports not ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+    .section-label::before, .slabel::before, .hero-tag::before,
+    .hero-asterisk, .tip-bolt,
+    .contact-card-icon.is-bolt, .tool-icon.is-bolt { display: none; }
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
@@ -78,7 +87,7 @@
   .case-body { max-width: var(--col); margin: 0 auto; padding: 0 48px 80px; }
 
   .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
-  .slabel::before { content: '✦'; font-size: 9px; }
+  .slabel::before { content: ''; width: 9px; height: 9px; flex-shrink: 0; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
   .slabel.blue { color: var(--accent-blue); }
   .slabel.blue::before { color: var(--accent-blue); }
 

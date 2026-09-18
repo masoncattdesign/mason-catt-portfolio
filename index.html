@@ -31,6 +31,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
+    --bolt: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M15.82%201.5L5.98%2012.56L9.27%2013.91L7.55%2022.5L18.02%2010.28L14.57%209.52Z'%20fill='%23000'%20stroke='%23000'%20stroke-width='2'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E");
     --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
     --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
     --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0;
@@ -38,6 +39,14 @@
     --serif: 'Libre Baskerville', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
     --radius: 12px; --radius-sm: 8px;
+  }
+
+  /* The bolt is drawn by masking currentColor. Without mask support those
+     elements would render as solid colored squares, so hide them instead. */
+  @supports not ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+    .section-label::before, .slabel::before, .hero-tag::before,
+    .hero-asterisk, .tip-bolt,
+    .contact-card-icon.is-bolt, .tool-icon.is-bolt { display: none; }
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
@@ -216,12 +225,14 @@
   }
   .hero-creative:hover { color: var(--accent-pink); }
   .hero-asterisk {
-    display: inline-block; color: var(--accent-pink);
-    font-weight: 900; font-size: 0.75em; margin-left: 1px;
-    vertical-align: super; font-style: normal; line-height: 1;
-    transition: transform 0.5s ease;
+    display: inline-block; width: 0.46em; height: 0.46em;
+    margin-left: 3px; vertical-align: super;
+    background-color: var(--accent-pink);
+    -webkit-mask: var(--bolt) no-repeat center/contain;
+    mask: var(--bolt) no-repeat center/contain;
+    transition: transform 0.35s ease;
   }
-  .hero-creative:hover .hero-asterisk { transform: rotate(180deg); }
+  .hero-creative:hover .hero-asterisk { transform: rotate(15deg) scale(1.18); }
   .hero-creative-tooltip {
     position: absolute; bottom: calc(100% + 12px); left: 50%;
     transform: translateX(-50%) translateY(6px);
@@ -231,6 +242,12 @@
     font-style: normal; letter-spacing: normal; color: var(--cream2);
     pointer-events: none; opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease; z-index: 10;
+  }
+  .tip-bolt {
+    display: inline-block; width: 9px; height: 9px; margin-right: 7px;
+    vertical-align: -1px; background-color: var(--accent);
+    -webkit-mask: var(--bolt) no-repeat center/contain;
+    mask: var(--bolt) no-repeat center/contain;
   }
   .hero-creative-tooltip::after {
     content: ''; position: absolute; top: 100%; left: 50%;
@@ -264,14 +281,12 @@
   .client-divider { color: var(--cream3); font-size: 11px; }
   .client-section-div { width: 1px; height: 12px; background: var(--border2); margin: 0 6px; }
 
-  .marquee-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 0; overflow: hidden; background: var(--bg2); }
-  .marquee-track { display: flex; align-items: center; width: max-content; animation: marquee 30s linear infinite; }
-  .marquee-item { display: flex; align-items: center; font-size: 13px; font-weight: 500; color: var(--cream3); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; line-height: 1; padding: 0 32px; }
-  .marquee-dot { font-size: 9px; color: var(--accent); line-height: 1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
   .section { padding: 72px 48px; }
+  /* hairline kept where the marquee strip used to sit, so the hero still closes off */
+  #work { border-top: 1px solid var(--border); }
   .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 48px; }
-  .section-label::before { content: '✦'; font-size: 10px; }
+  .section-label::before { content: ''; width: 10px; height: 10px; flex-shrink: 0; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
 
   .work-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
   .work-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 52px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; }
@@ -325,6 +340,9 @@
   .contact-card-icon {
     font-size: 20px; margin-bottom: 14px; color: var(--accent);
     line-height: 1;
+  }
+  .contact-card-icon.is-bolt {
+    width: 20px; height: 20px; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain;
   }
   .contact-card-label {
     font-size: 14px; font-weight: 500; color: var(--cream);
@@ -384,7 +402,6 @@
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -424,7 +441,7 @@
       padding: 4px 12px; font-size: 11px; gap: 6px;
     }
     .h-pill-disc-dot { width: 5px; height: 5px; }
-    .hero-asterisk { font-size: 0.6em; }
+    .hero-asterisk { width: 0.4em; height: 0.4em; margin-left: 2px; }
 
     /* Hero CTAs */
     .hero-ctas { gap: 10px; margin-bottom: 48px; flex-wrap: wrap; }
@@ -443,8 +460,6 @@
     .hero-clients span, .hero-clients strong { font-size: 11px; }
 
     /* Marquee */
-    .marquee-strip { padding: 12px 0; }
-    .marquee-item { font-size: 11px; letter-spacing: 0.08em; }
 
     /* Work header */
     .work-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
@@ -530,7 +545,7 @@
         <span class="h-pill-disc-all-item">⚙️&nbsp;&nbsp;SYSTEM</span>
       </span>
     </span>&nbsp;<em class="hero-designer">Designer</em><br>
-    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk" aria-hidden="true">✦︎</span><span class="hero-creative-tooltip" aria-hidden="true">✦ See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
+    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk" aria-hidden="true"></span><span class="hero-creative-tooltip" aria-hidden="true"><i class="tip-bolt"></i>See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
   </h1>
 
   <div class="hero-ctas">
@@ -548,26 +563,6 @@
   </div>
 </section>
 
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item">Design Systems</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Visual Systems</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Platform Architecture</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Figma Libraries</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Iconography</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Interaction Design</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Creative Direction</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Accessibility</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Design Systems</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Visual Systems</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Platform Architecture</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Figma Libraries</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Iconography</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Interaction Design</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Creative Direction</span><span class="marquee-dot" aria-hidden="true">✦</span>
-    <span class="marquee-item">Accessibility</span><span class="marquee-dot" aria-hidden="true">✦</span>
-  </div>
-</div>
 
 <!-- WORK -->
 <section class="section" id="work">
@@ -789,7 +784,7 @@
       </div>
 
       <div class="contact-card">
-        <div class="contact-card-icon" style="color:var(--accent-pink);" aria-hidden="true">✦</div>
+        <div class="contact-card-icon is-bolt" style="color:var(--accent-pink);" aria-hidden="true"></div>
         <div class="contact-card-label">Freelance — Illustration & Visual</div>
         <p class="contact-card-desc">I take select freelance work in illustration, graphic design, and visual branding. If you have something creative and interesting, let's talk.</p>
       </div>

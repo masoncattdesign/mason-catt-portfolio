@@ -10,6 +10,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
+    --bolt: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M15.82%201.5L5.98%2012.56L9.27%2013.91L7.55%2022.5L18.02%2010.28L14.57%209.52Z'%20fill='%23000'%20stroke='%23000'%20stroke-width='2'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E");
     --bg: #0e0d0c; --bg2: #161512; --bg3: #1e1c18;
     --cream: #f0ebe2; --cream2: #b8b0a4; --cream3: #6b6560;
     --accent: #22c55e; --accent-blue: #3b82f6; --accent-pink: #e879a0; --accent2: #3b82f6;
@@ -17,6 +18,14 @@
     --serif: 'Libre Baskerville', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
     --radius: 12px; --radius-sm: 8px;
+  }
+
+  /* The bolt is drawn by masking currentColor. Without mask support those
+     elements would render as solid colored squares, so hide them instead. */
+  @supports not ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+    .section-label::before, .slabel::before, .hero-tag::before,
+    .hero-asterisk, .tip-bolt,
+    .contact-card-icon.is-bolt, .tool-icon.is-bolt { display: none; }
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
@@ -73,7 +82,7 @@
     letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px;
     opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s;
   }
-  .hero-tag::before { content: '✦'; font-size: 10px; }
+  .hero-tag::before { content: ''; width: 10px; height: 10px; flex-shrink: 0; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
   .about-hero h1 {
     font-family: var(--serif); font-size: clamp(44px, 6vw, 80px);
     font-weight: 400; line-height: 1.08; letter-spacing: -0.025em;
@@ -126,7 +135,7 @@
 
   /* ── SECTION SHARED ── */
   .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 40px; }
-  .section-label::before { content: '✦'; font-size: 10px; }
+  .section-label::before { content: ''; width: 10px; height: 10px; flex-shrink: 0; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
 
   /* ── CAREER TIMELINE ── */
   .timeline-section { padding: 100px 48px; border-top: 1px solid var(--border); }
@@ -163,6 +172,7 @@
   }
   .tool-chip:hover { border-color: var(--border2); color: var(--cream); }
   .tool-icon { font-size: 18px; line-height: 1; }
+  .tool-icon.is-bolt { width: 16px; height: 16px; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
 
   /* ── VALUES ── */
   .values-section { padding: 100px 48px; border-top: 1px solid var(--border); }
@@ -333,7 +343,7 @@
       <div class="tool-chip"><span class="tool-icon">🎬</span>After Effects</div>
       <div class="tool-chip"><span class="tool-icon">🎞️</span>Premiere</div>
       <div class="tool-chip"><span class="tool-icon">✏️</span>Procreate</div>
-      <div class="tool-chip"><span class="tool-icon">✦</span>Midjourney</div>
+      <div class="tool-chip"><span class="tool-icon is-bolt"></span>Midjourney</div>
       <div class="tool-chip"><span class="tool-icon">⚡</span>Cursor</div>
       <div class="tool-chip"><span class="tool-icon">🤖</span>ChatGPT</div>
       <div class="tool-chip"><span class="tool-icon">🧠</span>Claude</div>
