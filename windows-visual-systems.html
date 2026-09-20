@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Unlisted: reachable by direct URL, not linked from the site and not indexed. -->
+<meta name="robots" content="noindex, nofollow">
 <title>Windows Visual Systems &amp; Assets · Mason Catt</title>
 <meta name="description" content="Case study in progress. Design systems and visual language work at Microsoft on Windows.">
 <meta property="og:type" content="article">
@@ -16,7 +18,6 @@
 <meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="project-gate.css">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -274,20 +275,7 @@
   </ul>
 </div>
 
-<div id="project-gate" class="project-gate">
-  <div class="project-gate-panel">
-    <div class="project-gate-icon" aria-hidden="true">🚧</div>
-    <h1 class="project-gate-title">Windows Visual Systems &amp; Assets</h1>
-    <p class="project-gate-desc">This case study is still under construction. Some of the work is unannounced, so it is not public yet. Happy to walk through it directly.</p>
-    <div class="project-gate-actions">
-      <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20walkthrough" class="project-gate-primary">Request a walkthrough →</a>
-      <a href="index.html#work" class="project-gate-secondary">← Back to all work</a>
-    </div>
-    <p class="project-gate-note">Portfolio · Mason Catt</p>
-  </div>
-</div>
-
-<div id="project-content" class="project-gate-content" hidden aria-hidden="true">
+<div id="project-content">
 
 <div class="case-hero">
   <a href="index.html#work" class="back-link">← All work</a>
@@ -347,7 +335,7 @@
 <div class="stream-index">
   <div class="stream-index-grid">
     <a class="sx" href="#compendiums"><div class="sx-num">01</div><div class="sx-name">Marketing Compendiums</div><div class="sx-note">Product-accurate asset libraries, and the audit that built them</div></a>
-    <a class="sx" href="#expressive"><div class="sx-num">02</div><div class="sx-name">Expressive Assets</div><div class="sx-note">Icon personalization across six style systems</div></a>
+    <a class="sx" href="#expressive"><div class="sx-num">02</div><div class="sx-name">Expressive Assets</div><div class="sx-note">An instrument for testing how Windows could be themed</div></a>
     <a class="sx" href="#illustration"><div class="sx-num">03</div><div class="sx-name">Windows Illustrations</div><div class="sx-note">An illustration system and the builder behind it</div></a>
     <a class="sx" href="#components"><div class="sx-num">04</div><div class="sx-name">Component Libraries</div><div class="sx-note">Production-aligned Figma libraries and the patterns gap</div></a>
     <a class="sx" href="#tooling"><div class="sx-num">05</div><div class="sx-name">Tooling</div><div class="sx-note">Plugins and generators that make the systems usable</div></a>
@@ -368,7 +356,7 @@
       Marketing needs assets that are accurate to shipped product, across the full landscape of features and surfaces. That accuracy decays constantly, because product keeps moving and nothing is watching the gap.
     </p>
     <p>
-      So I started auditing the compendium against product's plan of record, surface by surface. <strong>The gaps kept turning up.</strong> Corners that did not match the spec. Materials applied inconsistently across shells. Color drift between what was designed and what shipped. States that got cut somewhere between design and build and were never reconciled.
+      So I started auditing the compendium against product's plan of record, surface by surface. <strong>The gaps kept turning up</strong>, and they were the kind you only catch by looking closely: geometry, material treatment, color, and states that go missing somewhere between design and build. Small individually. Compounding across a landscape this size.
     </p>
 
     <div class="callout">
@@ -402,20 +390,29 @@
     <div class="slabel">Color systems</div>
     <div class="stream-head">
       <span class="stream-num">02</span>
-      <h2>Expressive Assets, or how to theme an icon set without killing it</h2>
+      <h2>Expressive Assets, or building the thing that makes styles comparable</h2>
     </div>
     <p>
       Every icon in Windows has to hold up across themes, light and dark modes, accent colors, and contrast requirements. Building that matrix by hand is not difficult, it is combinatorially impossible. Automating it naively is worse, because the fastest path produces output that is technically correct and visually dead.
     </p>
+    <p>
+      But the harder problem sits before either of those. <strong>Nobody knows yet what expression should look like across Windows.</strong> That is an open question, and you cannot answer it by looking at three icons. You have to see a direction across the whole family, in every mode, under identical conditions, or you are comparing a good mockup to a bad one instead of comparing two ideas.
+    </p>
+    <p>
+      So the first real problem was not picking a style. It was building the instrument that makes styles comparable.
+    </p>
 
     <div class="img-full">
       <img src="img-scrap-glass-icons.png" alt="Icon set rendered across multiple style systems and color modes">
-      <div class="img-caption">One icon set, rendered across style systems and color modes from a single seed color.</div>
+      <div class="img-caption">One icon set rendered across candidate directions and color modes, from a single seed. Identical conditions are the entire point.</div>
     </div>
 
-    <h3>Six style systems, driven by a seed</h3>
+    <h3>What the instrument produces</h3>
     <p>
-      Default, Flat, Outline, Tinted, Chroma and Acrylic. A single seed color drives the whole set. The number six is not arbitrary and it is the part nobody sees: three collapsed distinctions that matter, twelve produced variants users could not tell apart and designers could not maintain.
+      Default, Flat, Outline, Tinted, Chroma and Acrylic, all driven from a single seed color. <strong>These are test directions, not proposals.</strong> They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled.
+    </p>
+    <p>
+      Testing is early and has not surfaced much yet. That is a fine place to be when the instrument is the deliverable, and a better answer than a finding I did not have.
     </p>
 
     <h3>The color work</h3>
@@ -432,12 +429,12 @@
 
     <h3>Gallery and Customizer</h3>
     <p>
-      The Gallery is where the library is browsed. The Customizer is where someone drives it themselves, picks a seed, and sees the full matrix resolve. Both have been socialized well beyond my own team.
+      The Gallery is where the library is browsed. The Customizer is where the team drives it themselves, picks a seed, and sees a direction resolve across the whole family. It is an instrument for making a decision, not a presentation of one already made. Both have been socialized well beyond my own team.
     </p>
 
     <dl class="facts">
-      <dt>Owned</dt><dd>Color model, style system definitions, the Gallery and the Customizer, plugin and export pipeline.</dd>
-      <dt>Collaborators</dt><dd><strong>Alex</strong> on technical and risk review, and Windows app icons. <strong>Carlo</strong> on visual direction. <strong>Ada</strong> and <strong>Sihan</strong> on asset anatomy vocabulary and naming.</dd>
+      <dt>Owned</dt><dd>The color model, the instrument itself, the Gallery and the Customizer, plus the plugin and export pipeline.</dd>
+      <dt>Collaborators</dt><dd>A engineering-minded designer on technical and risk review, and on Windows app icons. My manager on visual direction. Two systems designers on asset anatomy vocabulary and naming.</dd>
       <dt>Cadence</dt><dd>Daily updates to the team, with a published library and a shareable status page.</dd>
     </dl>
 
@@ -684,8 +681,6 @@
     m.addEventListener('click', function (e) { if (e.target === m) set(false); });
   })();
 </script>
-
-<script src="project-gate.js" data-project="windows-visual-systems"></script>
 
 </body>
 </html>
