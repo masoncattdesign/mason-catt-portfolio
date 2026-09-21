@@ -242,6 +242,33 @@
     .deck-count { display: none; }
   }
   @media (prefers-reduced-motion: reduce) { .dslide { transition: none; } }
+  /* ---------- Layer illustrations: play once when shown, replay on hover ---------- */
+  .ps-anim .pa-t, .ps-anim .pa-hl, .ps-anim .pa-sheet, .ps-anim .pa-final { transform-box: fill-box; transform-origin: center; }
+  .ps-anim .pa-halo { opacity: 0; }
+  .ps-anim .pa-src { opacity: .4; }
+  .ps-anim .pa-step { opacity: 0; }
+  .ps-anim .pa-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .ps-anim.play .pa-t     { animation: pa-pop .45s cubic-bezier(.2,.75,.25,1) both; animation-delay: calc(var(--i) * 45ms); }
+  .ps-anim.play .pa-hl    { animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) .62s both; }
+  .ps-anim.play .pa-halo  { animation: pa-halo 2.6s ease-in-out 1.3s infinite; }
+  .ps-anim.play .pa-sheet { animation: pa-pop .45s cubic-bezier(.2,.75,.25,1) both; }
+  .ps-anim.play .pa-src   { animation: pa-launch .45s ease var(--d) both; }
+  .ps-anim.play .pa-fly   { animation: pa-fly .6s cubic-bezier(.2,.75,.25,1) var(--d) both; }
+  .ps-anim.play .pa-nudge { animation: pa-nudge 1.8s ease-in-out 1.4s infinite; }
+  .ps-anim.play .pa-step  { animation: pa-step .95s ease var(--d) both; }
+  .ps-anim.play .pa-draw  { animation: pa-draw .3s ease-out var(--d) both; }
+  .ps-anim.play .pa-head  { animation: pa-fade .2s ease var(--d) both; }
+  .ps-anim.play .pa-final { animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) 2.7s both; }
+  @keyframes pa-pop    { from { opacity: 0; transform: translateY(5px) scale(.9); } to { opacity: 1; transform: none; } }
+  @keyframes pa-halo   { 0%, 100% { opacity: 0; } 50% { opacity: .28; } }
+  @keyframes pa-launch { from { opacity: 1; } to { opacity: .4; } }
+  @keyframes pa-fly    { from { opacity: 0; transform: translate(var(--dx), var(--dy)); } 30% { opacity: 1; } to { opacity: 1; transform: none; } }
+  @keyframes pa-nudge  { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+  @keyframes pa-step   { 0% { opacity: 0; } 20%, 70% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes pa-draw   { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @keyframes pa-fade   { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .ps-anim.play * { animation: none !important; } }
+
   /* component shots are light artboards: give them a white mat instead of the dark one */
   .dslide-vis.is-light { background: #fff; padding: 16px; }
   /* Layer slides: the drawn idea and the real thing from the Figma file, as two squares side by side */
@@ -549,7 +576,7 @@
   <!-- 01 ============================================ -->
   <div class="prose reveal" id="problem">
     <div class="slabel">Where it started</div>
-    <div class="stream-head"><span class="stream-num">01</span><h2>Every method was a project</h2></div>
+    <div class="stream-head"><h2>Every method was a project</h2></div>
     <p class="stream-lede">
       Adding a payment method looks like a small job and is not. A new method needs a place in the wallet, an entry in the add-new list, a form built to its own rules, some kind of verification, a confirmation, and a return to the wallet with the new method selected. None of that is novel design work. All of it got designed again each time, because there was nothing to inherit. The result was a set of screens that were each individually fine and collectively inconsistent, which is the specific failure a design system exists to prevent.
     </p>
@@ -569,7 +596,7 @@
   <!-- 02 ============================================ -->
   <div class="prose reveal" id="structure">
     <div class="slabel">The model</div>
-    <div class="stream-head"><span class="stream-num">02</span><h2>Three layers, component to journey</h2></div>
+    <div class="stream-head"><h2>Three layers, component to journey</h2></div>
     <p class="stream-lede">
       The system borrows atomic design's logic and stops at three layers, because three is what the problem actually needs. Components are the parts. Templates are complete task interfaces assembled from those parts. Use cases are templates wired together into a journey a customer finishes. Each layer only reaches one level down, which is what keeps the whole thing from collapsing back into a pile of screens.
     </p>
@@ -587,20 +614,25 @@
           <h3>Components</h3>
           <p>The parts a payment interface is actually made of. Primary payment method, Input card with its Network badge, Balance payment method, Sticky footer, Legal. Each one owns its own states and its own label logic, so a template never has to decide how a selected card should look.</p></div>
           <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg viewBox="0 0 200 200" aria-hidden="true">
-          <g fill="#2b2822">
-            <rect x="16" y="33" width="52" height="26" rx="8"/><rect x="132" y="33" width="52" height="26" rx="8"/>
-            <rect x="74" y="69" width="52" height="26" rx="8"/><rect x="132" y="69" width="52" height="26" rx="8"/>
-            <rect x="16" y="105" width="52" height="26" rx="8"/><rect x="74" y="105" width="52" height="26" rx="8"/>
-            <rect x="16" y="141" width="52" height="26" rx="8"/><rect x="132" y="141" width="52" height="26" rx="8"/>
+          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <rect class="pa-t" style="--i:0" x="16" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:1" x="132" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:2" x="16" y="69" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <rect class="pa-t" style="--i:3" x="74" y="69" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:4" x="132" y="69" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:5" x="16" y="105" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:6" x="74" y="105" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:7" x="132" y="105" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <rect class="pa-t" style="--i:8" x="16" y="141" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:9" x="74" y="141" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <rect class="pa-t" style="--i:10" x="132" y="141" width="52" height="26" rx="8" fill="#2b2822"/>
+          <g class="pa-hl">
+            <rect class="pa-halo" x="70" y="29" width="60" height="34" rx="11" fill="none" stroke="#22c55e" stroke-width="5"/>
+            <rect x="74" y="33" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+            <rect x="81" y="41" width="14" height="10" rx="3" fill="#22c55e" opacity=".6"/>
+            <rect x="100" y="42" width="19" height="3" rx="1.5" fill="#22c55e"/>
+            <rect x="100" y="48" width="12" height="2.5" rx="1.25" fill="#22c55e" opacity=".5"/>
           </g>
-          <g fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4">
-            <rect x="16" y="69" width="52" height="26" rx="8"/><rect x="132" y="105" width="52" height="26" rx="8"/><rect x="74" y="141" width="52" height="26" rx="8"/>
-          </g>
-          <rect x="74" y="33" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <rect x="81" y="41" width="14" height="10" rx="3" fill="#22c55e" opacity=".6"/>
-          <rect x="100" y="42" width="19" height="3" rx="1.5" fill="#22c55e"/>
-          <rect x="100" y="48" width="12" height="2.5" rx="1.25" fill="#22c55e" opacity=".5"/>
         </svg></div>
           <div class="pair-cell pair-shot"><img src="img-ps-pair-components.webp" alt="The Primary payment method component in the Pay Studio Figma file, wired to its card logos, the gift card row and the Continue footer" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
         </div>
@@ -610,21 +642,26 @@
           <h3>Templates</h3>
           <p>Complete, standalone interfaces for one task: choose a method, pick a bank, enter card details, verify a number, confirm success. Every template is a specialization of one base sheet, which is why they stay consistent without anyone policing them.</p></div>
           <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg viewBox="0 0 200 200" aria-hidden="true">
+          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <g fill="#2b2822">
-            <rect x="12" y="50" width="46" height="16" rx="6"/><rect x="12" y="74" width="46" height="16" rx="6"/>
-            <rect x="12" y="98" width="46" height="16" rx="6"/><rect x="12" y="122" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.30s" x="12" y="50" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.45s" x="12" y="74" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.60s" x="12" y="98" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.75s" x="12" y="122" width="46" height="16" rx="6"/>
           </g>
           <rect x="12" y="146" width="46" height="16" rx="6" fill="none" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
-          <path d="M66 106 h20" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
-          <path d="M80 100 l7 6 l-7 6" fill="none" stroke="#6b6560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="98" y="22" width="90" height="156" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <rect x="110" y="36" width="20" height="5" rx="2.5" fill="#3a352e"/>
-          <circle cx="176" cy="38.5" r="4" fill="none" stroke="#3a352e" stroke-width="1.6"/>
-          <rect x="110" y="56" width="56" height="8" rx="4" fill="#f0ebe2" opacity=".8"/>
-          <rect x="110" y="74" width="66" height="22" rx="7" fill="#2b2822"/>
-          <rect x="110" y="102" width="66" height="22" rx="7" fill="#2b2822"/>
-          <rect x="110" y="152" width="66" height="14" rx="7" fill="#22c55e" opacity=".55"/>
+          <g class="pa-nudge" stroke="#6b6560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M66 106 h20"/><path d="M80 100 l7 6 l-7 6"/>
+          </g>
+          <g class="pa-sheet">
+            <rect x="98" y="22" width="90" height="156" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+            <rect x="110" y="36" width="20" height="5" rx="2.5" fill="#3a352e"/>
+            <circle cx="176" cy="38.5" r="4" fill="none" stroke="#3a352e" stroke-width="1.6"/>
+          </g>
+          <rect class="pa-fly" style="--d:.30s;--dx:-98px;--dy:-6px" x="110" y="56" width="56" height="8" rx="4" fill="#f0ebe2" fill-opacity=".8"/>
+          <rect class="pa-fly" style="--d:.45s;--dx:-98px;--dy:0px" x="110" y="74" width="66" height="22" rx="7" fill="#2b2822"/>
+          <rect class="pa-fly" style="--d:.60s;--dx:-98px;--dy:-4px" x="110" y="102" width="66" height="22" rx="7" fill="#2b2822"/>
+          <rect class="pa-fly" style="--d:.75s;--dx:-98px;--dy:-30px" x="110" y="152" width="66" height="14" rx="7" fill="#22c55e" fill-opacity=".55"/>
         </svg></div>
           <div class="pair-cell pair-shot"><img src="img-ps-pair-templates.webp" alt="Two Pay Studio templates in the Figma file, Add a credit or debit card and a base sheet, linked by prototype connectors" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
         </div>
@@ -634,30 +671,43 @@
           <h3>Use cases</h3>
           <p>Templates wired into a journey that a customer finishes. The use case is where the product decision lives: which templates, in what order, with what branches. Nothing new is drawn at this layer, which is the whole point.</p></div>
           <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg viewBox="0 0 200 200" aria-hidden="true">
-          <rect x="22" y="16" width="62" height="76" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="32" y="26" width="42" height="6" rx="3" fill="#2b2822"/>
-          <rect x="32" y="38" width="42" height="13" rx="5" fill="#2b2822"/>
-          <rect x="32" y="55" width="42" height="13" rx="5" fill="#2b2822" opacity="1"/>
-          <rect x="32" y="75" width="42" height="9" rx="4.5" fill="#3a352e" opacity="1"/>
-          <rect x="116" y="16" width="62" height="76" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="126" y="26" width="42" height="6" rx="3" fill="#2b2822"/>
-          <rect x="126" y="38" width="42" height="13" rx="5" fill="#2b2822"/>
-          <rect x="126" y="55" width="42" height="13" rx="5" fill="#2b2822" opacity="1"/>
-          <rect x="126" y="75" width="42" height="9" rx="4.5" fill="#3a352e" opacity="1"/>
-          <rect x="22" y="108" width="62" height="76" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="32" y="118" width="42" height="6" rx="3" fill="#2b2822"/>
-          <rect x="32" y="130" width="42" height="30" rx="6" fill="#2b2822"/>
-          <rect x="32" y="167" width="42" height="9" rx="4.5" fill="#3a352e" opacity="1"/>
-          <rect x="116" y="108" width="62" height="76" rx="11" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <rect x="126" y="118" width="42" height="6" rx="3" fill="#2b2822"/>
-          <rect x="126" y="130" width="42" height="13" rx="5" fill="#2b2822"/>
-          <rect x="126" y="147" width="42" height="13" rx="5" fill="#22c55e" opacity=".5"/>
-          <rect x="126" y="167" width="42" height="9" rx="4.5" fill="#22c55e" opacity=".55"/>
+          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="22" y="18" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="32" y="28" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="32" y="40" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="56" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="73" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect x="116" y="18" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="126" y="28" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="126" y="40" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="126" y="56" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="126" y="73" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect x="116" y="114" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="126" y="124" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="126" y="136" width="42" height="28" rx="6" fill="#2b2822"/>
+          <rect x="126" y="169" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect x="22" y="114" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="32" y="124" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="32" y="136" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="152" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="169" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect class="pa-step" style="--d:0.15s" x="22" y="18" width="62" height="68" rx="11" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <rect class="pa-step" style="--d:0.95s" x="116" y="18" width="62" height="68" rx="11" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <rect class="pa-step" style="--d:1.75s" x="116" y="114" width="62" height="68" rx="11" fill="none" stroke="#22c55e" stroke-width="2"/>
           <g stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path d="M89 54 h18"/><path d="M103 49 l5 5 l-5 5"/>
-            <path d="M147 94 V100 H53 V104"/><path d="M49 101 l4 4 l4 -4"/>
-            <path d="M89 146 h18"/><path d="M103 141 l5 5 l-5 5"/>
+            <path class="pa-draw" style="--d:.70s" pathLength="1" d="M90 52 H109"/>
+            <path class="pa-head" style="--d:.95s" d="M104 47 l5 5 l-5 5"/>
+            <path class="pa-draw" style="--d:1.50s" pathLength="1" d="M147 92 V107"/>
+            <path class="pa-head" style="--d:1.75s" d="M142 102 l5 5 l5 -5"/>
+            <path class="pa-draw" style="--d:2.30s" pathLength="1" d="M110 148 H91"/>
+            <path class="pa-head" style="--d:2.55s" d="M96 143 l-5 5 l5 5"/>
+          </g>
+          <g class="pa-final">
+            <rect x="22" y="114" width="62" height="68" rx="11" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+            <rect x="32" y="124" width="42" height="6" rx="3" fill="#2b2822"/>
+            <rect x="32" y="136" width="42" height="12" rx="5" fill="#2b2822"/>
+            <rect x="32" y="152" width="42" height="12" rx="5" fill="#22c55e" opacity=".5"/>
+            <rect x="32" y="169" width="42" height="8" rx="4" fill="#22c55e" opacity=".6"/>
           </g>
         </svg></div>
           <div class="pair-cell pair-shot"><img src="img-ps-pair-use-cases.webp" alt="The last two steps of the BANCOMAT Pay use case: register a phone number, then back to the wallet with BANCOMAT Pay selected" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
@@ -677,7 +727,7 @@
   <!-- 03 ============================================ -->
   <div class="prose reveal" id="components">
     <div class="slabel">Layer one</div>
-    <div class="stream-head"><span class="stream-num">03</span><h2>Forty-seven components</h2></div>
+    <div class="stream-head"><h2>Forty-seven components</h2></div>
     <p class="stream-lede">
       Components are the building blocks of the Pay Studio. The library holds <strong>47 named components</strong>, Accordion to Toast, each one specified for both mobile and desktop. The count matters less than the fact that the payment components share an anatomy. This is Primary payment method, the row every wallet is built from, taken straight from the library.
     </p>
@@ -836,7 +886,7 @@
   <!-- 04 ============================================ -->
   <div class="prose reveal" id="templates">
     <div class="slabel">Layer two</div>
-    <div class="stream-head"><span class="stream-num">04</span><h2>One base sheet, eight tasks</h2></div>
+    <div class="stream-head"><h2>One base sheet, eight tasks</h2></div>
     <p class="stream-lede">
       Templates are standalone interfaces for performing a specific task, grouped by the kind of work they do. The decision that made them hold together was refusing to design them as eight separate sheets. There is one base template with a fixed skeleton, and every task template is that base with its body slot filled. Consistency stops being something a reviewer enforces and becomes something the file cannot violate.
     </p>
@@ -902,7 +952,7 @@
   <!-- 05 ============================================ -->
   <div class="prose reveal" id="use-cases">
     <div class="slabel">Layer three</div>
-    <div class="stream-head"><span class="stream-num">05</span><h2>A payment method, end to end</h2></div>
+    <div class="stream-head"><h2>A payment method, end to end</h2></div>
     <p class="stream-lede">
       A use case connects templates into a journey a customer completes. The test of the system is whether an awkward method fits it without special pleading, so the one worth walking through is a market-local scheme rather than a credit card. BANCOMAT Pay registers against a phone number instead of a card number and hands off to the customer's bank app to authorize, which is exactly the kind of method that used to justify a bespoke flow. Here it is four templates in sequence, and the only new work is the content of one body slot.
     </p>
@@ -991,7 +1041,7 @@
   <!-- 06 ============================================ -->
   <div class="prose reveal" id="prototype">
     <div class="slabel">Prototype</div>
-    <div class="stream-head"><span class="stream-num">06</span><h2>Adding a new payment method</h2></div>
+    <div class="stream-head"><h2>Adding a new payment method</h2></div>
     <p class="stream-lede">
       The prototype is how the system was reviewed and handed off. Click through the flow, or use the arrow keys to step it.
     </p>
@@ -1157,5 +1207,38 @@
     row.appendChild(make(1));
   });
 </script>
+<script>
+  // Layer illustrations: play when the deck first comes into view, when a slide is shown, and on hover.
+  (function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var deck = document.querySelector('[data-deck="layers"]');
+    if (!deck) return;
+    function play(svg) {
+      if (!svg) return;
+      svg.classList.remove('play');
+      void svg.getBoundingClientRect();
+      svg.classList.add('play');
+    }
+    deck.querySelectorAll('.ps-anim').forEach(function (svg) {
+      (svg.closest('.pair-art') || svg.parentNode).addEventListener('mouseenter', function () { play(svg); });
+    });
+    var seen = false;
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        var t = m.target;
+        if (seen && t.classList.contains('dslide') && t.classList.contains('is-on') && m.oldValue && m.oldValue.indexOf('is-on') === -1) play(t.querySelector('.ps-anim'));
+      });
+    }).observe(deck, { subtree: true, attributes: true, attributeFilter: ['class'], attributeOldValue: true });
+    new IntersectionObserver(function (entries, io) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        seen = true;
+        play(deck.querySelector('.dslide.is-on .ps-anim'));
+        io.disconnect();
+      });
+    }, { threshold: 0.35 }).observe(deck);
+  })();
+</script>
+
 </body>
 </html>
