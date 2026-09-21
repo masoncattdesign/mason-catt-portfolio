@@ -24,6 +24,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="wvs-gate.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -368,9 +369,24 @@
   .lb-draw { stroke-dasharray: 1; animation: lb-draw 7s ease infinite; }
   @keyframes lb-draw { 0%, 6% { stroke-dashoffset: 1; opacity: 1; } 36%, 86% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
 
+  /* Pay Studio: the feature slot cycles, and the real row's switch flips on */
+  .ps-f { opacity: 0; animation: ps-f 7.5s ease infinite; animation-delay: calc(var(--i) * 2.5s); }
+  @keyframes ps-f { 0% { opacity: 0; transform: translateY(4px); } 4%, 30% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; transform: translateY(-4px); } }
+  .ps-row { position: absolute; }
+  .ps-sw { position: absolute; left: 85.2%; top: 59.6%; width: 11.2%; height: 26.4%; border-radius: 99px; background: #c8cccc; animation: ps-sw 6s ease infinite; }
+  .ps-sw::after { content: ''; position: absolute; left: 7.5%; top: 8%; height: 84%; aspect-ratio: 1; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(15,17,17,.3); animation: ps-knob 6s cubic-bezier(.2,.75,.25,1) infinite; }
+  @keyframes ps-sw { 0%, 30% { background: #c8cccc; } 38%, 85% { background: #007185; } 93%, 100% { background: #c8cccc; } }
+  @keyframes ps-knob { 0%, 30% { transform: none; } 38%, 85% { transform: translateX(100%); } 93%, 100% { transform: none; } }
+  /* Credit card: exported screens as small white cards */
+  .mf-screen { background: #fff; border-radius: 8px; }
+  .mf-screen img { border-radius: 8px; }
+  /* Libra: the teal arc sweeps around the globe */
+  .lb-arc { stroke-dasharray: 1; animation: lb-arc 7s ease infinite; }
+  @keyframes lb-arc { 0%, 30% { stroke-dashoffset: 1; opacity: 1; } 55%, 86% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
     .card-art *, .card-art *::before { animation: none !important; transition: none !important; }
     .ps-chip, .ab-row { opacity: 1; }
+    .ps-f { opacity: 0; } .ps-f[style*="--i:0"] { opacity: 1; }
     .project-card:hover .mf { transform: rotate(var(--r, 0deg)); }
   }
   .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
@@ -475,6 +491,7 @@
   .project-access-btn--locked:hover {
     background: transparent; transform: none;
   }
+  .wg-open { font: inherit; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
   .project-request-link {
     font-size: 13px; color: var(--cream2); text-decoration: none;
     border-bottom: 1px solid var(--border2);
@@ -688,11 +705,11 @@
         <h3 class="project-name">Windows Visual Systems &amp; Assets</h3>
         <p class="project-desc">Six connected workstreams inside Windows Design Systems: marketing compendiums and the craft audit behind them, expressive icon and illustration systems, production-aligned component libraries, the tooling that operates all of it, and the personalization work it is ultimately for.</p>
         <div class="project-cta-row">
-          <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🚧 Under construction</span>
-          <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20walkthrough" class="project-request-link">Request a walkthrough</a>
+          <button type="button" class="project-access-btn wg-open" data-wg-open><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2" fill="currentColor"/><path d="M5.5 7V5.2a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>View project &rarr;</button>
+          <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20password" class="project-request-link">Need the password?</a>
         </div>
       </div>
-      <div class="card-art">
+      <div class="card-art" data-wg-open role="button" tabindex="0" aria-label="Open Windows Visual Systems (password protected)" style="cursor:pointer">
         <svg class="ca-bg" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs><radialGradient id="wvsg" cx="22%" cy="30%" r="75%">
             <stop offset="0" stop-color="#22c55e" stop-opacity="0.16"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
@@ -715,21 +732,18 @@
           <rect width="440" height="220" fill="#111510"/><rect width="440" height="220" fill="url(#psg)"/>
           <g stroke="rgba(240,235,226,0.05)" stroke-width="1"><path d="M0 55h440M0 110h440M0 165h440"/><path d="M55 0v220M110 0v220M165 0v220M220 0v220M275 0v220M330 0v220M385 0v220"/></g>
         </svg>
-        <div class="ca-illo" style="--x:16px;--w:40%"><svg viewBox="0 0 160 140" aria-hidden="true">
-            <g fill="none" stroke="#3a352e" stroke-width="1.4" stroke-dasharray="4 3">
-              <rect x="4" y="34" width="52" height="18" rx="6"/><rect x="4" y="60" width="52" height="18" rx="6"/><rect x="4" y="86" width="52" height="18" rx="6"/>
-            </g>
-            <rect x="68" y="8" width="88" height="126" rx="13" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5"/>
-            <rect x="80" y="20" width="26" height="5" rx="2.5" fill="#3a352e"/>
-            <rect class="ps-chip" style="--i:0;--dx:-74px;--dy:0px" x="80" y="34" width="64" height="18" rx="6" fill="#0e0d0c" stroke="#22c55e" stroke-width="1.6"/>
-            <rect class="ps-chip" style="--i:1;--dx:-74px;--dy:0px" x="80" y="60" width="64" height="18" rx="6" fill="#2b2822"/>
-            <rect class="ps-chip" style="--i:2;--dx:-74px;--dy:0px" x="80" y="86" width="64" height="18" rx="6" fill="#2b2822"/>
-            <rect class="ps-btn" x="80" y="114" width="64" height="11" rx="5.5" fill="#3a352e"/>
-            <circle cx="150" cy="10" r="9" fill="#0e0d0c" stroke="#22c55e" stroke-width="1.6"/>
-            <path class="ps-check" pathLength="1" d="M146 10.2l2.8 2.8 5.2-5.6" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <div class="ca-illo" style="--x:20px;--w:30%"><svg viewBox="0 0 150 130" aria-hidden="true">
+            <rect x="4" y="22" width="142" height="86" rx="12" fill="#161a14" stroke="#22c55e" stroke-width="1.6"/>
+            <rect x="16" y="34" width="34" height="22" rx="4" fill="#2b3a52"/>
+            <rect x="60" y="36" width="62" height="6" rx="3" fill="rgba(240,235,226,.55)"/>
+            <rect x="60" y="48" width="42" height="5" rx="2.5" fill="rgba(240,235,226,.25)"/>
+            <rect x="56" y="66" width="80" height="30" rx="7" fill="none" stroke="#22c55e" stroke-opacity=".6" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <g class="ps-f" style="--i:0"><rect x="63" y="78" width="40" height="5" rx="2.5" fill="rgba(240,235,226,.45)"/><rect x="108" y="73" width="22" height="14" rx="7" fill="#22c55e"/><circle cx="123" cy="80" r="5" fill="#0e0d0c"/></g>
+            <g class="ps-f" style="--i:1"><rect x="63" y="73" width="66" height="14" rx="7" fill="none" stroke="rgba(240,235,226,.5)" stroke-width="1.3"/><rect x="72" y="78" width="36" height="4" rx="2" fill="rgba(240,235,226,.5)"/></g>
+            <g class="ps-f" style="--i:2"><circle cx="68" cy="80" r="4" fill="#e879a0"/><rect x="77" y="77.5" width="48" height="5" rx="2.5" fill="rgba(240,235,226,.45)"/></g>
           </svg></div>
-        <div class="mf mf-card mf-bleed" style="--x:50%;--y:24px;--w:46%;--r:-2deg;--z:2;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-ps-balance.webp" alt="The Balance payment method component" loading="lazy"></div>
-        <div class="mf mf-device" style="--x:74%;--y:84px;--w:22%;--r:3deg;--z:3;--hx:8px;--hy:-12px;--hr:5deg"><img src="thumb-ps-phone.webp" alt="The payment method sheet on a phone, assembled from Pay Studio components" loading="lazy"></div>
+        <div class="mf mf-device" style="--x:63%;--y:34px;--w:32%;--r:3deg;--z:2;--hx:8px;--hy:-10px;--hr:5deg"><img src="thumb-ps-phone.webp" alt="The payment method sheet on a phone, assembled from Pay Studio components" loading="lazy"></div>
+        <div class="mf mf-card mf-bleed ps-row" style="--x:37%;--y:128px;--w:48%;--r:-2deg;--z:3;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-ps-ppm.webp" alt="The Primary payment method component, with a rewards switch" loading="lazy"><i class="ps-sw" aria-hidden="true"></i></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
@@ -751,20 +765,22 @@
           <rect width="440" height="220" fill="#0f1218"/><rect width="440" height="220" fill="url(#abcg)"/>
           <g stroke="rgba(240,235,226,0.05)" stroke-width="1"><path d="M0 55h440M0 110h440M0 165h440"/><path d="M55 0v220M110 0v220M165 0v220M220 0v220M275 0v220M330 0v220M385 0v220"/></g>
         </svg>
-        <div class="ca-illo" style="--x:16px;--w:40%"><svg viewBox="0 0 160 140" aria-hidden="true">
-            <defs><clipPath id="abcClip"><rect x="4" y="6" width="112" height="70" rx="10"/></clipPath>
-              <linearGradient id="abcShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
-            <rect x="4" y="6" width="112" height="70" rx="10" fill="#1c2230" stroke="rgba(59,130,246,.6)" stroke-width="1.4"/>
-            <rect x="15" y="20" width="20" height="14" rx="3" fill="#3b82f6" opacity=".75"/>
-            <rect x="15" y="54" width="60" height="4.5" rx="2.25" fill="rgba(240,235,226,.3)"/><rect x="15" y="63" width="34" height="4.5" rx="2.25" fill="rgba(240,235,226,.18)"/>
-            <g clip-path="url(#abcClip)"><rect class="ab-shine" x="0" y="0" width="36" height="90" fill="url(#abcShine)"/></g>
-            <circle cx="24" cy="110" r="17" fill="none" stroke="#2b2822" stroke-width="6"/>
-            <circle class="ab-ring" pathLength="1" cx="24" cy="110" r="17" fill="none" stroke="#3b82f6" stroke-width="6" stroke-linecap="round" transform="rotate(-90 24 110)"/>
-            <g class="ab-row" style="--i:0"><rect x="52" y="94" width="96" height="12" rx="6" fill="#23252c"/><circle cx="61" cy="100" r="3" fill="#3b82f6"/></g>
-            <g class="ab-row" style="--i:1"><rect x="52" y="114" width="72" height="12" rx="6" fill="#23252c"/><circle cx="61" cy="120" r="3" fill="#3b82f6" opacity=".55"/></g>
+        <div class="ca-illo" style="--x:22px;--w:31%"><svg viewBox="0 0 140 150" aria-hidden="true">
+            <defs><clipPath id="abcClip"><rect x="10" y="8" width="70" height="44" rx="6"/></clipPath>
+              <linearGradient id="abcShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+            <rect x="2" y="2" width="136" height="146" rx="12" fill="#141925" stroke="rgba(59,130,246,.55)" stroke-width="1.4"/>
+            <rect x="10" y="8" width="70" height="44" rx="6" fill="#1c2638"/>
+            <rect x="17" y="16" width="13" height="9" rx="2" fill="#3b82f6" opacity=".8"/>
+            <rect x="17" y="40" width="36" height="4" rx="2" fill="rgba(240,235,226,.35)"/>
+            <g clip-path="url(#abcClip)"><rect class="ab-shine" x="0" y="0" width="26" height="60" fill="url(#abcShine)"/></g>
+            <rect x="88" y="14" width="42" height="5" rx="2.5" fill="rgba(240,235,226,.5)"/><rect x="88" y="25" width="30" height="4" rx="2" fill="rgba(240,235,226,.22)"/>
+            <path d="M10 62H130" stroke="rgba(59,130,246,.45)" stroke-width="1" stroke-dasharray="3 3"/>
+            <g class="ab-row" style="--i:0"><rect x="10" y="70" width="120" height="32" rx="7" fill="#1d2230"/><circle cx="26" cy="86" r="8" fill="none" stroke="#2b3345" stroke-width="3.5"/><circle class="ab-ring" pathLength="1" cx="26" cy="86" r="8" fill="none" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" transform="rotate(-90 26 86)"/><rect x="42" y="80" width="50" height="4.5" rx="2.25" fill="rgba(240,235,226,.4)"/><rect x="42" y="89" width="32" height="4" rx="2" fill="rgba(240,235,226,.2)"/></g>
+            <g class="ab-row" style="--i:1"><rect x="10" y="108" width="120" height="32" rx="7" fill="#1d2230"/><rect x="18" y="116" width="16" height="16" rx="4" fill="#3b82f6" opacity=".55"/><rect x="42" y="118" width="58" height="4.5" rx="2.25" fill="rgba(240,235,226,.4)"/><rect x="42" y="127" width="36" height="4" rx="2" fill="rgba(240,235,226,.2)"/></g>
           </svg></div>
-        <div class="mf mf-card mf-bleed" style="--x:46%;--y:28px;--w:50%;--r:-2deg;--z:2;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-abc-spread.webp" alt="Amazon Business Card screens and components" loading="lazy"></div>
-        <div class="mf mf-phone" style="--x:77%;--y:62px;--w:18%;--r:3deg;--z:3;--hx:6px;--hy:-12px;--hr:5deg"><img src="thumb-abc-phone.webp" alt="The Existing Card Member page on a phone" loading="lazy"></div>
+        <div class="mf mf-screen" style="--x:73%;--y:34px;--w:23%;--r:6deg;--z:1;--hx:14px;--hy:-4px;--hr:9deg"><img src="thumb-abc-tx.webp" alt="The Transactions widget" loading="lazy"></div>
+        <div class="mf mf-screen" style="--x:58%;--y:26px;--w:23%;--r:2deg;--z:2;--hx:4px;--hy:-10px;--hr:3deg"><img src="thumb-abc-rewards1.webp" alt="The Points and rewards widget" loading="lazy"></div>
+        <div class="mf mf-screen" style="--x:41%;--y:22px;--w:24%;--r:-3deg;--z:3;--hx:-10px;--hy:-8px;--hr:-5deg"><img src="thumb-abc-topfold1.webp" alt="The card member hub top fold: balance, payment summary and Make a payment" loading="lazy"></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
@@ -781,23 +797,28 @@
       <div class="card-art">
         <svg class="ca-bg" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs><radialGradient id="libg" cx="22%" cy="30%" r="75%">
-            <stop offset="0" stop-color="#e879a0" stop-opacity="0.16"/><stop offset="1" stop-color="#e879a0" stop-opacity="0"/>
+            <stop offset="0" stop-color="#8b7cf6" stop-opacity="0.16"/><stop offset="1" stop-color="#8b7cf6" stop-opacity="0"/>
           </radialGradient></defs>
-          <rect width="440" height="220" fill="#141017"/><rect width="440" height="220" fill="url(#libg)"/>
+          <rect width="440" height="220" fill="#12111a"/><rect width="440" height="220" fill="url(#libg)"/>
           <g stroke="rgba(240,235,226,0.05)" stroke-width="1"><path d="M0 55h440M0 110h440M0 165h440"/><path d="M55 0v220M110 0v220M165 0v220M220 0v220M275 0v220M330 0v220M385 0v220"/></g>
         </svg>
-        <div class="ca-illo" style="--x:18px;--w:36%"><svg viewBox="0 0 140 140" aria-hidden="true">
-            <circle cx="70" cy="70" r="60" fill="none" stroke="#e879a0" stroke-opacity=".18" stroke-width="1.2"/>
-            <g class="lb-orbit" style="--t:36s"><circle cx="70" cy="70" r="46" fill="none" stroke="#e879a0" stroke-opacity=".4" stroke-width="1.3" stroke-dasharray="3 6"/></g>
-            <circle cx="70" cy="70" r="30" fill="none" stroke="#e879a0" stroke-opacity=".55" stroke-width="1.4"/>
-            <g class="lb-orbit" style="--t:18s"><circle cx="70" cy="10" r="4.5" fill="#e879a0"/></g>
-            <g class="lb-orbit is-rev" style="--t:26s"><circle cx="116" cy="70" r="3.2" fill="#e879a0" fill-opacity=".7"/></g>
-            <g class="lb-orbit" style="--t:44s"><circle cx="30" cy="100" r="2.6" fill="#8b7cf6"/></g>
-            <path class="lb-draw" pathLength="1" d="M63 84V56M63 57h16l-5 6 5 6H63" fill="none" stroke="#f0ebe2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M56 84h22" stroke="#e879a0" stroke-width="2" stroke-linecap="round"/>
+        <div class="ca-illo" style="--x:30px;--w:28%"><svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle cx="70" cy="70" r="62" fill="none" stroke="#8b7cf6" stroke-opacity=".16" stroke-width="1.2"/>
+            <g class="lb-orbit" style="--t:40s"><circle cx="70" cy="70" r="62" fill="none" stroke="#5fd3c6" stroke-opacity=".5" stroke-width="1.3" stroke-dasharray="2 7"/></g>
+            <circle cx="70" cy="70" r="40" fill="#1a1830" stroke="#8b7cf6" stroke-width="1.8"/>
+            <g fill="none" stroke="#8b7cf6" stroke-width="1.5">
+              <path class="lb-draw" pathLength="1" d="M70 30v80"/>
+              <path class="lb-draw" style="animation-delay:.2s" pathLength="1" d="M70 30c-22 18-22 62 0 80"/>
+              <path class="lb-draw" style="animation-delay:.3s" pathLength="1" d="M70 30c22 18 22 62 0 80"/>
+              <path class="lb-draw" style="animation-delay:.4s" pathLength="1" d="M31 62h78"/>
+              <path class="lb-draw" style="animation-delay:.5s" pathLength="1" d="M33 82h74"/>
+            </g>
+            <path class="lb-arc" pathLength="1" d="M70 21a49 49 0 0 1 46 32" fill="none" stroke="#5fd3c6" stroke-width="3" stroke-linecap="round"/>
+            <g class="lb-orbit" style="--t:16s"><circle cx="70" cy="8" r="4" fill="#5fd3c6"/></g>
+            <g class="lb-orbit is-rev" style="--t:26s"><circle cx="132" cy="70" r="3" fill="#8b7cf6"/></g>
           </svg></div>
-        <div class="mf mf-card mf-bleed" style="--x:42%;--y:26px;--w:54%;--r:-2deg;--z:2;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-libra-tiles.webp" alt="Libra editorial illustrations" loading="lazy"></div>
-        <div class="mf mf-card" style="--x:50%;--y:128px;--w:46%;--r:2.5deg;--z:3;--hx:10px;--hy:-8px;--hr:4deg"><img src="thumb-libra-icons.webp" alt="The Libra icon set" loading="lazy"></div>
+        <div class="mf mf-card mf-bleed" style="--x:40%;--y:18px;--w:55%;--r:-2deg;--z:2;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-libra-tiles.webp" alt="Libra editorial illustrations" loading="lazy"></div>
+        <div class="mf mf-card" style="--x:47%;--y:124px;--w:46%;--r:2.5deg;--z:3;--hx:10px;--hy:-6px;--hr:4deg"><img src="thumb-libra-icons.webp" alt="The Libra icon set" loading="lazy"></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">BUCK</span><span class="tag">Facebook</span><span class="tag">Brand</span>
@@ -1025,5 +1046,23 @@
   discLabel.style.transition = 'opacity 0.18s ease';
   startRotation();
 </script>
+<dialog id="wg-dialog" class="wg-dialog" aria-label="Password required">
+  <div class="wg-panel">
+    <button type="button" class="wg-close" aria-label="Close">&times;</button>
+    <div class="wg-kicker">Internal preview</div>
+    <h2 class="wg-title">Windows Visual Systems <em>&amp; Assets</em></h2>
+    <p class="wg-desc">This one's for Microsoft eyes for now. Pop in the password and come on in.</p>
+    <form class="wg-form" autocomplete="off">
+      <input class="wg-input" type="password" name="password" placeholder="Password" aria-label="Password" autocapitalize="off" spellcheck="false">
+      <button class="wg-submit" type="submit">Unlock</button>
+    </form>
+    <p class="wg-msg" role="status" aria-live="polite"></p>
+    <div class="wg-foot">
+      <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20password">Need the password? Ask me</a>
+      
+    </div>
+  </div>
+</dialog>
+<script src="wvs-gate.js" data-mode="launcher"></script>
 </body>
 </html>
