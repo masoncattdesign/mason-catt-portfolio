@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Noto+Sans:wght@400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -153,6 +153,44 @@
   .anat { position: relative; margin: 14px 10px 4px; }
   .anat img { width: 100%; height: auto; display: block; filter: drop-shadow(0 10px 28px rgba(0,0,0,0.45)); }
   .anat-pin { position: absolute; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--accent); color: var(--accent); font-size: 11px; font-weight: 500; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px rgba(34,197,94,0.16); }
+
+  /* ---------- Primary payment method, rebuilt in code (Pay Studio) ---------- */
+  .ppm-host { container-type: inline-size; --u: calc(100cqw / 360); }
+  .ppm { position: relative; display: grid; grid-template-columns: calc(var(--u) * 64) minmax(0, 1fr); column-gap: calc(var(--u) * 12.5);
+         padding: calc(var(--u) * 10); border: calc(var(--u) * 2) solid #007185; border-radius: calc(var(--u) * 8);
+         background: #f7feff; color: #0f1111; text-align: left;
+         font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 400;
+         box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  .ppm .ppm-art { width: calc(var(--u) * 64); height: calc(var(--u) * 40); border-radius: calc(var(--u) * 3.5); display: block; object-fit: cover; }
+  .ppm-body { min-width: 0; display: flex; flex-direction: column; }
+  .ppm-title { font-size: calc(var(--u) * 15.25); line-height: 1.25; margin-top: calc(var(--u) * 1.6); white-space: nowrap; }
+  .ppm-sub { font-size: calc(var(--u) * 13); line-height: 1.3; color: #595959; margin-top: calc(var(--u) * 3); white-space: nowrap; }
+  .ppm-feat { position: relative; display: flex; align-items: center; gap: calc(var(--u) * 10); margin-top: calc(var(--u) * 2.5); }
+  .ppm-feat > span { flex: 1; min-width: 0; font-size: calc(var(--u) * 13); line-height: 1.3; white-space: nowrap; }
+  :where(.ppm) button, :where(.ppm) input { font: inherit; color: inherit; margin: 0; }
+  .ppm-switch { flex: none; position: relative; width: calc(var(--u) * 40); height: calc(var(--u) * 24); border-radius: calc(var(--u) * 12);
+                border: 0; padding: 0; background: #c8cccc; cursor: pointer; transition: background .2s ease; }
+  .ppm-switch::after { content: ''; position: absolute; left: calc(var(--u) * 2); top: calc(var(--u) * 2); width: calc(var(--u) * 20); height: calc(var(--u) * 20);
+                       border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(15,17,17,.3); transition: transform .22s cubic-bezier(.2,.75,.25,1); }
+  .ppm-switch[aria-checked="true"] { background: #007185; }
+  .ppm-switch[aria-checked="true"]::after { transform: translateX(calc(var(--u) * 16)); }
+  .ppm-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ppm-amt { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+  .ppm-amt > div { overflow: hidden; }
+  .ppm.is-on .ppm-amt { grid-template-rows: 1fr; }
+  .ppm-amt label { display: block; padding-top: calc(var(--u) * 10); font-size: calc(var(--u) * 12); color: #595959; }
+  .ppm-field { display: flex; align-items: center; margin-top: calc(var(--u) * 4); width: calc(var(--u) * 150); height: calc(var(--u) * 30);
+               border: 1px solid #888c8c; border-radius: calc(var(--u) * 4); background: #fff; color: #0f1111; padding: 0 calc(var(--u) * 8); font-size: calc(var(--u) * 14); box-shadow: inset 0 1px 2px rgba(15,17,17,.12); }
+  .ppm-field input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; padding: 0 0 0 calc(var(--u) * 3); font-size: calc(var(--u) * 14); }
+  .ppm-field:focus-within { border-color: #007185; box-shadow: 0 0 0 calc(var(--u) * 2) rgba(0,113,133,.2); }
+  .ppm-amt small { display: block; margin-top: calc(var(--u) * 4); font-size: calc(var(--u) * 11); color: #595959; }
+  .ppm-ring { position: absolute; left: calc(var(--u) * -6.5); right: calc(var(--u) * -5); top: calc(var(--u) * -1); bottom: calc(var(--u) * -7);
+              border: 1.5px dashed var(--accent); border-radius: 8px; background: rgba(34,197,94,0.07); pointer-events: none; }
+  .anat.ppm-host .anat-pin { z-index: 2; }
+  .anat .ppm-amt { display: none; }
+  .slot-card.ppm-host .ppm { box-shadow: 0 8px 22px rgba(0,0,0,.4); }
+  .ppm-sub i { font-style: normal; margin: 0 calc(var(--u) * 5); }
+  .ppm .ppm-art { max-width: none; filter: none; }
 
   /* ---------- Flow strip ---------- */
   .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 30px 0 0; }
@@ -868,14 +906,22 @@
     </p>
 
     <div class="dia">
-      <div class="anat">
-        <img src="img-pay-studio-anatomy.png" width="1080" height="276" alt="The Primary payment method component, selected: Chase Sapphire card art, card name and last four digits, cardholder and expiry, a Use rewards points line, and a switch">
-        <span class="anat-pin" style="left:3.5%;top:14.5%" aria-hidden="true">1</span>
-        <span class="anat-pin" style="left:77.8%;top:26%" aria-hidden="true">2</span>
-        <span class="anat-pin" style="left:71.6%;top:48.2%" aria-hidden="true">3</span>
-        <span class="anat-pin" style="left:77%;top:74.3%" aria-hidden="true">4</span>
-        <span class="anat-pin" style="left:90.7%;top:47.8%" aria-hidden="true">5</span>
-        <span class="anat-pin" style="left:99.4%;top:21%" aria-hidden="true">6</span>
+      <div class="anat ppm-host">
+        <div class="ppm" data-ppm>
+          <img class="ppm-art" src="img-ps-ppm-art.webp" width="512" height="320" alt="">
+          <div class="ppm-body">
+            <div class="ppm-title">Chase Sapphire •••• 1111</div>
+            <div class="ppm-sub">David Williams<i>·</i>07/2024</div>
+            <div class="ppm-feat"><span>Use rewards points ($25.00)</span><button class="ppm-switch" type="button" role="switch" aria-checked="false" aria-label="Use rewards points"></button></div>
+            <div class="ppm-amt"><div><label>Amount to use<span class="ppm-field">$<input type="text" inputmode="decimal" value="25.00" aria-label="Rewards amount to use" tabindex="-1"></span></label><small>2,500 points available</small></div></div>
+          </div>
+        </div>
+        <span class="anat-pin" style="left:calc(var(--u) * 12.6);top:calc(var(--u) * 13.3)" aria-hidden="true">1</span>
+        <span class="anat-pin" style="left:calc(var(--u) * 280.1);top:calc(var(--u) * 23.9)" aria-hidden="true">2</span>
+        <span class="anat-pin" style="left:calc(var(--u) * 257.8);top:calc(var(--u) * 44.3)" aria-hidden="true">3</span>
+        <span class="anat-pin" style="left:calc(var(--u) * 277.2);top:calc(var(--u) * 68.4)" aria-hidden="true">4</span>
+        <span class="anat-pin" style="left:calc(var(--u) * 326.5);top:calc(var(--u) * 44.0)" aria-hidden="true">5</span>
+        <span class="anat-pin" style="left:calc(var(--u) * 357.8);top:calc(var(--u) * 19.3)" aria-hidden="true">6</span>
       </div>
       <ol class="dia-legend">
         <li><b>1</b><span><strong>Asset slot.</strong> Filled by <em>Art</em>, so every method takes the same footprint.</span></li>
@@ -885,7 +931,7 @@
         <li><b>5</b><span><strong>Trailing control.</strong> A <em>Switch</em> here. The row picks the control, not the template.</span></li>
         <li><b>6</b><span><strong>Selection state.</strong> One treatment for every method type.</span></li>
       </ol>
-      <div class="dia-cap">Pulled straight from the library, not redrawn.</div>
+      <div class="dia-cap">Rebuilt in code from the library spec. The switch works.</div>
     </div>
 
     <p style="margin-top:28px;">The feature slot is the clever part. Rewards, installments, an expired card or a currency change all drop into the same slot, so a new payment feature is a new component, not a new wallet. Try one:</p>
@@ -902,7 +948,15 @@
       </div>
       <div class="slot-stage">
         <figure class="slot-fig is-on">
-          <div class="slot-card"><img src="img-pay-studio-anatomy.png" width="1080" height="276" alt="Chase Sapphire card, selected, with a Use rewards points line and a switch"><span class="slot-ring" style="top:58.7%;height:34.8%" aria-hidden="true"></span></div>
+          <div class="slot-card ppm-host"><div class="ppm" data-ppm>
+          <img class="ppm-art" src="img-ps-ppm-art.webp" width="512" height="320" alt="">
+          <div class="ppm-body">
+            <div class="ppm-title">Chase Sapphire •••• 1111</div>
+            <div class="ppm-sub">David Williams<i>·</i>07/2024</div>
+            <div class="ppm-feat"><span class="ppm-ring" aria-hidden="true"></span><span>Use rewards points ($25.00)</span><button class="ppm-switch" type="button" role="switch" aria-checked="false" aria-label="Use rewards points"></button></div>
+            <div class="ppm-amt"><div><label>Amount to use<span class="ppm-field">$<input type="text" inputmode="decimal" value="25.00" aria-label="Rewards amount to use" tabindex="-1"></span></label><small>2,500 points available</small></div></div>
+          </div>
+        </div></div>
           <figcaption><strong>Feature reward balance.</strong> Points as payment. Switch it on and an amount field opens.</figcaption>
         </figure>
         <figure class="slot-fig">
@@ -1611,5 +1665,15 @@
   });
 </script>
 
+<script>
+  // Primary payment method: the switch works, and turning it on opens the amount field.
+  document.querySelectorAll('[data-ppm]').forEach(function (c) {
+    var sw = c.querySelector('.ppm-switch'), inp = c.querySelector('.ppm-amt input');
+    sw.addEventListener('click', function () {
+      var on = sw.getAttribute('aria-checked') !== 'true';
+      sw.setAttribute('aria-checked', on); c.classList.toggle('is-on', on); inp.tabIndex = on ? 0 : -1;
+    });
+  });
+</script>
 </body>
 </html>
