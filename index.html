@@ -655,6 +655,15 @@
     .back-link { min-height: 44px; }
     .filter-btn { min-height: 40px; }
   }
+
+  /* Headline line breaks: desktop keeps three lines, phones get five short ones so no pill strands on its own line */
+  @media (min-width: 769px) { .hero-headline .br-m { display: none; } }
+  @media (max-width: 768px) {
+    .hero-headline .br-d { display: none; }
+    .hero-headline .h-pill-photo { margin-right: 4px; }
+    /* featured card: art on top, like the other cards */
+    .project-card.featured .card-art { order: -1; }
+  }
 </style>
 </head>
 <body>
@@ -686,8 +695,8 @@
 
 <section class="hero">
   <h1 class="hero-headline">
-    <span class="hero-hello">Hello!</span> I'm Mason,&nbsp;<span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br>
-    a <em class="hero-designer">Hybrid</em>&nbsp;<span class="h-pill-disc" id="discPill">
+    <span class="hero-hello">Hello!</span> I'm Mason,<br class="br-m"> <span class="h-pill-photo"><img src="img-headshot.png" alt="Mason Catt"></span><br class="br-d">
+    a <em class="hero-designer">Hybrid</em><br class="br-m"> <span class="h-pill-disc" id="discPill">
       <span class="h-pill-disc-label" id="discLabel" aria-live="polite" aria-atomic="true">🛠 PRODUCT</span>
       <span class="h-pill-disc-all">
         <span class="h-pill-disc-all-item">🛠&nbsp;&nbsp;PRODUCT</span>
@@ -695,7 +704,7 @@
         <span class="h-pill-disc-all-item">⚙️&nbsp;&nbsp;SYSTEM</span>
       </span>
     </span>&nbsp;<em class="hero-designer">Designer</em><br>
-    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk" aria-hidden="true"></span><span class="hero-creative-tooltip" aria-hidden="true"><i class="tip-bolt"></i>See my scrapbook →</span></a> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
+    and <a href="scrapbook.html" class="hero-creative" id="heroCreative">Creative<span class="hero-asterisk" aria-hidden="true"></span><span class="hero-creative-tooltip" aria-hidden="true"><i class="tip-bolt"></i>See my scrapbook →</span></a><br class="br-m"> in&nbsp;<span class="h-pill-place"><img src="img-hollywood.svg" alt="Hollywood"></span>
   </h1>
 
   <div class="hero-ctas">
