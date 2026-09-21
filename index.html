@@ -24,7 +24,6 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="stylesheet" href="wvs-gate.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -377,9 +376,14 @@
   .ps-sw::after { content: ''; position: absolute; left: 7.5%; top: 8%; height: 84%; aspect-ratio: 1; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(15,17,17,.3); animation: ps-knob 6s cubic-bezier(.2,.75,.25,1) infinite; }
   @keyframes ps-sw { 0%, 30% { background: #c8cccc; } 38%, 85% { background: #007185; } 93%, 100% { background: #c8cccc; } }
   @keyframes ps-knob { 0%, 30% { transform: none; } 38%, 85% { transform: translateX(100%); } 93%, 100% { transform: none; } }
-  /* Credit card: exported screens as small white cards */
-  .mf-screen { background: #fff; border-radius: 8px; }
-  .mf-screen img { border-radius: 8px; }
+  /* Credit card: components straight off the board, no frames */
+  .mf-free { overflow: visible; border-radius: 0; box-shadow: none; }
+  .mf-free img { filter: drop-shadow(0 14px 22px rgba(0,0,0,.55)); }
+  .project-card:hover .mf-free { box-shadow: none; }
+  .ab-card::after { content: ''; position: absolute; inset: 0; border-radius: 7% / 11%; pointer-events: none;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%) no-repeat;
+    background-size: 250% 100%; animation: ab-card 6s ease-in-out infinite; }
+  @keyframes ab-card { 0%, 35% { background-position: 130% 0; } 70%, 100% { background-position: -30% 0; } }
   /* Libra: the teal arc sweeps around the globe */
   .lb-arc { stroke-dasharray: 1; animation: lb-arc 7s ease infinite; }
   @keyframes lb-arc { 0%, 30% { stroke-dashoffset: 1; opacity: 1; } 55%, 86% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
@@ -491,7 +495,6 @@
   .project-access-btn--locked:hover {
     background: transparent; transform: none;
   }
-  .wg-open { font: inherit; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
   .project-request-link {
     font-size: 13px; color: var(--cream2); text-decoration: none;
     border-bottom: 1px solid var(--border2);
@@ -705,11 +708,11 @@
         <h3 class="project-name">Windows Visual Systems &amp; Assets</h3>
         <p class="project-desc">Six connected workstreams inside Windows Design Systems: marketing compendiums and the craft audit behind them, expressive icon and illustration systems, production-aligned component libraries, the tooling that operates all of it, and the personalization work it is ultimately for.</p>
         <div class="project-cta-row">
-          <button type="button" class="project-access-btn wg-open" data-wg-open><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2" fill="currentColor"/><path d="M5.5 7V5.2a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>View project &rarr;</button>
-          <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20password" class="project-request-link">Need the password?</a>
+          <span class="project-access-btn project-access-btn--locked" aria-disabled="true">🚧 Under construction</span>
+          <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20walkthrough" class="project-request-link">Request a walkthrough</a>
         </div>
       </div>
-      <div class="card-art" data-wg-open role="button" tabindex="0" aria-label="Open Windows Visual Systems (password protected)" style="cursor:pointer">
+      <div class="card-art">
         <svg class="ca-bg" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs><radialGradient id="wvsg" cx="22%" cy="30%" r="75%">
             <stop offset="0" stop-color="#22c55e" stop-opacity="0.16"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
@@ -765,7 +768,7 @@
           <rect width="440" height="220" fill="#0f1218"/><rect width="440" height="220" fill="url(#abcg)"/>
           <g stroke="rgba(240,235,226,0.05)" stroke-width="1"><path d="M0 55h440M0 110h440M0 165h440"/><path d="M55 0v220M110 0v220M165 0v220M220 0v220M275 0v220M330 0v220M385 0v220"/></g>
         </svg>
-        <div class="ca-illo" style="--x:22px;--w:31%"><svg viewBox="0 0 140 150" aria-hidden="true">
+        <div class="ca-illo" style="--x:20px;--w:27%"><svg viewBox="0 0 140 150" aria-hidden="true">
             <defs><clipPath id="abcClip"><rect x="10" y="8" width="70" height="44" rx="6"/></clipPath>
               <linearGradient id="abcShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
             <rect x="2" y="2" width="136" height="146" rx="12" fill="#141925" stroke="rgba(59,130,246,.55)" stroke-width="1.4"/>
@@ -778,9 +781,9 @@
             <g class="ab-row" style="--i:0"><rect x="10" y="70" width="120" height="32" rx="7" fill="#1d2230"/><circle cx="26" cy="86" r="8" fill="none" stroke="#2b3345" stroke-width="3.5"/><circle class="ab-ring" pathLength="1" cx="26" cy="86" r="8" fill="none" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" transform="rotate(-90 26 86)"/><rect x="42" y="80" width="50" height="4.5" rx="2.25" fill="rgba(240,235,226,.4)"/><rect x="42" y="89" width="32" height="4" rx="2" fill="rgba(240,235,226,.2)"/></g>
             <g class="ab-row" style="--i:1"><rect x="10" y="108" width="120" height="32" rx="7" fill="#1d2230"/><rect x="18" y="116" width="16" height="16" rx="4" fill="#3b82f6" opacity=".55"/><rect x="42" y="118" width="58" height="4.5" rx="2.25" fill="rgba(240,235,226,.4)"/><rect x="42" y="127" width="36" height="4" rx="2" fill="rgba(240,235,226,.2)"/></g>
           </svg></div>
-        <div class="mf mf-screen" style="--x:73%;--y:34px;--w:23%;--r:6deg;--z:1;--hx:14px;--hy:-4px;--hr:9deg"><img src="thumb-abc-tx.webp" alt="The Transactions widget" loading="lazy"></div>
-        <div class="mf mf-screen" style="--x:58%;--y:26px;--w:23%;--r:2deg;--z:2;--hx:4px;--hy:-10px;--hr:3deg"><img src="thumb-abc-rewards1.webp" alt="The Points and rewards widget" loading="lazy"></div>
-        <div class="mf mf-screen" style="--x:41%;--y:22px;--w:24%;--r:-3deg;--z:3;--hx:-10px;--hy:-8px;--hr:-5deg"><img src="thumb-abc-topfold1.webp" alt="The card member hub top fold: balance, payment summary and Make a payment" loading="lazy"></div>
+        <div class="mf mf-free" style="--x:65%;--y:20px;--w:29%;--r:3deg;--z:1;--hx:10px;--hy:-6px;--hr:5deg"><img src="thumb-abc-bal.webp" alt="The balance widget: current balance, credit meter, payment summary and Make a payment" loading="lazy"></div>
+        <div class="mf mf-free ab-card" style="--x:37%;--y:52px;--w:39%;--r:-7deg;--z:3;--hx:-10px;--hy:-10px;--hr:-10deg"><img src="thumb-abc-cc.webp" alt="Prime Visa Business card art" loading="lazy"></div>
+        <div class="mf mf-free ab-chips" style="--x:38%;--y:166px;--w:34%;--r:-4deg;--z:4;--hx:-4px;--hy:-4px;--hr:-3deg"><img src="thumb-abc-chips.webp" alt="Chips: New, 2% back, 5% back, Offer" loading="lazy"></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
@@ -1046,23 +1049,5 @@
   discLabel.style.transition = 'opacity 0.18s ease';
   startRotation();
 </script>
-<dialog id="wg-dialog" class="wg-dialog" aria-label="Password required">
-  <div class="wg-panel">
-    <button type="button" class="wg-close" aria-label="Close">&times;</button>
-    <div class="wg-kicker">Internal preview</div>
-    <h2 class="wg-title">Windows Visual Systems <em>&amp; Assets</em></h2>
-    <p class="wg-desc">This one's for Microsoft eyes for now. Pop in the password and come on in.</p>
-    <form class="wg-form" autocomplete="off">
-      <input class="wg-input" type="password" name="password" placeholder="Password" aria-label="Password" autocapitalize="off" spellcheck="false">
-      <button class="wg-submit" type="submit">Unlock</button>
-    </form>
-    <p class="wg-msg" role="status" aria-live="polite"></p>
-    <div class="wg-foot">
-      <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20password">Need the password? Ask me</a>
-      
-    </div>
-  </div>
-</dialog>
-<script src="wvs-gate.js" data-mode="launcher"></script>
 </body>
 </html>

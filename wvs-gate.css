@@ -1,0 +1,45 @@
+/* Password gate for the Windows case study: a dialog on the index, a cover on the page itself */
+.wg-dialog { margin: auto; inset: 0; max-height: calc(100% - 32px); overflow: visible; border: 0; padding: 0; background: transparent; max-width: 440px; width: calc(100% - 32px); color: var(--cream, #f0ebe2); }
+.wg-dialog::backdrop { background: rgba(8,8,7,.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.wg-dialog[open] .wg-panel { animation: wg-in .45s cubic-bezier(.2,.9,.3,1.15); }
+@keyframes wg-in { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+
+.wg-cover { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center;
+            padding: 24px; background: var(--bg, #0e0d0c); }
+html.wg-locked .wg-cover { display: flex; }
+html.wg-locked body { overflow: hidden; }
+
+.wg-panel { position: relative; width: 100%; max-width: 440px; background: var(--bg2, #161512);
+            border: 1px solid var(--border2, rgba(240,235,226,.14)); border-radius: 18px; padding: 34px 32px 28px;
+            box-shadow: 0 40px 80px -30px rgba(0,0,0,.9); text-align: left; }
+.wg-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%;
+            border: 1px solid var(--border2, rgba(240,235,226,.14)); background: transparent; color: var(--cream3, #6b6560);
+            font-size: 16px; line-height: 1; cursor: pointer; transition: color .2s, border-color .2s; }
+.wg-close:hover { color: var(--cream, #f0ebe2); border-color: var(--cream3, #6b6560); }
+.wg-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: .12em;
+             text-transform: uppercase; color: var(--accent, #22c55e); margin-bottom: 14px; }
+.wg-kicker::before { content: ''; width: 10px; height: 10px; background-color: currentColor;
+                     -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
+.wg-title { font-family: var(--serif, Georgia, serif); font-size: 26px; font-weight: 400; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 10px; }
+.wg-title em { font-style: italic; color: var(--accent, #22c55e); }
+.wg-desc { font-size: 14px; color: var(--cream2, #b8b0a4); line-height: 1.65; margin: 0 0 22px; }
+.wg-form { display: flex; gap: 8px; }
+.wg-input { flex: 1; min-width: 0; font: inherit; font-size: 15px; color: var(--cream, #f0ebe2); background: var(--bg, #0e0d0c);
+            border: 1px solid var(--border2, rgba(240,235,226,.14)); border-radius: 100px; padding: 12px 18px; outline: none;
+            transition: border-color .2s, box-shadow .2s; }
+.wg-input:focus { border-color: rgba(34,197,94,.6); box-shadow: 0 0 0 4px rgba(34,197,94,.12); }
+.wg-input::placeholder { color: var(--cream3, #6b6560); }
+.wg-submit { font: inherit; font-size: 14px; font-weight: 500; color: var(--bg, #0e0d0c); background: var(--cream, #f0ebe2);
+             border: 0; border-radius: 100px; padding: 12px 20px; cursor: pointer; white-space: nowrap; transition: background .2s, transform .2s; }
+.wg-submit:hover { background: var(--accent, #22c55e); transform: translateY(-1px); }
+.wg-msg { min-height: 20px; margin: 12px 2px 0; font-size: 12.5px; color: var(--cream3, #6b6560); }
+.wg-msg.is-error { color: #f08a8a; }
+.wg-msg.is-ok { color: var(--accent, #22c55e); }
+.wg-form.is-shake { animation: wg-shake .4s; }
+@keyframes wg-shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.wg-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 18px; padding-top: 16px;
+           border-top: 1px solid var(--border, rgba(240,235,226,.08)); font-size: 12px; }
+.wg-foot a { color: var(--cream3, #6b6560); text-decoration: none; transition: color .2s; }
+.wg-foot a:hover { color: var(--cream, #f0ebe2); }
+@media (max-width: 480px) { .wg-panel { padding: 28px 22px 22px; } .wg-form { flex-direction: column; } .wg-submit { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .wg-dialog[open] .wg-panel, .wg-form.is-shake { animation: none; } }

@@ -10,6 +10,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="wvs-gate.css">
+<script>try{if(sessionStorage.getItem('wvs-unlocked')!=='1')document.documentElement.classList.add('wg-locked')}catch(e){document.documentElement.classList.add('wg-locked')}</script>
 <meta name="description" content="Case study in progress. Design systems and visual language work at Microsoft on Windows.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://masoncatt.com/windows-visual-systems.html">
@@ -499,6 +501,32 @@
   .dslide-vis { order: 1; }
   .dslide-vis svg { width: 100%; height: 100%; }
   .dslide-vis img, .dslide-vis video { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  /* Compendium deck: drawn cover and the production loop fill their panel edge to edge */
+  .dslide-vis.is-art { padding: 0; background: #161616; }
+  .dslide-vis.is-art svg { width: 100%; height: 100%; }
+  .cv-meta { font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; fill: #8a8a8a; }
+  .cv-title { font: 600 40px var(--sans); letter-spacing: -.02em; fill: #f5f5f5; }
+  .cv-desc { font: 400 15px var(--sans); fill: #a8a8a8; }
+  .cv-pill { font: 500 13px var(--sans); fill: #22c55e; }
+  .cv-chips text { font: 500 12px var(--sans); fill: #bdbdbd; }
+  .cv-lbl { font: 500 12.5px var(--sans); fill: #cfcfcf; }
+  .cv-time { font: 300 26px var(--sans); fill: #fff; }
+  .cv-card { transition: opacity .35s ease; }
+  .cv-lift { transition: transform .35s cubic-bezier(.2,.75,.25,1); }
+  .cv-card .cv-ok { transition: transform .35s cubic-bezier(.2,.75,.25,1); transform-box: fill-box; transform-origin: center; }
+  .cv:hover .cv-card { opacity: .55; }
+  .cv .cv-card:hover { opacity: 1; }
+  .cv .cv-card:hover .cv-lift { transform: translateY(-5px); }
+  .cv .cv-card:hover .cv-ok { transform: scale(1.25); }
+  .lp-k { font: 600 10.5px var(--sans); letter-spacing: .12em; fill: #22c55e; }
+  .lp-t { font: 500 17px var(--sans); fill: #f0ebe2; }
+  .lp-s { font: 400 12px var(--sans); fill: #8a847b; }
+  .lp-edge { font: 500 12px var(--sans); fill: #8a847b; }
+  .lp-edge-g { fill: #22c55e; }
+  .lp-flow { stroke-dasharray: 6 6; animation: lp-flow 1.4s linear infinite; }
+  @keyframes lp-flow { to { stroke-dashoffset: -12; } }
+  @media (prefers-reduced-motion: reduce) { .lp-flow { animation: none; } .lp-dot { display: none; } .cv-card, .cv-lift { transition: none; } }
   /* A real capture sits in a drawn browser, the same frame the work hub uses:
      it is a page at a URL, and clicking it opens that page. The panel behind
      it goes away so the window floats on the deck instead of in a dark box. */
@@ -577,6 +605,24 @@
 </style>
 </head>
 <body>
+<div id="wg-cover" class="wg-cover">
+  <div class="wg-panel">
+    
+    <div class="wg-kicker">Internal preview</div>
+    <h2 class="wg-title">Windows Visual Systems <em>&amp; Assets</em></h2>
+    <p class="wg-desc">This one's for Microsoft eyes for now. Pop in the password and come on in.</p>
+    <form class="wg-form" autocomplete="off">
+      <input class="wg-input" type="password" name="password" placeholder="Password" aria-label="Password" autocapitalize="off" spellcheck="false">
+      <button class="wg-submit" type="submit">Unlock</button>
+    </form>
+    <p class="wg-msg" role="status" aria-live="polite"></p>
+    <div class="wg-foot">
+      <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20password">Need the password? Ask me</a>
+      <a href="index.html#work">&larr; Back to all work</a>
+    </div>
+  </div>
+</div>
+
 
 <nav>
   <a href="index.html" class="nav-logo">Mason Catt</a>
@@ -767,64 +813,139 @@
 
             <div class="deck" data-deck="compendiums">
       <div class="deck-crumbs" role="tablist">
-        <button class="crumb crumb-live is-on" data-i="0" type="button">Compendium</button>
-        <button class="crumb" data-i="1" type="button">Libraries</button>
-        <button class="crumb" data-i="2" type="button">Pipeline</button>
+        <button class="crumb is-on" data-i="0" type="button">Compendium</button>
+        <button class="crumb crumb-live" data-i="1" type="button">Templates</button>
+        <button class="crumb" data-i="2" type="button">The loop</button>
         <span class="deck-count">1 / 3</span>
       </div>
       <div class="deck-stage">
         <div class="dslide is-on" data-i="0">
-          <div class="dslide-body"><div class="slide-kicker">The library</div>
+          <div class="dslide-body"><div class="slide-kicker">The file</div>
           <h3>The compendium</h3>
-          <p>Every Windows product and feature surface, held accurate to what actually shipped.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="0" y="0" width="300" height="26" rx="14" fill="#1e1c18"/><rect x="0" y="18" width="300" height="8" fill="#1e1c18"/>
-          <circle cx="16" cy="13" r="3.5" fill="#3a352e"/><circle cx="28" cy="13" r="3.5" fill="#3a352e"/>
-          <g fill="#2b2822">
-            <rect x="16" y="40" width="80" height="48" rx="8"/><rect x="108" y="40" width="80" height="48" rx="8"/>
-            <rect x="200" y="40" width="84" height="48" rx="8"/>
-            <rect x="16" y="100" width="80" height="48" rx="8"/><rect x="200" y="100" width="84" height="48" rx="8"/>
+          <p>Windows surfaces, features and products, refined and approved for marketing, in one file everyone pulls from.</p></div>
+          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+          <defs>
+            <linearGradient id="cvWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
+            <pattern id="cvDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
+          </defs>
+          <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#cvDots)"/>
+          <text x="48" y="64" class="cv-meta">Windows Design Systems  ·  Marketing</text>
+          <g transform="translate(62 108)" fill="#22c55e">
+            <circle cx="-8" cy="-8" r="9"/><circle cx="8" cy="-8" r="9"/><circle cx="-8" cy="8" r="9"/><circle cx="8" cy="8" r="9"/>
+            <path d="M4 12 q8 14 2 26" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
           </g>
-          <rect x="108" y="100" width="80" height="48" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <path d="M136 124 l6 6 l12 -13" fill="none" stroke="#22c55e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="48" y="186" class="cv-title">Spring 2026</text>
+          <text x="48" y="232" class="cv-title">Marketing</text>
+          <text x="48" y="278" class="cv-title">Compendium</text>
+          <text x="48" y="320" class="cv-desc"><tspan x="48">Windows surfaces, features and products,</tspan><tspan x="48" dy="22">refined and approved for marketing use.</tspan></text>
+          <g transform="translate(48 364)"><rect width="212" height="34" rx="17" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)"/>
+            <circle cx="20" cy="17" r="8" fill="#22c55e"/><path d="M16.4 17.2l2.5 2.5 4.8-5.2" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="36" y="22" class="cv-pill">Approved for marketing</text></g>
+          <g transform="translate(48 424)" class="cv-chips">
+            <rect width="84" height="28" rx="14" fill="none" stroke="rgba(255,255,255,.18)"/><text x="42" y="19" text-anchor="middle">Surfaces</text>
+            <rect x="94" width="84" height="28" rx="14" fill="none" stroke="rgba(255,255,255,.18)"/><text x="136" y="19" text-anchor="middle">Features</text>
+            <rect x="188" width="84" height="28" rx="14" fill="none" stroke="rgba(255,255,255,.18)"/><text x="230" y="19" text-anchor="middle">Products</text>
+          </g>
+          <g class="cv-card" style="--i:0" transform="translate(404 58)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="14" y="14" width="10" height="10" rx="2" fill="rgba(255,255,255,.7)"/><rect x="14" y="30" width="10" height="10" rx="2" fill="rgba(255,255,255,.7)"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Desktop</text>
+          </g></g><g class="cv-card" style="--i:1" transform="translate(584 58)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="42" y="10" width="76" height="72" rx="6" fill="#f5f5f5"/><rect x="48" y="16" width="64" height="6" rx="3" fill="#e2e2e2"/><rect x="50" y="28" width="7" height="7" rx="1.8" fill="#3b82f6"/><rect x="60" y="28" width="7" height="7" rx="1.8" fill="#22c55e"/><rect x="70" y="28" width="7" height="7" rx="1.8" fill="#e879a0"/><rect x="80" y="28" width="7" height="7" rx="1.8" fill="#f59e0b"/><rect x="90" y="28" width="7" height="7" rx="1.8" fill="#0ea5e9"/><rect x="100" y="28" width="7" height="7" rx="1.8" fill="#8b5cf6"/><rect x="50" y="39" width="7" height="7" rx="1.8" fill="#3b82f6"/><rect x="60" y="39" width="7" height="7" rx="1.8" fill="#22c55e"/><rect x="70" y="39" width="7" height="7" rx="1.8" fill="#e879a0"/><rect x="80" y="39" width="7" height="7" rx="1.8" fill="#f59e0b"/><rect x="90" y="39" width="7" height="7" rx="1.8" fill="#0ea5e9"/><rect x="100" y="39" width="7" height="7" rx="1.8" fill="#8b5cf6"/><rect x="48" y="56" width="40" height="4" rx="2" fill="#dcdcdc"/><rect x="48" y="64" width="30" height="4" rx="2" fill="#dcdcdc"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Start</text>
+          </g></g><g class="cv-card" style="--i:2" transform="translate(764 58)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="14" y="10" width="132" height="72" rx="5" fill="#fafafa"/><rect x="14" y="10" width="132" height="12" rx="5" fill="#ececec"/><rect x="14" y="22" width="30" height="60" fill="#f1f1f1"/><rect x="50" y="28" width="8" height="7" rx="1.5" fill="#f5b83d"/><rect x="62" y="29.5" width="50" height="4" rx="2" fill="#d7d7d7"/><rect x="50" y="40" width="8" height="7" rx="1.5" fill="#f5b83d"/><rect x="62" y="41.5" width="44" height="4" rx="2" fill="#d7d7d7"/><rect x="50" y="52" width="8" height="7" rx="1.5" fill="#f5b83d"/><rect x="62" y="53.5" width="38" height="4" rx="2" fill="#d7d7d7"/><rect x="50" y="64" width="8" height="7" rx="1.5" fill="#f5b83d"/><rect x="62" y="65.5" width="32" height="4" rx="2" fill="#d7d7d7"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">File Explorer</text>
+          </g></g><g class="cv-card" style="--i:3" transform="translate(404 208)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="14" y="10" width="132" height="72" rx="5" fill="#f7f7f7"/><rect x="20" y="18" width="26" height="4" rx="2" fill="#d9d9d9"/><rect x="20" y="27" width="26" height="4" rx="2" fill="#3b82f6"/><rect x="20" y="36" width="26" height="4" rx="2" fill="#d9d9d9"/><rect x="20" y="45" width="26" height="4" rx="2" fill="#d9d9d9"/><rect x="20" y="54" width="26" height="4" rx="2" fill="#d9d9d9"/><rect x="20" y="63" width="26" height="4" rx="2" fill="#d9d9d9"/><rect x="54" y="16" width="86" height="18" rx="4" fill="#fff" stroke="#e6e6e6"/><rect x="54" y="38" width="86" height="12" rx="3" fill="#fff" stroke="#e6e6e6"/><rect x="54" y="54" width="86" height="12" rx="3" fill="#fff" stroke="#e6e6e6"/><rect x="126" y="58" width="10" height="5" rx="2.5" fill="#3b82f6"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Settings</text>
+          </g></g><g class="cv-card" style="--i:4" transform="translate(584 208)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="88" y="8" width="62" height="76" rx="6" fill="#f7f7f7"/><rect x="96" y="16" width="44" height="12" rx="6" fill="#e3e8f5"/><rect x="104" y="32" width="38" height="12" rx="6" fill="#dfe9ff"/><rect x="96" y="48" width="36" height="12" rx="6" fill="#e3e8f5"/><rect x="94" y="70" width="50" height="9" rx="4.5" fill="#fff" stroke="#e0e0e0"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Copilot</text>
+          </g></g><g class="cv-card" style="--i:5" transform="translate(764 208)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="10" y="8" width="84" height="76" rx="6" fill="rgba(245,245,245,.92)"/><rect x="16" y="14" width="34" height="30" rx="4" fill="#fff"/><circle cx="26" cy="25" r="5" fill="#f59e0b"/><rect x="54" y="14" width="34" height="30" rx="4" fill="#fff"/><path d="M58 36l6-6 5 4 8-9 6 5" fill="none" stroke="#22c55e" stroke-width="1.6"/><rect x="16" y="48" width="72" height="30" rx="4" fill="#fff"/><rect x="22" y="54" width="40" height="4" rx="2" fill="#d6d6d6"/><rect x="22" y="62" width="54" height="4" rx="2" fill="#e3e3e3"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Widgets</text>
+          </g></g><g class="cv-card" style="--i:6" transform="translate(404 358)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="96" y="6" width="56" height="40" rx="5" fill="#f5f5f5"/><rect x="101" y="11" width="21" height="30" rx="2.5" fill="#3b82f6"/><rect x="125" y="11" width="22" height="30" rx="2.5" fill="#d4d4d4"/><rect x="10" y="52" width="70" height="30" rx="4" fill="rgba(250,250,250,.9)"/><rect x="84" y="52" width="66" height="30" rx="4" fill="rgba(250,250,250,.9)"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Snap layouts</text>
+          </g></g><g class="cv-card" style="--i:7" transform="translate(584 358)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <text x="80" y="46" text-anchor="middle" class="cv-time">9:41</text><rect x="58" y="54" width="44" height="4" rx="2" fill="rgba(255,255,255,.7)"/><rect x="66" y="76" width="28" height="8" rx="4" fill="rgba(255,255,255,.45)"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Lock screen</text>
+          </g></g><g class="cv-card" style="--i:8" transform="translate(764 358)"><g class="cv-lift">
+            <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
+            <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="88" y="8" width="62" height="34" rx="5" fill="#f5f5f5"/><rect x="94" y="14" width="10" height="10" rx="2" fill="#3b82f6"/><rect x="108" y="15" width="34" height="4" rx="2" fill="#d4d4d4"/><rect x="108" y="23" width="26" height="4" rx="2" fill="#e2e2e2"/><rect x="88" y="46" width="62" height="36" rx="5" fill="#f5f5f5"/><rect x="94" y="52" width="50" height="10" rx="3" fill="#e8e8e8"/><rect x="94" y="66" width="22" height="10" rx="3" fill="#3b82f6"/>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
+            <g class="cv-ok"><circle cx="148" cy="12" r="8.5" fill="#22c55e"/><path d="M144.2 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="2" y="114" class="cv-lbl">Notifications</text>
+          </g></g>
         </svg></div>
         </div>
         <div class="dslide" data-i="1">
-          <div class="dslide-body"><div class="slide-kicker">The response</div>
-          <h3>Component, template and screen libraries</h3>
-          <p>Campaign surfaces assembled from parts that are already correct. Product design now pulls from the same libraries.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <g fill="#2b2822">
-            <rect x="12" y="16" width="72" height="20" rx="7"/><rect x="12" y="44" width="72" height="20" rx="7"/>
-            <rect x="12" y="72" width="72" height="20" rx="7"/><rect x="12" y="100" width="72" height="20" rx="7"/>
-          </g>
-          <rect x="12" y="128" width="72" height="20" rx="7" fill="none" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
-          <path d="M96 82 h22" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
-          <rect x="132" y="16" width="156" height="132" rx="12" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="146" y="30" width="128" height="16" rx="6" fill="#2b2822"/>
-          <rect x="146" y="56" width="60" height="44" rx="9" fill="#22c55e" opacity=".45"/>
-          <rect x="214" y="56" width="60" height="44" rx="9" fill="#2b2822"/>
-          <rect x="146" y="110" width="128" height="24" rx="8" fill="#2b2822"/>
-        </svg></div>
+          <div class="dslide-body"><div class="slide-kicker">Built to scale</div>
+          <h3>Templates</h3>
+          <p>Device templates for Windows 11 and Copilot+ PC at every spec, light and dark, so one layout scales across every marketing surface.</p>
+          <a class="slide-link" href="https://www.figma.com/design/eVlPXxepN2W78uIFeT0JQv/%F0%9F%8D%80-Spring-2026-Marketing-Compendium?node-id=2834-57626&amp;t=I3exIabwrYD97k5t-1" target="_blank" rel="noopener">Open in Figma <span>&rarr;</span></a></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://www.figma.com/design/eVlPXxepN2W78uIFeT0JQv/%F0%9F%8D%80-Spring-2026-Marketing-Compendium?node-id=2834-57626&amp;t=I3exIabwrYD97k5t-1" target="_blank" rel="noopener" style="--ar:1.5304"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">figma.com / Spring 2026 Marketing Compendium</span><span class="browser-open">Open &nearr;</span></span><img src="shot-templates.webp" alt="Fall 2026 consumer templates: Windows 11 and Copilot+ PC device frames in light and dark, at 16x10, 16x9, 3x2, 2x3 tablet, 3x2 tablet and ultrawide specs" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="2">
-          <div class="dslide-body"><div class="slide-kicker">The mechanism</div>
-          <h3>The sync pipeline</h3>
-          <p>Keeps marketing screens in step with product as it moves, on a schedule instead of whenever someone notices.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="10" y="34" width="112" height="100" rx="12" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="178" y="34" width="112" height="100" rx="12" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <g fill="#2b2822">
-            <rect x="24" y="50" width="84" height="12" rx="5"/><rect x="24" y="70" width="60" height="12" rx="5"/>
-            <rect x="192" y="50" width="84" height="12" rx="5"/><rect x="192" y="70" width="60" height="12" rx="5"/>
+          <div class="dslide-body"><div class="slide-kicker">The loop</div>
+          <h3>From production back to product</h3>
+          <p>Marketing-ready assets go into production, and the pixel-perfect versions go back to product design teams to level up their starter assets.</p></div>
+          <div class="dslide-vis is-art"><svg class="lp" viewBox="0 0 960 540" aria-hidden="true">
+          <defs><linearGradient id="lpWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
+            <marker id="lpHead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l7 4-7 4" fill="none" stroke="#6b6560" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+            <marker id="lpHeadG" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l7 4-7 4" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+          <path class="lp-flow" d="M228 206 C 250 160, 300 146, 358 146" fill="none" stroke="#6b6560" stroke-width="2" marker-end="url(#lpHead)"/>
+          <text x="236" y="150" text-anchor="end" class="lp-edge">refine + approve</text>
+          <path class="lp-flow" d="M602 146 C 660 146, 710 160, 732 206" fill="none" stroke="#6b6560" stroke-width="2" marker-end="url(#lpHead)"/>
+          <text x="724" y="150" class="lp-edge">into production</text>
+          <path id="lpBack" class="lp-flow lp-back" d="M800 408 C 760 512, 200 512, 160 408" fill="none" stroke="#22c55e" stroke-width="2.2" marker-end="url(#lpHeadG)"/>
+          <text x="480" y="530" text-anchor="middle" class="lp-edge lp-edge-g">pixel-perfect assets go back to product design</text>
+          <circle class="lp-dot" r="5" fill="#22c55e"><animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#lpBack"/></animateMotion></circle>
+          <g class="lp-node lp-a" transform="translate(160 300)">
+            <rect x="-116" y="-90" width="232" height="192" rx="16" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <g transform="translate(-92 -66)"><rect width="184" height="88" rx="8" fill="#1f1d1a" stroke="#3a352e" stroke-dasharray="5 4"/><rect x="14" y="14" width="70" height="8" rx="4" fill="#3a352e"/><rect x="14" y="30" width="156" height="20" rx="5" fill="none" stroke="#3a352e" stroke-dasharray="4 3"/><rect x="14" y="58" width="60" height="16" rx="5" fill="#3a352e"/><rect x="82" y="60" width="44" height="12" rx="4" fill="none" stroke="#3a352e" stroke-dasharray="3 3"/></g>
+            <text x="-92" y="44" class="lp-k">PRODUCT DESIGN</text>
+            <text x="-92" y="64" class="lp-t">Starter assets</text>
+            <text x="-92" y="80" class="lp-s">Rough, per-team, inconsistent</text>
           </g>
-          <rect x="24" y="96" width="84" height="24" rx="8" fill="#22c55e" opacity=".4"/>
-          <rect x="192" y="96" width="84" height="24" rx="8" fill="#22c55e" opacity=".4"/>
-          <path d="M128 76 h44" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
-          <path d="M164 70 l8 6 l-8 6" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M172 96 h-44" stroke="#3a352e" stroke-width="2" stroke-linecap="round"/>
-          <path d="M136 90 l-8 6 l8 6" fill="none" stroke="#3a352e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="lp-node lp-b" transform="translate(480 146)">
+            <rect x="-116" y="-90" width="232" height="192" rx="16" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <g transform="translate(-92 -66)"><rect width="184" height="88" rx="8" fill="url(#lpWall)"/><rect x="40" y="8" width="104" height="66" rx="6" fill="#f5f5f5"/><rect x="48" y="15" width="88" height="7" rx="3.5" fill="#e0e0e0"/><rect x="50" y="28" width="10" height="10" rx="2.5" fill="#3b82f6"/><rect x="64" y="28" width="10" height="10" rx="2.5" fill="#22c55e"/><rect x="78" y="28" width="10" height="10" rx="2.5" fill="#e879a0"/><rect x="92" y="28" width="10" height="10" rx="2.5" fill="#f59e0b"/><rect x="106" y="28" width="10" height="10" rx="2.5" fill="#0ea5e9"/><rect x="120" y="28" width="10" height="10" rx="2.5" fill="#8b5cf6"/><rect x="50" y="42" width="10" height="10" rx="2.5" fill="#3b82f6"/><rect x="64" y="42" width="10" height="10" rx="2.5" fill="#22c55e"/><rect x="78" y="42" width="10" height="10" rx="2.5" fill="#e879a0"/><rect x="92" y="42" width="10" height="10" rx="2.5" fill="#f59e0b"/><rect x="106" y="42" width="10" height="10" rx="2.5" fill="#0ea5e9"/><rect x="120" y="42" width="10" height="10" rx="2.5" fill="#8b5cf6"/><rect x="0" y="78" width="184" height="10" fill="rgba(245,245,245,.85)"/><circle cx="172" cy="12" r="9" fill="#22c55e"/><path d="M168 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="-92" y="44" class="lp-k">COMPENDIUM</text>
+            <text x="-92" y="64" class="lp-t">Marketing-ready</text>
+            <text x="-92" y="80" class="lp-s">Refined, pixel-perfect, approved</text>
+          </g>
+          <g class="lp-node lp-c" transform="translate(800 300)">
+            <rect x="-116" y="-90" width="232" height="192" rx="16" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <g transform="translate(-92 -66)"><rect width="110" height="88" rx="8" fill="url(#lpWall)"/><rect x="10" y="12" width="60" height="8" rx="4" fill="rgba(255,255,255,.85)"/><rect x="10" y="26" width="42" height="6" rx="3" fill="rgba(255,255,255,.6)"/><rect x="10" y="66" width="36" height="12" rx="6" fill="#fff"/><rect x="118" y="0" width="66" height="40" rx="6" fill="#f5f5f5"/><rect x="124" y="6" width="54" height="20" rx="3" fill="url(#lpWall)"/><rect x="124" y="30" width="30" height="4" rx="2" fill="#d4d4d4"/><rect x="118" y="48" width="66" height="40" rx="6" fill="#0e0d0c" stroke="#3a352e"/><path d="M146 60l12 8-12 8z" fill="#f0ebe2"/></g>
+            <text x="-92" y="44" class="lp-k">PRODUCTION</text>
+            <text x="-92" y="64" class="lp-t">Campaigns + retail</text>
+            <text x="-92" y="80" class="lp-s">Web, store, social, video</text>
+          </g>
         </svg></div>
         </div>
       </div>
@@ -1241,5 +1362,6 @@
     row.appendChild(make(1));
   });
 </script>
+<script src="wvs-gate.js" data-mode="page"></script>
 </body>
 </html>
