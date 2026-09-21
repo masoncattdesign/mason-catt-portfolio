@@ -380,7 +380,12 @@
   .exp-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color 0.2s; }
   .exp-card:hover { border-color: var(--border2); }
   .exp-card { display: grid; grid-template-columns: 1fr auto; column-gap: 24px; align-items: center; }
-  .exp-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .exp-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  /* the company's own bottom margin was pushing the pill 2px low, and the pill read heavy next to an 18px name */
+  .exp-head .exp-company { margin-bottom: 0; line-height: 1.2; }
+  .exp-head .exp-current { font-size: 10.5px; line-height: 1.4; padding: 1px 8px 1px 7px; gap: 5px;
+                           letter-spacing: 0.01em; position: relative; top: -1px; }
+  .exp-head .exp-current::before { width: 4.5px; height: 4.5px; }
   .exp-logo { width: 74px; height: 74px; border-radius: 16px; background: var(--bg3);
               border: 1px solid var(--border); display: grid; place-items: center;
               position: relative; overflow: hidden; flex-shrink: 0; }
