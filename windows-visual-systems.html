@@ -454,6 +454,20 @@
   }
 
   .deck-dots { display: flex; justify-content: center; align-items: center; gap: 9px; padding-top: 16px; }
+  /* Prev / next either side of the dots, a second way around each deck */
+  .deck-nav { appearance: none; width: 30px; height: 30px; padding: 0; border-radius: 50%;
+              border: 1px solid var(--border2); background: transparent; color: var(--cream2);
+              display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+              transition: border-color .2s ease, color .2s ease, background .2s ease; }
+  .deck-nav svg { width: 14px; height: 14px; transition: transform .25s cubic-bezier(.2,.75,.25,1); }
+  .deck-nav.is-prev { margin-right: 10px; }
+  .deck-nav.is-next { margin-left: 10px; }
+  .deck-nav:hover { border-color: rgba(34,197,94,.5); color: var(--cream); background: rgba(34,197,94,.06); }
+  .deck-nav.is-prev:hover svg { transform: translateX(-2px); }
+  .deck-nav.is-next:hover svg { transform: translateX(2px); }
+  .deck-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .deck-nav svg { transition: none; } }
+
   .ddot { appearance: none; border: none; background: #3a352e; width: 8px; height: 8px; border-radius: 50%;
           padding: 0; cursor: pointer; transition: background .2s ease, transform .2s ease; }
   .ddot:hover { background: var(--cream3); }
@@ -1040,7 +1054,7 @@
           <h3>Desktop Themer</h3>
           <p>Takes the same theming model out past the icon set and onto a prospective desktop: illustration, interface surfaces and wallpaper all moving together under one direction. It is where you find out whether a direction is actually a direction, or just a nice icon set.</p>
           <!-- TODO Mason: "Desktop Themer" is a working name for the old BentoOS. Swap to "Desktop Theming Pilot" if you prefer, then delete this comment. --></div>
-          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/work/bentos.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">work/bentos</span><span class="browser-open">Open &nearr;</span></span><img src="shot-desktop-themer.webp" alt="Desktop Themer: a prospective Windows desktop with Start, widgets and taskbar all themed from one seed color" loading="lazy"></a></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/work/bentos.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">work/bentos</span><span class="browser-open">Open &nearr;</span></span><img src="shot-desktop-themer-v2.webp" alt="Desktop Themer: a prospective Windows desktop with Start, widgets and taskbar all themed from one seed color" loading="lazy"></a></div>
         </div>
       </div>
       <div class="deck-dots">
@@ -1138,5 +1152,32 @@
   });
 </script>
 
+
+<script>
+  /* Prev / next carets. They drive the existing dots, so every deck keeps
+     one source of truth for which slide is showing. */
+  document.querySelectorAll('[data-deck]').forEach(function (deck) {
+    var row = deck.querySelector('.deck-dots');
+    var dots = deck.querySelectorAll('.ddot');
+    if (!row || dots.length < 2) return;
+    function make(dir) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'deck-nav ' + (dir < 0 ? 'is-prev' : 'is-next');
+      b.setAttribute('aria-label', dir < 0 ? 'Previous slide' : 'Next slide');
+      b.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="' +
+        (dir < 0 ? 'M10 3 5 8l5 5' : 'M6 3l5 5-5 5') +
+        '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      b.addEventListener('click', function () {
+        var cur = 0;
+        dots.forEach(function (d, n) { if (d.classList.contains('is-on')) cur = n; });
+        dots[(cur + dir + dots.length) % dots.length].click();
+      });
+      return b;
+    }
+    row.insertBefore(make(-1), row.firstChild);
+    row.appendChild(make(1));
+  });
+</script>
 </body>
 </html>

@@ -216,6 +216,20 @@
   .dslide-vis.is-shot img, .dslide-vis.is-shot video { border-radius: 6px; }
 
   .deck-dots { display: flex; justify-content: center; align-items: center; gap: 9px; padding-top: 16px; }
+  /* Prev / next either side of the dots, a second way around each deck */
+  .deck-nav { appearance: none; width: 30px; height: 30px; padding: 0; border-radius: 50%;
+              border: 1px solid var(--border2); background: transparent; color: var(--cream2);
+              display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+              transition: border-color .2s ease, color .2s ease, background .2s ease; }
+  .deck-nav svg { width: 14px; height: 14px; transition: transform .25s cubic-bezier(.2,.75,.25,1); }
+  .deck-nav.is-prev { margin-right: 10px; }
+  .deck-nav.is-next { margin-left: 10px; }
+  .deck-nav:hover { border-color: rgba(34,197,94,.5); color: var(--cream); background: rgba(34,197,94,.06); }
+  .deck-nav.is-prev:hover svg { transform: translateX(-2px); }
+  .deck-nav.is-next:hover svg { transform: translateX(2px); }
+  .deck-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .deck-nav svg { transition: none; } }
+
   .ddot { appearance: none; border: none; background: #3a352e; width: 8px; height: 8px; border-radius: 50%;
           padding: 0; cursor: pointer; transition: background .2s ease, transform .2s ease; }
   .ddot:hover { background: var(--cream3); }
@@ -237,6 +251,20 @@
   @media (prefers-reduced-motion: reduce) { .dslide { transition: none; } }
   /* component shots are light artboards: give them a white mat instead of the dark one */
   .dslide-vis.is-light { background: #fff; padding: 16px; }
+  /* Layer slides: the drawn idea and the real thing from the Figma file, as two squares side by side */
+  .dslide-vis.is-pair { background: none; border: 0; padding: 0; overflow: visible; gap: 16px; container-type: size; }
+  .pair-cell { --s: min(calc((100cqw - 16px) / 2), 100cqh); width: var(--s); height: var(--s); flex: none;
+               position: relative; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .pair-art { background: var(--bg3); display: flex; align-items: center; justify-content: center; padding: 5%; }
+  .pair-art svg { width: 100%; height: 100%; }
+  .pair-shot { background: #f5f6f6; }
+  .dslide-vis .pair-shot img { width: 100%; height: 100%; object-fit: cover; }
+  .pair-tag { position: absolute; left: 10px; bottom: 10px; font-size: 10.5px; font-weight: 500; letter-spacing: .02em;
+              color: var(--cream2); background: rgba(14,13,12,.78); border: 1px solid var(--border2);
+              padding: 3px 9px; border-radius: 100px; }
+  @media (max-width: 560px) { .pair-tag { display: none; } }
+  @media (max-width: 860px) { .dslide-vis.is-pair { aspect-ratio: 2.1 / 1; padding: 0; gap: 10px; }
+    .pair-cell { --s: min(calc((100cqw - 10px) / 2), 100cqh); } .pair-tag { font-size: 9.5px; left: 7px; bottom: 7px; padding: 2px 7px; } }
 
   /* ---------- Feature slot: pick a Feature component, see it in the real row ---------- */
   .slot { display: grid; grid-template-columns: 190px 1fr; gap: 16px; margin: 24px 0 0; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
@@ -580,77 +608,82 @@
           <div class="dslide-body"><div class="slide-kicker">Layer one</div>
           <h3>Components</h3>
           <p>The parts a payment interface is actually made of. Primary payment method, Input card with its Network badge, Balance payment method, Sticky footer, Legal. Each one owns its own states and its own label logic, so a template never has to decide how a selected card should look.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg viewBox="0 0 200 200" aria-hidden="true">
           <g fill="#2b2822">
-            <rect x="14"  y="20" width="60" height="26" rx="8"/>
-            <rect x="84"  y="20" width="60" height="26" rx="8"/>
-            <rect x="224" y="20" width="62" height="26" rx="8"/>
-            <rect x="14"  y="56" width="60" height="26" rx="8"/>
-            <rect x="154" y="56" width="60" height="26" rx="8"/>
-            <rect x="224" y="56" width="62" height="26" rx="8"/>
-            <rect x="14"  y="92" width="60" height="26" rx="8"/>
-            <rect x="84"  y="92" width="60" height="26" rx="8"/>
-            <rect x="154" y="92" width="60" height="26" rx="8"/>
-            <rect x="224" y="92" width="62" height="26" rx="8"/>
-            <rect x="14"  y="128" width="60" height="26" rx="8"/>
-            <rect x="154" y="128" width="60" height="26" rx="8"/>
+            <rect x="16" y="33" width="52" height="26" rx="8"/><rect x="132" y="33" width="52" height="26" rx="8"/>
+            <rect x="74" y="69" width="52" height="26" rx="8"/><rect x="132" y="69" width="52" height="26" rx="8"/>
+            <rect x="16" y="105" width="52" height="26" rx="8"/><rect x="74" y="105" width="52" height="26" rx="8"/>
+            <rect x="16" y="141" width="52" height="26" rx="8"/><rect x="132" y="141" width="52" height="26" rx="8"/>
           </g>
-          <rect x="154" y="20" width="60" height="26" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <rect x="163" y="28" width="16" height="10" rx="3" fill="#22c55e" opacity=".6"/>
-          <rect x="185" y="30" width="20" height="3" rx="1.5" fill="#22c55e"/>
-          <rect x="84"  y="56" width="60" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
-          <rect x="84"  y="128" width="60" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
-          <rect x="224" y="128" width="62" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <g fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4">
+            <rect x="16" y="69" width="52" height="26" rx="8"/><rect x="132" y="105" width="52" height="26" rx="8"/><rect x="74" y="141" width="52" height="26" rx="8"/>
+          </g>
+          <rect x="74" y="33" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <rect x="81" y="41" width="14" height="10" rx="3" fill="#22c55e" opacity=".6"/>
+          <rect x="100" y="42" width="19" height="3" rx="1.5" fill="#22c55e"/>
+          <rect x="100" y="48" width="12" height="2.5" rx="1.25" fill="#22c55e" opacity=".5"/>
         </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-ps-pair-components.webp" alt="The Primary payment method component in the Pay Studio Figma file, wired to its card logos, the gift card row and the Continue footer" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
+        </div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Layer two</div>
           <h3>Templates</h3>
           <p>Complete, standalone interfaces for one task: choose a method, pick a bank, enter card details, verify a number, confirm success. Every template is a specialization of one base sheet, which is why they stay consistent without anyone policing them.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg viewBox="0 0 200 200" aria-hidden="true">
           <g fill="#2b2822">
-            <rect x="8" y="22" width="62" height="18" rx="6"/>
-            <rect x="8" y="48" width="62" height="18" rx="6"/>
-            <rect x="8" y="74" width="62" height="18" rx="6"/>
-            <rect x="8" y="100" width="62" height="18" rx="6"/>
+            <rect x="12" y="50" width="46" height="16" rx="6"/><rect x="12" y="74" width="46" height="16" rx="6"/>
+            <rect x="12" y="98" width="46" height="16" rx="6"/><rect x="12" y="122" width="46" height="16" rx="6"/>
           </g>
-          <rect x="8" y="126" width="62" height="18" rx="6" fill="none" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
-          <path d="M82 83 h26" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
-          <path d="M100 77 l8 6 l-8 6" fill="none" stroke="#6b6560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="124" y="14" width="168" height="142" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <rect x="140" y="30" width="26" height="6" rx="3" fill="#3a352e"/>
-          <circle cx="278" cy="33" r="5" fill="none" stroke="#3a352e" stroke-width="1.6"/>
-          <rect x="140" y="50" width="96" height="10" rx="5" fill="#f0ebe2" opacity=".8"/>
-          <rect x="140" y="68" width="132" height="24" rx="8" fill="#2b2822"/>
-          <rect x="140" y="98" width="132" height="24" rx="8" fill="#2b2822"/>
-          <rect x="140" y="130" width="132" height="16" rx="8" fill="#22c55e" opacity=".55"/>
+          <rect x="12" y="146" width="46" height="16" rx="6" fill="none" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <path d="M66 106 h20" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
+          <path d="M80 100 l7 6 l-7 6" fill="none" stroke="#6b6560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="98" y="22" width="90" height="156" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <rect x="110" y="36" width="20" height="5" rx="2.5" fill="#3a352e"/>
+          <circle cx="176" cy="38.5" r="4" fill="none" stroke="#3a352e" stroke-width="1.6"/>
+          <rect x="110" y="56" width="56" height="8" rx="4" fill="#f0ebe2" opacity=".8"/>
+          <rect x="110" y="74" width="66" height="22" rx="7" fill="#2b2822"/>
+          <rect x="110" y="102" width="66" height="22" rx="7" fill="#2b2822"/>
+          <rect x="110" y="152" width="66" height="14" rx="7" fill="#22c55e" opacity=".55"/>
         </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-ps-pair-templates.webp" alt="Two Pay Studio templates in the Figma file, Add a credit or debit card and a base sheet, linked by prototype connectors" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
+        </div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Layer three</div>
           <h3>Use cases</h3>
           <p>Templates wired into a journey that a customer finishes. The use case is where the product decision lives: which templates, in what order, with what branches. Nothing new is drawn at this layer, which is the whole point.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="6"   y="26" width="60" height="118" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="84"  y="26" width="60" height="118" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="162" y="26" width="60" height="118" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="240" y="26" width="56" height="118" rx="11" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <g fill="#2b2822">
-            <rect x="16" y="40" width="40" height="8" rx="4"/><rect x="16" y="56" width="40" height="18" rx="6"/><rect x="16" y="80" width="40" height="18" rx="6"/>
-            <rect x="94" y="40" width="40" height="8" rx="4"/><rect x="94" y="56" width="40" height="18" rx="6"/><rect x="94" y="80" width="40" height="18" rx="6"/>
-            <rect x="172" y="40" width="40" height="8" rx="4"/><rect x="172" y="56" width="40" height="30" rx="7"/>
-            <rect x="250" y="40" width="36" height="8" rx="4"/><rect x="250" y="56" width="36" height="18" rx="6"/>
-          </g>
-          <rect x="250" y="80" width="36" height="18" rx="6" fill="#22c55e" opacity=".5"/>
-          <rect x="16" y="120" width="40" height="14" rx="7" fill="#3a352e"/>
-          <rect x="94" y="120" width="40" height="14" rx="7" fill="#3a352e"/>
-          <rect x="172" y="120" width="40" height="14" rx="7" fill="#3a352e"/>
-          <rect x="250" y="120" width="36" height="14" rx="7" fill="#22c55e" opacity=".55"/>
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="22" y="16" width="62" height="76" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="32" y="26" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="32" y="38" width="42" height="13" rx="5" fill="#2b2822"/>
+          <rect x="32" y="55" width="42" height="13" rx="5" fill="#2b2822" opacity="1"/>
+          <rect x="32" y="75" width="42" height="9" rx="4.5" fill="#3a352e" opacity="1"/>
+          <rect x="116" y="16" width="62" height="76" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="126" y="26" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="126" y="38" width="42" height="13" rx="5" fill="#2b2822"/>
+          <rect x="126" y="55" width="42" height="13" rx="5" fill="#2b2822" opacity="1"/>
+          <rect x="126" y="75" width="42" height="9" rx="4.5" fill="#3a352e" opacity="1"/>
+          <rect x="22" y="108" width="62" height="76" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="32" y="118" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="32" y="130" width="42" height="30" rx="6" fill="#2b2822"/>
+          <rect x="32" y="167" width="42" height="9" rx="4.5" fill="#3a352e" opacity="1"/>
+          <rect x="116" y="108" width="62" height="76" rx="11" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <rect x="126" y="118" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="126" y="130" width="42" height="13" rx="5" fill="#2b2822"/>
+          <rect x="126" y="147" width="42" height="13" rx="5" fill="#22c55e" opacity=".5"/>
+          <rect x="126" y="167" width="42" height="9" rx="4.5" fill="#22c55e" opacity=".55"/>
           <g stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path d="M70 85 h8"/><path d="M148 85 h8"/><path d="M226 85 h8"/>
-            <path d="M74 80 l5 5 l-5 5"/><path d="M152 80 l5 5 l-5 5"/><path d="M230 80 l5 5 l-5 5"/>
+            <path d="M89 54 h18"/><path d="M103 49 l5 5 l-5 5"/>
+            <path d="M147 94 V100 H53 V104"/><path d="M49 101 l4 4 l4 -4"/>
+            <path d="M89 146 h18"/><path d="M103 141 l5 5 l-5 5"/>
           </g>
         </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-ps-pair-use-cases.webp" alt="The last two steps of the BANCOMAT Pay use case: register a phone number, then back to the wallet with BANCOMAT Pay selected" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
+        </div>
         </div>
       </div>
       <div class="deck-dots">
@@ -1119,5 +1152,32 @@
   });
 </script>
 
+
+<script>
+  /* Prev / next carets. They drive the existing dots, so every deck keeps
+     one source of truth for which slide is showing. */
+  document.querySelectorAll('[data-deck]').forEach(function (deck) {
+    var row = deck.querySelector('.deck-dots');
+    var dots = deck.querySelectorAll('.ddot');
+    if (!row || dots.length < 2) return;
+    function make(dir) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'deck-nav ' + (dir < 0 ? 'is-prev' : 'is-next');
+      b.setAttribute('aria-label', dir < 0 ? 'Previous slide' : 'Next slide');
+      b.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="' +
+        (dir < 0 ? 'M10 3 5 8l5 5' : 'M6 3l5 5-5 5') +
+        '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      b.addEventListener('click', function () {
+        var cur = 0;
+        dots.forEach(function (d, n) { if (d.classList.contains('is-on')) cur = n; });
+        dots[(cur + dir + dots.length) % dots.length].click();
+      });
+      return b;
+    }
+    row.insertBefore(make(-1), row.firstChild);
+    row.appendChild(make(1));
+  });
+</script>
 </body>
 </html>
