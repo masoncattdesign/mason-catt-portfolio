@@ -67,9 +67,6 @@
   .ml { font-size: 11px; font-weight: 500; color: var(--cream3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
   .mv { font-size: 13px; color: var(--cream); }
 
-  .hero-visual { max-width: calc(var(--col) + 96px); margin: 0 auto; padding: 0 48px 0; opacity: 0; animation: fadeIn 0.8s ease forwards 0.7s; }
-  .hero-visual-inner { background: linear-gradient(135deg, #0d1f0d 0%, #1a4d2e 55%, #0e0d0c 100%); border-radius: 20px; overflow: hidden; border: 1px solid rgba(34,197,94,0.12); }
-  .hero-visual-inner img { width: 100%; height: auto; display: block; }
 
   .case-body { max-width: calc(var(--col) + 96px); margin: 0 auto; padding: 72px 48px 0; }
 
@@ -93,10 +90,6 @@
   .img-full img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); background: #f5f5f5; }
   .img-cap { font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 10px; padding: 0 4px; line-height: 1.6; }
 
-  .thesis { background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--radius); padding: 36px 40px; margin: 8px 0 40px; position: relative; overflow: hidden; }
-  .thesis::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(34,197,94,0.06) 0%, transparent 60%); pointer-events: none; }
-  .thesis-label { font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-  .thesis-text { font-family: var(--serif); font-size: clamp(21px, 2.9vw, 30px); font-style: italic; color: var(--cream); line-height: 1.34; letter-spacing: -0.01em; position: relative; }
 
   .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 36px 0 0; }
   .stat-cell { background: var(--bg2); padding: 24px 22px; }
@@ -346,7 +339,6 @@
     .nav-links { display: none; }
     .nav-toggle { display: inline-flex; }
     .case-hero { padding: 108px 20px 0; }
-    .hero-visual { padding: 0 20px; }
     .case-body { padding: 56px 20px 0; }
     .stream-index { padding: 0 20px; margin-top: 44px; }
     .stream-index-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -367,7 +359,6 @@
     .facts dd { margin-bottom: 14px; }
     .dia { padding: 22px 20px; }
     .dia-legend { grid-template-columns: 1fr; }
-    .thesis { padding: 28px 24px; }
     .figma-wrap iframe { height: 460px; }
     .next-project { flex-direction: column; align-items: flex-start; padding: 48px 20px; }
     footer { flex-direction: column; gap: 14px; align-items: flex-start; padding: 28px 20px; }
@@ -443,13 +434,6 @@
     </div>
   </div>
 </div>
-
-<div class="hero-visual">
-  <div class="hero-visual-inner">
-    <img src="img-pay-studio-hero.png" alt="The Amazon Business payment method selection screen, assembled from Pay Studio components">
-  </div>
-</div>
-
 <div class="stream-index">
   <div class="stream-index-grid">
 
@@ -536,12 +520,6 @@
     <p>
       The Pay Studio reorganizes that work into an atomic structure: <strong>components</strong> that compose into <strong>templates</strong>, templates that connect into <strong>use cases</strong>. Each layer is closed over the one below it, so a designer building a new payment experience picks from the layer above rather than starting at a blank frame.
     </p>
-
-    <div class="thesis">
-      <div class="thesis-label">The argument</div>
-      <div class="thesis-text">The expensive part was never the drawing. It was the drift: six versions of the same sheet, four pixels apart, each behaving slightly differently.</div>
-    </div>
-
     <div class="stat-strip">
       <div class="stat-cell">
         <div class="stat-num">47</div>
