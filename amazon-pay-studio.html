@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amazon Pay Studio · Mason Catt</title>
-<meta name="description" content="An atomic design system for payment methods: components compose into templates, templates connect into use cases, and launching a new payment method becomes an assembly job instead of a design project.">
+<meta name="description" content="The first component library in Amazon Business Payments: an atomic design system of components, templates and use cases, used by Amazon Business designers globally and adopted by 80% within eight months.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://masoncatt.com/amazon-pay-studio.html">
 <meta property="og:title" content="Amazon Business Pay Studio · Mason Catt">
-<meta property="og:description" content="An atomic design system for payment methods: components compose into templates, templates connect into use cases, and launching a new payment method becomes an assembly job instead of a design project.">
+<meta property="og:description" content="The first component library in Amazon Business Payments: an atomic design system of components, templates and use cases, used by Amazon Business designers globally and adopted by 80% within eight months.">
 <meta property="og:image" content="https://masoncatt.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Amazon Business Pay Studio · Mason Catt">
-<meta name="twitter:description" content="An atomic design system for payment methods: components compose into templates, templates connect into use cases, and launching a new payment method becomes an assembly job instead of a design project.">
+<meta name="twitter:description" content="The first component library in Amazon Business Payments: an atomic design system of components, templates and use cases, used by Amazon Business designers globally and adopted by 80% within eight months.">
 <meta name="twitter:image" content="https://masoncatt.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -242,6 +242,30 @@
     .deck-count { display: none; }
   }
   @media (prefers-reduced-motion: reduce) { .dslide { transition: none; } }
+  /* ---------- Use-case strip: steps play in order, then a glow walks the journey ---------- */
+  .fl-anim .fl-sel, .fl-anim .fl-tap, .fl-anim .fl-type { transform-box: fill-box; transform-origin: center; }
+  .fl-anim .fl-type { transform-origin: left center; }
+  .fl-anim .fl-tap { opacity: 0; }
+  .fl-anim .fl-halo { opacity: 0; }
+  .fl-anim .fl-check { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .fl-anim.play .fl-sel   { animation: fl-sel .5s cubic-bezier(.2,.75,.25,1) calc(var(--s) + .1s) both; }
+  .fl-anim.play .fl-tap   { animation: fl-tap .7s ease-out calc(var(--s) + .05s) both; }
+  .fl-anim.play .fl-type  { animation: fl-type .35s ease-out calc(var(--s) + var(--t)) both; }
+  .fl-anim.play .fl-fill  { animation: fl-fade .4s ease calc(var(--s) + .55s) both; }
+  .fl-anim.play .fl-check { animation: fl-draw .35s ease-out calc(var(--s) + .3s) both; }
+  .fl-anim.solo { --s: 0s !important; }
+  .flow.live .flow-step:nth-child(1) .fl-halo { animation: fl-halo 6s ease-in-out 2.2s infinite; }
+  .flow.live .flow-step:nth-child(2) .fl-halo { animation: fl-halo 6s ease-in-out 3.7s infinite; }
+  .flow.live .flow-step:nth-child(3) .fl-halo { animation: fl-halo 6s ease-in-out 5.2s infinite; }
+  .flow.live .flow-step:nth-child(4) .fl-halo { animation: fl-halo 6s ease-in-out 6.7s infinite; }
+  @keyframes fl-sel  { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+  @keyframes fl-tap  { 0% { opacity: .9; transform: scale(.4); } 100% { opacity: 0; transform: scale(2.6); } }
+  @keyframes fl-type { from { transform: scaleX(0); } to { transform: none; } }
+  @keyframes fl-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fl-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @keyframes fl-halo { 0%, 30%, 100% { opacity: 0; } 14% { opacity: .3; } }
+  @media (prefers-reduced-motion: reduce) { .fl-anim.play *, .flow.live .fl-halo { animation: none !important; } }
+
   /* ---------- Layer illustrations: play once when shown, replay on hover ---------- */
   .ps-anim .pa-t, .ps-anim .pa-hl, .ps-anim .pa-sheet, .ps-anim .pa-final { transform-box: fill-box; transform-origin: center; }
   .ps-anim .pa-halo { opacity: 0; }
@@ -441,7 +465,7 @@
     <span class="eco">Amazon Business · 2023</span>
   </div>
   <h1 class="case-title">Amazon Business<br><em>Pay Studio</em></h1>
-  <p class="case-subtitle">An atomic design system for payment methods. Components compose into task templates, templates connect into use cases, and adding a payment method stops being a design project and becomes an assembly job.</p>
+  <p class="case-subtitle">An atomic design system for payment methods. Components compose into task templates, templates connect into use cases, and adding a payment method stops being a design project and becomes an assembly job. The first library of its kind in Amazon Business Payments.</p>
   <div class="meta-strip">
     <div class="meta-item">
       <div class="ml">Role</div>
@@ -547,22 +571,25 @@
     <p>
       The Pay Studio reorganizes that work into an atomic structure: <strong>components</strong> that compose into <strong>templates</strong>, templates that connect into <strong>use cases</strong>. Each layer is closed over the one below it, so a designer building a new payment experience picks from the layer above rather than starting at a blank frame.
     </p>
+    <p>
+      I built it in 2023, when shared component libraries were still new at Amazon. Pay Studio was one of the first of its kind at the company and <strong>the first in Amazon Business Payments</strong>. Amazon Business designers around the world built from it.
+    </p>
     <div class="stat-strip">
+      <div class="stat-cell">
+        <div class="stat-num">80%</div>
+        <div class="stat-desc">Adoption within the first eight months</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1st</div>
+        <div class="stat-desc">Library of its kind in Amazon Business Payments</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Global</div>
+        <div class="stat-desc">Used by Amazon Business designers worldwide</div>
+      </div>
       <div class="stat-cell">
         <div class="stat-num">47</div>
         <div class="stat-desc">Named components, each specified for mobile and desktop</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">8</div>
-        <div class="stat-desc">Task templates, all built from one base</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">7</div>
-        <div class="stat-desc">Payment method types on the same rails</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">3</div>
-        <div class="stat-desc">Layers, from component to journey</div>
       </div>
     </div>
 
@@ -959,10 +986,12 @@
 
     <div class="flow">
       <div class="flow-step">
-        <div class="flow-art"><svg viewBox="0 0 120 96" aria-hidden="true">
+        <div class="flow-art"><svg class="fl-anim" style="--s:0s" viewBox="0 0 120 96" aria-hidden="true">
           <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="18" y="16" width="40" height="6" rx="3" fill="#3a352e"/>
-          <rect x="18" y="30" width="84" height="18" rx="6" fill="#161512" stroke="#22c55e" stroke-width="1.6"/>
+          <rect x="18" y="30" width="84" height="18" rx="6" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="27" width="90" height="24" rx="9" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="30" width="84" height="18" rx="6" fill="none" stroke="#22c55e" stroke-width="1.6"/>
           <rect x="18" y="54" width="84" height="16" rx="6" fill="#2b2822"/>
           <rect x="18" y="76" width="84" height="12" rx="6" fill="#3a352e"/>
         </svg></div>
@@ -973,7 +1002,7 @@
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-art"><svg viewBox="0 0 120 96" aria-hidden="true">
+        <div class="flow-art"><svg class="fl-anim" style="--s:.45s" viewBox="0 0 120 96" aria-hidden="true">
           <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="18" y="14" width="56" height="6" rx="3" fill="#3a352e"/>
           <g fill="#2b2822">
@@ -981,8 +1010,11 @@
             <rect x="18" y="60" width="84" height="12" rx="5"/>
             <rect x="18" y="76" width="84" height="12" rx="5"/>
           </g>
-          <rect x="18" y="44" width="84" height="12" rx="5" fill="#161512" stroke="#22c55e" stroke-width="1.5"/>
+          <rect x="18" y="44" width="84" height="12" rx="5" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="41" width="90" height="18" rx="8" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="44" width="84" height="12" rx="5" fill="none" stroke="#22c55e" stroke-width="1.5"/>
           <rect x="22" y="47" width="6" height="6" rx="2" fill="#22c55e"/>
+          <circle class="fl-tap" cx="25" cy="50" r="5" fill="none" stroke="#22c55e" stroke-width="1.5"/>
         </svg></div>
         <div class="flow-body">
           <div class="flow-num">02</div>
@@ -991,14 +1023,17 @@
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-art"><svg viewBox="0 0 120 96" aria-hidden="true">
+        <div class="flow-art"><svg class="fl-anim" style="--s:.9s" viewBox="0 0 120 96" aria-hidden="true">
           <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="18" y="14" width="64" height="6" rx="3" fill="#3a352e"/>
-          <rect x="18" y="28" width="84" height="20" rx="6" fill="#161512" stroke="#22c55e" stroke-width="1.6"/>
-          <rect x="24" y="34" width="44" height="4" rx="2" fill="#6b6560"/>
-          <rect x="24" y="41" width="28" height="4" rx="2" fill="#3a352e"/>
+          <rect x="18" y="28" width="84" height="20" rx="6" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="25" width="90" height="26" rx="9" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="28" width="84" height="20" rx="6" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+          <rect class="fl-type" style="--t:.2s" x="24" y="34" width="44" height="4" rx="2" fill="#6b6560"/>
+          <rect class="fl-type" style="--t:.38s" x="24" y="41" width="28" height="4" rx="2" fill="#3a352e"/>
           <rect x="18" y="54" width="84" height="16" rx="6" fill="#2b2822"/>
-          <rect x="18" y="77" width="84" height="12" rx="6" fill="#22c55e" opacity=".6"/>
+          <rect x="18" y="77" width="84" height="12" rx="6" fill="#2b2822"/>
+          <rect class="fl-fill" x="18" y="77" width="84" height="12" rx="6" fill="#22c55e" fill-opacity=".6"/>
         </svg></div>
         <div class="flow-body">
           <div class="flow-num">03</div>
@@ -1007,12 +1042,14 @@
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-art"><svg viewBox="0 0 120 96" aria-hidden="true">
+        <div class="flow-art"><svg class="fl-anim" style="--s:1.35s" viewBox="0 0 120 96" aria-hidden="true">
           <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="18" y="14" width="40" height="6" rx="3" fill="#3a352e"/>
           <rect x="18" y="26" width="84" height="14" rx="5" fill="#2b2822"/>
-          <rect x="18" y="44" width="84" height="18" rx="6" fill="#161512" stroke="#22c55e" stroke-width="1.6"/>
-          <path d="M26 53 l4 4 l8 -9" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="18" y="44" width="84" height="18" rx="6" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="41" width="90" height="24" rx="9" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="44" width="84" height="18" rx="6" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+          <path class="fl-check" pathLength="1" d="M26 53 l4 4 l8 -9" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <rect x="18" y="66" width="84" height="10" rx="5" fill="#2b2822"/>
           <rect x="18" y="80" width="84" height="10" rx="5" fill="#3a352e"/>
         </svg></div>
@@ -1058,7 +1095,10 @@
     <div class="slabel">After</div>
     <h2>What it changed</h2>
     <p>
-      The Pay Studio moved payment work from drawing to assembly. A new method became a question of which templates and in what order, which is a product conversation rather than a design backlog item, and the sheets stopped drifting apart because nobody was redrawing them.
+      Pay Studio moved payment work from drawing to assembly. Amazon Business designers around the world built from the same components, templates and use cases, which sped up production and cut the errors that came from redrawing the same sheets by hand. It reached 80% adoption within its first eight months.
+    </p>
+    <p>
+      A new method became a question of which templates and in what order, a product conversation rather than a design backlog item, and the sheets stopped drifting apart because nobody was redrawing them.
     </p>
     <p>
       The same structure, components underneath templates underneath journeys, is what I carried into the <a href="amazon-business-card.html">Amazon Business Credit Card</a> ECM experience the following year, and it is the shape of the work I do now on Windows Design Systems.
@@ -1237,6 +1277,35 @@
         io.disconnect();
       });
     }, { threshold: 0.35 }).observe(deck);
+  })();
+</script>
+
+<script>
+  // Use-case strip: play the four steps in order when it scrolls into view, replay a card on hover.
+  (function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var flow = document.querySelector('.flow');
+    if (!flow) return;
+    var svgs = flow.querySelectorAll('.fl-anim');
+    function play(svg, solo) {
+      svg.classList.remove('play');
+      svg.classList.toggle('solo', !!solo);
+      void svg.getBoundingClientRect();
+      svg.classList.add('play');
+    }
+    var started = false;
+    svgs.forEach(function (svg) {
+      svg.closest('.flow-step').addEventListener('mouseenter', function () { if (started) play(svg, true); });
+    });
+    new IntersectionObserver(function (entries, io) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        started = true;
+        svgs.forEach(function (svg) { play(svg, false); });
+        flow.classList.add('live');
+        io.disconnect();
+      });
+    }, { threshold: 0.4 }).observe(flow);
   })();
 </script>
 
