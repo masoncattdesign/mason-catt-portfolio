@@ -465,7 +465,7 @@
     <span class="eco">Amazon Business · 2023</span>
   </div>
   <h1 class="case-title">Amazon Business<br><em>Pay Studio</em></h1>
-  <p class="case-subtitle">An atomic design system for payment methods. Components compose into task templates, templates connect into use cases, and adding a payment method stops being a design project and becomes an assembly job. The first library of its kind in Amazon Business Payments.</p>
+  <p class="case-subtitle">An atomic design system for payment methods, and the first library of its kind in Amazon Business Payments.</p>
   <div class="meta-strip">
     <div class="meta-item">
       <div class="ml">Role</div>
@@ -566,13 +566,13 @@
     <div class="slabel">Overview</div>
     <h2>A payment design system built for speed</h2>
     <p>
-      Amazon Business does not have one payment flow. It has a matrix of them: card, bank account, wallet, buy-now-pay-later, benefits cards, market-local schemes, each multiplied by the market it launches in and the account type paying. Before the Pay Studio, every cell in that matrix was drawn by hand. The same sheet, the same wallet row, the same verification step, redrawn a little differently every time.
+      Amazon Business doesn't have one payment flow, it has dozens: cards, bank accounts, wallets, buy-now-pay-later, benefits cards and local schemes, across markets and account types. Before Pay Studio, each one was designed from scratch, so the same sheet got redrawn a little differently every time.
     </p>
     <p>
-      The Pay Studio reorganizes that work into an atomic structure: <strong>components</strong> that compose into <strong>templates</strong>, templates that connect into <strong>use cases</strong>. Each layer is closed over the one below it, so a designer building a new payment experience picks from the layer above rather than starting at a blank frame.
+      Pay Studio turned that into an atomic system. <strong>Components</strong> build <strong>templates</strong>, templates build <strong>use cases</strong>, and designers assemble a new flow instead of starting from a blank frame.
     </p>
     <p>
-      I built it in 2023, when shared component libraries were still new at Amazon. Pay Studio was one of the first of its kind at the company and <strong>the first in Amazon Business Payments</strong>. Amazon Business designers around the world built from it.
+      I built it in 2023, when shared component libraries were still new at Amazon. It was one of the first of its kind at the company and <strong>the first in Amazon Business Payments</strong>.
     </p>
     <div class="stat-strip">
       <div class="stat-cell">
@@ -601,31 +601,13 @@
   <hr>
 
   <!-- 01 ============================================ -->
-  <div class="prose reveal" id="problem">
-    <div class="slabel">Where it started</div>
-    <div class="stream-head"><h2>Every method was a project</h2></div>
-    <p class="stream-lede">
-      Adding a payment method looks like a small job and is not. A new method needs a place in the wallet, an entry in the add-new list, a form built to its own rules, some kind of verification, a confirmation, and a return to the wallet with the new method selected. None of that is novel design work. All of it got designed again each time, because there was nothing to inherit. The result was a set of screens that were each individually fine and collectively inconsistent, which is the specific failure a design system exists to prevent.
-    </p>
-
-    <dl class="facts">
-      <dt>The surface</dt>
-      <dd>A bottom sheet over checkout. Small, dense, and the last thing between a business customer and a completed order, so every inconsistency is expensive.</dd>
-      <dt>The variables</dt>
-      <dd>Method type, market, account type, eligibility, and whether the method hands off to a third party. <strong>The combinations grow faster than a team can draw them.</strong></dd>
-      <dt>The failure mode</dt>
-      <dd>Not ugliness. Drift. Near-identical sheets with different spacing, different label logic, and different behavior on the same control.</dd>
-    </dl>
-  </div>
-
-  <hr class="stream-rule">
 
   <!-- 02 ============================================ -->
   <div class="prose reveal" id="structure">
     <div class="slabel">The model</div>
     <div class="stream-head"><h2>Three layers, component to journey</h2></div>
     <p class="stream-lede">
-      The system borrows atomic design's logic and stops at three layers, because three is what the problem actually needs. Components are the parts. Templates are complete task interfaces assembled from those parts. Use cases are templates wired together into a journey a customer finishes. Each layer only reaches one level down, which is what keeps the whole thing from collapsing back into a pile of screens.
+      Each layer is built from the one below. Components are the parts, templates are complete task screens, and use cases wire templates into a journey a customer finishes.
     </p>
 
     <div class="deck" data-deck="layers">
@@ -639,7 +621,7 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">Layer one</div>
           <h3>Components</h3>
-          <p>The parts a payment interface is actually made of. Primary payment method, Input card with its Network badge, Balance payment method, Sticky footer, Legal. Each one owns its own states and its own label logic, so a template never has to decide how a selected card should look.</p></div>
+          <p>The parts a payment screen is made of, like Primary payment method, Input card and Sticky footer. Each one owns its states, so templates never have to.</p></div>
           <div class="dslide-vis is-pair">
           <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <rect class="pa-t" style="--i:0" x="16" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
@@ -667,7 +649,7 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Layer two</div>
           <h3>Templates</h3>
-          <p>Complete, standalone interfaces for one task: choose a method, pick a bank, enter card details, verify a number, confirm success. Every template is a specialization of one base sheet, which is why they stay consistent without anyone policing them.</p></div>
+          <p>Complete screens for one task: pick a method, add a card, verify a number. All built on one base sheet, so they stay consistent on their own.</p></div>
           <div class="dslide-vis is-pair">
           <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <g fill="#2b2822">
@@ -696,7 +678,7 @@
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Layer three</div>
           <h3>Use cases</h3>
-          <p>Templates wired into a journey that a customer finishes. The use case is where the product decision lives: which templates, in what order, with what branches. Nothing new is drawn at this layer, which is the whole point.</p></div>
+          <p>Templates wired into a journey. This is where the product decisions live, which screens and in what order. Nothing new gets drawn here.</p></div>
           <div class="dslide-vis is-pair">
           <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <rect x="22" y="18" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
@@ -756,7 +738,7 @@
     <div class="slabel">Layer one</div>
     <div class="stream-head"><h2>Forty-seven components</h2></div>
     <p class="stream-lede">
-      Components are the building blocks of the Pay Studio. The library holds <strong>47 named components</strong>, Accordion to Toast, each one specified for both mobile and desktop. The count matters less than the fact that the payment components share an anatomy. This is Primary payment method, the row every wallet is built from, taken straight from the library.
+      The library holds <strong>47 components</strong>, Accordion to Toast, each specced for mobile and desktop. The payment ones share an anatomy. Here's Primary payment method, the row every wallet is built from.
     </p>
 
     <div class="dia">
@@ -770,17 +752,17 @@
         <span class="anat-pin" style="left:99.4%;top:21%" aria-hidden="true">6</span>
       </div>
       <ol class="dia-legend">
-        <li><b>1</b><span><strong>Asset slot.</strong> Filled by the <em>Art</em> component, so a Chase card, a Venmo mark and an EBT glyph all take the same footprint.</span></li>
-        <li><b>2</b><span><strong>Primary label.</strong> Method name and masked number, formatted by the component rather than the designer.</span></li>
-        <li><b>3</b><span><strong>Secondary label.</strong> Cardholder and expiry, or the reason a method is ineligible.</span></li>
-        <li><b>4</b><span><strong>Feature slot.</strong> Takes any of the <em>Feature</em> components: reward balance, financing, expiration, card verify, currency, detail.</span></li>
-        <li><b>5</b><span><strong>Trailing control.</strong> A <em>Switch</em> here. The row decides which control, never the template.</span></li>
-        <li><b>6</b><span><strong>Selection state.</strong> One treatment, applied identically to every method type.</span></li>
+        <li><b>1</b><span><strong>Asset slot.</strong> Filled by <em>Art</em>, so every method takes the same footprint.</span></li>
+        <li><b>2</b><span><strong>Primary label.</strong> Method name and masked number.</span></li>
+        <li><b>3</b><span><strong>Secondary label.</strong> Cardholder and expiry, or why it's ineligible.</span></li>
+        <li><b>4</b><span><strong>Feature slot.</strong> Takes any <em>Feature</em> component.</span></li>
+        <li><b>5</b><span><strong>Trailing control.</strong> A <em>Switch</em> here. The row picks the control, not the template.</span></li>
+        <li><b>6</b><span><strong>Selection state.</strong> One treatment for every method type.</span></li>
       </ol>
-      <div class="dia-cap">Primary payment method, selected, with Feature reward balance composed into its feature slot. Pulled from the component library, not redrawn.</div>
+      <div class="dia-cap">Pulled straight from the library, not redrawn.</div>
     </div>
 
-    <p style="margin-top:28px;">The feature slot is the part worth dwelling on. Rewards, installments, an expired card, a currency change and a re-verification prompt are five different product problems. In the library they are small components that drop into the same slot on the same row, so a new payment feature is a new Feature component, not a new version of the wallet. Pick one to drop it into the slot.</p>
+    <p style="margin-top:28px;">The feature slot is the clever part. Rewards, installments, an expired card or a currency change all drop into the same slot, so a new payment feature is a new component, not a new wallet. Try one:</p>
 
     <div class="slot" data-slot>
       <div class="slot-picks" role="tablist" aria-label="Feature components">
@@ -795,36 +777,36 @@
       <div class="slot-stage">
         <figure class="slot-fig is-on">
           <div class="slot-card"><img src="img-pay-studio-anatomy.png" width="1080" height="276" alt="Chase Sapphire card, selected, with a Use rewards points line and a switch"><span class="slot-ring" style="top:58.7%;height:34.8%" aria-hidden="true"></span></div>
-          <figcaption><strong>Feature reward balance.</strong> Points offered as payment, with a switch. Turn it on and an amount field opens for a partial redemption.</figcaption>
+          <figcaption><strong>Feature reward balance.</strong> Points as payment. Switch it on and an amount field opens.</figcaption>
         </figure>
         <figure class="slot-fig">
           <div class="slot-card"><img src="img-ps-slot-financing.webp" width="1080" height="312" alt="Pay by Bank App method, selected, with a Payment plans available button"><span class="slot-ring" style="top:51.9%;height:42.3%" aria-hidden="true"></span></div>
-          <figcaption><strong>Feature financing.</strong> A payment plans entry that leads into financing, here on a Pay by Bank App method.</figcaption>
+          <figcaption><strong>Feature financing.</strong> An entry point into payment plans.</figcaption>
         </figure>
         <figure class="slot-fig">
           <div class="slot-card"><img src="img-ps-slot-expiration.webp" width="1080" height="606" alt="Chase Sapphire card marked Expired, with a new expiration date field and an Update button"><span class="slot-ring" style="top:26.7%;height:70.3%" aria-hidden="true"></span></div>
-          <figcaption><strong>Feature expiration.</strong> Flags an expired card and takes a new expiration date inline, without leaving the wallet.</figcaption>
+          <figcaption><strong>Feature expiration.</strong> Flags an expired card and takes a new date inline.</figcaption>
         </figure>
         <figure class="slot-fig">
           <div class="slot-card"><img src="img-ps-slot-verify.webp" width="1080" height="726" alt="Chase Sapphire card with a Verify your card prompt, a card number field and an Update button"><span class="slot-ring" style="top:22.3%;height:75.2%" aria-hidden="true"></span></div>
-          <figcaption><strong>Feature card verify.</strong> Asks for the card number again to confirm an authorized use, right in the row.</figcaption>
+          <figcaption><strong>Feature card verify.</strong> Re-confirms the card number, right in the row.</figcaption>
         </figure>
         <figure class="slot-fig">
           <div class="slot-card"><img src="img-ps-slot-currency.webp" width="1080" height="258" alt="Chase Sapphire card with Currency: U.S. Dollar (USD) and a Change link"><span class="slot-ring" style="top:62.8%;height:30.2%" aria-hidden="true"></span></div>
-          <figcaption><strong>Feature currency.</strong> Shows the currency the card will be charged in. Change opens a bottom sheet on mobile and a modal on desktop.</figcaption>
+          <figcaption><strong>Feature currency.</strong> Shows the charge currency. Change opens a sheet on mobile, a modal on desktop.</figcaption>
         </figure>
         <figure class="slot-fig">
           <div class="slot-card"><img src="img-ps-slot-detail.webp" width="1080" height="258" alt="Chase Sapphire card, dimmed, marked Not eligible for this product"><span class="slot-ring" style="top:62.8%;height:30.2%" aria-hidden="true"></span></div>
-          <figcaption><strong>Feature detail.</strong> One line of status. Here it marks a card as ineligible; elsewhere it carries an error, warning or info message.</figcaption>
+          <figcaption><strong>Feature detail.</strong> One line of status, here marking a card ineligible.</figcaption>
         </figure>
         <figure class="slot-fig">
           <div class="slot-card"><img src="img-ps-slot-empty.webp" width="1080" height="198" alt="Chase Sapphire card with no feature, basic state"></div>
-          <figcaption><strong>Empty slot.</strong> With nothing in the slot, the row collapses to its basic form.</figcaption>
+          <figcaption><strong>Empty slot.</strong> Nothing in the slot, so the row collapses to its basic form.</figcaption>
         </figure>
       </div>
     </div>
 
-    <p style="margin-top:40px;">A few more from the library, straight off the spec sheet.</p>
+    <p style="margin-top:40px;">A few more from the library:</p>
 
     <div class="deck" data-deck="components">
       <div class="deck-crumbs" role="tablist">
@@ -842,49 +824,49 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">Asset slot</div>
           <h3>Art</h3>
-          <p>Spotlight marks, small card art and large card art, each at a fixed size, so any method fills the asset slot the same way, whether it is a Chase card, Venmo or an EBT glyph.</p></div>
+          <p>Spotlight marks and card art at fixed sizes, so any method fills the asset slot the same way.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-art.webp" width="1870" height="1602" alt="The Art component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Messaging</div>
           <h3>Alert</h3>
-          <p>Page alerts and inline alerts in four severities: success, error, info and warning.</p></div>
+          <p>Page and inline alerts in four severities.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-alert.webp" width="1056" height="790" alt="The Alert component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Wallet</div>
           <h3>Balance payment method</h3>
-          <p>Gift card, EBT and FSA/HSA balances. A switch applies the balance, and methods that only cover part of an order, like EBT, open an amount field to choose how much.</p></div>
+          <p>Gift card, EBT and FSA/HSA balances. Partial-order methods like EBT open an amount field.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-balance.webp" width="1574" height="710" alt="The Balance payment method component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">Wallet</div>
           <h3>Claim code</h3>
-          <p>The gift card, promo code or voucher toggle. Expanded, it opens a code field with scan-to-add built in.</p></div>
+          <p>The gift card and promo toggle, with scan-to-add built into the field.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-claim.webp" width="1574" height="330" alt="The Claim code component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="4">
           <div class="dslide-body"><div class="slide-kicker">Inputs</div>
           <h3>Input code</h3>
-          <p>The six-digit verification field, empty and filled, used by the phone verification template.</p></div>
+          <p>The six-digit verification field, empty and filled.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-inputcode.webp" width="1677" height="315" alt="The Input code component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="5">
           <div class="dslide-body"><div class="slide-kicker">Navigation</div>
           <h3>Navigation link</h3>
-          <p>List and button variants, each with an optional detail line and leading icon. The add-a-payment-method list is built from these.</p></div>
+          <p>List and button variants. The add-a-method list is built from these.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-navlink.webp" width="1574" height="862" alt="The Navigation link component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="6">
           <div class="dslide-body"><div class="slide-kicker">Scan to pay</div>
           <h3>QR code</h3>
-          <p>Branded codes for scan-to-pay methods, carrying the method's own mark in the center.</p></div>
+          <p>Branded codes for scan-to-pay methods.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-qr.webp" width="1718" height="410" alt="The QR code component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="7">
           <div class="dslide-body"><div class="slide-kicker">Feedback</div>
           <h3>Toast</h3>
-          <p>Confirmation once a method is verified, naming the exact card, and dismissible.</p></div>
+          <p>Confirms a verified method by name.</p></div>
           <div class="dslide-vis is-light"><img src="img-ps-c-toast.webp" width="1107" height="267" alt="The Toast component as specified in the Pay Studio library" loading="lazy"></div>
         </div>
       </div>
@@ -900,11 +882,6 @@
       </div>
     </div>
 
-    <div class="img-full">
-      <img src="img-pay-studio-components.png" alt="Pay Studio component library: wallet rows, fields, toggles, actions and security notes">
-      <div class="img-cap">The component library. Building blocks drawn at the level a template can consume directly, with the connectors showing which templates each one feeds.</div>
-    </div>
-
     <p style="margin-top:8px;">Browse the components in the <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=0-1" target="_blank">Figma file →</a></p>
   </div>
 
@@ -913,9 +890,9 @@
   <!-- 04 ============================================ -->
   <div class="prose reveal" id="templates">
     <div class="slabel">Layer two</div>
-    <div class="stream-head"><h2>One base sheet, eight tasks</h2></div>
+    <div class="stream-head"><h2>One base sheet, every task</h2></div>
     <p class="stream-lede">
-      Templates are standalone interfaces for performing a specific task, grouped by the kind of work they do. The decision that made them hold together was refusing to design them as eight separate sheets. There is one base template with a fixed skeleton, and every task template is that base with its body slot filled. Consistency stops being something a reviewer enforces and becomes something the file cannot violate.
+      Templates are complete screens for one task. Instead of designing each one separately, every template starts from one base sheet with a fixed skeleton, and only its body slot changes. Consistency becomes something the file can't break.
     </p>
 
     <div class="dia">
@@ -957,18 +934,18 @@
         </g>
       </svg>
       <ol class="dia-legend">
-        <li><b>1</b><span><strong>Sheet chrome.</strong> Back, brand mark, dismiss. Fixed, so navigation never varies by task.</span></li>
-        <li><b>2</b><span><strong>Title block.</strong> Heading plus optional subcopy, the only place a task explains itself.</span></li>
-        <li><b>3</b><span><strong>Body slot.</strong> The variable region, filled with components. This is the only part a task template changes.</span></li>
-        <li><b>4</b><span><strong>Primary action.</strong> One per sheet, in one position, always.</span></li>
-        <li><b>5</b><span><strong>Security note.</strong> The encryption line, present wherever credentials are entered.</span></li>
+        <li><b>1</b><span><strong>Sheet chrome.</strong> Back, brand mark, dismiss. Never changes.</span></li>
+        <li><b>2</b><span><strong>Title block.</strong> Heading and optional subcopy.</span></li>
+        <li><b>3</b><span><strong>Body slot.</strong> The only part a template changes.</span></li>
+        <li><b>4</b><span><strong>Primary action.</strong> One per sheet, always in the same spot.</span></li>
+        <li><b>5</b><span><strong>Security note.</strong> Wherever credentials are entered.</span></li>
       </ol>
-      <div class="dia-cap">The base template. Every task sheet in the system is this skeleton with a different body slot.</div>
+      <div class="dia-cap">The base every template inherits from.</div>
     </div>
 
     <div class="img-full">
       <img src="img-pay-studio-templates.png" alt="Pay Studio template library: wallet, bank picker, add-method list, card form, base modal, third-party handoff, verification and success">
-      <div class="img-cap">The template library, grouped by task. The plain Heading / Message / Button sheet in the middle is the base every other template inherits from.</div>
+      <div class="img-cap">The template library, grouped by task. The plain Heading, Message and Button sheet is the base.</div>
     </div>
 
     <p style="margin-top:8px;">See the templates grouped by task in <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=1-132679" target="_blank">Figma →</a></p>
@@ -981,7 +958,7 @@
     <div class="slabel">Layer three</div>
     <div class="stream-head"><h2>A payment method, end to end</h2></div>
     <p class="stream-lede">
-      A use case connects templates into a journey a customer completes. The test of the system is whether an awkward method fits it without special pleading, so the one worth walking through is a market-local scheme rather than a credit card. BANCOMAT Pay registers against a phone number instead of a card number and hands off to the customer's bank app to authorize, which is exactly the kind of method that used to justify a bespoke flow. Here it is four templates in sequence, and the only new work is the content of one body slot.
+      A use case wires templates into a journey. The real test is an awkward method, so here's BANCOMAT Pay, which registers with a phone number and hands off to the customer's bank app. It used to justify a custom flow. Here it's four existing templates.
     </p>
 
     <div class="flow">
@@ -1063,11 +1040,11 @@
 
     <div class="img-full">
       <img src="img-pay-studio-use-cases.png" alt="The BANCOMAT Pay use case: wallet, add a payment method, register a phone number, and return to the wallet with the method selected">
-      <div class="img-cap">The BANCOMAT Pay pathway. A method that authorizes through the customer's bank app, assembled entirely from existing templates.</div>
+      <div class="img-cap">The BANCOMAT Pay pathway, built entirely from existing templates.</div>
     </div>
 
     <div class="callout">
-      <p>The measure of the system is what it does <strong>not</strong> require. Adding this method meant one new list row, one body slot, and one line of copy about redirection. No new sheet, no new selection treatment, no new success state.</p>
+      <p>What it didn't need: a new sheet, a new selection state or a new success screen. Just one list row, one body slot and one line of copy.</p>
     </div>
 
     <p style="margin-top:20px;">See more use case pathways in <a href="https://www.figma.com/design/14bBmFvd6dHSYku2o9s2Ft/Amazon-Business-Pay-Studio?node-id=1-106014" target="_blank">Figma →</a></p>
@@ -1080,7 +1057,7 @@
     <div class="slabel">Prototype</div>
     <div class="stream-head"><h2>Adding a new payment method</h2></div>
     <p class="stream-lede">
-      The prototype is how the system was reviewed and handed off. Click through the flow, or use the arrow keys to step it.
+      Click through the flow, or step it with your arrow keys.
     </p>
   </div>
 
@@ -1095,13 +1072,10 @@
     <div class="slabel">After</div>
     <h2>What it changed</h2>
     <p>
-      Pay Studio moved payment work from drawing to assembly. Amazon Business designers around the world built from the same components, templates and use cases, which sped up production and cut the errors that came from redrawing the same sheets by hand. It reached 80% adoption within its first eight months.
+      Pay Studio moved payment design from drawing to assembly. Designers across Amazon Business built from the same parts, which sped up production, cut errors and reached <strong>80% adoption in eight months</strong>.
     </p>
     <p>
-      A new method became a question of which templates and in what order, a product conversation rather than a design backlog item, and the sheets stopped drifting apart because nobody was redrawing them.
-    </p>
-    <p>
-      The same structure, components underneath templates underneath journeys, is what I carried into the <a href="amazon-business-card.html">Amazon Business Credit Card</a> ECM experience the following year, and it is the shape of the work I do now on Windows Design Systems.
+      The same structure carried into the <a href="amazon-business-card.html">Amazon Business Credit Card</a> experience the next year, and it's still how I work on Windows Design Systems.
     </p>
   </div>
 
