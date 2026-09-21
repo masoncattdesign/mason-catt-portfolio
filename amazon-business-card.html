@@ -448,6 +448,161 @@
   @keyframes ab-dim  { from { opacity: 1; } to { opacity: .4; } }
   @keyframes ab-dot  { 0% { fill: #22c55e; } 25%, 100% { fill: #3a352e; } }
   @media (prefers-reduced-motion: reduce) { .ab-anim.play *, .ab-anim .ab-dot { animation: none !important; } }
+
+  /* ---------- Live component board (light, like the Figma library it reproduces) ---------- */
+  .cb { --ink: #0f1111; --ink2: #565959; --teal: #007185; --line: #d5d9d9; --sky: #d7ecf7; --yel: #ffd814;
+        display: grid; grid-template-columns: 1.08fr 1fr 1fr; gap: 18px; align-items: start;
+        margin: 36px 0 0; padding: 22px; background: #eef1f2; border-radius: var(--radius); color: var(--ink);
+        font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 12.5px; line-height: 1.35; text-align: left; }
+  .cb + .img-cap { margin-top: 10px; }
+  :where(.cb) button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: inherit; -webkit-tap-highlight-color: transparent; }
+  .cb button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .cb-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .cb-lbl { font-size: 12px; color: var(--ink2); margin: 0 0 7px; }
+  .cb-card { background: #fff; border-radius: 10px; box-shadow: 0 0 0 1px rgba(15,17,17,.05), 0 1px 3px rgba(15,17,17,.06); padding: 12px; }
+  .cb-b { font-weight: 700; }
+  .cb-sub { color: var(--ink2); font-size: 11.5px; }
+  .cb-sm { font-size: 11.5px; }
+  .cb-link { color: var(--teal) !important; font-size: 11.5px; }
+  .cb-link:hover { text-decoration: underline; }
+
+  .cb-topbar { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+  .cb-thumb { width: 42px; height: 27px; border-radius: 4px; flex: none; background: linear-gradient(135deg, #0b1a36 0%, #1a3767 55%, #0e1f3f 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .cb-tb-text { display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3; }
+  .cb-tb-text .cb-b { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cb-icon { position: relative; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; flex: none; border-radius: 50%; transition: background .15s; }
+  .cb-icon:hover { background: #f2f4f4; }
+  .cb-bell i { position: absolute; top: 4px; right: 5px; width: 7px; height: 7px; border-radius: 50%; background: #e03e5c; box-shadow: 0 0 0 1.5px #fff; transform: scale(0); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+  .cb-bell.is-new i { transform: scale(1); }
+  .cb-menu { flex-direction: column; gap: 3.5px; }
+  .cb-menu span { display: block; width: 16px; height: 1.8px; background: var(--ink); border-radius: 1px; transition: transform .22s, opacity .18s; }
+  .cb-menu[aria-expanded="true"] span:nth-child(1) { transform: translateY(5.3px) rotate(45deg); }
+  .cb-menu[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .cb-menu[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5.3px) rotate(-45deg); }
+
+  .cb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cb-chip { border: 1.5px solid; border-radius: 100px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; background: #fff; transition: background .15s, color .15s, transform .1s; }
+  .cb-chip:active { transform: scale(.95); }
+  .cb-chip.k-new { border-color: #a36bd6; color: #6a2fa0; }
+  .cb-chip.k-two { border-color: #6fbfb2; color: #1d8a7a; background: #eef8f6; }
+  .cb-chip.k-five { border-color: #f5cf4f; color: #d9a300; background: #fffaea; }
+  .cb-chip.k-offer { border-color: #3a3d3d; color: var(--ink); }
+  .cb-chip[aria-pressed="true"].k-new { background: #6a2fa0; color: #fff; }
+  .cb-chip[aria-pressed="true"].k-two { background: #1d8a7a; color: #fff; }
+  .cb-chip[aria-pressed="true"].k-five { background: #f5b700; color: #fff; border-color: #f5b700; }
+  .cb-chip[aria-pressed="true"].k-offer { background: var(--ink); color: #fff; }
+
+  .cb-pay { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 36px; border-radius: 8px !important;
+            background: var(--yel) !important; box-shadow: 0 1px 0 #e7c200; font-size: 12.5px; font-weight: 500; transition: filter .15s, transform .1s; }
+  .cb-pay:hover { filter: brightness(.97); }
+  .cb-pay:active { transform: scale(.985); }
+  .cb-pay.is-busy .cb-pay-t::after { content: ''; display: inline-block; width: 10px; height: 10px; margin-left: 8px; vertical-align: -1px; border-radius: 50%;
+            border: 2px solid rgba(15,17,17,.25); border-top-color: var(--ink); animation: cb-spin .7s linear infinite; }
+  .cb-pay.is-done { background: #e7f5ea !important; box-shadow: 0 0 0 1px #9fd3ab inset; color: #1f7a38; }
+  @keyframes cb-spin { to { transform: rotate(360deg); } }
+  .cb-acts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 14px 0 12px; }
+  .cb-act { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .cb-circ { width: 44px; height: 44px; border-radius: 50%; background: var(--sky); display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s, transform .1s; }
+  .cb-act:hover .cb-circ { background: #c7e3f3; }
+  .cb-act:active .cb-circ { transform: scale(.92); }
+  .cb-freeze[aria-pressed="true"] .cb-circ { background: var(--teal); color: #fff; }
+  .cb-act-l { font-size: 10.5px; color: var(--ink); text-align: center !important; white-space: nowrap; }
+  .cb-secs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cb-sec { height: 32px; border-radius: 8px !important; background: #fff !important; box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(15,17,17,.08); font-size: 11.5px; font-weight: 700; text-align: center !important; transition: background .15s; }
+  .cb-sec:hover { background: #f7fafa !important; }
+
+  .cb-alert { position: relative; padding: 11px 12px 11px 20px; font-size: 11.5px; line-height: 1.45; margin-bottom: 10px; transition: box-shadow .2s; }
+  .cb-alert::before { content: ''; position: absolute; left: 9px; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: #f0b400; transition: background .25s; }
+  .cb-alert.k-info::before { background: var(--teal); }
+  .cb-alert.is-ok::before { background: #2a9d4b; }
+  .cb-alert.is-ok { box-shadow: 0 0 0 1px #bfe3c8, 0 1px 3px rgba(15,17,17,.06); }
+
+  .cb-ctrls { display: flex; flex-direction: column; gap: 13px; padding: 14px; }
+  .cb-row { display: grid; grid-template-columns: 68px 1fr; align-items: center; }
+  .cb-row .cb-b { font-size: 11.5px; }
+  .cb-bar { display: block; height: 7px; border-radius: 4px; background: #e6e8e8; overflow: hidden; width: 100%; }
+  .cb-bar i { display: block; height: 100%; border-radius: 4px; background: #4c9aae; transition: width .6s cubic-bezier(.2,.75,.25,1); }
+  .cb-prog i { background: #3d8ddc; }
+  .cb-prog.is-run i { transition: width 1.4s ease-in-out; }
+  .cb-sw { position: relative; width: 34px; height: 20px; border-radius: 10px !important; background: #c5c9c9 !important; transition: background .2s; }
+  .cb-sw i { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+  .cb-sw.is-on { background: #0b6f7c !important; }
+  .cb-sw.is-on i { transform: translateX(14px); }
+  .cb-set { display: flex; gap: 22px; }
+  .cb-cbx { width: 16px; height: 16px; border-radius: 3px !important; box-shadow: inset 0 0 0 1.5px #8a8f8f; background: #fff !important; position: relative; transition: background .15s, box-shadow .15s; }
+  .cb-cbx.is-on { background: #0b6f7c !important; box-shadow: none; }
+  .cb-cbx.is-on::after { content: ''; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .cb-cbx.k-line.is-on { background: #fff !important; box-shadow: inset 0 0 0 1.5px #0b6f7c; }
+  .cb-cbx.k-line.is-on::after { border-color: #0b6f7c; }
+  .cb-rad { width: 16px; height: 16px; border-radius: 50% !important; box-shadow: inset 0 0 0 1.5px #8a8f8f; background: #fff !important; position: relative; transition: box-shadow .15s; }
+  .cb-rad[aria-checked="true"] { box-shadow: inset 0 0 0 1.5px #0b6f7c; }
+  .cb-rad[aria-checked="true"]::after { content: ''; position: absolute; inset: 4px; border-radius: 50%; background: #0b6f7c; }
+
+  .cb-cal { padding: 12px 12px 8px; }
+  .cb-cal-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .cb-cal-t { font-size: 12.5px; }
+  .cb-cal-nav { width: 22px; height: 22px; border-radius: 50%; font-size: 16px !important; line-height: 1; color: var(--ink2) !important; text-align: center !important; }
+  .cb-cal-nav:hover { background: #f2f4f4 !important; }
+  .cb-cal-g { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 2px; text-align: center; }
+  .cb-cal-g .d { font-size: 9.5px; color: var(--ink2); font-weight: 700; padding: 3px 0 6px; }
+  .cb-cal-g button { height: 24px; width: 24px; margin: 0 auto; border-radius: 50%; font-size: 10.5px; text-align: center !important; transition: background .15s, color .15s; }
+  .cb-cal-g button:hover { background: #eef5f9 !important; }
+  .cb-cal-g button.is-on { background: #cfe6f5 !important; color: var(--teal); font-weight: 700; }
+
+  .cb-chart-h { display: flex; justify-content: space-between; align-items: baseline; }
+  .cb-big { font-size: 20px; font-weight: 700; margin-top: 8px; letter-spacing: -.01em; }
+  .cb-sub2 { font-size: 11.5px; color: var(--ink); }
+  .cb-chart-svg { width: 100%; height: auto; display: block; margin: 8px 0 2px; }
+  .cb-ser { transition: opacity .25s; }
+  .cb-ser.is-off { opacity: 0; }
+  .cb-months { display: flex; justify-content: space-between; font-size: 9.5px; color: var(--ink2); padding: 0 4px; }
+  .cb-legend { display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+  .cb-legend button { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; transition: opacity .2s; }
+  .cb-legend button i { width: 10px; height: 4px; border-radius: 2px; }
+  .cb-legend button[aria-pressed="false"] { opacity: .35; }
+
+  .cb-nav { display: grid; grid-template-columns: repeat(5, 1fr); padding: 10px 6px 8px; }
+  .cb-nav button { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #3b3f3f !important; font-size: 10px; transition: color .15s; }
+  .cb-nav button.is-on { color: var(--teal) !important; font-weight: 700; }
+
+  .cb-cc-wrap { display: block; width: 100%; perspective: 900px; }
+  .cb-cc { position: relative; display: block; aspect-ratio: 1.586; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.75,.25,1); transform: rotateY(var(--flip, 0deg)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+  .cb-cc-wrap.is-back .cb-cc { --flip: 180deg; }
+  .cb-cc-f, .cb-cc-b { position: absolute; inset: 0; border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden;
+    background: radial-gradient(120% 90% at 85% 10%, #22467e 0%, rgba(34,70,126,0) 55%), linear-gradient(135deg, #0a1730 0%, #132b55 50%, #0b1a37 100%);
+    box-shadow: 0 10px 24px rgba(10,23,48,.35), inset 0 0 0 1px rgba(255,255,255,.07); color: #fff; }
+  .cb-cc-f::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(100deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px); }
+  .cb-cc-b { transform: rotateY(180deg); }
+  .cb-cc-brand { position: absolute; top: 10%; right: 7%; font-size: 11px; font-weight: 700; letter-spacing: .02em; color: #9fc7ff; }
+  .cb-chipart { position: absolute; left: 7%; top: 38%; width: 15%; height: auto; }
+  .cb-nfc { position: absolute; left: 25%; top: 40%; width: 5.5%; height: auto; opacity: .85; }
+  .cb-cc-name { position: absolute; left: 7%; bottom: 11%; font-size: 10.5px; letter-spacing: .08em; font-weight: 500; }
+  .cb-cc-tier { position: absolute; right: 7%; bottom: 11%; font-size: 10px; font-weight: 700; letter-spacing: .04em; color: rgba(255,255,255,.85); }
+  .cb-cc-stripe { position: absolute; left: 0; right: 0; top: 14%; height: 20%; background: #05080f; }
+  .cb-cc-num { position: absolute; left: 7%; top: 52%; font-size: 12px; letter-spacing: .1em; font-weight: 500; }
+  .cb-cc-cvv { position: absolute; right: 7%; bottom: 13%; font-size: 10px; letter-spacing: .06em; color: rgba(255,255,255,.8); }
+
+  .cb-bal { padding: 14px 14px 12px; }
+  .cb-bal-top { text-align: center; border-radius: 8px; box-shadow: 0 0 0 1px #edf0f0; padding: 12px 10px 12px; margin-bottom: 12px; }
+  .cb-money { font-size: 26px; font-weight: 700; margin: 2px 0 10px; letter-spacing: -.01em; transition: color .3s; }
+  .cb-money.is-tick { color: #1f7a38; }
+  .cb-bar-l { width: 88%; margin: 0 auto 8px; height: 7px; }
+  .cb-kv { display: flex; justify-content: space-between; font-size: 11.5px; padding: 3px 0; }
+  .cb-see { margin: 4px 0 8px; }
+  .cb-auto { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 0 12px; border-top: 1px solid #edf0f0; margin-bottom: 10px; }
+  .cb-auto-t { display: flex; flex-direction: column; flex: 1; line-height: 1.35; }
+  .cb-auto em { font-style: normal; color: #b12704; transition: color .2s; }
+  .cb-auto.is-on em { color: #1f8a4c; }
+
+  @media (max-width: 900px) {
+    .cb { grid-template-columns: 1fr 1fr; padding: 16px; gap: 14px; }
+    .cb-col-3 { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  }
+  @media (max-width: 560px) {
+    .cb { grid-template-columns: 1fr; padding: 14px; }
+    .cb-col-3 { display: flex; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cb *, .cb *::after { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
@@ -731,10 +886,140 @@
       </div>
     </div>
 
-    <div class="img-full" style="margin-top:40px;">
-      <img src="img-abc-system.png" alt="The card experience component library: top bar, chips, buttons, status alerts, calendar, charts, navigation and form controls" loading="lazy">
-      <div class="img-cap">The component library for the card experience: navigation, buttons, alerts, charts and form controls.</div>
+
+    <div class="cb" data-cb>
+      <div class="cb-col">
+        <div class="cb-group">
+          <div class="cb-lbl">Top bar</div>
+          <div class="cb-card cb-topbar">
+            <span class="cb-thumb" aria-hidden="true"></span>
+            <span class="cb-tb-text"><span class="cb-b">Prime Visa •••• 1111</span><span class="cb-sub">David Williams</span></span>
+            <button class="cb-icon cb-bell is-new" type="button" aria-label="Notifications, 1 new"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><i></i></button>
+            <button class="cb-icon cb-menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+          </div>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Chips / Tags</div>
+          <div class="cb-chips">
+            <button class="cb-chip k-new" type="button" aria-pressed="false">New</button>
+            <button class="cb-chip k-two" type="button" aria-pressed="false">2% back</button>
+            <button class="cb-chip k-five" type="button" aria-pressed="false">5% back</button>
+            <button class="cb-chip k-offer" type="button" aria-pressed="false">Offer</button>
+          </div>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Buttons</div>
+          <button class="cb-pay" type="button"><span class="cb-pay-t">Make a payment</span></button>
+          <div class="cb-acts">
+            <button class="cb-act cb-freeze" type="button" aria-pressed="false"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M4 20 20 4"/></svg></span><span class="cb-act-l">Freeze card</span></button>
+            <button class="cb-act" type="button"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="15" height="11" rx="2"/><path d="M3 11h15"/><path d="m20 3 .9 1.9L23 5.2l-1.5 1.4.4 2-1.9-1-1.9 1 .4-2L17 5.2l2.1-.3z" fill="currentColor" stroke="none"/></svg></span><span class="cb-act-l">Card benefits</span></button>
+            <button class="cb-act" type="button"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 15h5M10 18h3"/></svg></span><span class="cb-act-l">Statements</span></button>
+            <button class="cb-act" type="button"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.4"/><circle cx="12" cy="16.8" r=".6" fill="currentColor"/></svg></span><span class="cb-act-l">Help</span></button>
+          </div>
+          <div class="cb-secs">
+            <button class="cb-sec" type="button">Account details</button>
+            <button class="cb-sec" type="button">Make a payment</button>
+          </div>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Status / Alerts</div>
+          <div class="cb-card cb-alert k-warn"><span>A minimum payment of $50.00 for your Prime Visa ending in 1111 is due in 3 days</span></div>
+          <div class="cb-card cb-alert k-info cb-verify"><span class="cb-v-msg">Verify via Chase to see transactions, installments details and other servicing features. <button class="cb-link" type="button">Verify now</button></span></div>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Components</div>
+          <div class="cb-card cb-ctrls">
+            <div class="cb-row"><span class="cb-b">Meter</span><span class="cb-bar"><i class="cb-meter" style="width:45%"></i></span></div>
+            <div class="cb-row"><span class="cb-b">Progress</span><button class="cb-bar cb-prog" type="button" aria-label="Run progress"><i style="width:34%"></i></button></div>
+            <div class="cb-row"><span class="cb-b">Toggle</span><button class="cb-sw is-on" type="button" role="switch" aria-checked="true" aria-label="Toggle"><i></i></button></div>
+            <div class="cb-row"><span class="cb-b">Checkbox</span><span class="cb-set">
+              <button class="cb-cbx is-on" type="button" role="checkbox" aria-checked="true" aria-label="Checkbox one"></button>
+              <button class="cb-cbx" type="button" role="checkbox" aria-checked="false" aria-label="Checkbox two"></button>
+              <button class="cb-cbx is-on k-line" type="button" role="checkbox" aria-checked="true" aria-label="Checkbox three"></button></span></div>
+            <div class="cb-row"><span class="cb-b">Radio</span><span class="cb-set cb-radios" role="radiogroup" aria-label="Radio">
+              <button class="cb-rad" type="button" role="radio" aria-checked="false" aria-label="Option one"></button>
+              <button class="cb-rad" type="button" role="radio" aria-checked="false" aria-label="Option two"></button></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cb-col">
+        <div class="cb-group">
+          <div class="cb-lbl">Calendar</div>
+          <div class="cb-card cb-cal">
+            <div class="cb-cal-h"><span class="cb-b cb-cal-t">November 2025</span>
+              <span><button class="cb-cal-nav" type="button" data-dir="-1" aria-label="Previous month">‹</button><button class="cb-cal-nav" type="button" data-dir="1" aria-label="Next month">›</button></span></div>
+            <div class="cb-cal-g"></div>
+          </div>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Charts</div>
+          <div class="cb-card cb-chart">
+            <div class="cb-chart-h"><span class="cb-b">Charts</span><span class="cb-sub">This Week ▾</span></div>
+            <div class="cb-big">5,000.00</div>
+            <div class="cb-sub2">59 Orders</div>
+            <svg viewBox="0 0 224 112" class="cb-chart-svg" aria-hidden="true"><path d="M4 20 H220" stroke="#eceeef" stroke-width="1"/><path d="M4 50 H220" stroke="#eceeef" stroke-width="1"/><path d="M4 80 H220" stroke="#eceeef" stroke-width="1"/><path d="M4 104 H220" stroke="#eceeef" stroke-width="1"/><g class="cb-ser s-orders"><polyline points="12,100 32,88 52,91 72,84 92,93 112,79 132,83 152,70 172,64 192,48 212,58" fill="none" stroke="#f5b700" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></g><g class="cb-ser s-sales"><polyline points="12,98 32,91 52,84 72,88 92,80 112,70 132,66 152,59 172,52 192,40 212,33" fill="none" stroke="#6fc3cf" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></g><g class="cb-ser s-visitors"><polyline points="12,92 32,78 52,75 72,80 92,62 112,57 132,60 152,45 172,40 192,21 212,30" fill="none" stroke="#15294a" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="12" cy="92" r="2.4" fill="#15294a"/><circle cx="32" cy="78" r="2.4" fill="#15294a"/><circle cx="52" cy="75" r="2.4" fill="#15294a"/><circle cx="72" cy="80" r="2.4" fill="#15294a"/><circle cx="92" cy="62" r="2.4" fill="#15294a"/><circle cx="112" cy="57" r="2.4" fill="#15294a"/><circle cx="132" cy="60" r="2.4" fill="#15294a"/><circle cx="152" cy="45" r="2.4" fill="#15294a"/><circle cx="172" cy="40" r="2.4" fill="#15294a"/><circle cx="192" cy="21" r="2.4" fill="#15294a"/><circle cx="212" cy="30" r="2.4" fill="#15294a"/></g></svg>
+            <div class="cb-months"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span></div>
+            <div class="cb-legend">
+              <button type="button" data-s="s-sales" aria-pressed="true"><i style="background:#6fc3cf"></i>Sales</button>
+              <button type="button" data-s="s-orders" aria-pressed="true"><i style="background:#f5b700"></i>Orders</button>
+              <button type="button" data-s="s-visitors" aria-pressed="true"><i style="background:#15294a"></i>Visitors</button>
+            </div>
+          </div>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Navigation</div>
+          <div class="cb-card cb-nav" role="tablist" aria-label="Bottom navigation">
+            <button class="is-on" type="button" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg><span>Home</span></button>
+            <button type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span>Activity</span></button>
+            <button type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M12 8.5v7M8.5 12h7"/></svg><span>Pay</span></button>
+            <button type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="m9 15 6-6"/><circle cx="9.3" cy="9.3" r="1"/><circle cx="14.7" cy="14.7" r="1"/></svg><span>Offers</span></button>
+            <button type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="8.5" cy="12" r=".9" fill="currentColor"/><circle cx="12" cy="12" r=".9" fill="currentColor"/><circle cx="15.5" cy="12" r=".9" fill="currentColor"/></svg><span>More</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cb-col cb-col-3">
+        <div class="cb-group">
+          <div class="cb-lbl">Card art</div>
+          <button class="cb-cc-wrap" type="button" aria-label="Flip card">
+            <span class="cb-cc">
+              <span class="cb-cc-f">
+                <span class="cb-cc-brand">Prime Visa</span>
+                <svg viewBox="0 0 30 24" class="cb-chipart" aria-hidden="true"><rect x=".5" y=".5" width="29" height="23" rx="4" fill="#e9eaec" stroke="#c9cbcf"/><path d="M10 .5v23M20 .5v23M.5 8h9.5M.5 16h9.5M20 8h9.5M20 16h9.5" stroke="#b9bcc2" fill="none"/></svg><svg viewBox="0 0 16 20" class="cb-nfc" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M3 6.5a5 5 0 0 1 0 7"/><path d="M7 4a9 9 0 0 1 0 12"/><path d="M11 1.5a13 13 0 0 1 0 17"/></svg>
+                <span class="cb-cc-name">DAVID WILLIAMS</span>
+                <span class="cb-cc-tier">Business</span>
+              </span>
+              <span class="cb-cc-b">
+                <span class="cb-cc-stripe"></span>
+                <span class="cb-cc-num">•••• •••• •••• 1111</span>
+                <span class="cb-cc-cvv">CVV •••</span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="cb-group">
+          <div class="cb-lbl">Balance</div>
+          <div class="cb-card cb-bal">
+            <div class="cb-bal-top">
+              <div class="cb-sub">Current balance</div>
+              <div class="cb-money" data-bal>$2,000</div>
+              <span class="cb-bar cb-bar-l"><i class="cb-meter" data-meter style="width:20%"></i></span>
+              <div class="cb-b cb-sm" data-avail>$8,000 available credit</div>
+              <div class="cb-sm" data-used>20% of $10,000 credit limit used</div>
+            </div>
+            <div class="cb-kv"><span>Payment due in 3 days</span><span>June 19, 2023</span></div>
+            <div class="cb-kv"><span>Minimum payment due</span><span data-min>$50.00</span></div>
+            <div class="cb-kv"><span>Statement balance</span><span>$1,200.99</span></div>
+            <button class="cb-link cb-see" type="button">See account details</button>
+            <button class="cb-auto is-on" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a7 7 0 0 1 12-3l2 2"/><path d="M19 4v4h-4"/><path d="M19 15a7 7 0 0 1-12 3l-2-2"/><path d="M5 20v-4h4"/></svg><span class="cb-auto-t"><span class="cb-b">Autopay: <em>On</em></span><span class="cb-sub">June 18 - Statement balance</span></span><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+            <button class="cb-pay" type="button"><span class="cb-pay-t">Make a payment</span></button>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="img-cap">The component library, rebuilt in live code. Tap around: the chips, the controls, the calendar, the card, and Make a payment.</div>
+
   </div>
 
   <hr class="stream-rule">
@@ -1026,6 +1311,104 @@
     document.querySelectorAll('[data-deck]').forEach(function (d) { watch(d, 'dslide'); });
     document.querySelectorAll('[data-slot]').forEach(function (s) { watch(s, 'slot-fig'); });
   })();
+</script>
+<script>
+  // Live component board: small, real interactions on each rebuilt component.
+  document.querySelectorAll('[data-cb]').forEach(function (cb) {
+    var $ = function (s) { return cb.querySelector(s); }, $$ = function (s) { return cb.querySelectorAll(s); };
+
+    var bell = $('.cb-bell');
+    bell.addEventListener('click', function () { var n = bell.classList.toggle('is-new'); bell.setAttribute('aria-label', n ? 'Notifications, 1 new' : 'Notifications'); });
+    var menu = $('.cb-menu');
+    menu.addEventListener('click', function () { menu.setAttribute('aria-expanded', menu.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
+
+    $$('.cb-chip').forEach(function (c) { c.addEventListener('click', function () { c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); }); });
+
+    var fr = $('.cb-freeze');
+    fr.addEventListener('click', function () { var on = fr.getAttribute('aria-pressed') !== 'true'; fr.setAttribute('aria-pressed', on); fr.querySelector('.cb-act-l').textContent = on ? 'Unfreeze' : 'Freeze card'; });
+
+    // Make a payment: busy, then scheduled, and the balance widget follows. Tap again to reset.
+    var paid = false, bal = $('[data-bal]');
+    function setBal(p) {
+      bal.textContent = p ? '$1,950' : '$2,000';
+      $('[data-meter]').style.width = p ? '19.5%' : '20%';
+      $('[data-avail]').textContent = p ? '$8,050 available credit' : '$8,000 available credit';
+      $('[data-used]').textContent = p ? '19.5% of $10,000 credit limit used' : '20% of $10,000 credit limit used';
+      $('[data-min]').textContent = p ? '$0.00' : '$50.00';
+      bal.classList.toggle('is-tick', p);
+    }
+    $$('.cb-pay').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var all = $$('.cb-pay');
+        if (paid) { paid = false; all.forEach(function (x) { x.classList.remove('is-done'); x.querySelector('.cb-pay-t').textContent = 'Make a payment'; }); setBal(false); return; }
+        if (b.classList.contains('is-busy')) return;
+        b.classList.add('is-busy');
+        setTimeout(function () {
+          b.classList.remove('is-busy'); paid = true;
+          all.forEach(function (x) { x.classList.add('is-done'); x.querySelector('.cb-pay-t').textContent = '✓ Payment scheduled'; });
+          setBal(true);
+        }, 750);
+      });
+    });
+
+    var ver = $('.cb-verify');
+    ver.querySelector('.cb-link').addEventListener('click', function () {
+      ver.classList.add('is-ok');
+      ver.querySelector('.cb-v-msg').textContent = 'Verified with Chase. Transactions and installment details are now available.';
+    });
+
+    var prog = $('.cb-prog');
+    prog.addEventListener('click', function () {
+      var i = prog.querySelector('i');
+      prog.classList.add('is-run'); i.style.width = '100%';
+      setTimeout(function () { prog.classList.remove('is-run'); i.style.width = '34%'; }, 1700);
+    });
+    $$('.cb-sw').forEach(function (s) { s.addEventListener('click', function () { var on = s.classList.toggle('is-on'); s.setAttribute('aria-checked', on); }); });
+    $$('.cb-cbx').forEach(function (c) { c.addEventListener('click', function () { var on = c.classList.toggle('is-on'); c.setAttribute('aria-checked', on); }); });
+    var rads = $$('.cb-rad');
+    rads.forEach(function (r) { r.addEventListener('click', function () { rads.forEach(function (x) { x.setAttribute('aria-checked', x === r); }); }); });
+
+    // Calendar
+    var names = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var view = { y: 2025, m: 10 }, sel = { y: 2025, m: 10, d: 14 };
+    var grid = $('.cb-cal-g'), title = $('.cb-cal-t');
+    function draw() {
+      title.textContent = names[view.m] + ' ' + view.y;
+      var h = ['SU','MO','TU','WE','TH','FR','SA'].map(function (d) { return '<span class="d">' + d + '</span>'; }).join('');
+      var first = new Date(view.y, view.m, 1).getDay(), n = new Date(view.y, view.m + 1, 0).getDate();
+      for (var i = 0; i < first; i++) h += '<span></span>';
+      for (var d = 1; d <= n; d++) {
+        var on = sel.y === view.y && sel.m === view.m && sel.d === d;
+        h += '<button type="button" class="' + (on ? 'is-on' : '') + '" data-d="' + d + '" aria-label="' + names[view.m] + ' ' + d + '"' + (on ? ' aria-pressed="true"' : '') + '>' + d + '</button>';
+      }
+      grid.innerHTML = h;
+    }
+    grid.addEventListener('click', function (e) { var b = e.target.closest('button[data-d]'); if (!b) return; sel = { y: view.y, m: view.m, d: +b.dataset.d }; draw(); });
+    $$('.cb-cal-nav').forEach(function (b) { b.addEventListener('click', function () { view.m += +b.dataset.dir; if (view.m < 0) { view.m = 11; view.y--; } if (view.m > 11) { view.m = 0; view.y++; } draw(); }); });
+    draw();
+
+    $$('.cb-legend button').forEach(function (b) {
+      b.addEventListener('click', function () { var on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on); $('.' + b.dataset.s).classList.toggle('is-off', !on); });
+    });
+
+    var tabs = $$('.cb-nav button');
+    tabs.forEach(function (t) { t.addEventListener('click', function () { tabs.forEach(function (x) { x.classList.toggle('is-on', x === t); x.setAttribute('aria-selected', x === t); }); }); });
+
+    var auto = $('.cb-auto');
+    auto.addEventListener('click', function () { var on = auto.classList.toggle('is-on'); auto.setAttribute('aria-pressed', on); auto.querySelector('em').textContent = on ? 'On' : 'Off'; });
+
+    // Card art: tilt toward the cursor, tap to flip
+    var wrap = $('.cb-cc-wrap'), card = $('.cb-cc');
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    wrap.addEventListener('click', function () { wrap.classList.toggle('is-back'); });
+    if (!still) {
+      wrap.addEventListener('mousemove', function (e) {
+        var r = wrap.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        card.style.setProperty('--ry', (x * 14) + 'deg'); card.style.setProperty('--rx', (-y * 12) + 'deg');
+      });
+      wrap.addEventListener('mouseleave', function () { card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg'); });
+    }
+  });
 </script>
 
 </body>
