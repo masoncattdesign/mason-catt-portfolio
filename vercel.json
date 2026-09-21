@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/windows-visual-systems.html", "destination": "/windows-visual-systems.enc.html" },
+    { "source": "/windows-visual-systems", "destination": "/windows-visual-systems.enc.html" }
+  ],
+  "headers": [
+    { "source": "/(windows-visual-systems.enc.html|microsoftloopdeck/(.*))",
+      "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }, { "key": "Cache-Control", "value": "no-cache" } ] }
+  ]
+}

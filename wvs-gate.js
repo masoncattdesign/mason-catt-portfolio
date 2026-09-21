@@ -24,7 +24,7 @@
       var guess = (input.value || '').trim().toLowerCase().replace(/\s+/g, '');
       if (!guess) { input.focus(); return; }
       sha256(guess).then(function (h) {
-        if (h === HASH) {
+        if (h === HASH) { try { sessionStorage.setItem('wvs-pw-once', guess); } catch (e) {}
           remember();
           msg.className = 'wg-msg is-ok';
           msg.textContent = 'Welcome in. Booting up...';

@@ -1,2 +1,7 @@
 .DS_Store
 Claude outputs/
+
+# Private loop deck source (readable). Only the encrypted build in microsoftloopdeck/ is committed.
+.deck-src/
+# Readable Windows case study. Only windows-visual-systems.enc.html ships.
+windows-visual-systems.html
