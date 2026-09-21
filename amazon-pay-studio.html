@@ -428,6 +428,128 @@
     .anat { margin: 10px 8px 2px; }
     .anat-pin { width: 19px; height: 19px; font-size: 9.5px; box-shadow: 0 0 0 3px rgba(34,197,94,0.16); }
   }
+
+  /* ---------- Builder: palette, live sheet, properties, JSX ---------- */
+  .pb { display: grid; grid-template-columns: 188px minmax(0, 1fr) 236px; grid-template-areas: "pal stage props" "code code code";
+        margin: 30px 0 0; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; text-align: left; }
+  :where(.pb) button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: inherit; }
+  .pb button:focus-visible, .pb input:focus-visible, .pb select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .pb-ttl { font-size: 10.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); margin: 0 0 10px; }
+  .pb-pal { grid-area: pal; padding: 16px 12px; border-right: 1px solid var(--border); }
+  .pb-pal-list { display: flex; flex-direction: column; gap: 2px; }
+  .pb-cat { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); opacity: .7; margin: 10px 0 4px 8px; }
+  .pb-cat:first-child { margin-top: 0; }
+  .pb-pi { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 7px; font-size: 12.5px; line-height: 1.3; white-space: nowrap; color: var(--cream2); cursor: grab; transition: background .15s, color .15s; user-select: none; }
+  .pb-pi:hover { background: var(--bg3); color: var(--cream); }
+  .pb-pi:active { cursor: grabbing; }
+  .pb-pi::before { content: ''; width: 6px; height: 10px; flex: none; opacity: .5;
+                   background: radial-gradient(circle, var(--cream3) 1px, transparent 1.3px) 0 0 / 3px 3.4px; }
+  .pb-pi .pb-plus { margin-left: auto; font-size: 14px; line-height: 1; color: var(--cream3); opacity: 0; transition: opacity .15s; }
+  .pb-pi:hover .pb-plus { opacity: 1; }
+
+  .pb-stage { grid-area: stage; background: var(--bg3); display: flex; justify-content: center; align-items: flex-start; padding: 22px 16px; min-width: 0; }
+  .pb-phone { width: 100%; max-width: 312px; border-radius: 30px; background: #0b0b0d; padding: 8px; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+  .pb-scrim { height: 34px; border-radius: 22px 22px 0 0; background: #3b3d40; }
+  .pb-sheet { background: #fff; border-radius: 16px 16px 22px 22px; margin-top: -12px; position: relative; min-height: 420px; padding: 0 0 12px;
+              font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #0f1111; font-size: 12.5px; line-height: 1.35; }
+  .pb-sheet-top { display: flex; justify-content: center; align-items: center; height: 26px; position: relative; }
+  .pb-grab { width: 34px; height: 4px; border-radius: 2px; background: #d5d9d9; }
+  .pb-close { position: absolute; right: 12px; top: 4px; font-size: 18px; color: #0f1111; }
+  .pb-body { position: relative; padding: 0 12px; min-height: 380px; display: flex; flex-direction: column; gap: 8px; }
+  .pb-empty { border: 1.5px dashed #c9cfcf; border-radius: 10px; color: #6b7070; text-align: center; padding: 28px 12px; font-size: 12px; }
+  .pb-ins { position: absolute; left: 10px; right: 10px; height: 2px; border-radius: 1px; background: var(--accent); box-shadow: 0 0 0 3px rgba(34,197,94,.2); pointer-events: none; display: none; }
+  .pb-item { position: relative; border-radius: 9px; outline: 1.5px solid transparent; outline-offset: 3px; transition: outline-color .15s, opacity .15s; cursor: pointer; }
+  .pb-item:hover { outline-color: rgba(34,197,94,.35); }
+  .pb-item.is-sel { outline-color: var(--accent); }
+  .pb-item.is-drag { opacity: .35; }
+  .pb-item.is-new { animation: pb-in .35s cubic-bezier(.2,.75,.25,1); }
+  @keyframes pb-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
+  .pb-x { position: absolute; top: -9px; right: -9px; width: 20px; height: 20px; border-radius: 50%; background: #0e0d0c !important; color: #fff !important;
+          font-size: 13px; line-height: 20px; text-align: center !important; opacity: 0; transition: opacity .15s; z-index: 2; }
+  .pb-item:hover .pb-x, .pb-item.is-sel .pb-x { opacity: 1; }
+
+  /* sheet components, in the Pay Studio visual language */
+  .pb-hd { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 2px 0; }
+  .pb-hd-t { font-style: italic; font-size: 14.5px; }
+  .pb-link { color: #007185; font-size: 12px; }
+  .pb-pm { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; box-shadow: inset 0 0 0 1px #d5d9d9; background: #fff; }
+  .pb-pm.is-on { box-shadow: inset 0 0 0 2px #007185; background: #f2fafb; }
+  .pb-art { width: 44px; height: 28px; border-radius: 4px; flex: none; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .pb-art.a-blue { background: linear-gradient(135deg, #0a1f45, #1f4d95 60%, #0d2a5a); }
+  .pb-art.a-red { background: linear-gradient(135deg, #8d0f1c, #d0283a 60%, #9c1422); }
+  .pb-art.a-teal { background: linear-gradient(135deg, #0b5563, #19a0b4 60%, #0c6474); }
+  .pb-art.a-violet { background: linear-gradient(135deg, #3b2a8f, #6a4fe0 60%, #402f99); }
+  .pb-art.a-dark { background: #232f3e; }
+  .pb-art.a-dark::after { content: ''; display: block; width: 22px; height: 6px; margin: 13px auto 0; border-bottom: 2px solid #ff9900; border-radius: 0 0 50% 50%; }
+  .pb-pm-t { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .pb-pm-t b { font-weight: 400; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pb-pm-t span { color: #565959; font-size: 11px; }
+  .pb-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 3px; background: #ffd814; font-size: 10px; font-weight: 700; vertical-align: 1px; }
+  .pb-sw { position: relative; width: 34px; height: 20px; border-radius: 10px; background: #c5c9c9; flex: none; transition: background .2s; }
+  .pb-sw::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+  .pb-sw.is-on { background: #0b6f7c; }
+  .pb-sw.is-on::after { transform: translateX(14px); }
+  .pb-claim { padding: 10px; border-radius: 8px; box-shadow: inset 0 0 0 1px #d5d9d9; }
+  .pb-claim-r { display: flex; align-items: center; gap: 10px; }
+  .pb-claim-r > span:first-child { flex: 1; font-size: 12px; }
+  .pb-field { margin-top: 8px; height: 30px; border-radius: 5px; box-shadow: inset 0 0 0 1px #888c8c; display: flex; align-items: center; padding: 0 9px; color: #6b7070; font-size: 11.5px; }
+  .pb-in-l { font-style: italic; font-size: 11.5px; margin: 0 0 4px 1px; }
+  .pb-in .pb-field { margin-top: 0; justify-content: space-between; }
+  .pb-net { width: 26px; height: 16px; border-radius: 3px; box-shadow: inset 0 0 0 1px #d5d9d9; position: relative; }
+  .pb-net::before, .pb-net::after { content: ''; position: absolute; top: 4px; width: 8px; height: 8px; border-radius: 50%; }
+  .pb-net::before { left: 6px; background: #d5d9d9; } .pb-net::after { left: 11px; background: #b9bfbf; }
+  .pb-alert { position: relative; padding: 9px 10px 9px 18px; border-radius: 8px; font-size: 11.5px; line-height: 1.45; box-shadow: inset 0 0 0 1px #d5d9d9; }
+  .pb-alert::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 3px; border-radius: 2px; background: var(--c); }
+  .pb-alert.s-warning { --c: #f0b400; } .pb-alert.s-error { --c: #cc0c39; } .pb-alert.s-info { --c: #007185; } .pb-alert.s-success { --c: #2a9d4b; }
+  .pb-div { display: flex; align-items: center; gap: 10px; color: #6b7070; font-size: 11px; }
+  .pb-div::before, .pb-div::after { content: ''; flex: 1; height: 1px; background: #d5d9d9; }
+  .pb-btn-c { height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 12.5px; }
+  .pb-btn-c.v-primary { background: #ffd814; }
+  .pb-btn-c.v-secondary { background: #fff; box-shadow: inset 0 0 0 1px #d5d9d9, 0 1px 2px rgba(15,17,17,.12); }
+  .pb-legal { display: flex; justify-content: center; align-items: center; gap: 5px; color: #565959; font-size: 10.5px; }
+  .pb-legal svg { width: 10px; height: 12px; }
+
+  .pb-props { grid-area: props; padding: 16px 14px; border-left: 1px solid var(--border); min-width: 0; }
+  .pb-props-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+  .pb-props-n { font-size: 13.5px; font-weight: 500; color: var(--cream); line-height: 1.3; }
+  .pb-rm { font-size: 11.5px; color: var(--cream3) !important; flex: none; }
+  .pb-rm:hover { color: #f87171 !important; }
+  .pb-f { display: block; margin: 0 0 12px; }
+  .pb-f > span { display: block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); margin-bottom: 5px; }
+  .pb-f input, .pb-f select { width: 100%; height: 32px; border-radius: 7px; border: 1px solid var(--border2); background: var(--bg); color: var(--cream);
+          font: 13px var(--sans); padding: 0 9px; }
+  .pb-f select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--cream3) 50%), linear-gradient(135deg, var(--cream3) 50%, transparent 50%);
+          background-position: calc(100% - 14px) 13px, calc(100% - 9px) 13px; background-size: 5px 5px; background-repeat: no-repeat; }
+  .pb-fb { display: flex; justify-content: space-between; align-items: center; margin: 0 0 12px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); }
+  .pb-tg { position: relative; width: 34px; height: 20px; border-radius: 10px !important; background: #3a352e !important; transition: background .2s; }
+  .pb-tg::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--cream); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+  .pb-tg[aria-checked="true"] { background: var(--accent) !important; }
+  .pb-tg[aria-checked="true"]::after { transform: translateX(14px); }
+  .pb-hint { font-size: 12.5px; color: var(--cream3); line-height: 1.6; }
+
+  .pb-code { grid-area: code; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: var(--bg); }
+  .pb-jsx { flex: 1; min-width: 0; margin: 0; max-height: 132px; overflow: auto; font: 11.5px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--cream2); white-space: pre; }
+  .pb-jsx .t { color: #7dd3fc; } .pb-jsx .a { color: #c4b5fd; } .pb-jsx .s { color: #86efac; }
+  .pb-code-btns { display: flex; gap: 8px; flex: none; }
+  .pb-btn { height: 30px; padding: 0 12px !important; border-radius: 7px !important; font-size: 12px; border: 1px solid var(--border2) !important; color: var(--cream2) !important; transition: border-color .15s, color .15s, background .15s; }
+  .pb-btn:hover { color: var(--cream) !important; border-color: var(--cream3) !important; }
+  .pb-btn.is-pri { background: var(--accent) !important; border-color: var(--accent) !important; color: #0e0d0c !important; font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .pb { grid-template-columns: minmax(0, 1fr); grid-template-areas: "pal" "stage" "props" "code"; }
+    .pb-pal, .pb-props, .pb-code { min-width: 0; }
+    .pb-code { align-items: stretch; }
+    .pb-jsx { max-width: 100%; }
+    .pb-pal { border-right: 0; border-bottom: 1px solid var(--border); }
+    .pb-pal-list { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+    .pb-cat { display: none; }
+    .pb-pi { border: 1px solid var(--border2); border-radius: 100px; padding: 6px 11px; font-size: 12px; }
+    .pb-pi .pb-plus { opacity: 1; }
+    .pb-props { border-left: 0; border-top: 1px solid var(--border); }
+    .pb-code { flex-direction: column; }
+    .pb-code-btns { align-self: flex-end; }
+  }
+  @media (prefers-reduced-motion: reduce) { .pb * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
@@ -887,6 +1009,42 @@
 
   <hr class="stream-rule">
 
+  <div class="prose reveal" id="builder">
+    <div class="slabel">Builder</div>
+    <div class="stream-head"><h2>Pick it, tweak it, drop it in</h2></div>
+    <p class="stream-lede">
+      Pay Studio came with a builder. Designers could browse every component, set its props, preview its states and copy the code, instead of hunting through a Figma file. Here's a small version: drag components into the sheet, then tap one to customize it.
+    </p>
+
+    <div class="pb" data-pb>
+      <div class="pb-pal">
+        <div class="pb-ttl">Components</div>
+        <div class="pb-pal-list"></div>
+      </div>
+      <div class="pb-stage">
+        <div class="pb-phone">
+          <div class="pb-scrim"></div>
+          <div class="pb-sheet">
+            <div class="pb-sheet-top"><span class="pb-grab"></span><span class="pb-close" aria-hidden="true">&times;</span></div>
+            <div class="pb-body" aria-label="Sheet, drop components here"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-props">
+        <div class="pb-ttl">Properties</div>
+        <div class="pb-props-in"></div>
+      </div>
+      <div class="pb-code">
+        <pre class="pb-jsx"></pre>
+        <div class="pb-code-btns"><button class="pb-btn" type="button" data-act="reset">Reset</button><button class="pb-btn is-pri" type="button" data-act="copy">Copy JSX</button></div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;"><a href="https://ladle-load-64499831.figma.site/" target="_blank">Open the full builder →</a></p>
+  </div>
+
+  <hr class="stream-rule">
+
   <!-- 04 ============================================ -->
   <div class="prose reveal" id="templates">
     <div class="slabel">Layer two</div>
@@ -1281,6 +1439,174 @@
       });
     }, { threshold: 0.4 }).observe(flow);
   })();
+</script>
+
+<script>
+  // Builder: drag or tap palette items into the sheet, reorder by dragging, tap an item to edit its props.
+  document.querySelectorAll('[data-pb]').forEach(function (pb) {
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var lock = '<svg viewBox="0 0 10 12" aria-hidden="true"><rect x="1" y="5" width="8" height="6.5" rx="1.3" fill="#565959"/><path d="M3 5V3.6a2 2 0 0 1 4 0V5" fill="none" stroke="#565959" stroke-width="1.3"/></svg>';
+    var M = {
+      header:  { cat: 'Layout',   name: 'Pay select header',      jsx: 'PaySelectHeader',
+                 props: { title: ['text', 'Paying with'], addNew: ['bool', true, 'Add new link'] },
+                 r: function (p) { return '<div class="pb-hd"><span class="pb-hd-t">' + esc(p.title) + '</span>' + (p.addNew ? '<span class="pb-link">+ Add new</span>' : '') + '</div>'; } },
+      method:  { cat: 'Payment',  name: 'Primary payment method', jsx: 'PrimaryPaymentMethod',
+                 props: { title: ['text', 'Chase Sapphire •••• 1111'], subtitle: ['text', 'David Williams · 07/2024'], art: ['select', 'blue', ['blue', 'red', 'teal', 'violet', 'dark']], badge: ['text', ''], selected: ['bool', false] },
+                 r: function (p) { return '<div class="pb-pm' + (p.selected ? ' is-on' : '') + '"><span class="pb-art a-' + p.art + '"></span><span class="pb-pm-t"><b>' + esc(p.title) + (p.badge ? '<span class="pb-badge">' + esc(p.badge) + '</span>' : '') + '</b><span>' + esc(p.subtitle) + '</span></span></div>'; } },
+      balance: { cat: 'Payment',  name: 'Balance payment method', jsx: 'BalancePaymentMethod',
+                 props: { title: ['text', 'Use Amazon gift card'], subtitle: ['text', '$50.00 balance'], on: ['bool', false, 'Applied'] },
+                 r: function (p) { return '<div class="pb-pm"><span class="pb-art a-dark"></span><span class="pb-pm-t"><b>' + esc(p.title) + '</b><span>' + esc(p.subtitle) + '</span></span><span class="pb-sw' + (p.on ? ' is-on' : '') + '" data-flip="on"></span></div>'; } },
+      claim:   { cat: 'Payment',  name: 'Claim code',             jsx: 'ClaimCode',
+                 props: { label: ['text', 'Add a gift card, promo code, or voucher'], expanded: ['bool', false] },
+                 r: function (p) { return '<div class="pb-claim"><div class="pb-claim-r"><span>' + esc(p.label) + '</span><span class="pb-sw' + (p.expanded ? ' is-on' : '') + '" data-flip="expanded"></span></div>' + (p.expanded ? '<div class="pb-field">Enter code</div>' : '') + '</div>'; } },
+      input:   { cat: 'Inputs',   name: 'Input card',             jsx: 'InputCard',
+                 props: { label: ['text', 'Card number'], placeholder: ['text', 'Enter card number'], network: ['bool', true, 'Network badge'] },
+                 r: function (p) { return '<div class="pb-in"><div class="pb-in-l">' + esc(p.label) + '</div><div class="pb-field"><span>' + esc(p.placeholder) + '</span>' + (p.network ? '<span class="pb-net"></span>' : '') + '</div></div>'; } },
+      alert:   { cat: 'Feedback', name: 'Alert',                  jsx: 'Alert',
+                 props: { severity: ['select', 'warning', ['warning', 'error', 'info', 'success']], text: ['text', 'A minimum payment of $50.00 is due in 3 days'] },
+                 r: function (p) { return '<div class="pb-alert s-' + p.severity + '">' + esc(p.text) + '</div>'; } },
+      divider: { cat: 'Layout',   name: 'Divider',                jsx: 'Divider',
+                 props: { text: ['text', 'or'] },
+                 r: function (p) { return '<div class="pb-div">' + esc(p.text) + '</div>'; } },
+      button:  { cat: 'Actions',  name: 'Button',                 jsx: 'Button',
+                 props: { label: ['text', 'Continue'], variant: ['select', 'primary', ['primary', 'secondary']] },
+                 r: function (p) { return '<div class="pb-btn-c v-' + p.variant + '">' + esc(p.label) + '</div>'; } },
+      legal:   { cat: 'Layout',   name: 'Legal',                  jsx: 'Legal',
+                 props: { text: ['text', 'Your information is encrypted and secure'], icon: ['bool', true, 'Lock icon'] },
+                 r: function (p) { return '<div class="pb-legal">' + (p.icon ? lock : '') + esc(p.text) + '</div>'; } }
+    };
+    var order = ['header', 'method', 'balance', 'claim', 'input', 'alert', 'divider', 'button', 'legal'];
+    function defaults(type, over) { var o = {}, pr = M[type].props; for (var k in pr) o[k] = pr[k][1]; for (var j in (over || {})) o[j] = over[j]; return o; }
+    var uid = 0;
+    function make(type, over) { return { id: 'c' + (++uid), type: type, p: defaults(type, over) }; }
+    function start() {
+      return [make('header'),
+              make('method', { selected: true }),
+              make('method', { title: 'Bank of America Rewards •••• 2139', art: 'red' }),
+              make('balance'), make('claim'), make('button')];
+    }
+    var items = start(), sel = null, fresh = null;
+    var body = pb.querySelector('.pb-body'), propsEl = pb.querySelector('.pb-props-in'), jsxEl = pb.querySelector('.pb-jsx');
+
+    // palette
+    var list = pb.querySelector('.pb-pal-list'), lastCat = '', html = '';
+    ['Layout', 'Payment', 'Inputs', 'Feedback', 'Actions'].forEach(function (cat) {
+      html += '<div class="pb-cat">' + cat + '</div>';
+      order.filter(function (t) { return M[t].cat === cat; }).forEach(function (t) {
+        html += '<button type="button" class="pb-pi" draggable="true" data-type="' + t + '" aria-label="Add ' + M[t].name + '">' + M[t].name + '<span class="pb-plus" aria-hidden="true">+</span></button>';
+      });
+    });
+    list.innerHTML = html;
+
+    function find(id) { for (var i = 0; i < items.length; i++) if (items[i].id === id) return i; return -1; }
+    function renderItem(it) {
+      return '<div class="pb-item' + (it.id === sel ? ' is-sel' : '') + (it.id === fresh ? ' is-new' : '') + '" draggable="true" tabindex="0" data-id="' + it.id + '" aria-label="' + M[it.type].name + '">' +
+             M[it.type].r(it.p) + '<button type="button" class="pb-x" aria-label="Remove ' + M[it.type].name + '">&times;</button></div>';
+    }
+    function render() {
+      body.innerHTML = (items.length ? items.map(renderItem).join('') : '<div class="pb-empty">Drag components here, or tap one in the list</div>') + '<div class="pb-ins"></div>';
+      fresh = null;
+      renderJSX();
+    }
+    function renderJSX() {
+      var out = ['<span class="t">&lt;Sheet&gt;</span>'];
+      items.forEach(function (it) {
+        var s = '  <span class="t">&lt;' + M[it.type].jsx + '</span>';
+        for (var k in it.p) {
+          var v = it.p[k];
+          if (v === true) s += ' <span class="a">' + k + '</span>';
+          else if (v !== false && v !== '') s += ' <span class="a">' + k + '</span>=<span class="s">"' + esc(v) + '"</span>';
+        }
+        out.push(s + ' <span class="t">/&gt;</span>');
+      });
+      out.push('<span class="t">&lt;/Sheet&gt;</span>');
+      jsxEl.innerHTML = out.join('\n');
+    }
+    function renderProps() {
+      var i = find(sel);
+      if (i < 0) { propsEl.innerHTML = '<div class="pb-hint">Tap a component in the sheet to edit it. Drag to reorder.</div>'; return; }
+      var it = items[i], pr = M[it.type].props, h = '<div class="pb-props-h"><span class="pb-props-n">' + M[it.type].name + '</span><button type="button" class="pb-rm">Remove</button></div>';
+      for (var k in pr) {
+        var d = pr[k], lab = d[2] && d[0] === 'bool' ? d[2] : k.replace(/([A-Z])/g, ' $1');
+        if (d[0] === 'text') h += '<label class="pb-f"><span>' + lab + '</span><input type="text" data-k="' + k + '" value="' + esc(it.p[k]) + '"></label>';
+        if (d[0] === 'select') h += '<label class="pb-f"><span>' + lab + '</span><select data-k="' + k + '">' + d[2].map(function (o) { return '<option' + (o === it.p[k] ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select></label>';
+        if (d[0] === 'bool') h += '<div class="pb-fb"><span>' + lab + '</span><button type="button" class="pb-tg" role="switch" data-k="' + k + '" aria-checked="' + !!it.p[k] + '" aria-label="' + lab + '"></button></div>';
+      }
+      propsEl.innerHTML = h;
+    }
+    function update(it) {
+      var el = body.querySelector('[data-id="' + it.id + '"]');
+      if (el) { var tmp = document.createElement('div'); tmp.innerHTML = renderItem(it); el.replaceWith(tmp.firstChild); }
+      renderJSX();
+    }
+    function select(id) { sel = id; body.querySelectorAll('.pb-item').forEach(function (e) { e.classList.toggle('is-sel', e.dataset.id === id); }); renderProps(); }
+    function add(type, at) {
+      var it = make(type); if (at == null || at > items.length) at = items.length;
+      items.splice(at, 0, it); fresh = it.id; sel = it.id; render(); renderProps();
+    }
+    function remove(id) { var i = find(id); if (i < 0) return; items.splice(i, 1); if (sel === id) sel = null; render(); renderProps(); }
+
+    // sheet clicks: select, remove, and live toggles on the components themselves
+    body.addEventListener('click', function (e) {
+      var item = e.target.closest('.pb-item'); if (!item) return;
+      var it = items[find(item.dataset.id)];
+      if (e.target.closest('.pb-x')) { remove(it.id); return; }
+      var flip = e.target.closest('[data-flip]');
+      if (flip) { it.p[flip.dataset.flip] = !it.p[flip.dataset.flip]; }
+      else if (it.type === 'method') { items.forEach(function (o) { if (o.type === 'method') { var was = o.p.selected; o.p.selected = o === it; if (was !== o.p.selected && o !== it) update(o); } }); }
+      update(it); select(it.id);
+    });
+    body.addEventListener('keydown', function (e) {
+      var item = e.target.closest('.pb-item'); if (!item) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(item.dataset.id); }
+      if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); remove(item.dataset.id); }
+    });
+
+    // props edits
+    propsEl.addEventListener('input', function (e) { var k = e.target.dataset.k; if (!k) return; var it = items[find(sel)]; it.p[k] = e.target.value; update(it); });
+    propsEl.addEventListener('change', function (e) { var k = e.target.dataset.k; if (!k || e.target.tagName !== 'SELECT') return; var it = items[find(sel)]; it.p[k] = e.target.value; update(it); });
+    propsEl.addEventListener('click', function (e) {
+      if (e.target.closest('.pb-rm')) { remove(sel); return; }
+      var t = e.target.closest('.pb-tg'); if (!t) return;
+      var it = items[find(sel)], k = t.dataset.k; it.p[k] = !it.p[k]; t.setAttribute('aria-checked', it.p[k]);
+      if (it.type === 'method' && k === 'selected' && it.p[k]) items.forEach(function (o) { if (o !== it && o.type === 'method' && o.p.selected) { o.p.selected = false; update(o); } });
+      update(it); select(it.id);
+    });
+
+    // palette: tap to add, or drag
+    list.addEventListener('click', function (e) { var b = e.target.closest('.pb-pi'); if (b) add(b.dataset.type); });
+    var drag = null;
+    list.addEventListener('dragstart', function (e) { var b = e.target.closest('.pb-pi'); if (!b) return; drag = { kind: 'new', type: b.dataset.type }; e.dataTransfer.effectAllowed = 'copy'; e.dataTransfer.setData('text/plain', b.dataset.type); });
+    body.addEventListener('dragstart', function (e) { var el = e.target.closest('.pb-item'); if (!el) return; drag = { kind: 'move', id: el.dataset.id }; el.classList.add('is-drag'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', el.dataset.id); });
+    body.addEventListener('dragend', function (e) { var el = e.target.closest('.pb-item'); if (el) el.classList.remove('is-drag'); hideIns(); drag = null; });
+    function slot(y) {
+      var els = [].slice.call(body.querySelectorAll('.pb-item')), r0 = body.getBoundingClientRect();
+      for (var i = 0; i < els.length; i++) { var r = els[i].getBoundingClientRect(); if (y < r.top + r.height / 2) return { i: i, top: r.top - r0.top - 5 }; }
+      var last = els[els.length - 1]; return { i: els.length, top: last ? last.getBoundingClientRect().bottom - r0.top + 3 : 4 };
+    }
+    function hideIns() { var ins = body.querySelector('.pb-ins'); if (ins) ins.style.display = 'none'; }
+    body.addEventListener('dragover', function (e) {
+      if (!drag) return; e.preventDefault(); e.dataTransfer.dropEffect = drag.kind === 'new' ? 'copy' : 'move';
+      var s = slot(e.clientY), ins = body.querySelector('.pb-ins'); ins.style.top = s.top + 'px'; ins.style.display = 'block';
+    });
+    body.addEventListener('dragleave', function (e) { if (!body.contains(e.relatedTarget)) hideIns(); });
+    body.addEventListener('drop', function (e) {
+      if (!drag) return; e.preventDefault(); var s = slot(e.clientY);
+      if (drag.kind === 'new') add(drag.type, s.i);
+      else { var from = find(drag.id); if (from > -1) { var it = items.splice(from, 1)[0]; items.splice(s.i > from ? s.i - 1 : s.i, 0, it); sel = it.id; render(); renderProps(); } }
+      drag = null;
+    });
+
+    // reset + copy
+    pb.querySelector('[data-act="reset"]').addEventListener('click', function () { items = start(); sel = null; render(); renderProps(); });
+    pb.querySelector('[data-act="copy"]').addEventListener('click', function () {
+      var b = this, txt = jsxEl.textContent;
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy JSX'; }, 1400); };
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done); else done();
+    });
+
+    render(); renderProps();
+  });
 </script>
 
 </body>
