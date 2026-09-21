@@ -363,6 +363,9 @@
   .mf-bob img { animation: mf-zoom 10s ease-in-out infinite alternate; transform-origin: 30% 20%; }
   @keyframes mf-bob { from { translate: 0 10px; } to { translate: 0 -8px; } }
   @keyframes mf-zoom { from { scale: 1; } to { scale: 1.08; } }
+  /* Product screens hold still until the card is hovered, then play from their first frame */
+  .dv, .dv img, .mf-bob, .mf-bob img { animation-delay: 0s !important; animation-play-state: paused; }
+  .project-card:is(:hover, :focus-within) :is(.dv, .dv img, .mf-bob, .mf-bob img) { animation-play-state: running; }
   @media (prefers-reduced-motion: reduce) { .dv, .dv img, .mf-bob, .mf-bob img { animation: none !important; } }
   .project-card.featured .card-art { height: 300px; margin-bottom: 0; }
 
