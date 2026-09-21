@@ -337,6 +337,33 @@
                             box-shadow: 0 28px 50px -18px rgba(0,0,0,.85); }
   .project-card:hover .mf-browser { --d1: #ff5f57; --d2: #febc2e; --d3: #28c840; }
   .project-card:hover .mf-browser img { filter: none; }
+
+  /* Straight-on devices: one real screen each, drifting up into frame while the page inside scrolls */
+  .dv { position: absolute; left: var(--x); top: var(--y); width: var(--w); z-index: 2;
+        box-shadow: 0 24px 44px -18px rgba(0,0,0,.8);
+        animation: dv-rise 8s cubic-bezier(.45,0,.2,1) infinite alternate; animation-delay: var(--d, 0s);
+        transition: scale .45s cubic-bezier(.2,.75,.25,1); }
+  .dv-phone { aspect-ratio: 9 / 19; padding: 5px; border-radius: 22px; background: #1d1c19; border: 1px solid rgba(240,235,226,.16); }
+  .dv-screen { width: 100%; height: 100%; border-radius: 17px; overflow: hidden; background: #fff; }
+  .dv-screen img, .dv-view img { width: 100%; height: auto; display: block;
+        animation: dv-scroll 8s cubic-bezier(.45,0,.2,1) infinite alternate; animation-delay: var(--d, 0s); }
+  .dv-browser { border-radius: 10px; overflow: hidden; background: #1b1a17; border: 1px solid rgba(240,235,226,.16); }
+  .dv-bar { display: flex; align-items: center; gap: 5px; height: 16px; padding: 0 8px; background: #1f1d1a; border-bottom: 1px solid var(--border); }
+  .dv-bar i { width: 5px; height: 5px; border-radius: 50%; background: #4a453d; transition: background .3s; }
+  .dv-bar b { margin-left: 8px; font: 500 8px var(--sans); color: var(--cream3); background: rgba(240,235,226,.05); padding: 1px 8px; border-radius: 4px; }
+  .dv-view { aspect-ratio: 16 / 10; overflow: hidden; background: #fff; }
+  @keyframes dv-rise { 0%, 12% { translate: 0 18px; } 88%, 100% { translate: 0 -8px; } }
+  @keyframes dv-scroll { 0%, 18% { translate: 0 0; scale: 1; } 82%, 100% { translate: 0 var(--travel, 0%); scale: 1.02; } }
+  .project-card:hover .dv { scale: 1.04; }
+  .project-card:hover .dv-bar i:nth-child(1) { background: #ff5f57; }
+  .project-card:hover .dv-bar i:nth-child(2) { background: #febc2e; }
+  .project-card:hover .dv-bar i:nth-child(3) { background: #28c840; }
+  /* Windows: the two browsers sit straight and drift in and out of frame */
+  .mf-bob { animation: mf-bob 7s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+  .mf-bob img { animation: mf-zoom 10s ease-in-out infinite alternate; transform-origin: 30% 20%; }
+  @keyframes mf-bob { from { translate: 0 10px; } to { translate: 0 -8px; } }
+  @keyframes mf-zoom { from { scale: 1; } to { scale: 1.08; } }
+  @media (prefers-reduced-motion: reduce) { .dv, .dv img, .mf-bob, .mf-bob img { animation: none !important; } }
   .project-card.featured .card-art { height: 300px; margin-bottom: 0; }
 
   /* The drawn marks. Every loop is long and quiet so the grid of cards never
@@ -723,8 +750,8 @@
           <g stroke="rgba(240,235,226,0.05)" stroke-width="1"><path d="M0 55h440M0 110h440M0 165h440"/><path d="M55 0v220M110 0v220M165 0v220M220 0v220M275 0v220M330 0v220M385 0v220"/></g>
         </svg>
         <div class="ca-illo" style="--x:34px;--w:27%"><svg viewBox="0 0 160 140" aria-hidden="true"><rect class="wv-t" style="--i:0" x="8" y="12" width="42" height="42" rx="12" fill="#22c55e"/><rect x="21" y="25" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:1" x="58" y="12" width="42" height="42" rx="12" fill="#22c55e"/><rect x="71" y="25" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:2" x="108" y="12" width="42" height="42" rx="12" fill="#22c55e"/><rect x="121" y="25" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:3" x="8" y="62" width="42" height="42" rx="12" fill="#22c55e"/><rect x="21" y="75" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:4" x="58" y="62" width="42" height="42" rx="12" fill="#22c55e"/><rect x="71" y="75" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:5" x="108" y="62" width="42" height="42" rx="12" fill="#22c55e"/><rect x="121" y="75" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-seg" style="--i:0" x="8.0" y="120" width="35" height="10" rx="5" fill="#22c55e"/><rect class="wv-seg" style="--i:1" x="45.5" y="120" width="35" height="10" rx="5" fill="#22c55e"/><rect class="wv-seg" style="--i:2" x="83.0" y="120" width="35" height="10" rx="5" fill="#22c55e"/><rect class="wv-seg" style="--i:3" x="120.5" y="120" width="35" height="10" rx="5" fill="#22c55e"/></svg></div>
-        <div class="mf mf-browser" style="--x:39%;--y:30px;--w:55%;--r:-2deg;--z:2;--hx:-12px;--hy:-10px;--hr:-4deg"><img src="thumb-wvs-gallery.webp" alt="The Expressive Assets Gallery" loading="lazy"></div>
-        <div class="mf mf-browser" style="--x:52%;--y:122px;--w:46%;--r:2.5deg;--z:3;--hx:14px;--hy:-4px;--hr:4.5deg"><img src="thumb-wvs-customizer.webp" alt="The Customizer theming the icon set from one seed color" loading="lazy"></div>
+        <div class="mf mf-browser mf-bob" style="--x:39%;--y:30px;--w:55%;--r:0deg;--z:2;--hx:0px;--hy:-8px;--hr:0deg;--d:0s"><img src="thumb-wvs-gallery.webp" alt="The Expressive Assets Gallery" loading="lazy"></div>
+        <div class="mf mf-browser mf-bob" style="--x:52%;--y:122px;--w:46%;--r:0deg;--z:3;--hx:0px;--hy:-14px;--hr:0deg;--d:-4s"><img src="thumb-wvs-customizer.webp" alt="The Customizer theming the icon set from one seed color" loading="lazy"></div>
       </div>
     </div>
 
@@ -747,8 +774,7 @@
             <g class="ps-f" style="--i:1"><rect x="63" y="73" width="66" height="14" rx="7" fill="none" stroke="rgba(240,235,226,.5)" stroke-width="1.3"/><rect x="72" y="78" width="36" height="4" rx="2" fill="rgba(240,235,226,.5)"/></g>
             <g class="ps-f" style="--i:2"><circle cx="68" cy="80" r="4" fill="#e879a0"/><rect x="77" y="77.5" width="48" height="5" rx="2.5" fill="rgba(240,235,226,.45)"/></g>
           </svg></div>
-        <div class="mf mf-device" style="--x:63%;--y:34px;--w:32%;--r:3deg;--z:2;--hx:8px;--hy:-10px;--hr:5deg"><img src="thumb-ps-phone.webp" alt="The payment method sheet on a phone, assembled from Pay Studio components" loading="lazy"></div>
-        <div class="mf mf-card mf-bleed ps-row" style="--x:37%;--y:128px;--w:48%;--r:-2deg;--z:3;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-ps-ppm.webp" alt="The Primary payment method component, with a rewards switch" loading="lazy"><i class="ps-sw" aria-hidden="true"></i></div>
+        <div class="dv dv-phone" style="--x:60%;--y:26px;--w:29%;--travel:0%;--d:0s"><div class="dv-screen"><img src="thumb-ps-screen.webp" alt="Select a Payment Method, assembled from Pay Studio components" loading="lazy"></div></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
@@ -783,9 +809,7 @@
             <g class="ab-row" style="--i:0"><rect x="10" y="70" width="120" height="32" rx="7" fill="#1d2230"/><circle cx="26" cy="86" r="8" fill="none" stroke="#2b3345" stroke-width="3.5"/><circle class="ab-ring" pathLength="1" cx="26" cy="86" r="8" fill="none" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" transform="rotate(-90 26 86)"/><rect x="42" y="80" width="50" height="4.5" rx="2.25" fill="rgba(240,235,226,.4)"/><rect x="42" y="89" width="32" height="4" rx="2" fill="rgba(240,235,226,.2)"/></g>
             <g class="ab-row" style="--i:1"><rect x="10" y="108" width="120" height="32" rx="7" fill="#1d2230"/><rect x="18" y="116" width="16" height="16" rx="4" fill="#3b82f6" opacity=".55"/><rect x="42" y="118" width="58" height="4.5" rx="2.25" fill="rgba(240,235,226,.4)"/><rect x="42" y="127" width="36" height="4" rx="2" fill="rgba(240,235,226,.2)"/></g>
           </svg></div>
-        <div class="mf mf-free" style="--x:65%;--y:20px;--w:29%;--r:3deg;--z:1;--hx:10px;--hy:-6px;--hr:5deg"><img src="thumb-abc-bal.webp" alt="The balance widget: current balance, credit meter, payment summary and Make a payment" loading="lazy"></div>
-        <div class="mf mf-free ab-card" style="--x:37%;--y:52px;--w:39%;--r:-7deg;--z:3;--hx:-10px;--hy:-10px;--hr:-10deg"><img src="thumb-abc-cc.webp" alt="Prime Visa Business card art" loading="lazy"></div>
-        <div class="mf mf-free ab-chips" style="--x:38%;--y:166px;--w:34%;--r:-4deg;--z:4;--hx:-4px;--hy:-4px;--hr:-3deg"><img src="thumb-abc-chips.webp" alt="Chips: New, 2% back, 5% back, Offer" loading="lazy"></div>
+        <div class="dv dv-phone" style="--x:60%;--y:26px;--w:29%;--travel:-14%;--d:-3s"><div class="dv-screen"><img src="thumb-abc-screen.webp" alt="Card details on the Amazon Business card member hub" loading="lazy"></div></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
@@ -822,8 +846,7 @@
             <g class="lb-orbit" style="--t:16s"><circle cx="70" cy="8" r="4" fill="#5fd3c6"/></g>
             <g class="lb-orbit is-rev" style="--t:26s"><circle cx="132" cy="70" r="3" fill="#8b7cf6"/></g>
           </svg></div>
-        <div class="mf mf-card mf-bleed" style="--x:40%;--y:18px;--w:55%;--r:-2deg;--z:2;--hx:-10px;--hy:-8px;--hr:-4deg"><img src="thumb-libra-tiles.webp" alt="Libra editorial illustrations" loading="lazy"></div>
-        <div class="mf mf-card" style="--x:47%;--y:124px;--w:46%;--r:2.5deg;--z:3;--hx:10px;--hy:-6px;--hr:4deg"><img src="thumb-libra-icons.webp" alt="The Libra icon set" loading="lazy"></div>
+        <div class="dv dv-browser" style="--x:40%;--y:30px;--w:55%;--travel:-44%;--d:-2s"><span class="dv-bar" aria-hidden="true"><i></i><i></i><i></i><b>libra.org</b></span><div class="dv-view"><img src="thumb-libra-page.webp" alt="The libra.org homepage: Welcome to Libra, the mission statement, and the white paper" loading="lazy"></div></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">BUCK</span><span class="tag">Facebook</span><span class="tag">Brand</span>
