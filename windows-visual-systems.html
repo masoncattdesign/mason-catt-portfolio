@@ -412,9 +412,46 @@
   .dslide-vis { order: 1; }
   .dslide-vis svg { width: 100%; height: 100%; }
   .dslide-vis img, .dslide-vis video { width: 100%; height: 100%; object-fit: contain; display: block; }
-  /* a real screenshot or capture gets the dark mat and no inner padding */
-  .dslide-vis.is-shot { padding: 10px; background: #0b0b0d; }
-  .dslide-vis.is-shot img, .dslide-vis.is-shot video { border-radius: 6px; }
+  /* A real capture sits in a drawn browser, the same frame the work hub uses:
+     it is a page at a URL, and clicking it opens that page. The panel behind
+     it goes away so the window floats on the deck instead of in a dark box. */
+  .dslide-vis.is-shot { background: none; border: 0; padding: 4px 2px 12px; overflow: visible; container-type: size; }
+  .browser { --bar: 30px; display: flex; flex-direction: column; flex: none;
+             width: min(100cqw, (100cqh - var(--bar) - 2px) * var(--ar));
+             border: 1px solid var(--border2); border-radius: 12px; overflow: hidden;
+             background: #1b1a17; text-decoration: none; color: inherit;
+             box-shadow: 0 20px 44px -22px rgba(0,0,0,.75);
+             transition: transform .3s cubic-bezier(.2,.75,.25,1), border-color .2s ease, box-shadow .3s ease; }
+  .browser-bar { height: var(--bar); flex: none; display: flex; align-items: center; gap: 6px;
+                 padding: 0 12px; background: #1f1d1a; border-bottom: 1px solid var(--border); }
+  .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #3b3731; transition: background .2s ease; }
+  .browser-url { margin-left: 10px; flex: 0 1 340px; min-width: 0; height: 18px; border-radius: 6px;
+                 background: rgba(240,235,226,.05); padding: 0 10px; font-size: 10.5px; line-height: 18px;
+                 color: var(--cream3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                 transition: color .2s ease; }
+  .browser-open { margin-left: auto; font-size: 10.5px; font-weight: 500; color: var(--accent);
+                  opacity: 0; transform: translateX(-4px); transition: opacity .2s ease, transform .25s ease; }
+  .dslide-vis .browser img { width: 100%; height: auto; object-fit: initial; border-radius: 0;
+                             filter: brightness(.9) saturate(.95); transition: filter .3s ease; }
+  a.browser:hover { transform: translateY(-4px); border-color: rgba(34,197,94,.45);
+                    box-shadow: 0 30px 56px -24px rgba(0,0,0,.85); }
+  a.browser:hover img { filter: none; }
+  a.browser:hover .browser-bar i:nth-child(1) { background: #ff5f57; }
+  a.browser:hover .browser-bar i:nth-child(2) { background: #febc2e; }
+  a.browser:hover .browser-bar i:nth-child(3) { background: #28c840; }
+  a.browser:hover .browser-url { color: var(--cream2); }
+  a.browser:hover .browser-open { opacity: 1; transform: none; }
+  a.browser:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  @media (max-width: 560px) {
+    .browser { --bar: 22px; border-radius: 9px; }
+    .browser-bar { padding: 0 9px; gap: 4px; }
+    .browser-bar i { width: 7px; height: 7px; }
+    .browser-url, .browser-open { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .browser, .browser-open, .dslide-vis .browser img { transition: none; }
+    a.browser:hover { transform: none; }
+  }
 
   .deck-dots { display: flex; justify-content: center; align-items: center; gap: 9px; padding-top: 16px; }
   .ddot { appearance: none; border: none; background: #3a352e; width: 8px; height: 8px; border-radius: 50%;
@@ -823,7 +860,7 @@
           <div class="dslide-body"><div class="slide-kicker">What it produces</div>
           <h3>Test directions</h3>
           <p>Flat, Outline, Roles, Tinted, Soft, Dichromic and Acrylic, set against the Default originals and all driven from a single seed. These are test directions, not proposals. They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled. Testing is early and has not surfaced much yet.</p></div>
-          <div class="dslide-vis is-shot"><img src="shot-customizer-outline.webp" alt="The Customizer style list, with the Outline direction applied across the canvas" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer-outline.webp" alt="The Customizer style list, with the Outline direction applied across the canvas" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Not bolted on</div>
@@ -844,7 +881,7 @@
           <div class="dslide-body"><div class="slide-kicker">The vocabulary</div>
           <h3>Asset anatomy</h3>
           <p>Before anything can be themed consistently it has to be describable. Whole, base, emblem, glyph, and the rule that a part is a set of shapes sharing a ramp, not a region. Deliberately small, and argued out in Teams.</p></div>
-          <div class="dslide-vis is-shot"><img src="shot-asset-anatomy.png" alt="Asset Anatomy page: one shipped SVG shown four times, with everything outside one part dimmed" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/asset-anatomy.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/asset-anatomy</span><span class="browser-open">Open &nearr;</span></span><img src="shot-asset-anatomy.webp" alt="Asset Anatomy page: one shipped SVG shown four times, with everything outside one part dimmed" loading="lazy"></a></div>
         </div>
       </div>
       <div class="deck-dots">
@@ -941,14 +978,14 @@
           <h3>The Gallery</h3>
           <p>Where the library gets looked at. Filter by collection, style and size, check any drawing against light and dark, copy or download it. It reads from the same published manifest everything else downstream does, and has a companion Figma file for people who would rather work in the file.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener">Open the Gallery <span>&rarr;</span></a></div>
-          <div class="dslide-vis is-shot"><img src="shot-gallery.webp" alt="The Gallery: 3,280 assets browsable by collection, with a detail panel for style, size and color" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library</span><span class="browser-open">Open &nearr;</span></span><img src="shot-gallery.webp" alt="The Gallery: 3,280 assets browsable by collection, with a detail panel for style, size and color" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Alter</div>
           <h3>The Customizer</h3>
           <p>Style a set at once and tune it: palette, stroke, texture, surface. Any slot swaps for anything in the library. It is the piece that sits in both halves of this page, because making assets and theming them are the same operation seen from two ends.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener">Open the Customizer <span>&rarr;</span></a></div>
-          <div class="dslide-vis is-shot"><img src="shot-customizer.webp" alt="The Customizer: asset style modes on the left, a twelve-icon canvas, and controls on the right" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer.webp" alt="The Customizer: asset style modes on the left, a twelve-icon canvas, and controls on the right" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Make</div>
@@ -956,13 +993,13 @@
           <p>Three generators that assemble new assets from the typed pieces once there are good recipes: ask for a concept and get usable options back instead of a blank canvas. Built to run as separate modes first, then fold together, so the icon and illustration streams can move in parallel.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener">Open the Illustration Builder <span>&rarr;</span></a>
           <!-- TODO Mason: name the three builders here, then delete this comment. --></div>
-          <div class="dslide-vis is-shot"><img src="shot-builder.webp" alt="Windows Illustration Builder: layers on the left, a shield on a circle base in the canvas, shape picker and contrast checks on the right" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/builder</span><span class="browser-open">Open &nearr;</span></span><img src="shot-builder.webp" alt="Windows Illustration Builder: layers on the left, a shield on a circle base in the canvas, shape picker and contrast checks on the right" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">How it fits together</div>
           <h3>The system map</h3>
           <p>Every stage runs on the output of the one before it, and each is its own command, so a bad step gets rerun without redoing the rest. Everything downstream reads manifest.json and nothing else.</p></div>
-          <div class="dslide-vis is-shot"><img src="shot-system-map.png" alt="System Map page: the pipeline from Figma file through plan, importer and assets to manifest.json, feeding Gallery, Customizer, Builder and Bridge" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/system-map.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/system-map</span><span class="browser-open">Open &nearr;</span></span><img src="shot-system-map.webp" alt="System Map page: the pipeline from Figma file through plan, importer and assets to manifest.json, feeding Gallery, Customizer, Builder and Bridge" loading="lazy"></a></div>
         </div>
       </div>
       <div class="deck-dots">
@@ -996,14 +1033,14 @@
           <h3>The Customizer, for theming</h3>
           <p>Seen from the theming end: pick a direction, push it through a whole family at once, and see it resolve under the same conditions every time. That last part is what makes two candidate directions actually comparable instead of one being a better mockup than the other.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener">Open the Customizer <span>&rarr;</span></a></div>
-          <div class="dslide-vis is-shot"><img src="shot-customizer-roles.webp" alt="The Customizer in Roles mode: one seed color theming the whole icon set through declared color groups" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer-roles.webp" alt="The Customizer in Roles mode: one seed color theming the whole icon set through declared color groups" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">The pilot</div>
           <h3>Desktop Themer</h3>
           <p>Takes the same theming model out past the icon set and onto a prospective desktop: illustration, interface surfaces and wallpaper all moving together under one direction. It is where you find out whether a direction is actually a direction, or just a nice icon set.</p>
           <!-- TODO Mason: "Desktop Themer" is a working name for the old BentoOS. Swap to "Desktop Theming Pilot" if you prefer, then delete this comment. --></div>
-          <div class="dslide-vis is-shot"><img src="shot-desktop-themer.webp" alt="Desktop Themer: a prospective Windows desktop with Start, widgets and taskbar all themed from one seed color" loading="lazy"></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/work/bentos.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">work/bentos</span><span class="browser-open">Open &nearr;</span></span><img src="shot-desktop-themer.webp" alt="Desktop Themer: a prospective Windows desktop with Start, widgets and taskbar all themed from one seed color" loading="lazy"></a></div>
         </div>
       </div>
       <div class="deck-dots">
