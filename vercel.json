@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
+    { "source": "/otherwork", "destination": "/otherwork.html" },
     { "source": "/windows-visual-systems.html", "destination": "/windows-visual-systems.enc.html" },
     { "source": "/windows-visual-systems", "destination": "/windows-visual-systems.enc.html" }
   ],
