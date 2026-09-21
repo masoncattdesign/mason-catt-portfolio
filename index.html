@@ -304,6 +304,24 @@
   .project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 40px; }
   .project-thumb { background: var(--bg3); border-radius: var(--radius-sm); height: 220px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); overflow: hidden; position: relative; }
   .project-thumb-label { font-size: 13px; color: var(--cream3); }
+
+  /* Card art: a drawn backdrop with the real product shot sitting on top of it */
+  .card-art { position: relative; height: 200px; margin-bottom: 20px; border-radius: var(--radius-sm);
+              border: 1px solid var(--border); overflow: hidden; background: var(--bg3); }
+  .ca-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .ca-shot { position: absolute; top: 48px; left: 92px; right: -18px; bottom: -14px;
+             border-radius: 8px 0 0 0; border: 1px solid rgba(240,235,226,0.13);
+             overflow: hidden; box-shadow: 0 20px 44px rgba(0,0,0,0.55);
+             transition: transform 0.35s cubic-bezier(0.2,0.75,0.25,1); }
+  .ca-shot img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .project-card.featured .ca-shot img { object-position: right center; }
+  .project-card:hover .ca-shot { transform: translate(-6px, -6px); }
+  .project-card.featured .card-art { height: 280px; margin-bottom: 0; }
+  .project-card.featured .ca-shot { top: 62px; left: 132px; }
+  @media (prefers-reduced-motion: reduce) {
+    .ca-shot { transition: none; }
+    .project-card:hover .ca-shot { transform: none; }
+  }
   .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
   .tag { font-size: 11px; font-weight: 500; color: var(--cream3); border: 1px solid var(--border2); padding: 4px 10px; border-radius: 100px; }
   .tag.hi { color: var(--accent); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
@@ -361,6 +379,15 @@
   .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .exp-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color 0.2s; }
   .exp-card:hover { border-color: var(--border2); }
+  .exp-card { display: grid; grid-template-columns: 1fr auto; column-gap: 24px; align-items: center; }
+  .exp-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .exp-logo { width: 74px; height: 74px; border-radius: 16px; background: var(--bg3);
+              border: 1px solid var(--border); display: grid; place-items: center;
+              position: relative; overflow: hidden; flex-shrink: 0; }
+  .exp-mono { font-family: var(--serif); font-size: 19px; letter-spacing: 0.02em; color: var(--cream3); }
+  /* drop logo-*.svg into the repo and it covers the monogram; missing files remove themselves */
+  .exp-logo img { position: absolute; inset: 0; width: 100%; height: 100%;
+                  object-fit: contain; padding: 15px; background: var(--bg3); }
   .exp-company { font-size: 18px; font-weight: 500; color: var(--cream); margin-bottom: 4px; }
   .exp-role { font-size: 14px; color: var(--accent); margin-bottom: 4px; }
   .exp-dates { font-size: 12px; color: var(--cream3); margin-bottom: 16px; }
@@ -470,6 +497,10 @@
     .project-card { padding: 20px; }
     .project-card.featured { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
     .project-card.featured .project-thumb { height: 200px; }
+    .project-card.featured .card-art { height: 200px; }
+    .project-card.featured .ca-shot { top: 44px; left: 78px; }
+    .ca-shot { top: 40px; left: 70px; }
+    .card-art { height: 170px; }
     .project-name { font-size: 22px; }
     .project-desc { font-size: 14px; }
     .project-cta-row { gap: 12px; }
@@ -477,7 +508,10 @@
 
     /* Career: stack */
     .exp-grid { grid-template-columns: 1fr; gap: 16px; }
-    .exp-card { padding: 24px; }
+    .exp-card { padding: 24px; column-gap: 16px; }
+    .exp-logo { width: 56px; height: 56px; border-radius: 13px; }
+    .exp-mono { font-size: 15px; }
+    .exp-logo img { padding: 11px; }
     .exp-company { font-size: 16px; }
     .exp-role { font-size: 13px; }
 
@@ -604,14 +638,49 @@
           <a href="mailto:masoncatt@gmail.com?subject=Windows%20Visual%20Systems%20walkthrough" class="project-request-link">Request a walkthrough</a>
         </div>
       </div>
-      <div class="project-thumb">
-        <img src="img-wsp-thumb.png" alt="Windows personalization theme prototype" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="card-art">
+        <svg class="ca-bg" viewBox="0 0 440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><radialGradient id="wvsg" cx="18%" cy="16%" r="72%">
+            <stop offset="0" stop-color="#22c55e" stop-opacity="0.17"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
+          </radialGradient></defs>
+          <rect width="440" height="200" fill="#141310"/>
+          <rect width="440" height="200" fill="url(#wvsg)"/>
+          <g stroke="rgba(240,235,226,0.055)" stroke-width="1">
+            <path d="M0 48h440M0 96h440M0 144h440"/><path d="M56 0v200M112 0v200M168 0v200"/>
+          </g>
+          <g>
+            <rect x="26" y="26" width="34" height="34" rx="10" fill="#22c55e" opacity="0.85"/>
+            <rect x="68" y="26" width="34" height="34" rx="10" fill="#2a2721"/>
+            <rect x="110" y="26" width="34" height="34" rx="10" fill="none" stroke="rgba(240,235,226,0.28)" stroke-width="1.5"/>
+            <rect x="26" y="68" width="34" height="34" rx="10" fill="#3b82f6" opacity="0.7"/>
+            <rect x="68" y="68" width="34" height="34" rx="10" fill="#e879a0" opacity="0.5"/>
+            <rect x="110" y="68" width="34" height="34" rx="10" fill="#2a2721"/>
+          </g>
+        </svg>
+        <div class="ca-shot"><img src="img-wsp-thumb.png" alt="Windows personalization theme prototype" loading="lazy"></div>
       </div>
     </div>
 
     <a href="amazon-pay-studio.html" class="project-card reveal">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#0d1f0d;">
-        <img src="img-pay-studio-hero.png" alt="Amazon Pay Studio" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+      <div class="card-art">
+        <svg class="ca-bg" viewBox="0 0 440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><radialGradient id="psg" cx="18%" cy="16%" r="72%">
+            <stop offset="0" stop-color="#22c55e" stop-opacity="0.17"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
+          </radialGradient></defs>
+          <rect width="440" height="200" fill="#111510"/>
+          <rect width="440" height="200" fill="url(#psg)"/>
+          <g stroke="rgba(240,235,226,0.055)" stroke-width="1">
+            <path d="M0 48h440M0 96h440M0 144h440"/><path d="M56 0v200M112 0v200M168 0v200"/>
+          </g>
+          <g>
+            <rect x="26" y="28" width="56" height="30" rx="7" fill="#26241e"/>
+            <rect x="90" y="28" width="56" height="30" rx="7" fill="#26241e"/>
+            <rect x="26" y="66" width="56" height="30" rx="7" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+            <rect x="90" y="66" width="26" height="30" rx="7" fill="#26241e"/>
+            <path d="M46 81l6 6 12-13" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+        <div class="ca-shot"><img src="img-pay-studio-hero.png" alt="Amazon Business Pay Studio" loading="lazy"></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
@@ -625,8 +694,26 @@
 
     <!-- Amazon Business Card, after Pay Studio -->
     <a href="amazon-business-card.html" class="project-card reveal">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#f0f4f8;">
-        <img src="img-abc-thumb.png" alt="Amazon Business Card design system components" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+      <div class="card-art">
+        <svg class="ca-bg" viewBox="0 0 440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><radialGradient id="abcg" cx="18%" cy="16%" r="72%">
+            <stop offset="0" stop-color="#3b82f6" stop-opacity="0.17"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+          </radialGradient></defs>
+          <rect width="440" height="200" fill="#0f1218"/>
+          <rect width="440" height="200" fill="url(#abcg)"/>
+          <g stroke="rgba(240,235,226,0.055)" stroke-width="1">
+            <path d="M0 48h440M0 96h440M0 144h440"/><path d="M56 0v200M112 0v200M168 0v200"/>
+          </g>
+          <g>
+            <rect x="34" y="34" width="86" height="52" rx="9" fill="#1d2129"/>
+            <rect x="26" y="26" width="86" height="52" rx="9" fill="#232833" stroke="rgba(59,130,246,0.55)" stroke-width="1.4"/>
+            <rect x="36" y="38" width="22" height="14" rx="3" fill="#3b82f6" opacity="0.65"/>
+            <rect x="36" y="60" width="52" height="5" rx="2.5" fill="rgba(240,235,226,0.22)"/>
+            <rect x="26" y="98" width="70" height="7" rx="3.5" fill="rgba(240,235,226,0.1)"/>
+            <rect x="26" y="112" width="44" height="7" rx="3.5" fill="rgba(240,235,226,0.07)"/>
+          </g>
+        </svg>
+        <div class="ca-shot"><img src="img-abc-thumb.png" alt="Amazon Business Card design system components" loading="lazy"></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
@@ -640,8 +727,28 @@
 
     <!-- Facebook Libra -->
     <a href="facebook-libra.html" class="project-card reveal">
-      <div class="project-thumb" style="margin-bottom:20px; height:160px; overflow:hidden; background:#dde4f0;">
-        <img src="img-libra-thumb.png" alt="Facebook Libra brand artwork" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="card-art">
+        <svg class="ca-bg" viewBox="0 0 440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><radialGradient id="libg" cx="18%" cy="16%" r="72%">
+            <stop offset="0" stop-color="#e879a0" stop-opacity="0.17"/><stop offset="1" stop-color="#e879a0" stop-opacity="0"/>
+          </radialGradient></defs>
+          <rect width="440" height="200" fill="#141017"/>
+          <rect width="440" height="200" fill="url(#libg)"/>
+          <g stroke="rgba(240,235,226,0.055)" stroke-width="1">
+            <path d="M0 48h440M0 96h440M0 144h440"/><path d="M56 0v200M112 0v200M168 0v200"/>
+          </g>
+          <g fill="none" stroke="#e879a0">
+            <circle cx="74" cy="66" r="40" stroke-opacity="0.3" stroke-width="1.3"/>
+            <circle cx="74" cy="66" r="26" stroke-opacity="0.55" stroke-width="1.5"/>
+            <circle cx="74" cy="66" r="12" stroke-opacity="0.8" stroke-width="1.6"/>
+            <path d="M74 26v-14M114 66h16M74 106v16M34 66H18" stroke-opacity="0.25" stroke-width="1.2"/>
+          </g>
+          <g fill="#e879a0">
+            <circle cx="74" cy="12" r="3.2" fill-opacity="0.7"/><circle cx="132" cy="66" r="3.2" fill-opacity="0.5"/>
+            <circle cx="74" cy="124" r="3.2" fill-opacity="0.4"/><circle cx="16" cy="66" r="3.2" fill-opacity="0.55"/>
+          </g>
+        </svg>
+        <div class="ca-shot"><img src="img-libra-thumb.png" alt="Facebook Libra brand artwork" loading="lazy"></div>
       </div>
       <div class="project-tags">
         <span class="tag brand">BUCK</span><span class="tag">Facebook</span><span class="tag">Brand</span>
@@ -682,7 +789,8 @@
   </div>
   <div class="exp-grid">
     <div class="exp-card reveal">
-      <div style="display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:8px;">
+      <div class="exp-main">
+      <div class="exp-head">
         <div class="exp-company">Microsoft</div>
         <span class="exp-current">Current</span>
       </div>
@@ -691,12 +799,20 @@
       <div class="exp-tags">
         <span class="exp-tag">Windows Design Systems</span>
         <span class="exp-tag">Visual Systems</span>
-        <span class="exp-tag">Libraries & Guidance</span>
+        <span class="exp-tag">Libraries &amp; Guidance</span>
         <span class="exp-tag">Illustration</span>
+      </div>
+      </div>
+      <div class="exp-logo" aria-hidden="true">
+        <span class="exp-mono">MS</span>
+        <img src="logo-microsoft.svg" alt="" onerror="this.remove()">
       </div>
     </div>
     <div class="exp-card reveal">
-      <div class="exp-company">Amazon</div>
+      <div class="exp-main">
+      <div class="exp-head">
+        <div class="exp-company">Amazon Business</div>
+      </div>
       <div class="exp-role">Visual Experience Design Lead</div>
       <div class="exp-dates">Jul 2020 – Jul 2024</div>
       <div class="exp-tags">
@@ -705,25 +821,46 @@
         <span class="exp-tag">Visual Systems</span>
         <span class="exp-tag">Creative Direction</span>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <div class="exp-company">Intuit Credit Karma</div>
-      <div class="exp-role">Senior Designer <span style="font-size:11px; color:var(--cream3);">Contract</span></div>
-      <div class="exp-dates">Mar 2019 – Jun 2020</div>
-      <div class="exp-tags">
-        <span class="exp-tag">Savings & Tax Product</span>
-        <span class="exp-tag">Design Systems</span>
-        <span class="exp-tag">Brand & Marketing</span>
+      </div>
+      <div class="exp-logo" aria-hidden="true">
+        <span class="exp-mono">AB</span>
+        <img src="logo-amazon-business.svg" alt="" onerror="this.remove()">
       </div>
     </div>
     <div class="exp-card reveal">
-      <div class="exp-company">Amazon</div>
+      <div class="exp-main">
+      <div class="exp-head">
+        <div class="exp-company">Intuit Credit Karma</div>
+      </div>
+      <div class="exp-role">Senior Designer <span style="font-size:11px; color:var(--cream3);">Contract</span></div>
+      <div class="exp-dates">Mar 2019 – Jun 2020</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Savings &amp; Tax Product</span>
+        <span class="exp-tag">Design Systems</span>
+        <span class="exp-tag">Brand &amp; Marketing</span>
+      </div>
+      </div>
+      <div class="exp-logo" aria-hidden="true">
+        <span class="exp-mono">CK</span>
+        <img src="logo-credit-karma.svg" alt="" onerror="this.remove()">
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-main">
+      <div class="exp-head">
+        <div class="exp-company">Amazon</div>
+      </div>
       <div class="exp-role">Interaction Designer</div>
       <div class="exp-dates">May 2014 – Oct 2018</div>
       <div class="exp-tags">
         <span class="exp-tag">Advertising Experience</span>
         <span class="exp-tag">UX</span>
         <span class="exp-tag">Product</span>
+      </div>
+      </div>
+      <div class="exp-logo" aria-hidden="true">
+        <span class="exp-mono">AMZ</span>
+        <img src="logo-amazon.svg" alt="" onerror="this.remove()">
       </div>
     </div>
   </div>
