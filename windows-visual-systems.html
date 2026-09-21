@@ -246,6 +246,86 @@
     .back-link { min-height: 44px; }
     .filter-btn { min-height: 40px; }
   }
+
+  /* ---------- Hero band ---------- */
+  .hero-band { max-width: calc(var(--col) + 96px); margin: 44px auto 0; padding: 0 48px; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; }
+  .hero-band svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .hero-band .hb-rule { margin-top: 30px; border-top: 1px solid var(--border); }
+
+  .hb-tile { animation: hb-in .8s cubic-bezier(.2,.75,.25,1) backwards, var(--drift) var(--dur) ease-in-out infinite;
+             animation-delay: calc(var(--i) * 80ms), calc(var(--i) * 80ms + 950ms); }
+  .hb-tile:nth-child(odd)  { --drift: hb-drift-a; }
+  .hb-tile:nth-child(even) { --drift: hb-drift-b; }
+  .hb-tile:nth-child(1){--i:0;--dur:11s}   .hb-tile:nth-child(2){--i:1;--dur:14s}
+  .hb-tile:nth-child(3){--i:2;--dur:9.5s}  .hb-tile:nth-child(4){--i:3;--dur:13s}
+  .hb-tile:nth-child(5){--i:4;--dur:10.5s} .hb-tile:nth-child(6){--i:5;--dur:15s}
+  .hb-tile:nth-child(7){--i:6;--dur:12s}   .hb-tile:nth-child(8){--i:7;--dur:16s}
+  .hb-seed { animation: hb-seed 24s ease-in-out infinite; }
+
+  @keyframes hb-in      { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes hb-drift-a { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2.4px); } }
+  @keyframes hb-drift-b { 0%,100% { transform: translateY(0); } 50% { transform: translateY(2.4px); } }
+  @keyframes hb-seed {
+    0%,21%   { fill: var(--accent); }
+    25%,46%  { fill: var(--accent-blue); }
+    50%,71%  { fill: var(--accent-pink); }
+    75%,96%  { fill: var(--cream3); }
+    100%     { fill: var(--accent); }
+  }
+  @media (hover: hover) {
+    .hb-lift { transition: transform .25s cubic-bezier(.2,.75,.25,1); }
+    .hero-band svg:has(.hb-tile:hover) .hb-tile:not(:hover) { opacity: .35; }
+    .hb-tile { transition: opacity .25s ease; }
+    .hb-tile:hover .hb-lift { transform: translateY(-4px) scale(1.04); }
+  }
+
+  /* ---------- Stream cards ---------- */
+  .stream-index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; background: none; border: none; border-radius: 0; overflow: visible; }
+  .sx {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 0; overflow: hidden; text-decoration: none; display: flex; flex-direction: column;
+    transition: border-color .2s ease, transform .2s cubic-bezier(.2,.75,.25,1), background .2s ease;
+  }
+  .sx:hover { background: var(--bg2); border-color: var(--border2); transform: translateY(-3px); }
+  .sx-art { background: var(--bg3); border-bottom: 1px solid var(--border); padding: 18px 18px 14px; }
+  .sx-art svg { width: 100%; height: auto; display: block; }
+  .sx-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+  .sx-num { font-family: var(--serif); font-size: 12px; color: var(--accent); margin-bottom: 7px; letter-spacing: .04em; }
+  .sx-name { font-size: 14px; font-weight: 500; color: var(--cream); line-height: 1.35; margin-bottom: 5px; }
+  .sx-note { font-size: 12px; color: var(--cream3); line-height: 1.5; }
+  .sx-go { margin-top: 12px; font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+           color: var(--cream3); display: inline-flex; align-items: center; gap: 6px; transition: color .2s ease; }
+  .sx-go span { transition: transform .2s cubic-bezier(.2,.75,.25,1); display: inline-block; }
+  .sx:hover .sx-go { color: var(--accent); }
+  .sx:hover .sx-go span { transform: translateX(4px); }
+
+  /* art responds to the card, so the whole tile reads as one control */
+  .sx-pulse { transition: opacity .25s ease, transform .25s cubic-bezier(.2,.75,.25,1); transform-origin: center; }
+  .sx:hover .sx-pulse { opacity: 1; transform: scale(1.06); }
+  .sx-dim { transition: opacity .25s ease; }
+  .sx:hover .sx-dim { opacity: .45; }
+  .sx-slide { transition: transform .3s cubic-bezier(.2,.75,.25,1); }
+  .sx:hover .sx-slide { transform: translateX(6px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hb-tile, .hb-seed { animation: none; }
+    .hb-lift, .sx, .sx-pulse, .sx-dim, .sx-slide, .sx-go span { transition: none; }
+    .sx:hover { transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-band { padding: 0 20px; margin-top: 32px; }
+    /* Scaled to fit, the band gets too small to read on a phone. Size it by
+       height instead and let the tail run off the edge, clipped by the wrap. */
+    .hb-clip { overflow: hidden; margin: 0 -20px; padding-left: 20px; }
+    .hero-band svg { height: 78px; width: auto; max-width: none; }
+    /* declared here, after the earlier media queries, so source order does not
+       hand the 3-column base rule the win on a phone */
+    .stream-index-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  }
+  @media (max-width: 560px) {
+    .stream-index-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -308,8 +388,57 @@
   </div>
 </div>
 
-<div class="hero-img-wrap">
-  <img src="img-fluent-system-thumb.png" alt="Windows visual system: spacing scale, color and type tokens, iconography, taskbar and shell components">
+<div class="hero-band">
+  <div class="hb-clip">
+  <svg viewBox="0 -10 860 124" aria-hidden="true">
+    <!-- 01 the seed: one input, cycling, that drives everything downstream -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect class="hb-seed" x="0" y="0" width="96" height="104" rx="16" fill="#22c55e"/>
+      <circle cx="48" cy="52" r="19" fill="#0e0d0c"/>
+    </g></g>
+    <!-- 02 a surface audited against spec -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="110" y="16" width="118" height="88" rx="13" fill="#1e1c18"/>
+      <rect x="126" y="34" width="38" height="26" rx="7" fill="#2b2822"/>
+      <rect x="170" y="34" width="42" height="26" rx="7" fill="#2b2822"/>
+      <rect x="126" y="68" width="86" height="8" rx="4" fill="#2b2822"/>
+      <rect x="126" y="82" width="54" height="8" rx="4" fill="#2b2822"/>
+    </g></g>
+    <!-- 03 the same asset, four treatments -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="240" y="44" width="28" height="60" rx="9" fill="#3b82f6" opacity=".85"/>
+      <rect x="274" y="44" width="28" height="60" rx="9" fill="#2b2822"/>
+      <rect x="308" y="44" width="28" height="60" rx="9" fill="none" stroke="#3b82f6" stroke-width="2" opacity=".7"/>
+      <rect x="342" y="44" width="28" height="60" rx="9" fill="#2b2822"/>
+    </g></g>
+    <!-- 04 a small emblem -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="382" y="60" width="52" height="44" rx="11" fill="#e879a0" opacity=".75"/>
+    </g></g>
+    <!-- 05 the instrument: a wide surface with a control -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="446" y="0" width="152" height="104" rx="15" fill="#1e1c18"/>
+      <rect x="468" y="26" width="108" height="20" rx="10" fill="#2b2822"/>
+      <circle cx="480" cy="72" r="9" fill="#22c55e" opacity=".9"/>
+      <rect x="498" y="68" width="78" height="8" rx="4" fill="#2b2822"/>
+    </g></g>
+    <!-- 06 composed from parts -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="610" y="28" width="62" height="76" rx="12" fill="#2b2822"/>
+      <rect x="624" y="44" width="34" height="34" rx="9" fill="#0e0d0c"/>
+    </g></g>
+    <!-- 07 a held outline: not yet decided -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="684" y="46" width="58" height="58" rx="14" fill="none" stroke="#3a352e" stroke-width="2"/>
+      <rect x="702" y="64" width="22" height="22" rx="7" fill="#e879a0" opacity=".55"/>
+    </g></g>
+    <!-- 08 the tail -->
+    <g class="hb-tile"><g class="hb-lift">
+      <rect x="754" y="66" width="86" height="38" rx="11" fill="#1e1c18"/>
+    </g></g>
+  </svg>
+  </div>
+  <div class="hb-rule"></div>
 </div>
 
 <div class="case-body" style="padding-bottom:40px;">
@@ -334,12 +463,146 @@
 <!-- STREAM INDEX -->
 <div class="stream-index">
   <div class="stream-index-grid">
-    <a class="sx" href="#compendiums"><div class="sx-num">01</div><div class="sx-name">Marketing Compendiums</div><div class="sx-note">Product-accurate asset libraries, and the audit that built them</div></a>
-    <a class="sx" href="#expressive"><div class="sx-num">02</div><div class="sx-name">Expressive Assets</div><div class="sx-note">An instrument for testing how Windows could be themed</div></a>
-    <a class="sx" href="#illustration"><div class="sx-num">03</div><div class="sx-name">Windows Illustrations</div><div class="sx-note">An illustration system and the builder behind it</div></a>
-    <a class="sx" href="#components"><div class="sx-num">04</div><div class="sx-name">Component Libraries</div><div class="sx-note">Production-aligned Figma libraries and the patterns gap</div></a>
-    <a class="sx" href="#tooling"><div class="sx-num">05</div><div class="sx-name">Tooling</div><div class="sx-note">Plugins and generators that make the systems usable</div></a>
-    <a class="sx" href="#personalization"><div class="sx-num">06</div><div class="sx-name">Personalization</div><div class="sx-note">What all of it is ultimately for</div></a>
+
+    <!-- 01 audit: a landscape of surfaces, one gap caught -->
+    <a class="sx" href="#compendiums">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <g class="sx-dim" fill="#2b2822">
+          <rect x="0"   y="6"  width="44" height="34" rx="8"/>
+          <rect x="52"  y="6"  width="44" height="34" rx="8"/>
+          <rect x="156" y="6"  width="44" height="34" rx="8"/>
+          <rect x="0"   y="50" width="44" height="34" rx="8"/>
+          <rect x="52"  y="50" width="44" height="34" rx="8"/>
+          <rect x="104" y="50" width="44" height="34" rx="8"/>
+          <rect x="156" y="50" width="44" height="34" rx="8"/>
+        </g>
+        <g class="sx-pulse">
+          <rect x="104" y="6" width="44" height="34" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <path d="M118 23 l5 5 l9 -10" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">01</div>
+        <div class="sx-name">Marketing Compendiums</div>
+        <div class="sx-note">Product-accurate asset libraries, and the audit that built them</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
+    <!-- 02 the instrument: one asset, four treatments, identical conditions -->
+    <a class="sx" href="#expressive">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <g class="sx-dim">
+          <rect x="52"  y="14" width="36" height="52" rx="11" fill="#2b2822"/>
+          <rect x="104" y="14" width="36" height="52" rx="11" fill="none" stroke="#6b6560" stroke-width="2"/>
+          <rect x="156" y="14" width="36" height="52" rx="11" fill="#3b82f6" opacity=".45"/>
+        </g>
+        <g class="sx-pulse">
+          <rect x="0" y="14" width="36" height="52" rx="11" fill="#22c55e" opacity=".9"/>
+          <circle cx="18" cy="40" r="8" fill="#0e0d0c"/>
+        </g>
+        <rect x="0" y="80" width="200" height="2" rx="1" fill="#2b2822"/>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">02</div>
+        <div class="sx-name">Expressive Assets</div>
+        <div class="sx-note">An instrument for testing how Windows could be themed</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
+    <!-- 03 illustration: base, secondary, tertiary -->
+    <a class="sx" href="#illustration">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <rect class="sx-dim" x="4" y="8" width="104" height="80" rx="18" fill="#37332b"/>
+        <rect class="sx-slide" x="56" y="30" width="86" height="52" rx="15" fill="#3b82f6" opacity=".55"/>
+        <g class="sx-pulse">
+          <rect x="140" y="20" width="46" height="46" rx="14" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
+          <circle cx="163" cy="43" r="9" fill="#e879a0" opacity=".85"/>
+        </g>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">03</div>
+        <div class="sx-name">Windows Illustrations</div>
+        <div class="sx-note">An illustration system and the builder behind it</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
+    <!-- 04 components: parts compose into a screen, one still missing -->
+    <a class="sx" href="#components">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <g class="sx-dim" fill="#2b2822">
+          <rect x="0" y="6"  width="46" height="16" rx="6"/>
+          <rect x="0" y="28" width="46" height="16" rx="6"/>
+          <rect x="0" y="50" width="46" height="16" rx="6"/>
+        </g>
+        <rect class="sx-dim" x="0" y="72" width="46" height="16" rx="6" fill="none" stroke="#6b6560" stroke-width="1.6" stroke-dasharray="5 4"/>
+        <path class="sx-slide" d="M58 47 h18" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
+        <g class="sx-pulse">
+          <rect x="88" y="6" width="112" height="84" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <rect x="102" y="20" width="84" height="12" rx="5" fill="#2b2822"/>
+          <rect x="102" y="40" width="40" height="34" rx="9" fill="#22c55e" opacity=".55"/>
+          <rect x="150" y="40" width="36" height="34" rx="9" fill="#2b2822"/>
+        </g>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">04</div>
+        <div class="sx-name">Component Libraries</div>
+        <div class="sx-note">Production-aligned Figma libraries and the patterns gap</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
+    <!-- 05 tooling: a control that drives output -->
+    <a class="sx" href="#tooling">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <rect class="sx-dim" x="0" y="6" width="200" height="54" rx="13" fill="#2b2822"/>
+        <g class="sx-pulse"><circle cx="26" cy="33" r="12" fill="#22c55e"/></g>
+        <rect x="52" y="20" width="120" height="6" rx="3" fill="#0e0d0c"/>
+        <rect x="52" y="40" width="120" height="6" rx="3" fill="#0e0d0c"/>
+        <g class="sx-slide">
+          <circle cx="96"  cy="23" r="6.5" fill="#f0ebe2" opacity=".85"/>
+          <circle cx="138" cy="43" r="6.5" fill="#f0ebe2" opacity=".85"/>
+        </g>
+        <g fill="#2b2822">
+          <rect x="0"   y="72" width="44" height="24" rx="8"/>
+          <rect x="52"  y="72" width="44" height="24" rx="8"/>
+          <rect x="104" y="72" width="44" height="24" rx="8"/>
+          <rect x="156" y="72" width="44" height="24" rx="8"/>
+        </g>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">05</div>
+        <div class="sx-name">Tooling</div>
+        <div class="sx-note">Plugins and generators that make the systems usable</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
+    <!-- 06 personalization: one surface, several identities -->
+    <a class="sx" href="#personalization">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <g class="sx-pulse">
+          <rect x="36" y="4" width="128" height="58" rx="13" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/>
+          <rect x="50" y="18" width="54" height="8" rx="4" fill="#2b2822"/>
+          <rect x="50" y="34" width="34" height="14" rx="6" fill="#e879a0" opacity=".7"/>
+          <rect x="92" y="34" width="58" height="14" rx="6" fill="#2b2822"/>
+        </g>
+        <g class="sx-dim">
+          <rect x="36"  y="74" width="36" height="22" rx="8" fill="#22c55e" opacity=".75"/>
+          <rect x="82"  y="74" width="36" height="22" rx="8" fill="#3b82f6" opacity=".7"/>
+          <rect x="128" y="74" width="36" height="22" rx="8" fill="#e879a0" opacity=".7"/>
+        </g>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">06</div>
+        <div class="sx-name">Personalization</div>
+        <div class="sx-note">What all of it is ultimately for</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
   </div>
 </div>
 
