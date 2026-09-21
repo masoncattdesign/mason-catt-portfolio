@@ -305,17 +305,76 @@
   .sx:hover .sx-go { color: var(--accent); }
   .sx:hover .sx-go span { transform: translateX(4px); }
 
-  /* art responds to the card, so the whole tile reads as one control */
-  .sx-pulse { transition: opacity .25s ease, transform .25s cubic-bezier(.2,.75,.25,1); transform-origin: center; }
-  .sx:hover .sx-pulse { opacity: 1; transform: scale(1.06); }
-  .sx-dim { transition: opacity .25s ease; }
-  .sx:hover .sx-dim { opacity: .45; }
-  .sx-slide { transition: transform .3s cubic-bezier(.2,.75,.25,1); }
-  .sx:hover .sx-slide { transform: translateX(6px); }
+  /* Each card's art acts out its stream on hover (and keyboard focus), so the
+     tile reads as one control and the six read as six different ideas. */
+  .sx-art svg * { transition-timing-function: cubic-bezier(.2,.75,.25,1); }
+  .sx:is(:hover, :focus-visible) { --on: 1; }
+
+  /* 01 an audit sweeps the library and checks each tile */
+  .c1-scan { opacity: 0; transition: transform .9s, opacity .3s; }
+  .sx:is(:hover, :focus-visible) .c1-scan { opacity: .55; transform: translateX(212px); }
+  .c1-checks path { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .75; transition: stroke-dashoffset .3s; }
+  .sx:is(:hover, :focus-visible) .c1-checks path { stroke-dashoffset: 0; transition-delay: calc(var(--d) * 110ms + 120ms); }
+  .c1-tiles rect { transition: fill .3s; }
+  .sx:is(:hover, :focus-visible) .c1-tiles rect { fill: #252a22; }
+
+  /* 02 the component set resolves the empty slots of a real screen */
+  .c2-set, .c2-var, .c2-screen, .c2-field, .c2-btn, .c2-track, .c2-knob, .c2-text { transition: all .35s; }
+  .c2-var { transform-box: fill-box; transform-origin: center; }
+  .sx:is(:hover, :focus-visible) .c2-var { transform: translateX(3px); transition-delay: calc(var(--i) * 90ms); }
+  .c2-link { transition: stroke .3s, stroke-dashoffset .8s linear; }
+  .sx:is(:hover, :focus-visible) .c2-link { stroke: #8b7cf6; stroke-dashoffset: -12; }
+  .sx:is(:hover, :focus-visible) .c2-screen { stroke: #22c55e; }
+  .sx:is(:hover, :focus-visible) .c2-btn { fill: #22c55e; fill-opacity: .8; stroke-opacity: 0; transition-delay: 120ms; }
+  .sx:is(:hover, :focus-visible) .c2-field { fill: #26241f; stroke: #3a352e; stroke-dasharray: 0; transition-delay: 210ms; }
+  .sx:is(:hover, :focus-visible) .c2-text { fill: #b8b0a4; width: 38px; transition-delay: 210ms; }
+  .sx:is(:hover, :focus-visible) .c2-track { fill: #22c55e; fill-opacity: .8; stroke-opacity: 0; transition-delay: 300ms; }
+  .sx:is(:hover, :focus-visible) .c2-knob { fill: #f0ebe2; transform: translateX(12px); transition-delay: 300ms; }
+
+  /* 03 one seed themes the whole family */
+  .c3-t, .c3-dot, .c3-bar { transition: all .4s; }
+  .c3-dot { transform-box: fill-box; transform-origin: center; }
+  .c3-bar { transform-box: fill-box; transform-origin: left; transform: scaleX(0); }
+  .sx:is(:hover, :focus-visible) .c3-t { fill: #22c55e; transition-delay: calc(var(--i) * 90ms); }
+  .sx:is(:hover, :focus-visible) .c3-t[style*="--i:1"] { fill-opacity: .55; }
+  .sx:is(:hover, :focus-visible) .c3-outline { fill-opacity: .3; stroke: #22c55e; }
+  .sx:is(:hover, :focus-visible) .c3-blue { opacity: .8; fill: #16a34a; }
+  .sx:is(:hover, :focus-visible) .c3-dot { transform: scale(.7); }
+  .sx:is(:hover, :focus-visible) .c3-bar { transform: scaleX(1); transition-duration: .7s; }
+
+  /* 04 the illustration comes apart into its typed pieces */
+  .c4-base, .c4-sec, .c4-ter, .c4-key, .c4-lbl { transition: all .45s; }
+  .sx:is(:hover, :focus-visible) .c4-base { transform: translate(-10px, 4px); }
+  .sx:is(:hover, :focus-visible) .c4-sec { transform: translate(6px, -3px); transition-delay: 60ms; }
+  .sx:is(:hover, :focus-visible) .c4-ter { transform: translate(20px, -8px); transition-delay: 120ms; }
+  .sx:is(:hover, :focus-visible) .c4-key { transform: translateX(-4px); transition-delay: calc(var(--i) * 90ms + 140ms); }
+  .sx:is(:hover, :focus-visible) .c4-lbl { fill: #6b6560; transition-delay: calc(var(--i) * 90ms + 140ms); }
+
+  /* 05 move the controls, the output follows */
+  .c5-seed, .c5-k1, .c5-k2, .c5-out { transition: all .5s; }
+  .sx:is(:hover, :focus-visible) .c5-k1 { transform: translateX(46px); }
+  .sx:is(:hover, :focus-visible) .c5-k2 { transform: translateX(-54px); }
+  .sx:is(:hover, :focus-visible) .c5-seed { fill: #3b82f6; }
+  .c5-out { fill-opacity: 1; }
+  .sx:is(:hover, :focus-visible) .c5-out { fill: #3b82f6; transition-delay: calc(var(--i) * 80ms + 150ms); }
+  .sx:is(:hover, :focus-visible) .c5-out[style*="--i:0"] { fill-opacity: .9; }
+  .sx:is(:hover, :focus-visible) .c5-out[style*="--i:1"] { fill-opacity: .7; }
+  .sx:is(:hover, :focus-visible) .c5-out[style*="--i:2"] { fill-opacity: .5; }
+  .sx:is(:hover, :focus-visible) .c5-out[style*="--i:3"] { fill-opacity: .3; }
+
+  /* 06 pick a swatch, the desktop takes it */
+  .c6-win, .c6-accent, .c6-bar, .c6-sw, .c6-ring { transition: all .4s; }
+  .c6-ring { opacity: 0; }
+  .sx:is(:hover, :focus-visible) .c6-ring { opacity: 1; transform: translateY(-3px); }
+  .sx:is(:hover, :focus-visible) .c6-pick { transform: translateY(-3px); opacity: 1; }
+  .sx:is(:hover, :focus-visible) .c6-sw:not(.c6-pick) { opacity: .35; }
+  .sx:is(:hover, :focus-visible) .c6-accent { fill: #22c55e; transition-delay: 150ms; }
+  .sx:is(:hover, :focus-visible) .c6-win { stroke: rgba(34,197,94,.55); transition-delay: 150ms; }
+  .sx:is(:hover, :focus-visible) .c6-bar { fill: #1f3a28; transition-delay: 230ms; }
 
   @media (prefers-reduced-motion: reduce) {
     .hb-tile, .hb-seed { animation: none; }
-    .hb-lift, .sx, .sx-pulse, .sx-dim, .sx-slide, .sx-go span { transition: none; }
+    .hb-lift, .sx, .sx-go span, .sx-art svg * { transition: none !important; }
     .sx:hover { transform: none; }
   }
 
@@ -558,21 +617,7 @@
   <div class="stream-index-grid">
 
     <a class="sx" href="#compendiums">
-      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <g class="sx-dim" fill="#2b2822">
-          <rect x="0"   y="6"  width="44" height="34" rx="8"/>
-          <rect x="52"  y="6"  width="44" height="34" rx="8"/>
-          <rect x="156" y="6"  width="44" height="34" rx="8"/>
-          <rect x="0"   y="50" width="44" height="34" rx="8"/>
-          <rect x="52"  y="50" width="44" height="34" rx="8"/>
-          <rect x="104" y="50" width="44" height="34" rx="8"/>
-          <rect x="156" y="50" width="44" height="34" rx="8"/>
-        </g>
-        <g class="sx-pulse">
-          <rect x="104" y="6" width="44" height="34" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <path d="M118 23 l5 5 l9 -10" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-      </svg></div>
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true"><g class="c1-tiles" fill="#2b2822"><rect x="0" y="6" width="44" height="34" rx="8"/><rect x="52" y="6" width="44" height="34" rx="8"/><rect x="156" y="6" width="44" height="34" rx="8"/><rect x="0" y="50" width="44" height="34" rx="8"/><rect x="52" y="50" width="44" height="34" rx="8"/><rect x="104" y="50" width="44" height="34" rx="8"/><rect x="156" y="50" width="44" height="34" rx="8"/></g><g class="c1-checks" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path style="--d:0" pathLength="1" d="M15 23.5l4.5 4.5l8.5-9"/><path style="--d:1" pathLength="1" d="M15 67.5l4.5 4.5l8.5-9"/><path style="--d:2" pathLength="1" d="M67 23.5l4.5 4.5l8.5-9"/><path style="--d:3" pathLength="1" d="M67 67.5l4.5 4.5l8.5-9"/><path style="--d:4" pathLength="1" d="M119 67.5l4.5 4.5l8.5-9"/><path style="--d:5" pathLength="1" d="M171 23.5l4.5 4.5l8.5-9"/><path style="--d:6" pathLength="1" d="M171 67.5l4.5 4.5l8.5-9"/></g><g class="c1-hero"><rect x="104" y="6" width="44" height="34" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/><path d="M118 23l5 5l9-10" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><rect class="c1-scan" x="-8" y="0" width="3" height="96" rx="1.5" fill="#22c55e"/></svg></div>
       <div class="sx-body">
         <div class="sx-num">01</div>
         <div class="sx-name">Marketing Compendiums</div>
@@ -583,19 +628,18 @@
 
     <a class="sx" href="#components">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <g class="sx-dim" fill="#2b2822">
-          <rect x="0" y="6"  width="46" height="16" rx="6"/>
-          <rect x="0" y="28" width="46" height="16" rx="6"/>
-          <rect x="0" y="50" width="46" height="16" rx="6"/>
-        </g>
-        <rect class="sx-dim" x="0" y="72" width="46" height="16" rx="6" fill="none" stroke="#6b6560" stroke-width="1.6" stroke-dasharray="5 4"/>
-        <path class="sx-slide" d="M58 47 h18" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
-        <g class="sx-pulse">
-          <rect x="88" y="6" width="112" height="84" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <rect x="102" y="20" width="84" height="12" rx="5" fill="#2b2822"/>
-          <rect x="102" y="40" width="40" height="34" rx="9" fill="#22c55e" opacity=".55"/>
-          <rect x="150" y="40" width="36" height="34" rx="9" fill="#2b2822"/>
-        </g>
+        <rect class="c2-set" x="1" y="4" width="76" height="88" rx="11" fill="none" stroke="#8b7cf6" stroke-width="1.4" stroke-dasharray="4 3"/>
+        <path d="M11 12.5l4-4l4 4l-4 4z" fill="#8b7cf6"/>
+        <rect x="24" y="10" width="30" height="5" rx="2.5" fill="#3a352e"/>
+        <g class="c2-var" style="--i:0"><rect x="10" y="24" width="58" height="15" rx="7.5" fill="#22c55e" opacity=".8"/><rect x="28" y="30" width="22" height="3.5" rx="1.75" fill="#0e0d0c" opacity=".55"/></g>
+        <g class="c2-var" style="--i:1"><rect x="10" y="46" width="58" height="15" rx="7.5" fill="#26241f" stroke="#3a352e"/><rect x="17" y="51.5" width="24" height="4" rx="2" fill="#6b6560"/></g>
+        <g class="c2-var" style="--i:2"><rect x="10" y="68" width="28" height="15" rx="7.5" fill="#22c55e" opacity=".8"/><circle cx="30.5" cy="75.5" r="4.8" fill="#f0ebe2"/><rect x="46" y="68.5" width="14" height="14" rx="4" fill="none" stroke="#6b6560" stroke-width="1.6"/></g>
+        <path class="c2-link" d="M82 48h11" stroke="#6b6560" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 4"/>
+        <rect class="c2-screen" x="97" y="4" width="103" height="88" rx="14" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6"/>
+        <rect x="109" y="15" width="44" height="6" rx="3" fill="#3a352e"/>
+        <g class="c2-slot" style="--i:1"><rect class="c2-field" x="109" y="29" width="79" height="15" rx="7.5" fill="#1a1916" stroke="#2b2822" stroke-dasharray="3 3"/><rect class="c2-text" x="116" y="34.5" width="30" height="4" rx="2" fill="#6b6560"/></g>
+        <g class="c2-slot" style="--i:2"><rect x="109" y="54" width="46" height="4" rx="2" fill="#3a352e"/><rect class="c2-track" x="162" y="49" width="26" height="14" rx="7" fill="#1a1916" stroke="#2b2822" stroke-dasharray="3 3"/><circle class="c2-knob" cx="169" cy="56" r="4.5" fill="#3a352e"/></g>
+        <g class="c2-slot" style="--i:0"><rect class="c2-btn" x="109" y="70" width="79" height="14" rx="7" fill="#1a1916" stroke="#2b2822" stroke-dasharray="3 3"/></g>
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">02</div>
@@ -607,16 +651,12 @@
 
     <a class="sx" href="#expressive">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <g class="sx-dim">
-          <rect x="52"  y="14" width="36" height="52" rx="11" fill="#2b2822"/>
-          <rect x="104" y="14" width="36" height="52" rx="11" fill="none" stroke="#6b6560" stroke-width="2"/>
-          <rect x="156" y="14" width="36" height="52" rx="11" fill="#3b82f6" opacity=".45"/>
-        </g>
-        <g class="sx-pulse">
-          <rect x="0" y="14" width="36" height="52" rx="11" fill="#22c55e" opacity=".9"/>
-          <circle cx="18" cy="40" r="8" fill="#0e0d0c"/>
-        </g>
+        <rect class="c3-t" style="--i:1" x="52" y="14" width="36" height="52" rx="11" fill="#2b2822"/>
+        <rect class="c3-t c3-outline" style="--i:2" x="104" y="14" width="36" height="52" rx="11" fill="#0e0d0c" stroke="#6b6560" stroke-width="2"/>
+        <rect class="c3-t c3-blue" style="--i:3" x="156" y="14" width="36" height="52" rx="11" fill="#3b82f6" opacity=".45"/>
+        <g class="c3-seed"><rect x="0" y="14" width="36" height="52" rx="11" fill="#22c55e" opacity=".92"/><circle class="c3-dot" cx="18" cy="40" r="8" fill="#0e0d0c"/></g>
         <rect x="0" y="80" width="200" height="2" rx="1" fill="#2b2822"/>
+        <rect class="c3-bar" x="0" y="80" width="200" height="2" rx="1" fill="#22c55e"/>
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">03</div>
@@ -628,12 +668,20 @@
 
     <a class="sx" href="#illustration">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <rect class="sx-dim" x="4" y="8" width="104" height="80" rx="18" fill="#37332b"/>
-        <rect class="sx-slide" x="56" y="30" width="86" height="52" rx="15" fill="#3b82f6" opacity=".55"/>
-        <g class="sx-pulse">
-          <rect x="140" y="20" width="46" height="46" rx="14" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
-          <circle cx="163" cy="43" r="9" fill="#e879a0" opacity=".85"/>
+        <rect class="c4-base" x="22" y="12" width="74" height="74" rx="21" fill="#37332b"/>
+        <g class="c4-sec">
+          <path d="M44 28h28l14 14v32a6 6 0 0 1-6 6H44a6 6 0 0 1-6-6V34a6 6 0 0 1 6-6z" fill="#3b82f6" opacity=".85"/>
+          <path d="M72 28v9a5 5 0 0 0 5 5h9z" fill="#1d4ed8"/>
+          <rect x="46" y="54" width="28" height="4" rx="2" fill="#dbeafe" opacity=".55"/>
+          <rect x="46" y="63" width="19" height="4" rx="2" fill="#dbeafe" opacity=".35"/>
         </g>
+        <g class="c4-ter">
+          <circle cx="90" cy="26" r="13" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
+          <path d="M84.5 26.5l4 4l7-8" fill="none" stroke="#e879a0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="c4-key" style="--i:0"><rect x="134" y="18" width="14" height="14" rx="4.5" fill="#37332b"/><rect class="c4-lbl" x="156" y="23" width="36" height="4" rx="2" fill="#2b2822"/></g>
+        <g class="c4-key" style="--i:1"><rect x="134" y="41" width="14" height="14" rx="4.5" fill="#3b82f6" opacity=".85"/><rect class="c4-lbl" x="156" y="46" width="28" height="4" rx="2" fill="#2b2822"/></g>
+        <g class="c4-key" style="--i:2"><circle cx="141" cy="71" r="7" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><rect class="c4-lbl" x="156" y="69" width="32" height="4" rx="2" fill="#2b2822"/></g>
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">04</div>
@@ -645,20 +693,16 @@
 
     <a class="sx" href="#tooling">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <rect class="sx-dim" x="0" y="6" width="200" height="54" rx="13" fill="#2b2822"/>
-        <g class="sx-pulse"><circle cx="26" cy="33" r="12" fill="#22c55e"/></g>
-        <rect x="52" y="20" width="120" height="6" rx="3" fill="#0e0d0c"/>
-        <rect x="52" y="40" width="120" height="6" rx="3" fill="#0e0d0c"/>
-        <g class="sx-slide">
-          <circle cx="96"  cy="23" r="6.5" fill="#f0ebe2" opacity=".85"/>
-          <circle cx="138" cy="43" r="6.5" fill="#f0ebe2" opacity=".85"/>
-        </g>
-        <g fill="#2b2822">
-          <rect x="0"   y="72" width="44" height="24" rx="8"/>
-          <rect x="52"  y="72" width="44" height="24" rx="8"/>
-          <rect x="104" y="72" width="44" height="24" rx="8"/>
-          <rect x="156" y="72" width="44" height="24" rx="8"/>
-        </g>
+        <rect x="0" y="4" width="200" height="54" rx="13" fill="#2b2822"/>
+        <circle class="c5-seed" cx="26" cy="31" r="12" fill="#22c55e"/>
+        <rect x="52" y="18" width="120" height="6" rx="3" fill="#0e0d0c"/>
+        <rect x="52" y="38" width="120" height="6" rx="3" fill="#0e0d0c"/>
+        <circle class="c5-k1" cx="96" cy="21" r="6.5" fill="#f0ebe2" opacity=".9"/>
+        <circle class="c5-k2" cx="138" cy="41" r="6.5" fill="#f0ebe2" opacity=".9"/>
+        <rect class="c5-out" style="--i:0" x="0" y="70" width="44" height="24" rx="8" fill="#2b2822"/>
+        <rect class="c5-out" style="--i:1" x="52" y="70" width="44" height="24" rx="8" fill="#2b2822"/>
+        <rect class="c5-out" style="--i:2" x="104" y="70" width="44" height="24" rx="8" fill="#2b2822"/>
+        <rect class="c5-out" style="--i:3" x="156" y="70" width="44" height="24" rx="8" fill="#2b2822"/>
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">05</div>
@@ -670,17 +714,14 @@
 
     <a class="sx" href="#theming">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <g class="sx-pulse">
-          <rect x="36" y="4" width="128" height="58" rx="13" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/>
-          <rect x="50" y="18" width="54" height="8" rx="4" fill="#2b2822"/>
-          <rect x="50" y="34" width="34" height="14" rx="6" fill="#e879a0" opacity=".7"/>
-          <rect x="92" y="34" width="58" height="14" rx="6" fill="#2b2822"/>
-        </g>
-        <g class="sx-dim">
-          <rect x="36"  y="74" width="36" height="22" rx="8" fill="#22c55e" opacity=".75"/>
-          <rect x="82"  y="74" width="36" height="22" rx="8" fill="#3b82f6" opacity=".7"/>
-          <rect x="128" y="74" width="36" height="22" rx="8" fill="#e879a0" opacity=".7"/>
-        </g>
+        <rect class="c6-win" x="36" y="4" width="128" height="58" rx="13" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/>
+        <rect x="50" y="18" width="54" height="8" rx="4" fill="#2b2822"/>
+        <rect class="c6-accent" x="50" y="34" width="34" height="14" rx="6" fill="#e879a0" opacity=".75"/>
+        <rect class="c6-bar" x="92" y="34" width="58" height="14" rx="6" fill="#2b2822"/>
+        <rect class="c6-ring" x="33" y="67" width="42" height="28" rx="10" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+        <rect class="c6-sw c6-pick" x="36" y="70" width="36" height="22" rx="8" fill="#22c55e" opacity=".8"/>
+        <rect class="c6-sw" x="82" y="70" width="36" height="22" rx="8" fill="#3b82f6" opacity=".7"/>
+        <rect class="c6-sw" x="128" y="70" width="36" height="22" rx="8" fill="#e879a0" opacity=".7"/>
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">06</div>
