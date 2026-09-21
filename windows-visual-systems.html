@@ -633,6 +633,33 @@
     .crumb { font-size: 11.5px; padding: 7px 10px; }
     .deck-count { display: none; }
   }
+
+  /* Deck openers: a copy box and an illustration box, side by side */
+  .dslide.is-ov-s { grid-template-rows: 1fr; }
+  .dslide-vis.is-ov { display: grid; grid-template-columns: .88fr 1.12fr; gap: 14px; padding: 0; background: none; border: 0;
+                      overflow: visible; align-self: stretch; align-items: stretch; height: 100%; min-height: 0; }
+  .ov-copy { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg2); padding: 32px 30px;
+             display: flex; flex-direction: column; justify-content: center; min-width: 0; min-height: 0; }
+  .ov-kicker { font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .ov-copy .ov-title { font: 400 30px/1.12 var(--serif); letter-spacing: -.02em; color: var(--cream); margin: 0 0 14px; }
+  .ov-desc { font-size: 14px; line-height: 1.66; color: var(--cream2); margin: 0 0 20px; }
+  .ov-facts { margin: 0; border-top: 1px solid var(--border); }
+  .ov-facts div { display: grid; grid-template-columns: 108px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .ov-facts dt { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--cream3); padding-top: 2px; }
+  .ov-facts dd { margin: 0; font-size: 13px; line-height: 1.5; color: var(--cream); }
+  .ov-ok { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; vertical-align: 1px; }
+  .ov-copy .slide-link { margin-top: 18px; }
+  .ov-art { position: relative; border: 1px solid var(--border); border-radius: var(--radius-sm); background: #161616; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; padding: 46px 12px 12px; min-width: 0; min-height: 0; }
+  .dslide-vis .ov-art svg { width: 100%; height: 100%; }
+  .ov-tag { position: absolute; left: 14px; top: 13px; font-size: 10.5px; font-weight: 500; color: var(--cream2);
+            background: rgba(14,13,12,.8); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 100px; }
+  @media (max-width: 1100px) { .ov-copy { padding: 24px 22px; } .ov-copy .ov-title { font-size: 25px; } .ov-desc { font-size: 13px; margin-bottom: 14px; } .ov-facts div { padding: 7px 0; } }
+  @media (max-width: 860px) {
+    .dslide-vis.is-ov { grid-template-columns: 1fr; aspect-ratio: auto; padding: 0; }
+    .ov-copy { padding: 22px 20px; } .ov-facts div { grid-template-columns: 96px 1fr; } .ov-copy .ov-title { font-size: 26px; } .ov-desc { font-size: 14px; }
+    .ov-art { aspect-ratio: auto; padding: 46px 8px 12px; } .dslide-vis .ov-art svg { height: auto; }
+  }
   @media (prefers-reduced-motion: reduce) { .dslide { transition: none; } }
 </style>
 </head>
@@ -851,29 +878,22 @@
         <span class="deck-count">1 / 3</span>
       </div>
       <div class="deck-stage">
-        <div class="dslide is-on" data-i="0">
-          <div class="dslide-body"><div class="slide-kicker">The file</div>
-          <h3>The compendium</h3>
-          <p>Windows surfaces, features and products, refined and approved for marketing, in one file everyone pulls from.</p></div>
-          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+        <div class="dslide is-on is-ov-s" data-i="0">
+          <div class="dslide-vis is-ov">
+            <div class="ov-copy">
+            <div class="ov-kicker">Spring 2026 &middot; The file</div>
+            <h3 class="ov-title">Marketing Compendium</h3>
+            <p class="ov-desc">Windows surfaces, features and products, refined and approved for marketing and kept in one file everyone pulls from. Each one is held to what actually shipped, so Windows looks the same wherever it shows up.</p>
+            <dl class="ov-facts"><div><dt>Inside</dt><dd>Desktop, Start, File Explorer, Settings, Copilot, Widgets and more</dd></div><div><dt>Built from</dt><dd>The component library</dd></div><div><dt>Status</dt><dd><span class="ov-ok"></span>Approved for marketing</dd></div></dl>
+            <a class="slide-link" href="https://www.figma.com/design/eVlPXxepN2W78uIFeT0JQv/%F0%9F%8D%80-Spring-2026-Marketing-Compendium?node-id=2834-57626&amp;t=I3exIabwrYD97k5t-1" target="_blank" rel="noopener">Open in Figma <span>&rarr;</span></a>
+            </div>
+            <div class="ov-art"><span class="ov-tag">What's inside</span><svg class="cv" viewBox="394 44 540 438" aria-hidden="true">
           <defs>
             <clipPath id="cvClip"><rect width="160" height="96" rx="9"/></clipPath>
             <linearGradient id="cvWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
             <pattern id="cvDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
           </defs>
           <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#cvDots)"/>
-          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
-          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
-          <text x="56" y="146" class="cv-season">Spring 2026</text>
-          <text x="56" y="200" class="cv-title">Marketing</text>
-          <text x="56" y="250" class="cv-title">Compendium</text>
-          <text x="56" y="298" class="cv-desc"><tspan x="56">The approved source for how Windows</tspan><tspan x="56" dy="22">looks in marketing: every surface, feature</tspan><tspan x="56" dy="22">and product, held to what shipped.</tspan></text>
-          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
-          <text x="56" y="420" class="cv-k">Includes</text>
-          <text x="56" y="442" class="cv-v">Surfaces · Features · Products</text>
-          <text x="56" y="476" class="cv-k">Status</text>
-          <circle cx="62" cy="493" r="5" fill="#22c55e"/><path d="M59.6 493.2l1.7 1.7 3.2-3.5" fill="none" stroke="#0e0d0c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="73" y="498" class="cv-v">Approved for marketing</text>
           <g class="cv-card" style="--i:0" transform="translate(404 58)"><g class="cv-lift">
             <g clip-path="url(#cvClip)"><rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
             <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="14" y="14" width="10" height="10" rx="2" fill="rgba(255,255,255,.7)"/><rect x="14" y="30" width="10" height="10" rx="2" fill="rgba(255,255,255,.7)"/>
@@ -930,6 +950,7 @@
             <text x="2" y="114" class="cv-lbl">Notifications</text>
           </g></g>
         </svg></div>
+          </div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Built to scale</div>
@@ -1037,28 +1058,22 @@
         <span class="deck-count">1 / 3</span>
       </div>
       <div class="deck-stage">
-        <div class="dslide is-on" data-i="0">
-          <div class="dslide-body"><div class="slide-kicker">The file</div>
-          <h3>The component library</h3>
-          <p>Production-ready components for the Windows shell and Microsoft 365: taskbar, Start, wallpapers, desktop templates, Word, Excel, PowerPoint and more.</p></div>
-          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+        <div class="dslide is-on is-ov-s" data-i="0">
+          <div class="dslide-vis is-ov">
+            <div class="ov-copy">
+            <div class="ov-kicker">Spring 2026 &middot; The file</div>
+            <h3 class="ov-title">Component Library</h3>
+            <p class="ov-desc">Production-ready components for the Windows shell and Microsoft 365. Each one is a single master with variants for platform, mode, audience and size, so every combination is already built before anyone asks for it.</p>
+            <dl class="ov-facts"><div><dt>Inside</dt><dd>Taskbar, Start, wallpapers, desktop templates, Word, Excel, PowerPoint, Copilot</dd></div><div><dt>Used by</dt><dd>Every compendium and marketing file</dd></div><div><dt>Format</dt><dd>Figma library</dd></div></dl>
+            <a class="slide-link" href="https://www.figma.com/design/JHXDGax81azx9wb4hvYbkN/Component-Library-%E2%80%A2-Spring-2026?node-id=47-61976&amp;t=E31vi6lSViZNYDGI-1" target="_blank" rel="noopener">Open in Figma <span>&rarr;</span></a>
+            </div>
+            <div class="ov-art"><span class="ov-tag">In the library</span><svg class="cv" viewBox="394 44 540 438" aria-hidden="true">
           <defs>
             <clipPath id="clClip"><rect width="160" height="96" rx="9"/></clipPath>
             <linearGradient id="clWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
             <pattern id="clDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
           </defs>
           <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#clDots)"/>
-          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
-          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
-          <text x="56" y="146" class="cv-season">Spring 2026</text>
-          <text x="56" y="200" class="cv-title">Component</text>
-          <text x="56" y="250" class="cv-title">Library</text>
-          <text x="56" y="298" class="cv-desc"><tspan x="56">Production-ready Windows and Microsoft 365</tspan><tspan x="56" dy="22">components that every compendium and</tspan><tspan x="56" dy="22">marketing file is built from.</tspan></text>
-          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
-          <text x="56" y="420" class="cv-k">Includes</text>
-          <text x="56" y="442" class="cv-v">Shell · Wallpapers · Templates · Microsoft 365</text>
-          <text x="56" y="476" class="cv-k">Used by</text>
-          <text x="56" y="498" class="cv-v">Compendiums and marketing files</text>
           <g class="cv-card" transform="translate(404 58)"><g class="cv-lift">
             <g clip-path="url(#clClip)"><rect width="160" height="96" rx="9" fill="url(#clWall)"/><rect x="0" y="62" width="160" height="34" fill="rgba(245,245,245,.9)"/><g fill="#5b7fb5"><rect x="46" y="72" width="9" height="9" rx="2"/><rect x="58" y="72" width="9" height="9" rx="2"/><rect x="70" y="72" width="9" height="9" rx="2"/><rect x="82" y="72" width="9" height="9" rx="2"/><rect x="94" y="72" width="9" height="9" rx="2"/><rect x="106" y="72" width="9" height="9" rx="2"/></g><rect x="8" y="73" width="22" height="7" rx="3.5" fill="#d0d0d0"/><rect x="128" y="73" width="24" height="7" rx="3.5" fill="#d0d0d0"/>
             </g><rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
@@ -1085,6 +1100,7 @@
             </g><rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/>
             <text x="2" y="114" class="cv-lbl">Copilot</text></g></g><g transform="translate(764 358)"><rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.18)" stroke-dasharray="5 4"/><text x="80" y="54" text-anchor="middle" class="cv-lbl">+ more surfaces</text></g>
         </svg></div>
+          </div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Built for every variant</div>
@@ -1167,25 +1183,21 @@
         <span class="deck-count">1 / 5</span>
       </div>
       <div class="deck-stage">
-        <div class="dslide is-on" data-i="0">
-          <div class="dslide-body"><div class="slide-kicker">The program</div>
-          <h3>Expressive Assets</h3>
-          <p>What started as a side project is now a set of connected workstreams: the library, the tools that run it, a shared vocabulary, and the illustration system that spun out of it.</p></div>
-          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+        <div class="dslide is-on is-ov-s" data-i="0">
+          <div class="dslide-vis is-ov">
+            <div class="ov-copy">
+            <div class="ov-kicker">Side project &rarr; program</div>
+            <h3 class="ov-title">Expressive Assets</h3>
+            <p class="ov-desc">It started as a seed-color icon recolor prototype. It grew into a set of connected workstreams: the asset library, the tools that run it, a shared anatomy vocabulary, and the illustration system that spun out of it.</p>
+            <dl class="ov-facts"><div><dt>Workstreams</dt><dd>Library, tools, anatomy, illustrations</dd></div><div><dt>Tools</dt><dd>Gallery, Customizer, Builder, Desktop Themer</dd></div><div><dt>Status</dt><dd>Ongoing, shared daily with the team</dd></div></dl>
+            <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener">Open the Gallery <span>&rarr;</span></a>
+            </div>
+            <div class="ov-art"><span class="ov-tag">The workstreams</span><svg class="cv" viewBox="394 44 540 438" aria-hidden="true">
           <defs><linearGradient id="eaWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
             <clipPath id="eaClip"><rect width="160" height="96" rx="9"/></clipPath>
             <pattern id="eaDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
             <marker id="eaA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
           <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#eaDots)"/>
-          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
-          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
-          <text x="56" y="146" class="cv-season">Started as a side project</text>
-          <text x="56" y="200" class="cv-title">Expressive</text>
-          <text x="56" y="250" class="cv-title">Assets</text>
-          <text x="56" y="298" class="cv-desc"><tspan x="56" dy="0">A seed-color icon recolor prototype that</tspan><tspan x="56" dy="22">grew into a program: a library, the tools</tspan><tspan x="56" dy="22">that run it, and a way to test theming.</tspan></text>
-          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
-          <text x="56" y="420" class="cv-k">Workstreams</text><text x="56" y="442" class="cv-v">Library · Tools · Anatomy · Illustrations</text>
-          <text x="56" y="476" class="cv-k">Status</text><text x="56" y="498" class="cv-v">Ongoing, shared daily with the team</text>
           <g class="cv-card" transform="translate(404 58)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="12" y="12" width="30" height="72" rx="4" fill="#2b2822"/><rect x="50" y="12" width="20" height="20" rx="5" fill="#3b82f6"/><rect x="75" y="12" width="20" height="20" rx="5" fill="#22c55e"/><rect x="100" y="12" width="20" height="20" rx="5" fill="#e879a0"/><rect x="125" y="12" width="20" height="20" rx="5" fill="#f59e0b"/><rect x="50" y="37" width="20" height="20" rx="5" fill="#8b5cf6"/><rect x="75" y="37" width="20" height="20" rx="5" fill="#0ea5e9"/><rect x="100" y="37" width="20" height="20" rx="5" fill="#3b82f6"/><rect x="125" y="37" width="20" height="20" rx="5" fill="#22c55e"/><rect x="50" y="62" width="20" height="20" rx="5" fill="#e879a0"/><rect x="75" y="62" width="20" height="20" rx="5" fill="#f59e0b"/><rect x="100" y="62" width="20" height="20" rx="5" fill="#8b5cf6"/><rect x="125" y="62" width="20" height="20" rx="5" fill="#0ea5e9"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Gallery</text></g></g><g class="cv-card" transform="translate(584 58)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="14" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="1.0"/><rect x="48" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="0.8200000000000001"/><rect x="82" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="0.64"/><rect x="116" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="0.45999999999999996"/><rect x="14" y="62" width="132" height="5" rx="2.5" fill="#0e0d0c"/><circle cx="92" cy="64.5" r="6" fill="#f0ebe2"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Customizer</text></g></g><g class="cv-card" transform="translate(764 58)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="20" y="16" width="60" height="60" rx="16" fill="#37332b"/><rect x="42" y="30" width="46" height="36" rx="8" fill="#3b82f6" opacity=".85"/><circle cx="96" cy="30" r="11" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><g fill="#2b2822"><rect x="116" y="16" width="30" height="8" rx="4"/><rect x="116" y="32" width="30" height="8" rx="4"/><rect x="116" y="48" width="30" height="8" rx="4"/></g></g>
@@ -1197,6 +1209,7 @@
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Illustrations</text></g></g><g class="cv-card" transform="translate(764 358)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="0" y="0" width="160" height="96" fill="url(#eaWall)"/><rect x="50" y="12" width="60" height="58" rx="5" fill="#1f1d1a"/><rect x="56" y="22" width="8" height="8" rx="2" fill="#e879a0"/><rect x="68" y="22" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="80" y="22" width="8" height="8" rx="2" fill="#e879a0"/><rect x="92" y="22" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="56" y="34" width="8" height="8" rx="2" fill="#e879a0"/><rect x="68" y="34" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="80" y="34" width="8" height="8" rx="2" fill="#e879a0"/><rect x="92" y="34" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="0" y="84" width="160" height="12" fill="rgba(20,20,20,.8)"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Desktop Themer</text></g></g>
         </svg></div>
+          </div>
         </div>
 <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">How it grew</div>
@@ -1294,26 +1307,20 @@
         <span class="deck-count">1 / 5</span>
       </div>
       <div class="deck-stage">
-        <div class="dslide is-on" data-i="0">
-          <div class="dslide-body"><div class="slide-kicker">The system</div>
-          <h3>Windows Illustrations</h3>
-          <p>It started with illustration requests and updates picked up in spare time. Doing them one at a time showed what was missing, so it became a system of typed shapes that can be composed and themed.</p></div>
-          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+        <div class="dslide is-on is-ov-s" data-i="0">
+          <div class="dslide-vis is-ov">
+            <div class="ov-copy">
+            <div class="ov-kicker">Started in spare time</div>
+            <h3 class="ov-title">Windows Illustrations</h3>
+            <p class="ov-desc">It started with illustration requests and updates picked up in spare time. Doing them one at a time showed what was missing, so it became a system of typed shapes that can be composed and themed.</p>
+            <dl class="ov-facts"><div><dt>Built from</dt><dd>Base, secondary and tertiary shapes</dd></div><div><dt>Rule</dt><dd>One asset lands on light and dark</dd></div><div><dt>Status</dt><dd>Guidelines in progress</dd></div></dl>
+            </div>
+            <div class="ov-art"><span class="ov-tag">The shape taxonomy</span><svg class="cv" viewBox="394 94 540 312" aria-hidden="true">
           <defs><linearGradient id="ilWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
             <clipPath id="ilClip"><rect width="160" height="96" rx="9"/></clipPath>
             <pattern id="ilDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
             <marker id="ilA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
           <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#ilDots)"/>
-          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
-          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
-          <text x="56" y="146" class="cv-season">Started as a side project</text>
-          <text x="56" y="200" class="cv-title">Windows</text>
-          <text x="56" y="250" class="cv-title">Illustrations</text>
-          <text x="56" y="298" class="cv-desc"><tspan x="56" dy="0">Started by picking up illustration</tspan><tspan x="56" dy="22">requests and updates in spare time,</tspan><tspan x="56" dy="22">now a system built from typed pieces.</tspan></text>
-          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
-          <text x="56" y="420" class="cv-k">Built from</text><text x="56" y="442" class="cv-v">Base · Secondary · Tertiary shapes</text>
-          <text x="56" y="476" class="cv-k">Rule</text><text x="56" y="498" class="cv-v">One asset lands on light and dark</text>
-          <text x="404" y="84" class="cv-k">The shape taxonomy</text>
           <g class="cv-card" transform="translate(404 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="46" y="12" width="68" height="68" rx="20" fill="#37332b"/><rect x="18" y="30" width="20" height="20" rx="6" fill="#37332b" opacity=".6"/><rect x="122" y="40" width="22" height="22" rx="6" fill="#37332b" opacity=".6"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Base shapes</text></g></g><g class="cv-card" transform="translate(584 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><path d="M58 18h30l14 14v40a6 6 0 0 1-6 6H58a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6z" fill="#3b82f6" opacity=".85"/><path d="M88 18v9a5 5 0 0 0 5 5h9z" fill="#1d4ed8"/><rect x="60" y="48" width="26" height="4" rx="2" fill="#dbeafe" opacity=".6"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Secondary shapes</text></g></g><g class="cv-card" transform="translate(764 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><circle cx="80" cy="46" r="24" fill="#0e0d0c" stroke="#e879a0" stroke-width="2.5"/><path d="M70 47l7 7 13-14" fill="none" stroke="#e879a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
@@ -1322,6 +1329,7 @@
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On light</text></g></g><g class="cv-card" transform="translate(764 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#0e0d0c"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#37332b"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On dark</text></g></g>
         </svg></div>
+          </div>
         </div>
 <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">In progress</div>
