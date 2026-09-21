@@ -75,11 +75,12 @@
   .about-hero-headline-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 48px;
+    justify-content: flex-start;
+    gap: clamp(32px, 5vw, 80px);
     margin-bottom: 28px;
   }
   .about-hero-copy { flex: 1; }
+  .about-hero-photo { rotate: 3deg; box-shadow: 0 24px 50px -24px rgba(0,0,0,.8); }
   .about-hero-photo {
     flex-shrink: 0;
     width: clamp(120px, 14vw, 180px);
@@ -153,25 +154,41 @@
 
   /* ── CAREER TIMELINE ── */
   .timeline-section { padding: 100px 48px; border-top: 1px solid var(--border); }
-  .timeline-inner { display: grid; grid-template-columns: 280px 1fr; gap: 80px; }
+  .timeline-inner { display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: start; }
+  .timeline-intro { position: sticky; top: 120px; }
   .timeline-intro h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
   .timeline-intro p { font-size: 14px; color: var(--cream3); line-height: 1.7; }
   .timeline { position: relative; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border2); }
-  .timeline-item { padding-left: 28px; padding-bottom: 48px; position: relative; }
-  .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-item::before { content: ''; position: absolute; left: -4px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 30px; bottom: 30px; width: 1px;
+                      background: linear-gradient(to bottom, rgba(34,197,94,.55), var(--border2) 22%, var(--border2)); }
+  .timeline-item { position: relative; margin: 0 0 12px 22px; padding: 20px 24px 22px;
+                   border: 1px solid transparent; border-radius: var(--radius);
+                   transition: background .25s ease, border-color .25s ease; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-item:hover { background: var(--bg2); border-color: var(--border); }
+  .timeline-item::before { content: ''; position: absolute; left: -27px; top: 26px; width: 9px; height: 9px; border-radius: 50%;
+                           background: var(--bg3); border: 1px solid var(--border2); transition: border-color .25s ease, background .25s ease; }
+  .timeline-item:hover::before { border-color: var(--cream3); }
+  .timeline-item.current { background: linear-gradient(100deg, rgba(34,197,94,.07), rgba(34,197,94,0) 55%); border-color: rgba(34,197,94,.18); }
   .timeline-item.current::before { background: var(--accent); border-color: var(--accent); }
-  .timeline-date { font-size: 12px; color: var(--cream3); letter-spacing: 0.05em; margin-bottom: 6px; }
-  .timeline-company { font-size: 18px; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
+  .timeline-item.current::after { content: ''; position: absolute; left: -27px; top: 26px; width: 9px; height: 9px; border-radius: 50%;
+                                  border: 1px solid var(--accent); animation: tl-ping 2.6s cubic-bezier(.2,.75,.25,1) infinite; }
+  @keyframes tl-ping { 0% { transform: scale(1); opacity: .8; } 80%, 100% { transform: scale(2.8); opacity: 0; } }
+  .timeline-date { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--cream3); letter-spacing: 0.05em; margin-bottom: 8px; }
+  .timeline-company { font-size: 19px; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
   .timeline-role { font-size: 14px; color: var(--accent); margin-bottom: 10px; }
-  .timeline-desc { font-size: 14px; color: var(--cream2); line-height: 1.7; margin-bottom: 12px; }
+  .timeline-desc { font-size: 14px; color: var(--cream2); line-height: 1.7; margin-bottom: 14px; }
   .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .timeline-tag { font-size: 11px; color: var(--cream3); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 100px; }
-  .timeline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 3px 9px; border-radius: 100px; margin-left: 8px; }
+  .timeline-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
+  .timeline-links a { font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .timeline-links a span { transition: transform .2s cubic-bezier(.2,.75,.25,1); display: inline-block; }
+  .timeline-links a:hover span { transform: translateX(3px); }
+  .timeline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; line-height: 1.4; padding: 1px 8px 1px 7px; border-radius: 100px; letter-spacing: .01em; }
   .badge-current { color: var(--accent); border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.06); }
-  .badge-current::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+  .badge-current::before { content: ''; width: 4.5px; height: 4.5px; border-radius: 50%; background: var(--accent); }
   .badge-award { color: var(--accent); border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.06); }
+  @media (prefers-reduced-motion: reduce) { .timeline-item.current::after { animation: none; opacity: 0; } }
 
   /* ── TOOLS ── */
   .tools-section { padding: 80px 48px; background: var(--bg2); border-top: 1px solid var(--border); }
@@ -253,6 +270,9 @@
     /* about.html */
     .timeline-section { padding: 64px 20px; }
     .timeline-inner { grid-template-columns: 1fr; gap: 40px; }
+    .timeline-intro { position: static; }
+    .timeline-item { margin-left: 18px; padding: 16px 16px 18px; }
+    .timeline-item::before, .timeline-item.current::after { left: -23px; top: 22px; }
 
     /* amazon-business-card.html: let the tab bar scroll inside itself
        instead of pushing the page sideways */
@@ -370,7 +390,6 @@
       <span class="pill accent">Currently @ Microsoft</span>
       <span class="pill">Los Angeles, CA</span>
       <span class="pill">UW Design '14</span>
-      <span class="pill">Official Beyoncé fan club member</span>
     </div>
   </div>
 </section>
@@ -382,7 +401,7 @@
     <div class="timeline-intro reveal">
       <div class="section-label">Career</div>
       <h2>Where I've been</h2>
-      <p>A decade of building things that matter, at companies that care about craft.</p>
+      <p>Twelve years of building things that matter, at companies that care about craft.</p>
     </div>
     <div class="timeline reveal">
 
@@ -390,12 +409,12 @@
         <div class="timeline-date">Sep 2024 – Present <span class="timeline-badge badge-current">Current</span></div>
         <div class="timeline-company">Microsoft</div>
         <div class="timeline-role">Senior UI/UX Designer</div>
-        <p class="timeline-desc">Creating and refining system components, iconography, and visual foundations for Windows design systems. Building production-aligned Figma libraries and partnering closely with engineering for pixel-accurate implementation.</p>
+        <p class="timeline-desc">Building the visual systems and assets behind Windows: product-accurate marketing compendiums, production-aligned Figma component libraries, expressive icon and illustration systems, and the tooling that lets the team make and theme them. Partnering closely with engineering so what ships matches what was designed.</p>
         <div class="timeline-tags">
           <span class="timeline-tag">Windows Design Systems</span>
+          <span class="timeline-tag">Visual Assets</span>
           <span class="timeline-tag">Figma Libraries</span>
-          <span class="timeline-tag">Iconography</span>
-          <span class="timeline-tag">Accessibility</span>
+          <span class="timeline-tag">Asset Tooling</span>
         </div>
       </div>
 
@@ -403,12 +422,16 @@
         <div class="timeline-date">Jul 2020 – Jul 2024</div>
         <div class="timeline-company">Amazon Business</div>
         <div class="timeline-role">Visual Experience Design Lead</div>
-        <p class="timeline-desc">Directed visual and UX design across global fintech and payments products. Led the visual redesign of the U.S. credit card product, elevating clarity and usability. Maintained visual consistency across international markets and localized experiences.</p>
+        <p class="timeline-desc">Directed visual and UX design across global fintech and payments products. Built Pay Studio, the first component library in Amazon Business Payments, and led design for the Amazon Business card member hub. Kept the visual system consistent across international markets and localized experiences.</p>
         <div class="timeline-tags">
           <span class="timeline-tag">Amazon Business Payments</span>
           <span class="timeline-tag">Visual Systems</span>
           <span class="timeline-tag">Creative Direction</span>
           <span class="timeline-tag">Global Products</span>
+        </div>
+        <div class="timeline-links">
+          <a href="amazon-pay-studio.html">Pay Studio <span>&rarr;</span></a>
+          <a href="amazon-business-card.html">Business Credit Card <span>&rarr;</span></a>
         </div>
       </div>
 
@@ -434,6 +457,9 @@
           <span class="timeline-tag">Facebook Libra</span>
           <span class="timeline-tag">Apple Home</span>
           <span class="timeline-tag">Illustration</span>
+        </div>
+        <div class="timeline-links">
+          <a href="facebook-libra.html">Facebook Libra <span>&rarr;</span></a>
         </div>
       </div>
 
