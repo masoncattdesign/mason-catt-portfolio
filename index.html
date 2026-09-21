@@ -388,7 +388,7 @@
     border-top: 1px solid var(--border);
     background: var(--bg2);
   }
-  .contact-new-inner { max-width: 960px; }
+  .contact-new-inner { max-width: none; }
   .contact-headline { margin-bottom: 56px; }
   .contact-title {
     font-family: var(--serif); font-size: clamp(44px, 5.5vw, 72px);
@@ -441,7 +441,7 @@
               border: 1px solid var(--border); display: grid; place-items: center;
               position: relative; overflow: hidden; flex-shrink: 0; }
   .exp-mono { font-family: var(--serif); font-size: 19px; letter-spacing: 0.02em; color: var(--cream3); }
-  /* drop logo-*.svg into the repo and it covers the monogram; missing files remove themselves */
+  /* To use real logos: add <img src="logo-name.svg" alt=""> inside .exp-logo after the monogram; it covers it */
   .exp-logo img { position: absolute; inset: 0; width: 100%; height: 100%;
                   object-fit: contain; padding: 15px; background: var(--bg3); }
   .exp-company { font-size: 18px; font-weight: 500; color: var(--cream); margin-bottom: 4px; }
@@ -735,7 +735,7 @@
         <span class="tag brand">Amazon</span><span class="tag">Payments</span><span class="tag">Visual Systems</span>
       </div>
       <h3 class="project-name">Amazon Business Pay Studio</h3>
-      <p class="project-desc">Atomic design system for Amazon Business payments, 18 components, task templates, and use case journeys to ship payment products quickly. Completed 2023.</p>
+      <p class="project-desc">The first component library in Amazon Business Payments: 47 components, task templates and use case journeys, with 80% adoption in eight months. Completed 2023.</p>
       <div class="project-cta-row">
         <span class="project-access-btn">View project →</span>
       </div>
@@ -770,7 +770,7 @@
         <span class="tag brand">Amazon</span><span class="tag">Fintech</span><span class="tag">Product Design</span>
       </div>
       <h3 class="project-name">Amazon Business Credit Card</h3>
-      <p class="project-desc">Design lead for the Existing Card Member Page, a flexible widget system for card management, rewards, and personalization. Shipped Spring 2024.</p>
+      <p class="project-desc">Design lead for the Amazon Business card member hub, built on C3, a widget framework for Amazon card servicing. Where C3 shipped, NPS rose 15 points. Shipped Spring 2024.</p>
       <div class="project-cta-row">
         <span class="project-access-btn">View project →</span>
       </div>
@@ -854,7 +854,6 @@
       </div>
       <div class="exp-logo" aria-hidden="true">
         <span class="exp-mono">MS</span>
-        <img src="logo-microsoft.svg" alt="" onerror="this.remove()">
       </div>
     </div>
     <div class="exp-card reveal">
@@ -873,7 +872,6 @@
       </div>
       <div class="exp-logo" aria-hidden="true">
         <span class="exp-mono">AB</span>
-        <img src="logo-amazon-business.svg" alt="" onerror="this.remove()">
       </div>
     </div>
     <div class="exp-card reveal">
@@ -891,7 +889,6 @@
       </div>
       <div class="exp-logo" aria-hidden="true">
         <span class="exp-mono">CK</span>
-        <img src="logo-credit-karma.svg" alt="" onerror="this.remove()">
       </div>
     </div>
     <div class="exp-card reveal">
@@ -909,7 +906,6 @@
       </div>
       <div class="exp-logo" aria-hidden="true">
         <span class="exp-mono">AMZ</span>
-        <img src="logo-amazon.svg" alt="" onerror="this.remove()">
       </div>
     </div>
   </div>

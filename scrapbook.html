@@ -383,10 +383,6 @@
     .filter-btn { min-height: 40px; }
   }
 
-  /* img-scrap-artifacts.png is not in the repo, so these decorative pins render
-     as broken-image icons. Hidden rather than deleted: add the asset and remove
-     this rule to bring them back. */
-  .board-artifacts { display: none; }
 </style>
 </head>
 <body>
@@ -432,12 +428,6 @@
 </div>
 
 <div class="board">
-  <div class="board-artifacts">
-    <img src="img-scrap-artifacts.png" alt="">
-    <img src="img-scrap-artifacts.png" alt="">
-    <img src="img-scrap-artifacts.png" alt="">
-    <img src="img-scrap-artifacts.png" alt="">
-  </div>
   <div class="scraps" id="scraps">
 
     <!-- ANIMATION — Orbit -->
@@ -652,8 +642,8 @@
   <button class="lightbox-nav lightbox-prev" id="lbPrev">←</button>
   <button class="lightbox-nav lightbox-next" id="lbNext">→</button>
   <div class="lightbox-inner">
-    <img class="lightbox-img" id="lbImg" src="" alt="">
-    <video class="lightbox-img" id="lbVid" src="" controls autoplay loop style="display:none; max-width:100%; max-height:68vh;"></video>
+    <img class="lightbox-img" id="lbImg" alt="">
+    <video class="lightbox-img" id="lbVid" controls autoplay loop style="display:none; max-width:100%; max-height:68vh;"></video>
     <div>
       <div class="lightbox-title" id="lbTitle"></div>
       <div class="lightbox-type" id="lbType"></div>
@@ -666,6 +656,7 @@
   <ul class="footer-nav">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="scrapbook.html">Scrapbook</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <span class="footer-copy">© 2026 · Made with care in LA</span>
