@@ -156,6 +156,8 @@
   .stream-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 18px; }
   .stream-num { font-family: var(--serif); font-size: 13px; color: var(--accent); flex-shrink: 0; letter-spacing: 0.06em; }
   .stream-rule { border: none; border-top: 1px solid var(--border2); margin: 0 0 40px; }
+  /* the nav is fixed, so an anchor jump would otherwise hide the heading behind it */
+  #compendiums, #components, #expressive, #illustration, #tooling, #theming { scroll-margin-top: 96px; }
 
   /* Two-column fact rows */
   .facts { display: grid; grid-template-columns: 160px 1fr; gap: 14px 28px; margin: 24px 0; }
@@ -247,7 +249,7 @@
     .filter-btn { min-height: 40px; }
   }
 
-  /* ---------- Hero band ---------- */
+  /* ---------- Hero band (markup removed; kept so it is one paste to restore) ---------- */
   .hero-band { max-width: calc(var(--col) + 96px); margin: 44px auto 0; padding: 0 48px; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; }
   .hero-band svg { width: 100%; height: auto; display: block; overflow: visible; }
   .hero-band .hb-rule { margin-top: 30px; border-top: 1px solid var(--border); }
@@ -326,6 +328,43 @@
   @media (max-width: 560px) {
     .stream-index-grid { grid-template-columns: 1fr; }
   }
+
+  /* ---------- Slides: a locked vertical sequence inside each section ---------- */
+  .slides { position: relative; margin: 30px 0 0; padding-left: 30px; display: flex; flex-direction: column; gap: 16px; }
+  .slides::before { content: ''; position: absolute; left: 7px; top: 24px; bottom: 24px; width: 1px; background: var(--border2); }
+  .slide { position: relative; display: grid; grid-template-columns: 300px 1fr; background: var(--bg2);
+           border: 1px solid var(--border); border-radius: var(--radius);
+           transition: border-color .2s ease; }
+  .slide:hover { border-color: var(--border2); }
+  .slide::before { content: ''; position: absolute; left: -31px; top: 30px; width: 17px; height: 17px;
+                   border-radius: 50%; background: var(--bg2); border: 2px solid #3a352e; }
+  .slide.is-live::before { background: var(--accent); border-color: var(--accent);
+                           box-shadow: 0 0 0 4px rgba(34,197,94,0.14); }
+  .slide-art { background: var(--bg3); border-right: 1px solid var(--border); padding: 20px; display: flex; align-items: center;
+               border-radius: calc(var(--radius) - 1px) 0 0 calc(var(--radius) - 1px); }
+  .slide-art svg { width: 100%; height: auto; display: block; }
+  .slide-body { padding: 22px 26px; display: flex; flex-direction: column; justify-content: center; }
+  .slide-kicker { font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cream3); margin-bottom: 7px; }
+  .slide-body h3 { font-size: 16px; font-weight: 500; color: var(--cream); margin: 0 0 8px; }
+  .slide-body p { font-size: 14px; color: var(--cream2); line-height: 1.7; margin: 0; }
+  .slide-link { margin-top: 13px; font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none;
+                display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; }
+  .slide-link span { transition: transform .2s cubic-bezier(.2,.75,.25,1); display: inline-block; }
+  .slide-link:hover span { transform: translateX(4px); }
+  .slide-body .slide-note { margin-top: 11px; font-size: 11.5px; color: var(--cream3); font-style: italic; }
+
+  /* One paragraph per section, so it needs a little more air than a stacked prose block */
+  .stream-lede { font-size: 16.5px; color: var(--cream2); line-height: 1.8; margin: 0; }
+
+  @media (max-width: 760px) {
+    .slides { padding-left: 0; }
+    .slides::before { display: none; }
+    .slide::before { display: none; }
+    .slide { grid-template-columns: 1fr; }
+    .slide-art { border-right: none; border-bottom: 1px solid var(--border); padding: 18px;
+                 border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0; }
+    .slide-body { padding: 18px 20px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -366,105 +405,13 @@
   </div>
   <h1 class="case-title">Windows Visual<br>Systems <em>&amp; Assets</em></h1>
   <p class="case-subtitle">
-    Six connected workstreams inside Windows Design Systems, all pointed at the same problem: how visual language holds its quality when it has to cover more surfaces than any one person can draw by hand.
+    Six workstreams inside Windows Design Systems. They start from one problem: Windows has more surfaces than any one person can hand-craft, and the quality bar is set at the level of a single corner radius. Everything here is an attempt to hold that bar at a scale where hand-craft runs out. Catch what slips, make expression testable, and build the tools that let other people do both.
   </p>
-  <div class="meta-strip">
-    <div class="meta-item">
-      <div class="ml">Role</div>
-      <div class="mv">Senior UI/UX Designer</div>
-    </div>
-    <div class="meta-item">
-      <div class="ml">Scope</div>
-      <div class="mv">Systems, assets, tooling</div>
-    </div>
-    <div class="meta-item">
-      <div class="ml">Surface</div>
-      <div class="mv">Windows, OS-wide</div>
-    </div>
-    <div class="meta-item">
-      <div class="ml">Status</div>
-      <div class="mv live">Ongoing</div>
-    </div>
-  </div>
 </div>
 
-<div class="hero-band">
-  <div class="hb-clip">
-  <svg viewBox="0 -10 860 124" aria-hidden="true">
-    <!-- 01 the seed: one input, cycling, that drives everything downstream -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect class="hb-seed" x="0" y="0" width="96" height="104" rx="16" fill="#22c55e"/>
-      <circle cx="48" cy="52" r="19" fill="#0e0d0c"/>
-    </g></g>
-    <!-- 02 a surface audited against spec -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="110" y="16" width="118" height="88" rx="13" fill="#1e1c18"/>
-      <rect x="126" y="34" width="38" height="26" rx="7" fill="#2b2822"/>
-      <rect x="170" y="34" width="42" height="26" rx="7" fill="#2b2822"/>
-      <rect x="126" y="68" width="86" height="8" rx="4" fill="#2b2822"/>
-      <rect x="126" y="82" width="54" height="8" rx="4" fill="#2b2822"/>
-    </g></g>
-    <!-- 03 the same asset, four treatments -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="240" y="44" width="28" height="60" rx="9" fill="#3b82f6" opacity=".85"/>
-      <rect x="274" y="44" width="28" height="60" rx="9" fill="#2b2822"/>
-      <rect x="308" y="44" width="28" height="60" rx="9" fill="none" stroke="#3b82f6" stroke-width="2" opacity=".7"/>
-      <rect x="342" y="44" width="28" height="60" rx="9" fill="#2b2822"/>
-    </g></g>
-    <!-- 04 a small emblem -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="382" y="60" width="52" height="44" rx="11" fill="#e879a0" opacity=".75"/>
-    </g></g>
-    <!-- 05 the instrument: a wide surface with a control -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="446" y="0" width="152" height="104" rx="15" fill="#1e1c18"/>
-      <rect x="468" y="26" width="108" height="20" rx="10" fill="#2b2822"/>
-      <circle cx="480" cy="72" r="9" fill="#22c55e" opacity=".9"/>
-      <rect x="498" y="68" width="78" height="8" rx="4" fill="#2b2822"/>
-    </g></g>
-    <!-- 06 composed from parts -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="610" y="28" width="62" height="76" rx="12" fill="#2b2822"/>
-      <rect x="624" y="44" width="34" height="34" rx="9" fill="#0e0d0c"/>
-    </g></g>
-    <!-- 07 a held outline: not yet decided -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="684" y="46" width="58" height="58" rx="14" fill="none" stroke="#3a352e" stroke-width="2"/>
-      <rect x="702" y="64" width="22" height="22" rx="7" fill="#e879a0" opacity=".55"/>
-    </g></g>
-    <!-- 08 the tail -->
-    <g class="hb-tile"><g class="hb-lift">
-      <rect x="754" y="66" width="86" height="38" rx="11" fill="#1e1c18"/>
-    </g></g>
-  </svg>
-  </div>
-  <div class="hb-rule"></div>
-</div>
-
-<div class="case-body" style="padding-bottom:40px;">
-
-  <!-- THESIS -->
-  <div class="prose" style="margin-bottom:0;">
-    <div class="slabel">The through line</div>
-    <div class="thesis">
-      <div class="thesis-label">The problem all six share</div>
-      <p class="thesis-text">Windows has more surfaces than any one person can hand-craft, and the quality bar is set at the level of a single corner radius.</p>
-    </div>
-    <p>
-      Those two facts are in tension, and most of what I build here is an attempt to resolve it. Catch what slips. Make expression generatable without making it generic. Know what is worth keeping when the system gets rebuilt underneath you.
-    </p>
-    <p>
-      What follows is six workstreams. Some are shipped libraries other teams pull from every day. Some are prototypes arguing a position. They share a color model, a set of tools, and a view about where craft belongs in an automated pipeline.
-    </p>
-  </div>
-
-</div>
-
-<!-- STREAM INDEX -->
 <div class="stream-index">
   <div class="stream-index-grid">
 
-    <!-- 01 audit: a landscape of surfaces, one gap caught -->
     <a class="sx" href="#compendiums">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
         <g class="sx-dim" fill="#2b2822">
@@ -489,47 +436,6 @@
       </div>
     </a>
 
-    <!-- 02 the instrument: one asset, four treatments, identical conditions -->
-    <a class="sx" href="#expressive">
-      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <g class="sx-dim">
-          <rect x="52"  y="14" width="36" height="52" rx="11" fill="#2b2822"/>
-          <rect x="104" y="14" width="36" height="52" rx="11" fill="none" stroke="#6b6560" stroke-width="2"/>
-          <rect x="156" y="14" width="36" height="52" rx="11" fill="#3b82f6" opacity=".45"/>
-        </g>
-        <g class="sx-pulse">
-          <rect x="0" y="14" width="36" height="52" rx="11" fill="#22c55e" opacity=".9"/>
-          <circle cx="18" cy="40" r="8" fill="#0e0d0c"/>
-        </g>
-        <rect x="0" y="80" width="200" height="2" rx="1" fill="#2b2822"/>
-      </svg></div>
-      <div class="sx-body">
-        <div class="sx-num">02</div>
-        <div class="sx-name">Expressive Assets</div>
-        <div class="sx-note">An instrument for testing how Windows could be themed</div>
-        <div class="sx-go">Read<span>&rarr;</span></div>
-      </div>
-    </a>
-
-    <!-- 03 illustration: base, secondary, tertiary -->
-    <a class="sx" href="#illustration">
-      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
-        <rect class="sx-dim" x="4" y="8" width="104" height="80" rx="18" fill="#37332b"/>
-        <rect class="sx-slide" x="56" y="30" width="86" height="52" rx="15" fill="#3b82f6" opacity=".55"/>
-        <g class="sx-pulse">
-          <rect x="140" y="20" width="46" height="46" rx="14" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
-          <circle cx="163" cy="43" r="9" fill="#e879a0" opacity=".85"/>
-        </g>
-      </svg></div>
-      <div class="sx-body">
-        <div class="sx-num">03</div>
-        <div class="sx-name">Windows Illustrations</div>
-        <div class="sx-note">An illustration system and the builder behind it</div>
-        <div class="sx-go">Read<span>&rarr;</span></div>
-      </div>
-    </a>
-
-    <!-- 04 components: parts compose into a screen, one still missing -->
     <a class="sx" href="#components">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
         <g class="sx-dim" fill="#2b2822">
@@ -547,14 +453,51 @@
         </g>
       </svg></div>
       <div class="sx-body">
-        <div class="sx-num">04</div>
+        <div class="sx-num">02</div>
         <div class="sx-name">Component Libraries</div>
         <div class="sx-note">Production-aligned Figma libraries and the patterns gap</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
       </div>
     </a>
 
-    <!-- 05 tooling: a control that drives output -->
+    <a class="sx" href="#expressive">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <g class="sx-dim">
+          <rect x="52"  y="14" width="36" height="52" rx="11" fill="#2b2822"/>
+          <rect x="104" y="14" width="36" height="52" rx="11" fill="none" stroke="#6b6560" stroke-width="2"/>
+          <rect x="156" y="14" width="36" height="52" rx="11" fill="#3b82f6" opacity=".45"/>
+        </g>
+        <g class="sx-pulse">
+          <rect x="0" y="14" width="36" height="52" rx="11" fill="#22c55e" opacity=".9"/>
+          <circle cx="18" cy="40" r="8" fill="#0e0d0c"/>
+        </g>
+        <rect x="0" y="80" width="200" height="2" rx="1" fill="#2b2822"/>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">03</div>
+        <div class="sx-name">Expressive Assets</div>
+        <div class="sx-note">An instrument for testing how Windows could be themed</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
+    <a class="sx" href="#illustration">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
+        <rect class="sx-dim" x="4" y="8" width="104" height="80" rx="18" fill="#37332b"/>
+        <rect class="sx-slide" x="56" y="30" width="86" height="52" rx="15" fill="#3b82f6" opacity=".55"/>
+        <g class="sx-pulse">
+          <rect x="140" y="20" width="46" height="46" rx="14" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
+          <circle cx="163" cy="43" r="9" fill="#e879a0" opacity=".85"/>
+        </g>
+      </svg></div>
+      <div class="sx-body">
+        <div class="sx-num">04</div>
+        <div class="sx-name">Windows Illustrations</div>
+        <div class="sx-note">An illustration system and the pieces it is built from</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+
     <a class="sx" href="#tooling">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
         <rect class="sx-dim" x="0" y="6" width="200" height="54" rx="13" fill="#2b2822"/>
@@ -574,14 +517,13 @@
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">05</div>
-        <div class="sx-name">Tooling</div>
-        <div class="sx-note">Plugins and generators that make the systems usable</div>
+        <div class="sx-name">Asset Tooling</div>
+        <div class="sx-note">Where assets get made, browsed and altered</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
       </div>
     </a>
 
-    <!-- 06 personalization: one surface, several identities -->
-    <a class="sx" href="#personalization">
+    <a class="sx" href="#theming">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true">
         <g class="sx-pulse">
           <rect x="36" y="4" width="128" height="58" rx="13" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/>
@@ -597,8 +539,8 @@
       </svg></div>
       <div class="sx-body">
         <div class="sx-num">06</div>
-        <div class="sx-name">Personalization</div>
-        <div class="sx-note">What all of it is ultimately for</div>
+        <div class="sx-name">Theming &amp; Personalization</div>
+        <div class="sx-note">Theming past icons, out to a whole desktop</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
       </div>
     </a>
@@ -606,294 +548,416 @@
   </div>
 </div>
 
-<div class="case-body" style="padding-top:64px;">
+<div class="case-body" style="padding-top:72px;">
 
-  <!-- 01 COMPENDIUMS -->
+  <!-- 01 ============================================ -->
   <div class="prose" id="compendiums">
     <div class="slabel">Product accuracy at scale</div>
-    <div class="stream-head">
-      <span class="stream-num">01</span>
-      <h2>Marketing Compendiums, and the audit underneath them</h2>
-    </div>
-    <p>
-      Marketing needs assets that are accurate to shipped product, across the full landscape of features and surfaces. That accuracy decays constantly, because product keeps moving and nothing is watching the gap.
-    </p>
-    <p>
-      So I started auditing the compendium against product's plan of record, surface by surface. <strong>The gaps kept turning up</strong>, and they were the kind you only catch by looking closely: geometry, material treatment, color, and states that go missing somewhere between design and build. Small individually. Compounding across a landscape this size.
+    <div class="stream-head"><span class="stream-num">01</span><h2>Marketing Compendiums</h2></div>
+    <p class="stream-lede">
+      Marketing needs assets accurate to shipped product across the full landscape of features and surfaces, and that accuracy decays constantly because product keeps moving and nothing is watching the gap. I audited the compendium against product's plan of record, surface by surface, and the gaps kept turning up: geometry, material treatment, color, states that go missing between design and build. What came out of it is not a faster way to make assets one at a time. It is the thing that catches the drift.
     </p>
 
-    <div class="callout">
-      <p><strong>The framing that matters:</strong> this was never about cleaning up someone else's work. The system should have caught these and did not. So the response was to build the thing that catches them.</p>
-    </div>
+    <div class="slides">
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="0" y="0" width="300" height="26" rx="14" fill="#1e1c18"/><rect x="0" y="18" width="300" height="8" fill="#1e1c18"/>
+          <circle cx="16" cy="13" r="3.5" fill="#3a352e"/><circle cx="28" cy="13" r="3.5" fill="#3a352e"/>
+          <g fill="#2b2822">
+            <rect x="16" y="40" width="80" height="48" rx="8"/><rect x="108" y="40" width="80" height="48" rx="8"/>
+            <rect x="200" y="40" width="84" height="48" rx="8"/>
+            <rect x="16" y="100" width="80" height="48" rx="8"/><rect x="200" y="100" width="84" height="48" rx="8"/>
+          </g>
+          <rect x="108" y="100" width="80" height="48" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <path d="M136 124 l6 6 l12 -13" fill="none" stroke="#22c55e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The library</div>
+          <h3>The compendium</h3>
+          <p>The full landscape of Windows product and feature surfaces, held accurate to what actually shipped. It is the reference the rest of the marketing work is built from.</p>
+        </div>
+      </article>
 
-    <p>
-      That response is the component, template and screen libraries, plus a pipeline that keeps product-accurate screens and flows synchronized between marketing and product. The audit is a discovery method. It produced documented findings, and those findings changed both the product and the system.
-    </p>
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <g fill="#2b2822">
+            <rect x="12" y="16" width="72" height="20" rx="7"/><rect x="12" y="44" width="72" height="20" rx="7"/>
+            <rect x="12" y="72" width="72" height="20" rx="7"/><rect x="12" y="100" width="72" height="20" rx="7"/>
+          </g>
+          <rect x="12" y="128" width="72" height="20" rx="7" fill="none" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <path d="M96 82 h22" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
+          <rect x="132" y="16" width="156" height="132" rx="12" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="146" y="30" width="128" height="16" rx="6" fill="#2b2822"/>
+          <rect x="146" y="56" width="60" height="44" rx="9" fill="#22c55e" opacity=".45"/>
+          <rect x="214" y="56" width="60" height="44" rx="9" fill="#2b2822"/>
+          <rect x="146" y="110" width="128" height="24" rx="8" fill="#2b2822"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The response</div>
+          <h3>Component, template and screen libraries</h3>
+          <p>Built so a campaign surface gets assembled from parts that are already correct, rather than produced from scratch and checked afterwards. Design Systems and product design partners now pull from the same libraries, which is not what they were scoped for.</p>
+        </div>
+      </article>
 
-    <h3>What it became</h3>
-    <p>
-      It stopped being a marketing deliverable. Design Systems and product design partners now pull from the same library, which is not what it was scoped to be and is the more interesting outcome.
-    </p>
-
-    <dl class="facts">
-      <dt>Owned</dt><dd>Audit method, library architecture, and the sync pipeline between marketing and product surfaces.</dd>
-      <dt>Shared with</dt><dd>Marketing partners on production scope, product design on plan-of-record accuracy.</dd>
-      <dt>Output</dt><dd>Component library, template library, screen library, and the compendium itself.</dd>
-    </dl>
-
-    <div class="tags">
-      <span class="tag a">Craft audit</span><span class="tag">Figma libraries</span><span class="tag">Product accuracy</span><span class="tag">Templates</span><span class="tag">Pipeline</span>
-    </div>
-  </div>
-
-  <hr class="stream-rule">
-
-  <!-- 02 EXPRESSIVE ASSETS -->
-  <div class="prose" id="expressive">
-    <div class="slabel">Color systems</div>
-    <div class="stream-head">
-      <span class="stream-num">02</span>
-      <h2>Expressive Assets, or building the thing that makes styles comparable</h2>
-    </div>
-    <p>
-      Every icon in Windows has to hold up across themes, light and dark modes, accent colors, and contrast requirements. Building that matrix by hand is not difficult, it is combinatorially impossible. Automating it naively is worse, because the fastest path produces output that is technically correct and visually dead.
-    </p>
-    <p>
-      But the harder problem sits before either of those. <strong>Nobody knows yet what expression should look like across Windows.</strong> That is an open question, and you cannot answer it by looking at three icons. You have to see a direction across the whole family, in every mode, under identical conditions, or you are comparing a good mockup to a bad one instead of comparing two ideas.
-    </p>
-    <p>
-      So the first real problem was not picking a style. It was building the instrument that makes styles comparable.
-    </p>
-
-    <div class="img-full">
-      <img src="img-scrap-glass-icons.png" alt="Icon set rendered across multiple style systems and color modes">
-      <div class="img-caption">One icon set rendered across candidate directions and color modes, from a single seed. Identical conditions are the entire point.</div>
-    </div>
-
-    <h3>What the instrument produces</h3>
-    <p>
-      Default, Flat, Outline, Tinted, Chroma and Acrylic, all driven from a single seed color. <strong>These are test directions, not proposals.</strong> They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled.
-    </p>
-    <p>
-      Testing is early and has not surfaced much yet. That is a fine place to be when the instrument is the deliverable, and a better answer than a finding I did not have.
-    </p>
-
-    <h3>The color work</h3>
-    <p>
-      The system runs on <strong>OKLCH</strong> rather than HSL or LAB. Perceptual uniformity is the whole reason. In HSL, holding lightness constant while rotating hue produces swatches that read as wildly different brightnesses, which means an automated theming pass makes some icons look heavy and others look washed out. OKLCH gives you a lightness value that actually corresponds to perceived lightness, so a generated ramp stays even across the hue wheel.
-    </p>
-    <p>
-      Underneath that sits a Figma palette and mode system: ten color modes across Base, Chromatic, Accented and Contrasting categories, built on a four-fill subtle tint ramp and six rainbow-ordered base accents.
-    </p>
-
-    <div class="callout">
-      <p><strong>Accessibility is not a mode you bolt on.</strong> High Contrast and Dichromic are generated from the same model as everything else, which is the only way they stay correct as the set grows.</p>
-    </div>
-
-    <h3>Gallery and Customizer</h3>
-    <p>
-      The Gallery is where the library is browsed. The Customizer is where the team drives it themselves, picks a seed, and sees a direction resolve across the whole family. It is an instrument for making a decision, not a presentation of one already made. Both have been socialized well beyond my own team.
-    </p>
-
-    <dl class="facts">
-      <dt>Owned</dt><dd>The color model, the instrument itself, the Gallery and the Customizer, plus the plugin and export pipeline.</dd>
-      <dt>Collaborators</dt><dd>A engineering-minded designer on technical and risk review, and on Windows app icons. My manager on visual direction. Two systems designers on asset anatomy vocabulary and naming.</dd>
-      <dt>Cadence</dt><dd>Daily updates to the team, with a published library and a shareable status page.</dd>
-    </dl>
-
-    <div class="tags">
-      <span class="tag a">OKLCH</span><span class="tag">Iconography</span><span class="tag">Theming</span><span class="tag">Accessibility modes</span><span class="tag">Figma plugins</span><span class="tag">SVG pipeline</span>
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="10" y="34" width="112" height="100" rx="12" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="178" y="34" width="112" height="100" rx="12" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <g fill="#2b2822">
+            <rect x="24" y="50" width="84" height="12" rx="5"/><rect x="24" y="70" width="60" height="12" rx="5"/>
+            <rect x="192" y="50" width="84" height="12" rx="5"/><rect x="192" y="70" width="60" height="12" rx="5"/>
+          </g>
+          <rect x="24" y="96" width="84" height="24" rx="8" fill="#22c55e" opacity=".4"/>
+          <rect x="192" y="96" width="84" height="24" rx="8" fill="#22c55e" opacity=".4"/>
+          <path d="M128 76 h44" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+          <path d="M164 70 l8 6 l-8 6" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M172 96 h-44" stroke="#3a352e" stroke-width="2" stroke-linecap="round"/>
+          <path d="M136 90 l-8 6 l8 6" fill="none" stroke="#3a352e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The mechanism</div>
+          <h3>The sync pipeline</h3>
+          <p>Keeps product-accurate screens and flows in step between marketing and product as the product moves, so the gap closes on a schedule instead of whenever somebody notices.</p>
+        </div>
+      </article>
     </div>
   </div>
 
   <hr class="stream-rule">
 
-  <!-- 03 ILLUSTRATION -->
-  <div class="prose" id="illustration">
-    <div class="slabel">Illustration</div>
-    <div class="stream-head">
-      <span class="stream-num">03</span>
-      <h2>Windows Illustrations</h2>
-    </div>
-    <p>
-      The illustration work spun out of Expressive Assets into its own system. It shares the color role model, and it will share the same contract with the underlying design system, but illustration has its own problems that icons do not.
-    </p>
-
-    <div class="img-full">
-      <img src="img-fluent-icons-thumb.png" alt="Illustration and icon construction: rounded corners, stroke weight, layer breakdown, isometric geometry">
-      <div class="img-caption">Construction rules: corner radius, stroke weight, plate geometry and layer breakdown.</div>
-    </div>
-
-    <h3>A shape taxonomy instead of a drawing guide</h3>
-    <p>
-      Three tiers. <strong>Base shapes</strong> are the backgrounds. <strong>Secondary shapes</strong> lay over the base and stay movable and scalable. <strong>Tertiary shapes</strong> are small emblem-like containers, either the element itself or a holder for an icon, and the icons they hold are always system icons.
-    </p>
-    <p>
-      Structuring it this way is what makes generation possible later. If the pieces are typed, a recipe can assemble them. If the system is just a folder of finished drawings, it cannot.
-    </p>
-
-    <h3>One asset, both surfaces</h3>
-    <p>
-      The previous approach carried light and dark variants of every illustration. I moved away from that. A single asset now has to land on both, which is a real constraint on palette and contrast and makes the library half the size and considerably easier to keep honest.
-    </p>
-
-    <h3>The Builder</h3>
-    <p>
-      A generator that composes assets from the shape taxonomy once there are good recipes and foundational elements. The test case I set for it was simple: ask for a concept like "safety" and get three usable options back. It is being built as a Windows-specific mode first, then folded into the wider Expressive Assets builder so both streams can run in parallel.
-    </p>
-
-    <dl class="facts">
-      <dt>Owned</dt><dd>Style direction, shape taxonomy, pilot asset set, guidelines, and the builder.</dd>
-      <dt>Alongside</dt><dd>The M365 illustration direction, developed in tandem. Influence rather than instruction, with the goal that the two systems work together rather than diverge.</dd>
-      <dt>Approach</dt><dd>Twelve interim assets as the pilot. Perfect those, use them to populate the guidelines, then rebuild the back catalog from the simplified principles.</dd>
-    </dl>
-
-    <div class="tags">
-      <span class="tag a">Illustration system</span><span class="tag">Shape taxonomy</span><span class="tag">Generative assembly</span><span class="tag">Guidelines</span>
-    </div>
-  </div>
-
-  <hr class="stream-rule">
-
-  <!-- 04 COMPONENTS -->
+  <!-- 02 ============================================ -->
   <div class="prose" id="components">
     <div class="slabel">Components and patterns</div>
-    <div class="stream-head">
-      <span class="stream-num">04</span>
-      <h2>Component libraries, and the gap between a kit and a system</h2>
-    </div>
-    <p>
-      I build and maintain production-aligned Figma libraries. I do not hand these to engineering directly. They go to product design partners who carry them through to implementation, which means the bar is that a designer can build a real screen from them without inventing anything.
-    </p>
-    <p>
-      That bar is where most component kits fall down. A kit gives you buttons and inputs. A system gives you the compositions people actually need, so nobody has to reassemble the same layout from primitives every time.
+    <div class="stream-head"><span class="stream-num">02</span><h2>Component Libraries</h2></div>
+    <p class="stream-lede">
+      I build and maintain production-aligned Figma libraries. They go to product design partners who carry them through to implementation, so the bar is that a designer can build a real screen without inventing anything. That bar is where most kits fall down: a kit gives you buttons and inputs, a system gives you the compositions people actually need, so nobody reassembles the same layout from primitives every time.
     </p>
 
-    <div class="callout">
-      <p><strong>The live problem:</strong> the new system needs to be at least on par with the visual library it replaces, and in most cases better. Right now it is short on patterns people can take off the shelf and use. Settings is the surface most likely to lack enough base components to compose from.</p>
-    </div>
+    <div class="slides">
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="16" y="16" width="70" height="138" rx="10" fill="#1e1c18"/>
+          <g fill="#2b2822"><rect x="26" y="28" width="50" height="9" rx="4"/><rect x="26" y="44" width="50" height="9" rx="4"/><rect x="26" y="60" width="38" height="9" rx="4"/></g>
+          <g fill="#2b2822">
+            <rect x="100" y="16" width="86" height="42" rx="9"/><rect x="198" y="16" width="86" height="42" rx="9"/>
+            <rect x="100" y="70" width="86" height="42" rx="9"/><rect x="198" y="70" width="86" height="42" rx="9"/>
+            <rect x="100" y="124" width="86" height="30" rx="9"/>
+          </g>
+          <rect x="198" y="124" width="86" height="30" rx="9" fill="#22c55e" opacity=".45"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The library</div>
+          <h3>Production-aligned components</h3>
+          <p>Variants, states and tokens built to match what engineering will actually ship, plus the documentation and adoption workflow that makes them get used rather than admired.</p>
+        </div>
+      </article>
 
-    <p>
-      This is an area I have been pushing on, and the shape of the fix is a component priority list built from where people are actually blocked, rather than from what looks incomplete on a coverage chart.
-    </p>
-
-    <dl class="facts">
-      <dt>Owned</dt><dd>Marketing-side component and template libraries, and the documentation and adoption workflows around them.</dd>
-      <dt>Contributing to</dt><dd>Gap analysis and component prioritization on the newer system.</dd>
-      <dt>Principle</dt><dd>Reusable building blocks first, compositions on top, new components only where composition genuinely cannot get there.</dd>
-    </dl>
-
-    <div class="tags">
-      <span class="tag a">Component architecture</span><span class="tag">Design tokens</span><span class="tag">Documentation</span><span class="tag">Adoption</span>
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <g fill="#2b2822">
+            <rect x="14" y="20" width="60" height="36" rx="9"/><rect x="84" y="20" width="60" height="36" rx="9"/>
+            <rect x="154" y="20" width="60" height="36" rx="9"/><rect x="224" y="20" width="60" height="36" rx="9"/>
+            <rect x="14" y="68" width="60" height="36" rx="9"/><rect x="84" y="68" width="60" height="36" rx="9"/>
+          </g>
+          <g fill="none" stroke="#e879a0" stroke-width="1.8" stroke-dasharray="6 5" opacity=".8">
+            <rect x="154" y="68" width="60" height="36" rx="9"/><rect x="224" y="68" width="60" height="36" rx="9"/>
+            <rect x="14" y="116" width="60" height="36" rx="9"/>
+          </g>
+          <g fill="#2b2822"><rect x="84" y="116" width="60" height="36" rx="9"/><rect x="154" y="116" width="130" height="36" rx="9"/></g>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The open problem</div>
+          <h3>Pattern coverage</h3>
+          <p>The newer system needs to be at least on par with the library it replaces, and it is short on patterns people can take off the shelf and use. I have been working the gap from where people are actually blocked rather than from what looks incomplete on a coverage chart.</p>
+        </div>
+      </article>
     </div>
   </div>
 
   <hr class="stream-rule">
 
-  <!-- 05 TOOLING -->
+  <!-- 03 ============================================ -->
+  <div class="prose" id="expressive">
+    <div class="slabel">Color systems</div>
+    <div class="stream-head"><span class="stream-num">03</span><h2>Expressive Assets</h2></div>
+    <p class="stream-lede">
+      Nobody knows yet what expression should look like across Windows, and you cannot answer that by looking at three icons. You have to see a direction across the whole family, in every mode, under identical conditions, or you are comparing a good mockup to a bad one instead of comparing two ideas. So the first real problem was not picking a style. It was building the thing that makes styles comparable, and everything below is in service of that.
+    </p>
+
+    <div class="slides">
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <circle cx="42" cy="85" r="22" fill="#22c55e"/>
+          <path d="M74 85 h26" stroke="#3a352e" stroke-width="2" stroke-linecap="round"/>
+          <g>
+            <rect x="110" y="22" width="40" height="40" rx="11" fill="#22c55e" opacity=".9"/>
+            <rect x="158" y="22" width="40" height="40" rx="11" fill="#22c55e" opacity=".62"/>
+            <rect x="206" y="22" width="40" height="40" rx="11" fill="#22c55e" opacity=".38"/>
+            <rect x="254" y="22" width="34" height="40" rx="11" fill="#22c55e" opacity=".2"/>
+            <rect x="110" y="70" width="40" height="40" rx="11" fill="#3b82f6" opacity=".85"/>
+            <rect x="158" y="70" width="40" height="40" rx="11" fill="#3b82f6" opacity=".58"/>
+            <rect x="206" y="70" width="40" height="40" rx="11" fill="#3b82f6" opacity=".34"/>
+            <rect x="254" y="70" width="34" height="40" rx="11" fill="#3b82f6" opacity=".18"/>
+            <rect x="110" y="118" width="40" height="36" rx="11" fill="#e879a0" opacity=".8"/>
+            <rect x="158" y="118" width="40" height="36" rx="11" fill="#e879a0" opacity=".54"/>
+            <rect x="206" y="118" width="40" height="36" rx="11" fill="#e879a0" opacity=".32"/>
+            <rect x="254" y="118" width="34" height="36" rx="11" fill="#e879a0" opacity=".16"/>
+          </g>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The invisible part</div>
+          <h3>The color model</h3>
+          <p>Built on OKLCH rather than HSL or LAB, because perceptual uniformity is the whole point: a generated ramp has to stay even across the hue wheel or an automated pass makes some icons look heavy and others washed out. Underneath sits a palette and mode system of ten color modes across Base, Chromatic, Accented and Contrasting.</p>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <g>
+            <rect x="10" y="20" width="40" height="54" rx="12" fill="#22c55e" opacity=".9"/>
+            <rect x="58" y="20" width="40" height="54" rx="12" fill="#2b2822"/>
+            <rect x="106" y="20" width="40" height="54" rx="12" fill="none" stroke="#6b6560" stroke-width="2"/>
+            <rect x="154" y="20" width="40" height="54" rx="12" fill="#3b82f6" opacity=".5"/>
+            <rect x="202" y="20" width="40" height="54" rx="12" fill="#e879a0" opacity=".45"/>
+            <rect x="250" y="20" width="40" height="54" rx="12" fill="#37332b"/>
+          </g>
+          <rect x="10" y="88" width="280" height="2" rx="1" fill="#2b2822"/>
+          <g fill="#2b2822">
+            <rect x="10" y="104" width="40" height="10" rx="5"/><rect x="58" y="104" width="40" height="10" rx="5"/>
+            <rect x="106" y="104" width="40" height="10" rx="5"/><rect x="154" y="104" width="40" height="10" rx="5"/>
+            <rect x="202" y="104" width="40" height="10" rx="5"/><rect x="250" y="104" width="40" height="10" rx="5"/>
+          </g>
+          <text x="10" y="146" font-family="DM Sans, sans-serif" font-size="12" fill="#6b6560">identical conditions</text>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">What it produces</div>
+          <h3>Test directions</h3>
+          <p>Default, Flat, Outline, Tinted, Chroma and Acrylic, all driven from a single seed. These are test directions, not proposals. They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled. Testing is early and has not surfaced much yet.</p>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="10" y="18" width="134" height="60" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5"/>
+          <rect x="156" y="18" width="134" height="60" rx="12" fill="#f0ebe2"/>
+          <g fill="#f0ebe2"><rect x="26" y="34" width="28" height="28" rx="8"/><rect x="64" y="40" width="62" height="7" rx="3.5" opacity=".5"/><rect x="64" y="54" width="44" height="7" rx="3.5" opacity=".3"/></g>
+          <g fill="#0e0d0c"><rect x="172" y="34" width="28" height="28" rx="8"/><rect x="210" y="40" width="62" height="7" rx="3.5" opacity=".5"/><rect x="210" y="54" width="44" height="7" rx="3.5" opacity=".3"/></g>
+          <rect x="10" y="92" width="134" height="60" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5"/>
+          <rect x="156" y="92" width="134" height="60" rx="12" fill="#1e1c18"/>
+          <g><rect x="26" y="108" width="28" height="28" rx="8" fill="#3b82f6"/><rect x="64" y="114" width="62" height="7" rx="3.5" fill="#3b82f6" opacity=".5"/><rect x="64" y="128" width="44" height="7" rx="3.5" fill="#3b82f6" opacity=".3"/></g>
+          <g><rect x="172" y="108" width="28" height="28" rx="8" fill="#e879a0"/><rect x="210" y="114" width="62" height="7" rx="3.5" fill="#e879a0" opacity=".5"/><rect x="210" y="128" width="44" height="7" rx="3.5" fill="#e879a0" opacity=".3"/></g>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">Not bolted on</div>
+          <h3>Accessibility modes</h3>
+          <p>High Contrast and Dichromic are generated from the same model as everything else, which is the only way they stay correct as the set grows. High contrast forces the hardest question in the whole system: does this asset survive on structure alone?</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 04 ============================================ -->
+  <div class="prose" id="illustration">
+    <div class="slabel">Illustration</div>
+    <div class="stream-head"><span class="stream-num">04</span><h2>Windows Illustrations</h2></div>
+    <p class="stream-lede">
+      The illustration work spun out of expressive assets into its own system. It shares the color role model and will share the same contract with the underlying design system, but illustration has problems icons do not: it is looser, it carries more meaning per asset, and a library of finished drawings cannot be generated from. So the system is built as typed pieces rather than as a folder of outputs, and a single asset now has to land on both light and dark surfaces instead of shipping as a pair.
+    </p>
+
+    <div class="slides">
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="16" y="18" width="88" height="88" rx="22" fill="#37332b"/>
+          <text x="16" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">base</text>
+          <rect x="120" y="34" width="72" height="72" rx="20" fill="#3b82f6" opacity=".55"/>
+          <text x="120" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">secondary</text>
+          <rect x="208" y="46" width="52" height="52" rx="16" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
+          <circle cx="234" cy="72" r="11" fill="#e879a0" opacity=".85"/>
+          <text x="208" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">tertiary</text>
+          <path d="M16 142 h244" stroke="#2b2822" stroke-width="1.5"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The structure</div>
+          <h3>The shape taxonomy</h3>
+          <p>Base shapes are the backgrounds. Secondary shapes lay over them and stay movable and scalable. Tertiary shapes are small emblem-like containers, either the element itself or a holder for a system icon. Typing the pieces this way is what makes generation possible later.</p>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <g fill="#2b2822">
+            <rect x="12" y="16" width="62" height="62" rx="16"/><rect x="82" y="16" width="62" height="62" rx="16"/>
+            <rect x="222" y="16" width="62" height="62" rx="16"/>
+            <rect x="12" y="90" width="62" height="62" rx="16"/><rect x="152" y="90" width="62" height="62" rx="16"/>
+            <rect x="222" y="90" width="62" height="62" rx="16"/>
+          </g>
+          <rect x="152" y="16" width="62" height="62" rx="16" fill="#3b82f6" opacity=".6"/>
+          <rect x="82" y="90" width="62" height="62" rx="16" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <circle cx="113" cy="121" r="13" fill="#22c55e" opacity=".8"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The approach</div>
+          <h3>Pilot set and guidelines</h3>
+          <p>Twelve interim assets as the pilot: perfect those first, use them to populate the guidelines, then rebuild the back catalog from the simplified principles rather than redrawing it. The interim direction runs bolder and more saturated than the current shipped set, with cooler, darker neutrals.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <hr class="stream-rule">
+
+  <!-- 05 ============================================ -->
   <div class="prose" id="tooling">
     <div class="slabel">Plugins and generators</div>
-    <div class="stream-head">
-      <span class="stream-num">05</span>
-      <h2>Tooling, which is a means and not the point</h2>
-    </div>
-    <p>
-      None of the systems above survive contact with real scale unless someone builds the thing that operates them. So I build plugins. They are not the achievement, they are what makes the achievement usable by anyone other than me.
+    <div class="stream-head"><span class="stream-num">05</span><h2>Asset Tooling</h2></div>
+    <p class="stream-lede">
+      None of the systems above survive contact with real scale unless somebody builds the thing that operates them. This is where assets get made, browsed and altered: one place to see everything that exists, one place to change it, and generators that assemble new work from the pieces rather than starting a drawing from nothing. The tools are not the achievement. They are what makes the achievement usable by anyone other than me.
     </p>
 
-    <div class="img-grid col2">
-      <div class="img-grid-item">
-        <img src="seed-pill.png" alt="Seed color control driving the generated palette">
-        <div class="img-caption">Seed control. One input, the full matrix downstream.</div>
-      </div>
-      <div class="img-grid-item">
-        <img src="app-grid.png" alt="Generated icon grid across app set">
-        <div class="img-caption">Generated output across a full app set.</div>
-      </div>
-    </div>
+    <div class="slides">
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="16" y="16" width="180" height="22" rx="11" fill="#1e1c18"/>
+          <circle cx="30" cy="27" r="5.5" fill="none" stroke="#6b6560" stroke-width="1.6"/><path d="M34 31 l4 4" stroke="#6b6560" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="212" y="16" width="72" height="22" rx="11" fill="#1e1c18"/>
+          <g fill="#2b2822">
+            <rect x="16" y="52" width="60" height="46" rx="10"/><rect x="84" y="52" width="60" height="46" rx="10"/>
+            <rect x="220" y="52" width="64" height="46" rx="10"/>
+            <rect x="16" y="108" width="60" height="46" rx="10"/><rect x="84" y="108" width="60" height="46" rx="10"/>
+            <rect x="152" y="108" width="60" height="46" rx="10"/><rect x="220" y="108" width="64" height="46" rx="10"/>
+          </g>
+          <rect x="152" y="52" width="60" height="46" rx="10" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <circle cx="182" cy="75" r="11" fill="#22c55e" opacity=".8"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">Browse</div>
+          <h3>The Gallery</h3>
+          <p>Where the library gets looked at. Filter by collection, style and size, check any drawing against light and dark, copy or download it. It reads from the same published manifest everything else downstream does, and has a companion Figma file for people who would rather work in the file.</p>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library" target="_blank" rel="noopener">Open the library site <span>&rarr;</span></a>
+        </div>
+      </article>
 
-    <h3>What exists</h3>
-    <dl class="facts">
-      <dt>Icon Palette Builder</dt><dd>Generates monochromatic palettes from a seed, following the color model rather than eyeballing tints.</dd>
-      <dt>Icon Mode Switcher</dt><dd>Variable mode management and hex remapping across a library, so a mode change is one operation instead of hundreds.</dd>
-      <dt>Display mode prototype</dt><dd>Greyscale, monotone, duotone and high-contrast modes, with export-all-modes-as-layers and SVG output.</dd>
-      <dt>Builders</dt><dd>The Expressive Assets and Illustration builders, plus the export pipeline that gets assets out of Figma and into a usable library.</dd>
-    </dl>
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="16" y="16" width="104" height="138" rx="11" fill="#1e1c18"/>
+          <circle cx="40" cy="42" r="13" fill="#22c55e"/>
+          <g fill="#2b2822"><rect x="62" y="36" width="44" height="6" rx="3"/><rect x="62" y="48" width="30" height="6" rx="3"/></g>
+          <g fill="#0e0d0c"><rect x="30" y="74" width="76" height="6" rx="3"/><rect x="30" y="94" width="76" height="6" rx="3"/><rect x="30" y="114" width="76" height="6" rx="3"/></g>
+          <circle cx="76" cy="77" r="6" fill="#f0ebe2" opacity=".85"/><circle cx="56" cy="97" r="6" fill="#f0ebe2" opacity=".85"/><circle cx="92" cy="117" r="6" fill="#f0ebe2" opacity=".85"/>
+          <g>
+            <rect x="136" y="26" width="46" height="46" rx="13" fill="#22c55e" opacity=".85"/>
+            <rect x="192" y="26" width="46" height="46" rx="13" fill="#22c55e" opacity=".6"/>
+            <rect x="248" y="26" width="36" height="46" rx="13" fill="#22c55e" opacity=".38"/>
+            <rect x="136" y="82" width="46" height="46" rx="13" fill="#22c55e" opacity=".5"/>
+            <rect x="192" y="82" width="46" height="46" rx="13" fill="#22c55e" opacity=".3"/>
+            <rect x="248" y="82" width="36" height="46" rx="13" fill="#22c55e" opacity=".18"/>
+          </g>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">Alter</div>
+          <h3>The Customizer</h3>
+          <p>Style a set at once and tune it: palette, stroke, texture, surface. Any slot swaps for anything in the library. It is the piece that sits in both halves of this page, because making assets and theming them are the same operation seen from two ends.</p>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library" target="_blank" rel="noopener">Open the library site <span>&rarr;</span></a>
+        </div>
+      </article>
 
-    <h3>The unglamorous part</h3>
-    <p>
-      Figma's plugin sandbox is ES5-only, paint proxies are read-only, and instances detach in ways that will quietly ruin a library if you are not watching. A meaningful share of this work is working around those constraints without leaving a mess for whoever maintains it next.
-    </p>
-
-    <div class="callout">
-      <p><strong>On AI in this work:</strong> it accelerated the generation and refactoring passes substantially. It was also confidently wrong about color math more than once, in ways that looked plausible until the output was rendered side by side. The useful posture is to let it draft and to verify everything that touches perceptual values by eye.</p>
-    </div>
-
-    <div class="tags">
-      <span class="tag a">Figma plugin development</span><span class="tag">Export pipelines</span><span class="tag">AI-assisted production</span><span class="tag">SVG</span>
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <g fill="#2b2822">
+            <rect x="14" y="52" width="34" height="34" rx="10"/><rect x="14" y="94" width="34" height="34" rx="10"/><rect x="14" y="10" width="34" height="34" rx="10"/>
+          </g>
+          <path d="M60 69 h20" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
+          <rect x="92" y="34" width="70" height="70" rx="18" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+          <path d="M113 69 h28 M127 55 v28" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M174 69 h20" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
+          <g>
+            <rect x="206" y="18" width="38" height="38" rx="11" fill="#3b82f6" opacity=".6"/>
+            <rect x="252" y="18" width="34" height="38" rx="11" fill="#3b82f6" opacity=".35"/>
+            <rect x="206" y="66" width="38" height="38" rx="11" fill="#e879a0" opacity=".55"/>
+            <rect x="252" y="66" width="34" height="38" rx="11" fill="#e879a0" opacity=".3"/>
+            <rect x="206" y="114" width="80" height="38" rx="11" fill="#2b2822"/>
+          </g>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">Make</div>
+          <h3>The Builders</h3>
+          <p>Three generators that assemble new assets from the typed pieces once there are good recipes: ask for a concept and get usable options back instead of a blank canvas. Built to run as separate modes first, then fold together, so the icon and illustration streams can move in parallel.</p>
+          <!-- TODO Mason: name the three builders here, then delete this comment. -->
+        </div>
+      </article>
     </div>
   </div>
 
   <hr class="stream-rule">
 
-  <!-- 06 PERSONALIZATION -->
-  <div class="prose" id="personalization">
-    <div class="slabel">The argument</div>
-    <div class="stream-head">
-      <span class="stream-num">06</span>
-      <h2>Personalization, which is what all of it is for</h2>
+  <!-- 06 ============================================ -->
+  <div class="prose" id="theming">
+    <div class="slabel">Theming past the icon</div>
+    <div class="stream-head"><span class="stream-num">06</span><h2>Theming &amp; Personalization</h2></div>
+    <p class="stream-lede">
+      Theming an icon set is the tractable version of the problem. The real question is what happens when a direction has to hold across everything on screen at once: icons, illustration, interface and wallpaper, together, without the result feeling like a costume over the top of Windows. That is a harder thing to judge by description, so the work here is about making it visible enough to argue about.
+    </p>
+
+    <div class="slides">
+      <article class="slide is-live">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="16" y="16" width="86" height="138" rx="11" fill="#1e1c18"/>
+          <g fill="#2b2822"><rect x="28" y="30" width="62" height="7" rx="3.5"/></g>
+          <circle cx="40" cy="58" r="10" fill="#22c55e"/><circle cx="66" cy="58" r="10" fill="#3b82f6"/><circle cx="40" cy="84" r="10" fill="#e879a0"/><circle cx="66" cy="84" r="10" fill="#6b6560"/>
+          <g fill="#0e0d0c"><rect x="28" y="108" width="62" height="6" rx="3"/><rect x="28" y="126" width="62" height="6" rx="3"/></g>
+          <circle cx="72" cy="111" r="5.5" fill="#f0ebe2" opacity=".85"/><circle cx="50" cy="129" r="5.5" fill="#f0ebe2" opacity=".85"/>
+          <rect x="118" y="16" width="166" height="138" rx="12" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
+          <g>
+            <rect x="134" y="32" width="40" height="40" rx="12" fill="#22c55e" opacity=".85"/>
+            <rect x="184" y="32" width="40" height="40" rx="12" fill="#22c55e" opacity=".55"/>
+            <rect x="234" y="32" width="36" height="40" rx="12" fill="#22c55e" opacity=".3"/>
+            <rect x="134" y="82" width="40" height="40" rx="12" fill="#22c55e" opacity=".45"/>
+            <rect x="184" y="82" width="86" height="40" rx="12" fill="#1e1c18"/>
+          </g>
+          <rect x="134" y="132" width="136" height="10" rx="5" fill="#1e1c18"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The instrument</div>
+          <h3>The Customizer, for theming</h3>
+          <p>Seen from the theming end: pick a direction, push it through a whole family at once, and see it resolve under the same conditions every time. That last part is what makes two candidate directions actually comparable instead of one being a better mockup than the other.</p>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library" target="_blank" rel="noopener">Open the library site <span>&rarr;</span></a>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-art"><svg viewBox="0 0 300 170" aria-hidden="true">
+          <rect x="0" y="0" width="300" height="170" rx="14" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="8" y="8" width="284" height="132" rx="10" fill="#0e0d0c"/>
+          <rect x="8" y="8" width="284" height="132" rx="10" fill="#3b82f6" opacity=".12"/>
+          <g>
+            <rect x="24" y="24" width="52" height="52" rx="15" fill="#3b82f6" opacity=".7"/>
+            <rect x="86" y="24" width="52" height="52" rx="15" fill="#e879a0" opacity=".55"/>
+            <rect x="148" y="24" width="52" height="52" rx="15" fill="#22c55e" opacity=".5"/>
+            <rect x="210" y="24" width="66" height="52" rx="15" fill="#161512"/>
+            <rect x="226" y="40" width="34" height="8" rx="4" fill="#3b82f6" opacity=".7"/>
+            <rect x="226" y="54" width="22" height="8" rx="4" fill="#3b82f6" opacity=".4"/>
+          </g>
+          <rect x="24" y="90" width="120" height="34" rx="11" fill="#161512"/>
+          <rect x="38" y="102" width="60" height="10" rx="5" fill="#3b82f6" opacity=".5"/>
+          <rect x="156" y="90" width="120" height="34" rx="11" fill="#161512"/>
+          <rect x="170" y="102" width="86" height="10" rx="5" fill="#2b2822"/>
+          <rect x="96" y="150" width="108" height="12" rx="6" fill="#0e0d0c"/>
+        </svg></div>
+        <div class="slide-body">
+          <div class="slide-kicker">The pilot</div>
+          <h3>Desktop Themer</h3>
+          <p>Takes the same theming model out past the icon set and onto a prospective desktop: illustration, interface surfaces and wallpaper all moving together under one direction. It is where you find out whether a direction is actually a direction, or just a nice icon set.</p>
+          <!-- TODO Mason: "Desktop Themer" is a working name for the old BentoOS. Swap to "Desktop Theming Pilot" if you prefer, then delete this comment. -->
+        </div>
+      </article>
     </div>
-    <p>
-      The systems above are infrastructure. This is the argument they exist to make.
-    </p>
-
-    <div class="thesis">
-      <div class="thesis-label">The thesis</div>
-      <p class="thesis-text">It's still Windows. Now it's mine.</p>
-    </div>
-
-    <p>
-      A prototype exploring how Windows could become genuinely personal, rather than personalized in the wallpaper-swap sense. A theme is a complete identity that holds across Start, the Lock screen, widgets and the account surface, and it stays recognizably Windows the whole way through. That second half is the hard part. Anyone can make a skin. Very few can make a skin that does not feel like a costume.
-    </p>
-
-    <div class="img-full">
-      <img src="img-matrix.png" alt="Theme matrix across wallpaper, Start, account, lock screen and widgets for multiple theme identities">
-      <div class="img-caption">The matrix. Each row is one identity resolved across every surface it has to touch.</div>
-    </div>
-
-    <p>
-      Pushing on distinct visual languages is what stress-tests the model. A theme built around a soft, illustrative property and one built around hard industrial sportswear break a personalization system in completely different places, and finding those breaks is the point of building it.
-    </p>
-
-    <div class="img-grid col3">
-      <div class="img-grid-item"><img src="img-lock-gamer.png" alt="Gamer theme lock screen"></div>
-      <div class="img-grid-item"><img src="img-lock-lego.png" alt="Construction toy theme lock screen"></div>
-      <div class="img-grid-item"><img src="img-lock-nike.png" alt="Sportswear theme lock screen"></div>
-    </div>
-    <div class="img-caption">Three identities against the same surface, each testing a different failure mode.</div>
-
-    <h3>Why it connects back</h3>
-    <p>
-      Personalization at this level is only affordable if the assets underneath it can be generated. Expressive Assets is what makes a theme more than a wallpaper. The illustration system is what gives it a voice. The component libraries are what keep it from drifting. This stream is the reason the other five are worth doing.
-    </p>
-
-    <div class="tags">
-      <span class="tag a">Vision prototype</span><span class="tag">Theming</span><span class="tag">Shell surfaces</span><span class="tag">Expressive systems</span>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- CLOSE -->
-  <div class="prose">
-    <div class="slabel">What it adds up to</div>
-    <h2>A single question, answered six ways</h2>
-    <p>
-      Every stream here is the same problem viewed from a different angle: how do you hold a quality bar across a surface area that has outgrown hand craft. The audit catches what slips. The color model makes expression generatable. The taxonomy makes illustration composable. The libraries keep it from drifting. The tooling makes it operable by people other than me. The prototype argues why it is worth the trouble.
-    </p>
-    <p>
-      Most of this was built in the margins of a role scoped to something narrower. That is the part I would change.
-    </p>
   </div>
 
 </div>
