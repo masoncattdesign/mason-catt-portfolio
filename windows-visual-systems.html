@@ -61,7 +61,29 @@
   .nav-resume { font-size: 13px; font-weight: 500; color: var(--bg); background: var(--cream); padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
   .nav-resume:hover { background: var(--accent); }
 
-  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; }
+  .case-hero { padding: 140px 48px 0; max-width: calc(var(--col) + 96px); margin: 0 auto; position: relative; }
+
+  /* Internal-preview sticker, stuck on at an angle beside the title */
+  .preview-sticker { position: absolute; top: 196px; right: 56px; width: 236px; z-index: 2;
+    background: var(--cream); color: #1a1815; border-radius: 16px; padding: 16px 18px 17px;
+    rotate: -6deg; box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 22px 40px -18px rgba(0,0,0,.85);
+    outline: 1.5px dashed rgba(26,24,21,.22); outline-offset: -7px;
+    opacity: 0; animation: stickOn .7s cubic-bezier(.2,.9,.3,1.3) forwards .75s;
+    transition: rotate .35s cubic-bezier(.2,.75,.25,1), translate .35s cubic-bezier(.2,.75,.25,1); cursor: default; }
+  .preview-sticker:hover { rotate: -2deg; translate: 0 -3px; }
+  /* the peeling corner */
+  .preview-sticker::after { content: ''; position: absolute; right: 0; bottom: 0; width: 26px; height: 26px;
+    border-radius: 0 0 16px 0; background: linear-gradient(135deg, transparent 50%, #d9d2c6 50%, #c9c1b4 100%);
+    box-shadow: -2px -2px 4px rgba(0,0,0,.12); transition: width .35s ease, height .35s ease; }
+  .preview-sticker:hover::after { width: 34px; height: 34px; }
+  .ps-kicker { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 500; letter-spacing: .14em;
+    text-transform: uppercase; color: #1a7a3f; margin-bottom: 8px; }
+  .ps-kicker::before { content: ''; width: 9px; height: 9px; flex-shrink: 0; background-color: currentColor;
+    -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
+  .ps-hello { font-family: var(--serif); font-style: italic; font-size: 25px; line-height: 1.1; letter-spacing: -.01em; margin-bottom: 8px; }
+  .ps-note { font-size: 12.5px; line-height: 1.5; color: #4a453d; }
+  @keyframes stickOn { from { opacity: 0; scale: 1.25; rotate: -14deg; } to { opacity: 1; scale: 1; rotate: -6deg; } }
+  @media (prefers-reduced-motion: reduce) { .preview-sticker { animation: none; opacity: 1; transition: none; } }
   .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--cream3); text-decoration: none; margin-bottom: 40px; transition: color 0.2s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
   .back-link:hover { color: var(--cream2); }
   .case-eyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
@@ -182,6 +204,7 @@
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
     .case-hero { padding: 108px 20px 0; }
+    .preview-sticker { position: relative; top: auto; right: auto; width: auto; max-width: 300px; margin: 0 0 28px 6px; rotate: -2deg; }
     .case-body { padding: 56px 20px; }
     .stream-index { padding: 0 20px; margin-top: 36px; }
     .stream-index-grid { grid-template-columns: 1fr 1fr; }
@@ -419,6 +442,7 @@
   /* One paragraph per section, so it needs a little more air than a stacked prose block */
   /* Smaller than display copy, and full-bleed to its container. Nothing on this
      page should sit in a narrower measure than the box it lives in. */
+  .stream-credit { font-size: 13px; color: var(--cream3); margin: 18px 0 0; }
   .stream-lede { font-size: 15px; color: var(--cream2); line-height: 1.78; margin: 0; max-width: none; }
 
   @media (max-width: 760px) {
@@ -583,15 +607,18 @@
 
 <div class="case-hero">
   <a href="index.html#work" class="back-link">← All work</a>
+  <aside class="preview-sticker" aria-label="Internal preview notice">
+    <div class="ps-kicker">Internal preview</div>
+    <div class="ps-hello">Hello, Windows!</div>
+    <p class="ps-note">Microsoft eyes only for now. If you're not on the team, act natural and scroll casually.</p>
+  </aside>
   <div class="case-eyebrow">
     <span class="etag">Design Systems · Visual Systems · Iconography</span>
     <span class="ediv">·</span>
     <span class="eco">Microsoft · Sep 2024 – Present</span>
   </div>
   <h1 class="case-title">Windows Visual<br>Systems <em>&amp; Assets</em></h1>
-  <p class="case-subtitle">
-    Six workstreams inside Windows Design Systems. They start from one problem: Windows has more surfaces than any one person can hand-craft, and the quality bar is set at the level of a single corner radius. Everything here is an attempt to hold that bar at a scale where hand-craft runs out. Catch what slips, make expression testable, and build the tools that let other people do both.
-  </p>
+  <p class="case-subtitle">Six workstreams inside Windows Design Systems, all aimed at one problem: Windows has more surfaces than anyone can hand-craft, and the quality bar is set at a single corner radius. Catch what slips, make expression testable, and build the tools that let other people do both.</p>
 
   <div class="meta-strip">
     <div class="meta-item">
@@ -619,7 +646,6 @@
     <a class="sx" href="#compendiums">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true"><g class="c1-tiles" fill="#2b2822"><rect x="0" y="6" width="44" height="34" rx="8"/><rect x="52" y="6" width="44" height="34" rx="8"/><rect x="156" y="6" width="44" height="34" rx="8"/><rect x="0" y="50" width="44" height="34" rx="8"/><rect x="52" y="50" width="44" height="34" rx="8"/><rect x="104" y="50" width="44" height="34" rx="8"/><rect x="156" y="50" width="44" height="34" rx="8"/></g><g class="c1-checks" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path style="--d:0" pathLength="1" d="M15 23.5l4.5 4.5l8.5-9"/><path style="--d:1" pathLength="1" d="M15 67.5l4.5 4.5l8.5-9"/><path style="--d:2" pathLength="1" d="M67 23.5l4.5 4.5l8.5-9"/><path style="--d:3" pathLength="1" d="M67 67.5l4.5 4.5l8.5-9"/><path style="--d:4" pathLength="1" d="M119 67.5l4.5 4.5l8.5-9"/><path style="--d:5" pathLength="1" d="M171 23.5l4.5 4.5l8.5-9"/><path style="--d:6" pathLength="1" d="M171 67.5l4.5 4.5l8.5-9"/></g><g class="c1-hero"><rect x="104" y="6" width="44" height="34" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/><path d="M118 23l5 5l9-10" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><rect class="c1-scan" x="-8" y="0" width="3" height="96" rx="1.5" fill="#22c55e"/></svg></div>
       <div class="sx-body">
-        <div class="sx-num">01</div>
         <div class="sx-name">Marketing Compendiums</div>
         <div class="sx-note">Product-accurate asset libraries, and the audit that built them</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
@@ -642,7 +668,6 @@
         <g class="c2-slot" style="--i:0"><rect class="c2-btn" x="109" y="70" width="79" height="14" rx="7" fill="#1a1916" stroke="#2b2822" stroke-dasharray="3 3"/></g>
       </svg></div>
       <div class="sx-body">
-        <div class="sx-num">02</div>
         <div class="sx-name">Component Libraries</div>
         <div class="sx-note">Production-aligned Figma libraries and the patterns gap</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
@@ -659,7 +684,6 @@
         <rect class="c3-bar" x="0" y="80" width="200" height="2" rx="1" fill="#22c55e"/>
       </svg></div>
       <div class="sx-body">
-        <div class="sx-num">03</div>
         <div class="sx-name">Expressive Assets</div>
         <div class="sx-note">An instrument for testing how Windows could be themed</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
@@ -684,7 +708,6 @@
         <g class="c4-key" style="--i:2"><circle cx="141" cy="71" r="7" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><rect class="c4-lbl" x="156" y="69" width="32" height="4" rx="2" fill="#2b2822"/></g>
       </svg></div>
       <div class="sx-body">
-        <div class="sx-num">04</div>
         <div class="sx-name">Windows Illustrations</div>
         <div class="sx-note">An illustration system and the pieces it is built from</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
@@ -705,7 +728,6 @@
         <rect class="c5-out" style="--i:3" x="156" y="70" width="44" height="24" rx="8" fill="#2b2822"/>
       </svg></div>
       <div class="sx-body">
-        <div class="sx-num">05</div>
         <div class="sx-name">Asset Tooling</div>
         <div class="sx-note">Where assets get made, browsed and altered</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
@@ -724,7 +746,6 @@
         <rect class="c6-sw" x="128" y="70" width="36" height="22" rx="8" fill="#e879a0" opacity=".7"/>
       </svg></div>
       <div class="sx-body">
-        <div class="sx-num">06</div>
         <div class="sx-name">Theming &amp; Personalization</div>
         <div class="sx-note">Theming past icons, out to a whole desktop</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
@@ -739,9 +760,9 @@
   <!-- 01 ============================================ -->
   <div class="prose" id="compendiums">
     <div class="slabel">Product accuracy at scale</div>
-    <div class="stream-head"><span class="stream-num">01</span><h2>Marketing Compendiums</h2></div>
+    <div class="stream-head"><h2>Marketing Compendiums</h2></div>
     <p class="stream-lede">
-      Marketing needs assets accurate to shipped product across the full landscape of features and surfaces, and that accuracy decays constantly because product keeps moving and nothing is watching the gap. I audited the compendium against product's plan of record, surface by surface, and the gaps kept turning up. Corners that did not match the spec. Materials applied inconsistently across shells. Color drift between what was designed and what shipped. States that got cut somewhere between design and build and were never reconciled. What came out of it is not a faster way to make assets one at a time. It is the thing that catches the drift.
+      Marketing needs assets that match shipped product, and that accuracy decays every time product moves. I audited the compendium against product's plan of record, surface by surface, and built the thing that catches the drift.
     </p>
 
             <div class="deck" data-deck="compendiums">
@@ -755,7 +776,7 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">The library</div>
           <h3>The compendium</h3>
-          <p>The full landscape of Windows product and feature surfaces, held accurate to what actually shipped. It is the reference the rest of the marketing work is built from.</p></div>
+          <p>Every Windows product and feature surface, held accurate to what actually shipped.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="0" y="0" width="300" height="26" rx="14" fill="#1e1c18"/><rect x="0" y="18" width="300" height="8" fill="#1e1c18"/>
@@ -772,7 +793,7 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">The response</div>
           <h3>Component, template and screen libraries</h3>
-          <p>Built so a campaign surface gets assembled from parts that are already correct, rather than produced from scratch and checked afterwards. Design Systems and product design partners now pull from the same libraries, which is not what they were scoped for.</p></div>
+          <p>Campaign surfaces assembled from parts that are already correct. Product design now pulls from the same libraries.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <g fill="#2b2822">
             <rect x="12" y="16" width="72" height="20" rx="7"/><rect x="12" y="44" width="72" height="20" rx="7"/>
@@ -790,7 +811,7 @@
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">The mechanism</div>
           <h3>The sync pipeline</h3>
-          <p>Keeps product-accurate screens and flows in step between marketing and product as the product moves, so the gap closes on a schedule instead of whenever somebody notices.</p></div>
+          <p>Keeps marketing screens in step with product as it moves, on a schedule instead of whenever someone notices.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <rect x="10" y="34" width="112" height="100" rx="12" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="178" y="34" width="112" height="100" rx="12" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
@@ -820,9 +841,9 @@
   <!-- 02 ============================================ -->
   <div class="prose" id="components">
     <div class="slabel">Components and patterns</div>
-    <div class="stream-head"><span class="stream-num">02</span><h2>Component Libraries</h2></div>
+    <div class="stream-head"><h2>Component Libraries</h2></div>
     <p class="stream-lede">
-      I build and maintain production-aligned Figma libraries. They go to product design partners who carry them through to implementation, so the bar is that a designer can build a real screen without inventing anything. That bar is where most kits fall down: a kit gives you buttons and inputs, a system gives you the compositions people actually need, so nobody reassembles the same layout from primitives every time.
+      Production-aligned Figma libraries that product design partners carry through to implementation. The bar: a designer can build a real screen without inventing anything.
     </p>
 
             <div class="deck" data-deck="components">
@@ -835,7 +856,7 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">The library</div>
           <h3>Production-aligned components</h3>
-          <p>Variants, states and tokens built to match what engineering will actually ship, plus the documentation and adoption workflow that makes them get used rather than admired.</p></div>
+          <p>Variants, states and tokens that match what engineering ships, plus the docs that get them used.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="16" y="16" width="70" height="138" rx="10" fill="#1e1c18"/>
@@ -851,7 +872,7 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">The open problem</div>
           <h3>Pattern coverage</h3>
-          <p>The newer system needs to be at least on par with the library it replaces, and it is short on patterns people can take off the shelf and use. I have been working the gap from where people are actually blocked rather than from what looks incomplete on a coverage chart.</p></div>
+          <p>Filling the patterns gap in the newer system, starting where people are actually blocked.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <g fill="#2b2822">
             <rect x="14" y="20" width="60" height="36" rx="9"/><rect x="84" y="20" width="60" height="36" rx="9"/>
@@ -878,9 +899,9 @@
   <!-- 03 ============================================ -->
   <div class="prose" id="expressive">
     <div class="slabel">Color systems</div>
-    <div class="stream-head"><span class="stream-num">03</span><h2>Expressive Assets</h2></div>
+    <div class="stream-head"><h2>Expressive Assets</h2></div>
     <p class="stream-lede">
-      Nobody knows yet what expression should look like across Windows, and you cannot answer that by looking at three icons. You have to see a direction across the whole family, in every mode, under identical conditions, or you are comparing a good mockup to a bad one instead of comparing two ideas. So the first real problem was not picking a style. It was building the thing that makes styles comparable, and everything below is in service of that.
+      You can't judge expression for Windows from three icons. The first real problem wasn't picking a style, it was building the instrument that makes styles comparable.
     </p>
 
             <div class="deck" data-deck="expressive">
@@ -895,7 +916,7 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">The invisible part</div>
           <h3>The color model</h3>
-          <p>Built on OKLCH rather than HSL or LAB, because perceptual uniformity is the whole point: a generated ramp has to stay even across the hue wheel or an automated pass makes some icons look heavy and others washed out. Underneath sits a palette and mode system of ten color modes across Base, Chromatic, Accented and Contrasting.</p></div>
+          <p>Built on OKLCH so generated ramps stay even across hues, with ten color modes underneath.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <circle cx="42" cy="85" r="22" fill="#22c55e"/>
           <path d="M74 85 h26" stroke="#3a352e" stroke-width="2" stroke-linecap="round"/>
@@ -918,13 +939,13 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">What it produces</div>
           <h3>Test directions</h3>
-          <p>Flat, Outline, Roles, Tinted, Soft, Dichromic and Acrylic, set against the Default originals and all driven from a single seed. These are test directions, not proposals. They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled. Testing is early and has not surfaced much yet.</p></div>
+          <p>Seven test directions from a single seed, set against the Default originals. Tests, not proposals, and testing is early.</p></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer-outline.webp" alt="The Customizer style list, with the Outline direction applied across the canvas" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Not bolted on</div>
           <h3>Accessibility modes</h3>
-          <p>High Contrast and Dichromic are generated from the same model as everything else, which is the only way they stay correct as the set grows. High contrast forces the hardest question in the whole system: does this asset survive on structure alone?</p></div>
+          <p>High Contrast and Dichromic come from the same model, so they stay correct as the set grows.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <rect x="10" y="18" width="134" height="60" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5"/>
           <rect x="156" y="18" width="134" height="60" rx="12" fill="#f0ebe2"/>
@@ -939,7 +960,7 @@
         <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">The vocabulary</div>
           <h3>Asset anatomy</h3>
-          <p>Before anything can be themed consistently it has to be describable. Whole, base, emblem, glyph, and the rule that a part is a set of shapes sharing a ramp, not a region. Deliberately small, and argued out in Teams.</p></div>
+          <p>Whole, base, emblem, glyph: a small vocabulary that makes every asset describable, argued out in Teams.</p></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/asset-anatomy.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/asset-anatomy</span><span class="browser-open">Open &nearr;</span></span><img src="shot-asset-anatomy.webp" alt="Asset Anatomy page: one shipped SVG shown four times, with everything outside one part dimmed" loading="lazy"></a></div>
         </div>
       </div>
@@ -950,11 +971,7 @@
         <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
       </div>
     </div>
-    <dl class="facts" style="margin-top:34px;">
-      <dt>Owned</dt><dd>The color model, the instrument itself, the Gallery and the Customizer, plus the plugin and export pipeline.</dd>
-      <dt>Collaborators</dt><dd><strong>Alex</strong> on technical and risk review, and on Windows app icons. <strong>Carlo</strong> on visual direction. <strong>Ada</strong> and <strong>Sihan</strong> on asset anatomy vocabulary and naming.</dd>
-      <dt>Cadence</dt><dd>Daily updates to the team, with a published library and a shareable status page.</dd>
-    </dl>
+    <p class="stream-credit">Built with Alex (technical review), Carlo (visual direction), and Ada and Sihan (anatomy and naming).</p>
   </div>
 
   <hr class="stream-rule">
@@ -962,9 +979,9 @@
   <!-- 04 ============================================ -->
   <div class="prose" id="illustration">
     <div class="slabel">Illustration</div>
-    <div class="stream-head"><span class="stream-num">04</span><h2>Windows Illustrations</h2></div>
+    <div class="stream-head"><h2>Windows Illustrations</h2></div>
     <p class="stream-lede">
-      The illustration work spun out of expressive assets into its own system. It shares the color role model and will share the same contract with the underlying design system, but illustration has problems icons do not: it is looser, it carries more meaning per asset, and a library of finished drawings cannot be generated from. So the system is built as typed pieces rather than as a folder of outputs, and a single asset now has to land on both light and dark surfaces instead of shipping as a pair.
+      Illustration spun out of expressive assets into its own system, built as typed pieces instead of a folder of finished drawings, so every asset lands on both light and dark.
     </p>
 
             <div class="deck" data-deck="illustration">
@@ -977,7 +994,7 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">The structure</div>
           <h3>The shape taxonomy</h3>
-          <p>Base shapes are the backgrounds. Secondary shapes lay over them and stay movable and scalable. Tertiary shapes are small emblem-like containers, either the element itself or a holder for a system icon. Typing the pieces this way is what makes generation possible later.</p></div>
+          <p>Base, secondary and tertiary shapes, typed so new illustrations can be generated from them later.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <rect x="16" y="18" width="88" height="88" rx="22" fill="#37332b"/>
           <text x="16" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">base</text>
@@ -992,7 +1009,7 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">The approach</div>
           <h3>Pilot set and guidelines</h3>
-          <p>Twelve interim assets as the pilot: perfect those first, use them to populate the guidelines, then rebuild the back catalog from the simplified principles rather than redrawing it. The interim direction runs bolder and more saturated than the current shipped set, with cooler, darker neutrals.</p></div>
+          <p>Twelve pilot assets, perfected first, then used to write the guidelines and rebuild the back catalog.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <g fill="#2b2822">
             <rect x="12" y="16" width="62" height="62" rx="16"/><rect x="82" y="16" width="62" height="62" rx="16"/>
@@ -1018,9 +1035,9 @@
   <!-- 05 ============================================ -->
   <div class="prose" id="tooling">
     <div class="slabel">Plugins and generators</div>
-    <div class="stream-head"><span class="stream-num">05</span><h2>Asset Tooling</h2></div>
+    <div class="stream-head"><h2>Asset Tooling</h2></div>
     <p class="stream-lede">
-      None of the systems above survive contact with real scale unless somebody builds the thing that operates them. This is where assets get made, browsed and altered: one place to see everything that exists, one place to change it, and generators that assemble new work from the pieces rather than starting a drawing from nothing. The tools are not the achievement. They are what makes the achievement usable by anyone other than me.
+      None of these systems survive real scale without tools to run them: one place to see everything, one place to change it, and generators that build from the pieces.
     </p>
 
             <div class="deck" data-deck="tooling">
@@ -1035,21 +1052,21 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">Browse</div>
           <h3>The Gallery</h3>
-          <p>Where the library gets looked at. Filter by collection, style and size, check any drawing against light and dark, copy or download it. It reads from the same published manifest everything else downstream does, and has a companion Figma file for people who would rather work in the file.</p>
+          <p>The whole library in one place: filter it, check light and dark, copy or download. With a companion Figma file.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener">Open the Gallery <span>&rarr;</span></a></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library</span><span class="browser-open">Open &nearr;</span></span><img src="shot-gallery.webp" alt="The Gallery: 3,280 assets browsable by collection, with a detail panel for style, size and color" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Alter</div>
           <h3>The Customizer</h3>
-          <p>Style a set at once and tune it: palette, stroke, texture, surface. Any slot swaps for anything in the library. It is the piece that sits in both halves of this page, because making assets and theming them are the same operation seen from two ends.</p>
+          <p>Style a whole set at once and swap any slot for anything in the library.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener">Open the Customizer <span>&rarr;</span></a></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer.webp" alt="The Customizer: asset style modes on the left, a twelve-icon canvas, and controls on the right" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Make</div>
           <h3>The Builders</h3>
-          <p>Three generators that assemble new assets from the typed pieces once there are good recipes: ask for a concept and get usable options back instead of a blank canvas. Built to run as separate modes first, then fold together, so the icon and illustration streams can move in parallel.</p>
+          <p>Generators that assemble new assets from the typed pieces, so you start from options instead of a blank canvas.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener">Open the Illustration Builder <span>&rarr;</span></a>
           <!-- TODO Mason: name the three builders here, then delete this comment. --></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/builder</span><span class="browser-open">Open &nearr;</span></span><img src="shot-builder.webp" alt="Windows Illustration Builder: layers on the left, a shield on a circle base in the canvas, shape picker and contrast checks on the right" loading="lazy"></a></div>
@@ -1057,7 +1074,7 @@
         <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">How it fits together</div>
           <h3>The system map</h3>
-          <p>Every stage runs on the output of the one before it, and each is its own command, so a bad step gets rerun without redoing the rest. Everything downstream reads manifest.json and nothing else.</p></div>
+          <p>Each stage is its own command, and everything downstream reads one manifest.</p></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/system-map.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/system-map</span><span class="browser-open">Open &nearr;</span></span><img src="shot-system-map.webp" alt="System Map page: the pipeline from Figma file through plan, importer and assets to manifest.json, feeding Gallery, Customizer, Builder and Bridge" loading="lazy"></a></div>
         </div>
       </div>
@@ -1075,9 +1092,9 @@
   <!-- 06 ============================================ -->
   <div class="prose" id="theming">
     <div class="slabel">Theming past the icon</div>
-    <div class="stream-head"><span class="stream-num">06</span><h2>Theming &amp; Personalization</h2></div>
+    <div class="stream-head"><h2>Theming &amp; Personalization</h2></div>
     <p class="stream-lede">
-      Theming an icon set is the tractable version of the problem. The real question is what happens when a direction has to hold across everything on screen at once: icons, illustration, interface and wallpaper, together, without the result feeling like a costume over the top of Windows. That is a harder thing to judge by description, so the work here is about making it visible enough to argue about.
+      Theming icons is the easy version. The real question is whether a direction holds across icons, illustration, interface and wallpaper at once, so the work makes that visible enough to argue about.
     </p>
 
             <div class="deck" data-deck="theming">
@@ -1090,14 +1107,14 @@
         <div class="dslide is-on" data-i="0">
           <div class="dslide-body"><div class="slide-kicker">The instrument</div>
           <h3>The Customizer, for theming</h3>
-          <p>Seen from the theming end: pick a direction, push it through a whole family at once, and see it resolve under the same conditions every time. That last part is what makes two candidate directions actually comparable instead of one being a better mockup than the other.</p>
+          <p>Push a direction through a whole family under the same conditions, so two directions are actually comparable.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener">Open the Customizer <span>&rarr;</span></a></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer-roles.webp" alt="The Customizer in Roles mode: one seed color theming the whole icon set through declared color groups" loading="lazy"></a></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">The pilot</div>
           <h3>Desktop Themer</h3>
-          <p>Takes the same theming model out past the icon set and onto a prospective desktop: illustration, interface surfaces and wallpaper all moving together under one direction. It is where you find out whether a direction is actually a direction, or just a nice icon set.</p>
+          <p>The theming model on a whole prospective desktop: illustration, interface and wallpaper moving together.</p>
           <!-- TODO Mason: "Desktop Themer" is a working name for the old BentoOS. Swap to "Desktop Theming Pilot" if you prefer, then delete this comment. --></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/work/bentos.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">work/bentos</span><span class="browser-open">Open &nearr;</span></span><img src="shot-desktop-themer-v2.webp" alt="Desktop Themer: a prospective Windows desktop with Start, widgets and taskbar all themed from one seed color" loading="lazy"></a></div>
         </div>
