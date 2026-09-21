@@ -541,6 +541,11 @@
   .dslide-vis .sp-file img { position: absolute; inset: 0; }
   .tp-pv { font: 500 10.5px var(--sans); fill: #cfc8bd; }
   .lp-t2 { font: 500 12.5px var(--sans); fill: #e6e0d6; }
+  .cv-mini { font: 500 10px var(--sans); fill: #8a847b; }
+  .lp-t3 { font: 500 14px var(--sans); fill: #f0ebe2; }
+  .lp-s2 { font: 400 13px var(--sans); fill: #b8b0a4; }
+  .gd-t { font: 600 12px var(--sans); fill: #2a2825; }
+  .gd-wip { font: 600 11px var(--sans); letter-spacing: .1em; fill: #e879a0; }
   .tp-n { font: 500 12px var(--serif); fill: #22c55e; }
   .tp-h { font: 500 14px var(--sans); fill: #f0ebe2; }
   .tp-c { font: 500 12px var(--sans); fill: #cfc8bd; }
@@ -758,7 +763,7 @@
       </svg></div>
       <div class="sx-body">
         <div class="sx-name">Expressive Assets</div>
-        <div class="sx-note">An instrument for testing how Windows could be themed</div>
+        <div class="sx-note">A side project that grew into a program</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
       </div>
     </a>
@@ -1149,22 +1154,84 @@
     <div class="slabel">Color systems</div>
     <div class="stream-head"><h2>Expressive Assets</h2></div>
     <p class="stream-lede">
-      You can't judge expression for Windows from three icons. The first real problem wasn't picking a style, it was building the instrument that makes styles comparable.
+      Expressive Assets started as a side project: a prototype that recolored Windows icons from one seed color. It grew into a program with its own color model, a library of 3,000+ assets, the Gallery and Customizer, an asset anatomy, Figma plugins, an export pipeline and a Builder, and it spun off Windows Illustrations.
     </p>
 
             <div class="deck" data-deck="expressive">
       <div class="deck-crumbs" role="tablist">
-        <button class="crumb crumb-live is-on" data-i="0" type="button">Color model</button>
-        <button class="crumb" data-i="1" type="button">Test directions</button>
-        <button class="crumb" data-i="2" type="button">Accessibility</button>
-        <button class="crumb crumb-live" data-i="3" type="button">Asset anatomy</button>
-        <span class="deck-count">1 / 4</span>
+        <button class="crumb is-on" data-i="0" type="button">Program</button>
+        <button class="crumb" data-i="1" type="button">How it grew</button>
+        <button class="crumb" data-i="2" type="button">Color model</button>
+        <button class="crumb crumb-live" data-i="3" type="button">Test directions</button>
+        <button class="crumb crumb-live" data-i="4" type="button">Asset anatomy</button>
+        <span class="deck-count">1 / 5</span>
       </div>
       <div class="deck-stage">
         <div class="dslide is-on" data-i="0">
+          <div class="dslide-body"><div class="slide-kicker">The program</div>
+          <h3>Expressive Assets</h3>
+          <p>What started as a side project is now a set of connected workstreams: the library, the tools that run it, a shared vocabulary, and the illustration system that spun out of it.</p></div>
+          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+          <defs><linearGradient id="eaWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
+            <clipPath id="eaClip"><rect width="160" height="96" rx="9"/></clipPath>
+            <pattern id="eaDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
+            <marker id="eaA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
+          <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#eaDots)"/>
+          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
+          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
+          <text x="56" y="146" class="cv-season">Started as a side project</text>
+          <text x="56" y="200" class="cv-title">Expressive</text>
+          <text x="56" y="250" class="cv-title">Assets</text>
+          <text x="56" y="298" class="cv-desc"><tspan x="56" dy="0">A seed-color icon recolor prototype that</tspan><tspan x="56" dy="22">grew into a program: a library, the tools</tspan><tspan x="56" dy="22">that run it, and a way to test theming.</tspan></text>
+          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
+          <text x="56" y="420" class="cv-k">Workstreams</text><text x="56" y="442" class="cv-v">Library · Tools · Anatomy · Illustrations</text>
+          <text x="56" y="476" class="cv-k">Status</text><text x="56" y="498" class="cv-v">Ongoing, shared daily with the team</text>
+          <g class="cv-card" transform="translate(404 58)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="12" y="12" width="30" height="72" rx="4" fill="#2b2822"/><rect x="50" y="12" width="20" height="20" rx="5" fill="#3b82f6"/><rect x="75" y="12" width="20" height="20" rx="5" fill="#22c55e"/><rect x="100" y="12" width="20" height="20" rx="5" fill="#e879a0"/><rect x="125" y="12" width="20" height="20" rx="5" fill="#f59e0b"/><rect x="50" y="37" width="20" height="20" rx="5" fill="#8b5cf6"/><rect x="75" y="37" width="20" height="20" rx="5" fill="#0ea5e9"/><rect x="100" y="37" width="20" height="20" rx="5" fill="#3b82f6"/><rect x="125" y="37" width="20" height="20" rx="5" fill="#22c55e"/><rect x="50" y="62" width="20" height="20" rx="5" fill="#e879a0"/><rect x="75" y="62" width="20" height="20" rx="5" fill="#f59e0b"/><rect x="100" y="62" width="20" height="20" rx="5" fill="#8b5cf6"/><rect x="125" y="62" width="20" height="20" rx="5" fill="#0ea5e9"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Gallery</text></g></g><g class="cv-card" transform="translate(584 58)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="14" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="1.0"/><rect x="48" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="0.8200000000000001"/><rect x="82" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="0.64"/><rect x="116" y="22" width="26" height="26" rx="7" fill="#22c55e" opacity="0.45999999999999996"/><rect x="14" y="62" width="132" height="5" rx="2.5" fill="#0e0d0c"/><circle cx="92" cy="64.5" r="6" fill="#f0ebe2"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Customizer</text></g></g><g class="cv-card" transform="translate(764 58)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="20" y="16" width="60" height="60" rx="16" fill="#37332b"/><rect x="42" y="30" width="46" height="36" rx="8" fill="#3b82f6" opacity=".85"/><circle cx="96" cy="30" r="11" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><g fill="#2b2822"><rect x="116" y="16" width="30" height="8" rx="4"/><rect x="116" y="32" width="30" height="8" rx="4"/><rect x="116" y="48" width="30" height="8" rx="4"/></g></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Builder</text></g></g><g class="cv-card" transform="translate(404 208)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="12" y="14" width="23" height="20" rx="5" fill="#22c55e" opacity="1.0"/><rect x="39" y="14" width="23" height="20" rx="5" fill="#22c55e" opacity="0.81"/><rect x="66" y="14" width="23" height="20" rx="5" fill="#22c55e" opacity="0.62"/><rect x="93" y="14" width="23" height="20" rx="5" fill="#22c55e" opacity="0.42999999999999994"/><rect x="120" y="14" width="23" height="20" rx="5" fill="#22c55e" opacity="0.24"/><rect x="12" y="38" width="23" height="20" rx="5" fill="#3b82f6" opacity="1.0"/><rect x="39" y="38" width="23" height="20" rx="5" fill="#3b82f6" opacity="0.81"/><rect x="66" y="38" width="23" height="20" rx="5" fill="#3b82f6" opacity="0.62"/><rect x="93" y="38" width="23" height="20" rx="5" fill="#3b82f6" opacity="0.42999999999999994"/><rect x="120" y="38" width="23" height="20" rx="5" fill="#3b82f6" opacity="0.24"/><rect x="12" y="62" width="23" height="20" rx="5" fill="#e879a0" opacity="1.0"/><rect x="39" y="62" width="23" height="20" rx="5" fill="#e879a0" opacity="0.81"/><rect x="66" y="62" width="23" height="20" rx="5" fill="#e879a0" opacity="0.62"/><rect x="93" y="62" width="23" height="20" rx="5" fill="#e879a0" opacity="0.42999999999999994"/><rect x="120" y="62" width="23" height="20" rx="5" fill="#e879a0" opacity="0.24"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Color model</text></g></g><g class="cv-card" transform="translate(584 208)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="20" y="14" width="68" height="68" rx="16" fill="#37332b"/><rect x="36" y="30" width="36" height="36" rx="9" fill="#3b82f6" opacity=".85"/><path d="M47 48l6 6 11-12" fill="none" stroke="#f0ebe2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="100" y="30" class="cv-mini">whole</text><text x="100" y="46" class="cv-mini">base</text><text x="100" y="62" class="cv-mini">emblem</text><text x="100" y="78" class="cv-mini">glyph</text></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Asset anatomy</text></g></g><g class="cv-card" transform="translate(764 208)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="14" y="14" width="132" height="68" rx="6" fill="#2c2c2c"/><rect x="14" y="14" width="132" height="12" rx="6" fill="#383838"/><rect x="22" y="34" width="50" height="40" rx="4" fill="#1e1e1e"/><rect x="80" y="34" width="58" height="6" rx="3" fill="#8b7cf6" opacity="0.9"/><rect x="80" y="44" width="50" height="6" rx="3" fill="#8b7cf6" opacity="0.7"/><rect x="80" y="54" width="42" height="6" rx="3" fill="#8b7cf6" opacity="0.5"/><rect x="80" y="64" width="34" height="6" rx="3" fill="#8b7cf6" opacity="0.29999999999999993"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Figma plugins</text></g></g><g class="cv-card" transform="translate(404 358)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="10" y="36" width="28" height="24" rx="5" fill="#2b2822"/><rect x="47" y="36" width="28" height="24" rx="5" fill="#2b2822"/><rect x="84" y="36" width="28" height="24" rx="5" fill="#2b2822"/><rect x="121" y="36" width="28" height="24" rx="5" fill="#22c55e"/><path d="M40 48h5" stroke="#6b6560" stroke-width="2"/><path d="M77 48h5" stroke="#6b6560" stroke-width="2"/><path d="M114 48h5" stroke="#6b6560" stroke-width="2"/><text x="80" y="80" text-anchor="middle" class="cv-mini">manifest.json</text></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Export pipeline</text></g></g><g class="cv-card" transform="translate(584 358)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="36" y="14" width="68" height="68" rx="20" fill="#37332b"/><path d="M60 30h24l12 12v28a5 5 0 0 1-5 5H60a5 5 0 0 1-5-5V35a5 5 0 0 1 5-5z" fill="#3b82f6" opacity=".85"/><circle cx="104" cy="28" r="12" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Illustrations</text></g></g><g class="cv-card" transform="translate(764 358)"><g class="cv-lift"><g clip-path="url(#eaClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="0" y="0" width="160" height="96" fill="url(#eaWall)"/><rect x="50" y="12" width="60" height="58" rx="5" fill="#1f1d1a"/><rect x="56" y="22" width="8" height="8" rx="2" fill="#e879a0"/><rect x="68" y="22" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="80" y="22" width="8" height="8" rx="2" fill="#e879a0"/><rect x="92" y="22" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="56" y="34" width="8" height="8" rx="2" fill="#e879a0"/><rect x="68" y="34" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="80" y="34" width="8" height="8" rx="2" fill="#e879a0"/><rect x="92" y="34" width="8" height="8" rx="2" fill="#14b8a6"/><rect x="0" y="84" width="160" height="12" fill="rgba(20,20,20,.8)"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Desktop Themer</text></g></g>
+        </svg></div>
+        </div>
+<div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">How it grew</div>
+          <h3>From prototype to program</h3>
+          <p>Each piece exists because the one before it needed it: a color model to recolor reliably, a library to recolor at scale, tools to see and test it, and anatomy to build from.</p></div>
+          <div class="dslide-vis is-art"><svg class="lp" viewBox="0 0 960 540" aria-hidden="true">
+          <defs><linearGradient id="grWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
+            <clipPath id="grClip"><rect width="160" height="96" rx="9"/></clipPath>
+            <pattern id="grDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
+            <marker id="grA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
+          <text x="48" y="96" class="lp-h">How it grew</text>
+          <text x="912" y="96" text-anchor="end" class="lp-s">Each step made the next one possible</text>
+          <g transform="translate(48 170)"><rect width="136" height="176" rx="12" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="16" y="30" class="lp-n">01</text><line x1="16" y1="42" x2="120" y2="42" stroke="rgba(240,235,226,.08)"/>
+            <text x="16" y="72" class="lp-t3">Side project</text><text x="16" y="100" class="lp-s">Seed-color icon</text><text x="16" y="118" class="lp-s">recolor prototype</text></g><g transform="translate(194 170)"><rect width="136" height="176" rx="12" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="16" y="30" class="lp-n">02</text><line x1="16" y1="42" x2="120" y2="42" stroke="rgba(240,235,226,.08)"/>
+            <text x="16" y="72" class="lp-t3">Color model</text><text x="16" y="100" class="lp-s">OKLCH ramps,</text><text x="16" y="118" class="lp-s">ten color modes</text></g><g transform="translate(340 170)"><rect width="136" height="176" rx="12" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="16" y="30" class="lp-n">03</text><line x1="16" y1="42" x2="120" y2="42" stroke="rgba(240,235,226,.08)"/>
+            <text x="16" y="72" class="lp-t3">The library</text><text x="16" y="100" class="lp-s">3,000+ assets,</text><text x="16" y="118" class="lp-s">one manifest</text></g><g transform="translate(486 170)"><rect width="136" height="176" rx="12" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="16" y="30" class="lp-n">04</text><line x1="16" y1="42" x2="120" y2="42" stroke="rgba(240,235,226,.08)"/>
+            <text x="16" y="72" class="lp-t3">The tools</text><text x="16" y="100" class="lp-s">Gallery to browse,</text><text x="16" y="118" class="lp-s">Customizer to test</text></g><g transform="translate(632 170)"><rect width="136" height="176" rx="12" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="16" y="30" class="lp-n">05</text><line x1="16" y1="42" x2="120" y2="42" stroke="rgba(240,235,226,.08)"/>
+            <text x="16" y="72" class="lp-t3">Anatomy</text><text x="16" y="100" class="lp-s">A vocabulary,</text><text x="16" y="118" class="lp-s">then the Builder</text></g><g transform="translate(778 170)"><rect width="136" height="176" rx="12" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="16" y="30" class="lp-n">06</text><line x1="16" y1="42" x2="120" y2="42" stroke="rgba(240,235,226,.08)"/>
+            <text x="16" y="72" class="lp-t3">Spin-offs</text><text x="16" y="100" class="lp-s">Illustrations and</text><text x="16" y="118" class="lp-s">Desktop Themer</text></g>
+          <line x1="184" y1="258" x2="194" y2="258" stroke="#8a847b" stroke-width="1.5" marker-end="url(#grA)"/><line x1="330" y1="258" x2="340" y2="258" stroke="#8a847b" stroke-width="1.5" marker-end="url(#grA)"/><line x1="476" y1="258" x2="486" y2="258" stroke="#8a847b" stroke-width="1.5" marker-end="url(#grA)"/><line x1="622" y1="258" x2="632" y2="258" stroke="#8a847b" stroke-width="1.5" marker-end="url(#grA)"/><line x1="768" y1="258" x2="778" y2="258" stroke="#8a847b" stroke-width="1.5" marker-end="url(#grA)"/>
+          <line x1="48" y1="400" x2="912" y2="400" stroke="rgba(240,235,226,.08)"/>
+          <text x="48" y="436" class="lp-e">Alongside</text>
+          <text x="48" y="462" class="lp-s2">Daily updates to the team, a published library and a shareable status page, and Figma plugins for palettes and modes.</text>
+        </svg></div>
+        </div>
+<div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">The invisible part</div>
           <h3>The color model</h3>
-          <p>Built on OKLCH so generated ramps stay even across hues, with ten color modes underneath.</p></div>
+          <p>Built on OKLCH so generated ramps stay even across hues, with ten color modes underneath, including High Contrast and Dichromic.</p></div>
           <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
           <circle cx="42" cy="85" r="22" fill="#22c55e"/>
           <path d="M74 85 h26" stroke="#3a352e" stroke-width="2" stroke-linecap="round"/>
@@ -1184,28 +1251,13 @@
           </g>
         </svg></div>
         </div>
-        <div class="dslide" data-i="1">
+<div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">What it produces</div>
           <h3>Test directions</h3>
           <p>Seven test directions from a single seed, set against the Default originals. Tests, not proposals, and testing is early.</p></div>
           <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-customizer-outline.webp" alt="The Customizer style list, with the Outline direction applied across the canvas" loading="lazy"></a></div>
         </div>
-        <div class="dslide" data-i="2">
-          <div class="dslide-body"><div class="slide-kicker">Not bolted on</div>
-          <h3>Accessibility modes</h3>
-          <p>High Contrast and Dichromic come from the same model, so they stay correct as the set grows.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="10" y="18" width="134" height="60" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5"/>
-          <rect x="156" y="18" width="134" height="60" rx="12" fill="#f0ebe2"/>
-          <g fill="#f0ebe2"><rect x="26" y="34" width="28" height="28" rx="8"/><rect x="64" y="40" width="62" height="7" rx="3.5" opacity=".5"/><rect x="64" y="54" width="44" height="7" rx="3.5" opacity=".3"/></g>
-          <g fill="#0e0d0c"><rect x="172" y="34" width="28" height="28" rx="8"/><rect x="210" y="40" width="62" height="7" rx="3.5" opacity=".5"/><rect x="210" y="54" width="44" height="7" rx="3.5" opacity=".3"/></g>
-          <rect x="10" y="92" width="134" height="60" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5"/>
-          <rect x="156" y="92" width="134" height="60" rx="12" fill="#1e1c18"/>
-          <g><rect x="26" y="108" width="28" height="28" rx="8" fill="#3b82f6"/><rect x="64" y="114" width="62" height="7" rx="3.5" fill="#3b82f6" opacity=".5"/><rect x="64" y="128" width="44" height="7" rx="3.5" fill="#3b82f6" opacity=".3"/></g>
-          <g><rect x="172" y="108" width="28" height="28" rx="8" fill="#e879a0"/><rect x="210" y="114" width="62" height="7" rx="3.5" fill="#e879a0" opacity=".5"/><rect x="210" y="128" width="44" height="7" rx="3.5" fill="#e879a0" opacity=".3"/></g>
-        </svg></div>
-        </div>
-        <div class="dslide" data-i="3">
+<div class="dslide" data-i="4">
           <div class="dslide-body"><div class="slide-kicker">The vocabulary</div>
           <h3>Asset anatomy</h3>
           <p>Whole, base, emblem, glyph: a small vocabulary that makes every asset describable, argued out in Teams.</p></div>
@@ -1217,9 +1269,9 @@
         <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
         <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
         <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
+        <button class="ddot" data-i="4" type="button" aria-label="Slide 5"></button>
       </div>
     </div>
-    <p class="stream-credit">Built with Alex (technical review), Carlo (visual direction), and Ada and Sihan (anatomy and naming).</p>
   </div>
 
   <hr class="stream-rule">
@@ -1229,51 +1281,109 @@
     <div class="slabel">Illustration</div>
     <div class="stream-head"><h2>Windows Illustrations</h2></div>
     <p class="stream-lede">
-      Illustration spun out of expressive assets into its own system, built as typed pieces instead of a folder of finished drawings, so every asset lands on both light and dark.
+      In my spare time I started picking up Windows illustration requests and updates. That turned into a system: guidelines in progress, a shape vocabulary that makes illustrations composable, a way to bring other Microsoft styles in and theme them, and the tooling to build new ones.
     </p>
 
             <div class="deck" data-deck="illustration">
       <div class="deck-crumbs" role="tablist">
-        <button class="crumb is-on" data-i="0" type="button">Taxonomy</button>
-        <button class="crumb" data-i="1" type="button">Pilot set</button>
-        <span class="deck-count">1 / 2</span>
+        <button class="crumb is-on" data-i="0" type="button">The system</button>
+        <button class="crumb" data-i="1" type="button">Guidelines</button>
+        <button class="crumb crumb-live" data-i="2" type="button">Other styles</button>
+        <button class="crumb crumb-live" data-i="3" type="button">Theming</button>
+        <button class="crumb crumb-live" data-i="4" type="button">Tooling</button>
+        <span class="deck-count">1 / 5</span>
       </div>
       <div class="deck-stage">
         <div class="dslide is-on" data-i="0">
-          <div class="dslide-body"><div class="slide-kicker">The structure</div>
-          <h3>The shape taxonomy</h3>
-          <p>Base, secondary and tertiary shapes, typed so new illustrations can be generated from them later.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="16" y="18" width="88" height="88" rx="22" fill="#37332b"/>
-          <text x="16" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">base</text>
-          <rect x="120" y="34" width="72" height="72" rx="20" fill="#3b82f6" opacity=".55"/>
-          <text x="120" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">secondary</text>
-          <rect x="208" y="46" width="52" height="52" rx="16" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/>
-          <circle cx="234" cy="72" r="11" fill="#e879a0" opacity=".85"/>
-          <text x="208" y="126" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6560">tertiary</text>
-          <path d="M16 142 h244" stroke="#2b2822" stroke-width="1.5"/>
+          <div class="dslide-body"><div class="slide-kicker">The system</div>
+          <h3>Windows Illustrations</h3>
+          <p>It started with illustration requests and updates picked up in spare time. Doing them one at a time showed what was missing, so it became a system of typed shapes that can be composed and themed.</p></div>
+          <div class="dslide-vis is-art"><svg class="cv" viewBox="0 0 960 540" aria-hidden="true">
+          <defs><linearGradient id="ilWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
+            <clipPath id="ilClip"><rect width="160" height="96" rx="9"/></clipPath>
+            <pattern id="ilDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
+            <marker id="ilA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
+          <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#ilDots)"/>
+          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
+          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
+          <text x="56" y="146" class="cv-season">Started as a side project</text>
+          <text x="56" y="200" class="cv-title">Windows</text>
+          <text x="56" y="250" class="cv-title">Illustrations</text>
+          <text x="56" y="298" class="cv-desc"><tspan x="56" dy="0">Started by picking up illustration</tspan><tspan x="56" dy="22">requests and updates in spare time,</tspan><tspan x="56" dy="22">now a system built from typed pieces.</tspan></text>
+          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
+          <text x="56" y="420" class="cv-k">Built from</text><text x="56" y="442" class="cv-v">Base · Secondary · Tertiary shapes</text>
+          <text x="56" y="476" class="cv-k">Rule</text><text x="56" y="498" class="cv-v">One asset lands on light and dark</text>
+          <text x="404" y="84" class="cv-k">The shape taxonomy</text>
+          <g class="cv-card" transform="translate(404 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="46" y="12" width="68" height="68" rx="20" fill="#37332b"/><rect x="18" y="30" width="20" height="20" rx="6" fill="#37332b" opacity=".6"/><rect x="122" y="40" width="22" height="22" rx="6" fill="#37332b" opacity=".6"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Base shapes</text></g></g><g class="cv-card" transform="translate(584 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><path d="M58 18h30l14 14v40a6 6 0 0 1-6 6H58a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6z" fill="#3b82f6" opacity=".85"/><path d="M88 18v9a5 5 0 0 0 5 5h9z" fill="#1d4ed8"/><rect x="60" y="48" width="26" height="4" rx="2" fill="#dbeafe" opacity=".6"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Secondary shapes</text></g></g><g class="cv-card" transform="translate(764 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><circle cx="80" cy="46" r="24" fill="#0e0d0c" stroke="#e879a0" stroke-width="2.5"/><path d="M70 47l7 7 13-14" fill="none" stroke="#e879a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Tertiary shapes</text></g></g><g class="cv-card" transform="translate(404 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="44" y="14" width="68" height="68" rx="20" fill="#37332b"/><path d="M62 26h24l12 12v30a5 5 0 0 1-5 5H62a5 5 0 0 1-5-5V31a5 5 0 0 1 5-5z" fill="#3b82f6" opacity=".85"/><circle cx="104" cy="26" r="12" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><path d="M99 26.5l3.5 3.5 6-6.5" fill="none" stroke="#e879a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Composed</text></g></g><g class="cv-card" transform="translate(584 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#f3f3f3"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#c9c3b8"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On light</text></g></g><g class="cv-card" transform="translate(764 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#0e0d0c"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#37332b"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On dark</text></g></g>
         </svg></div>
         </div>
-        <div class="dslide" data-i="1">
-          <div class="dslide-body"><div class="slide-kicker">The approach</div>
-          <h3>Pilot set and guidelines</h3>
-          <p>Twelve pilot assets, perfected first, then used to write the guidelines and rebuild the back catalog.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <g fill="#2b2822">
-            <rect x="12" y="16" width="62" height="62" rx="16"/><rect x="82" y="16" width="62" height="62" rx="16"/>
-            <rect x="222" y="16" width="62" height="62" rx="16"/>
-            <rect x="12" y="90" width="62" height="62" rx="16"/><rect x="152" y="90" width="62" height="62" rx="16"/>
-            <rect x="222" y="90" width="62" height="62" rx="16"/>
-          </g>
-          <rect x="152" y="16" width="62" height="62" rx="16" fill="#3b82f6" opacity=".6"/>
-          <rect x="82" y="90" width="62" height="62" rx="16" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <circle cx="113" cy="121" r="13" fill="#22c55e" opacity=".8"/>
+<div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">In progress</div>
+          <h3>The guidelines</h3>
+          <p>Guidelines written from a pilot set of twelve assets: the shape taxonomy, color roles, and the rule that one asset has to land on both light and dark.</p></div>
+          <div class="dslide-vis is-art"><svg class="lp" viewBox="0 0 960 540" aria-hidden="true">
+          <rect width="960" height="540" fill="#161616"/>
+          <text x="48" y="80" class="lp-h">Illustration guidelines</text>
+          <g transform="translate(846 60)"><rect width="66" height="26" rx="13" fill="rgba(232,121,160,.12)" stroke="rgba(232,121,160,.5)"/><text x="33" y="17.5" text-anchor="middle" class="gd-wip">WIP</text></g>
+          <g transform="translate(48 120)"><rect width="196" height="252" rx="6" fill="#f6f5f2"/><text x="16" y="28" class="gd-t">Shape taxonomy</text><line x1="16" y1="38" x2="180" y2="38" stroke="#e2dfd8"/><g transform="translate(16 52)"><rect x="0" y="0" width="48" height="48" rx="14" fill="#c9c3b8"/><path d="M58 4h24l10 10v30a4 4 0 0 1-4 4H58a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#3b82f6"/><circle cx="130" cy="24" r="16" fill="#fff" stroke="#e879a0" stroke-width="2.5"/><rect x="0" y="70" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="80" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="90" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="100" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="110" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="120" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="130" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="140" width="132" height="4" rx="2" fill="#dcd8d0"/></g></g>
+          <g transform="translate(264 120)"><rect width="196" height="252" rx="6" fill="#f6f5f2"/><text x="16" y="28" class="gd-t">Color roles</text><line x1="16" y1="38" x2="180" y2="38" stroke="#e2dfd8"/><g transform="translate(16 52)"><rect x="0" y="0" width="28" height="18" rx="4" fill="#3b82f6" opacity="1.0"/><rect x="33" y="0" width="28" height="18" rx="4" fill="#3b82f6" opacity="0.8200000000000001"/><rect x="66" y="0" width="28" height="18" rx="4" fill="#3b82f6" opacity="0.64"/><rect x="99" y="0" width="28" height="18" rx="4" fill="#3b82f6" opacity="0.45999999999999996"/><rect x="132" y="0" width="28" height="18" rx="4" fill="#3b82f6" opacity="0.28"/><rect x="0" y="22" width="28" height="18" rx="4" fill="#22c55e" opacity="1.0"/><rect x="33" y="22" width="28" height="18" rx="4" fill="#22c55e" opacity="0.8200000000000001"/><rect x="66" y="22" width="28" height="18" rx="4" fill="#22c55e" opacity="0.64"/><rect x="99" y="22" width="28" height="18" rx="4" fill="#22c55e" opacity="0.45999999999999996"/><rect x="132" y="22" width="28" height="18" rx="4" fill="#22c55e" opacity="0.28"/><rect x="0" y="44" width="28" height="18" rx="4" fill="#e879a0" opacity="1.0"/><rect x="33" y="44" width="28" height="18" rx="4" fill="#e879a0" opacity="0.8200000000000001"/><rect x="66" y="44" width="28" height="18" rx="4" fill="#e879a0" opacity="0.64"/><rect x="99" y="44" width="28" height="18" rx="4" fill="#e879a0" opacity="0.45999999999999996"/><rect x="132" y="44" width="28" height="18" rx="4" fill="#e879a0" opacity="0.28"/><rect x="0" y="80" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="90" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="100" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="110" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="120" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="130" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="140" width="160" height="4" rx="2" fill="#dcd8d0"/></g></g>
+          <g transform="translate(480 120)"><rect width="196" height="252" rx="6" fill="#f6f5f2"/><text x="16" y="28" class="gd-t">Light and dark</text><line x1="16" y1="38" x2="180" y2="38" stroke="#e2dfd8"/><g transform="translate(16 52)"><rect x="0" y="0" width="78" height="60" rx="5" fill="#ecebe7"/><rect x="24" y="12" width="30" height="36" rx="9" fill="#3b82f6"/><rect x="86" y="0" width="78" height="60" rx="5" fill="#1a1916"/><rect x="110" y="12" width="30" height="36" rx="9" fill="#3b82f6"/><rect x="0" y="80" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="90" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="100" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="110" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="120" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="130" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="140" width="160" height="4" rx="2" fill="#dcd8d0"/></g></g>
+          <g transform="translate(696 120)"><rect width="196" height="252" rx="6" fill="#f6f5f2"/><text x="16" y="28" class="gd-t">Pilot set</text><line x1="16" y1="38" x2="180" y2="38" stroke="#e2dfd8"/><g transform="translate(16 52)"><rect x="0" y="0" width="34" height="34" rx="10" fill="#3b82f6"/><rect x="42" y="0" width="34" height="34" rx="10" fill="#c9c3b8"/><rect x="84" y="0" width="34" height="34" rx="10" fill="#e879a0"/><rect x="126" y="0" width="34" height="34" rx="10" fill="#22c55e"/><rect x="0" y="40" width="34" height="34" rx="10" fill="#3b82f6"/><rect x="42" y="40" width="34" height="34" rx="10" fill="#c9c3b8"/><rect x="84" y="40" width="34" height="34" rx="10" fill="#e879a0"/><rect x="126" y="40" width="34" height="34" rx="10" fill="#22c55e"/><rect x="0" y="80" width="34" height="34" rx="10" fill="#3b82f6"/><rect x="42" y="80" width="34" height="34" rx="10" fill="#c9c3b8"/><rect x="84" y="80" width="34" height="34" rx="10" fill="#e879a0"/><rect x="126" y="80" width="34" height="34" rx="10" fill="#22c55e"/><rect x="0" y="128" width="160" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="138" width="132" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="148" width="104" height="4" rx="2" fill="#dcd8d0"/><rect x="0" y="158" width="160" height="4" rx="2" fill="#dcd8d0"/></g></g>
+          <text x="48" y="412" class="lp-s">Written from the pilot set out, not top down: every rule is backed by an asset that already follows it.</text>
         </svg></div>
+        </div>
+<div class="dslide" data-i="2">
+          <div class="dslide-body"><div class="slide-kicker">Other styles</div>
+          <h3>Adapting other illustration styles</h3>
+          <p>Other Microsoft styles come in, every shape gets tagged, Outline and Filled variants are derived by script, and the result themes with the same color roles as the icons.</p>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener">Open the Gallery <span>&rarr;</span></a></div>
+          <div class="dslide-vis is-split">
+          <div class="sp-cell sp-expl"><svg class="tp" viewBox="0 0 400 480" aria-hidden="true">
+            <defs><marker id="adA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
+            <g transform="translate(28 28)"><rect width="344" height="74" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="28" class="tp-n">01</text><text x="42" y="28" class="tp-h">Bring the style in</text><text x="42" y="52" class="tp-s">M365, OOBE and device illustrations</text></g>
+            <line x1="200" y1="104" x2="200" y2="126" stroke="#8a847b" stroke-width="1.5" marker-end="url(#adA)"/>
+            <g transform="translate(28 132)"><rect width="344" height="74" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="28" class="tp-n">02</text><text x="42" y="28" class="tp-h">Tag every shape</text><text x="42" y="52" class="tp-s">A structural ID and a color ID per shape</text></g>
+            <line x1="200" y1="208" x2="200" y2="230" stroke="#8a847b" stroke-width="1.5" marker-end="url(#adA)"/>
+            <g transform="translate(28 236)"><rect width="344" height="74" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="28" class="tp-n">03</text><text x="42" y="28" class="tp-h">Derive the variants</text><text x="42" y="52" class="tp-s">Outline and Filled, generated by script</text></g>
+            <line x1="200" y1="312" x2="200" y2="334" stroke="#8a847b" stroke-width="1.5" marker-end="url(#adA)"/>
+            <g transform="translate(28 340)"><rect width="344" height="74" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="28" class="tp-n">04</text><text x="42" y="28" class="tp-h">Theme with the system</text><text x="42" y="52" class="tp-s">Same color roles as the icon library</text></g>
+            <text x="28" y="450" class="tp-s">Shapes that can't split cleanly are flagged for review</text>
+          </svg></div>
+          <a class="sp-cell sp-file" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener" style="background:#fbfbfb"><img src="shot-illo-gallery.webp" alt="The Gallery showing the 40 M365 illustrations, with Standard, Outline and Filled styles in the detail panel" loading="lazy"><span class="sp-tag">In the Gallery &nearr;</span></a>
+        </div>
+        </div>
+<div class="dslide" data-i="3">
+          <div class="dslide-body"><div class="slide-kicker">Theming</div>
+          <h3>Illustrations that theme</h3>
+          <p>Because every shape carries a color role, illustrations recolor alongside icons in the Customizer instead of being redrawn per theme.</p></div>
+          <div class="dslide-vis is-shot"><a class="browser" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-illo-theming.webp" alt="The Customizer in Roles mode with the illustration set, themed from one seed color" loading="lazy"></a></div>
+        </div>
+<div class="dslide" data-i="4">
+          <div class="dslide-body"><div class="slide-kicker">Tooling</div>
+          <h3>All the tooling</h3>
+          <p>A Builder that composes new illustrations from the pieces, recipes that return three options for a concept, and scripts that keep the library tagged and valid.</p>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener">Open the Builder <span>&rarr;</span></a></div>
+          <div class="dslide-vis is-split">
+          <div class="sp-cell sp-expl"><svg class="tp" viewBox="0 0 400 480" aria-hidden="true">
+            <text x="28" y="44" class="tp-h">The tooling</text>
+            <g transform="translate(28 64)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Illustration Builder</text><text x="16" y="42" class="tp-s">Compose from typed pieces, with a shape browser</text></g><g transform="translate(28 130)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Recipes</text><text x="16" y="42" class="tp-s">Ask for a concept, get three options back</text></g><g transform="translate(28 196)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Library scripts</text><text x="16" y="42" class="tp-s">Normalize, tag, validate and index every asset</text></g><g transform="translate(28 262)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Gallery + Customizer</text><text x="16" y="42" class="tp-s">Browse illustrations, theme them with icons</text></g><g transform="translate(28 328)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Next: generation</text><text x="16" y="42" class="tp-s">Internal only, with human review before use</text></g>
+          </svg></div>
+          <a class="sp-cell sp-file" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener" style="background:#fbfbfb"><img src="shot-builder.webp" alt="The Windows Illustration Builder: layers on the left, a composed illustration on the canvas, and the shape browser on the right" loading="lazy"><span class="sp-tag">Open the Builder &nearr;</span></a>
+        </div>
         </div>
       </div>
       <div class="deck-dots">
         <button class="ddot is-on" data-i="0" type="button" aria-label="Slide 1"></button>
         <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
+        <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
+        <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
+        <button class="ddot" data-i="4" type="button" aria-label="Slide 5"></button>
       </div>
     </div>
   </div>
