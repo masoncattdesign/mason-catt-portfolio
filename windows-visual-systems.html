@@ -660,6 +660,40 @@
     .ov-copy { padding: 22px 20px; } .ov-facts div { grid-template-columns: 96px 1fr; } .ov-copy .ov-title { font-size: 26px; } .ov-desc { font-size: 14px; }
     .ov-art { aspect-ratio: auto; padding: 46px 8px 12px; } .dslide-vis .ov-art svg { height: auto; }
   }
+
+  .crumb-wip::after { content: 'wip'; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-pink); opacity: .85; }
+  /* Tooling: pick a tool on the left, preview it in the browser on the right */
+  .dslide-vis.is-tools { display: grid; grid-template-columns: .72fr 1.28fr; gap: 18px; padding: 0; background: none; border: 0;
+                         overflow: visible; align-items: stretch; min-height: 0; }
+  .tl-list { display: flex; flex-direction: column; gap: 6px; justify-content: center; min-width: 0; }
+  .tl-item { appearance: none; text-align: left; font: inherit; cursor: pointer; display: grid; gap: 2px;
+             padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2);
+             transition: border-color .2s ease, background .2s ease; }
+  .tl-item:hover { border-color: var(--border2); }
+  .tl-item.is-on { border-color: rgba(34,197,94,.5); background: rgba(34,197,94,.06); }
+  .tl-n { font-size: 13px; font-weight: 500; color: var(--cream); }
+  .tl-item.is-on .tl-n { color: var(--accent); }
+  .tl-s { font-size: 11.5px; line-height: 1.45; color: var(--cream3); }
+  .tl-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .tl-next { margin-top: 4px; padding: 8px 14px; border: 1px dashed var(--border2); border-radius: 10px; font-size: 11.5px; line-height: 1.45; color: var(--cream3); }
+  .tl-next span { font-size: 9.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-pink); margin-right: 6px; }
+  .tl-view { position: relative; display: grid; place-items: center; container-type: size; min-width: 0; min-height: 0; padding: 4px 2px 12px; }
+  .tl-pane { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .25s ease, transform .3s cubic-bezier(.2,.75,.25,1), border-color .2s ease, box-shadow .3s ease; }
+  .tl-pane.is-on { opacity: 1; visibility: visible; }
+  .tl-pane svg { display: block; width: 100%; height: auto; }
+  .browser-open.tl-drawn { opacity: 1; transform: none; color: var(--cream3); }
+  .tr-h { font: 500 22px var(--serif); fill: #2a2825; } .tr-s { font: 400 13px var(--sans); fill: #8a847b; }
+  .tr-in { font: 400 14px var(--sans); fill: #2a2825; } .tr-b { font: 600 13px var(--sans); fill: #0e0d0c; }
+  .tr-l { font: 500 13px var(--sans); fill: #3a3733; } .tr-k { font: 600 10.5px var(--sans); letter-spacing: .12em; fill: #8a847b; }
+  .tt-h { font: 500 22px var(--serif); fill: #f0ebe2; } .tt-s { font: 400 14px var(--sans); fill: #8a847b; }
+  .tt-p { font: 600 16px ui-monospace, Menlo, monospace; fill: #22c55e; } .tt-c { font: 500 16px ui-monospace, Menlo, monospace; fill: #f0ebe2; }
+  .tt-ok { font: 600 15px var(--sans); fill: #22c55e; }
+  @media (max-width: 860px) {
+    .dslide-vis.is-tools { grid-template-columns: 1fr; aspect-ratio: auto; padding: 0; }
+    .tl-list { flex-direction: row; flex-wrap: wrap; }
+    .tl-item { padding: 7px 11px; } .tl-s, .tl-next { display: none; }
+    .tl-view { aspect-ratio: 1.8; }
+  }
   @media (prefers-reduced-motion: reduce) { .dslide { transition: none; } }
 </style>
 </head>
@@ -1300,10 +1334,10 @@
             <div class="deck" data-deck="illustration">
       <div class="deck-crumbs" role="tablist">
         <button class="crumb is-on" data-i="0" type="button">The system</button>
-        <button class="crumb" data-i="1" type="button">Guidelines</button>
+        <button class="crumb crumb-wip" data-i="1" type="button">Guidelines</button>
         <button class="crumb crumb-live" data-i="2" type="button">Other styles</button>
         <button class="crumb crumb-live" data-i="3" type="button">Theming</button>
-        <button class="crumb crumb-live" data-i="4" type="button">Tooling</button>
+        <button class="crumb crumb-wip" data-i="4" type="button">Tooling</button>
         <span class="deck-count">1 / 5</span>
       </div>
       <div class="deck-stage">
@@ -1324,9 +1358,9 @@
           <g class="cv-card" transform="translate(404 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="46" y="12" width="68" height="68" rx="20" fill="#37332b"/><rect x="18" y="30" width="20" height="20" rx="6" fill="#37332b" opacity=".6"/><rect x="122" y="40" width="22" height="22" rx="6" fill="#37332b" opacity=".6"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Base shapes</text></g></g><g class="cv-card" transform="translate(584 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><path d="M58 18h30l14 14v40a6 6 0 0 1-6 6H58a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6z" fill="#3b82f6" opacity=".85"/><path d="M88 18v9a5 5 0 0 0 5 5h9z" fill="#1d4ed8"/><rect x="60" y="48" width="26" height="4" rx="2" fill="#dbeafe" opacity=".6"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Secondary shapes</text></g></g><g class="cv-card" transform="translate(764 108)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><circle cx="80" cy="46" r="24" fill="#0e0d0c" stroke="#e879a0" stroke-width="2.5"/><path d="M70 47l7 7 13-14" fill="none" stroke="#e879a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Tertiary shapes</text></g></g><g class="cv-card" transform="translate(404 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="44" y="14" width="68" height="68" rx="20" fill="#37332b"/><path d="M62 26h24l12 12v30a5 5 0 0 1-5 5H62a5 5 0 0 1-5-5V31a5 5 0 0 1 5-5z" fill="#3b82f6" opacity=".85"/><circle cx="104" cy="26" r="12" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><path d="M99 26.5l3.5 3.5 6-6.5" fill="none" stroke="#e879a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Composed</text></g></g><g class="cv-card" transform="translate(584 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#f3f3f3"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#c9c3b8"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/></g>
-            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On light</text></g></g><g class="cv-card" transform="translate(764 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#0e0d0c"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#37332b"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Tertiary shapes</text></g></g><g class="cv-card" transform="translate(404 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect x="44" y="14" width="68" height="68" rx="20" fill="#37332b"/><path d="M62 26h24l12 12v30a5 5 0 0 1-5 5H62a5 5 0 0 1-5-5V31a5 5 0 0 1 5-5z" fill="#3b82f6" opacity=".85"/><path d="M86 26v7a5 5 0 0 0 5 5h7z" fill="#1d4ed8"/><rect x="64" y="50" width="20" height="3.5" rx="1.75" fill="#dbeafe" opacity=".6"/><circle cx="108" cy="74" r="12" fill="#0e0d0c" stroke="#e879a0" stroke-width="2"/><path d="M103 74.5l3.5 3.5 6-6.5" fill="none" stroke="#e879a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">Composed</text></g></g><g class="cv-card" transform="translate(584 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#f3f3f3"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#c9c3b8"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/><path d="M88 28v5a5 5 0 0 0 5 5h5z" fill="#1d4ed8"/><rect x="67" y="50" width="18" height="3.5" rx="1.75" fill="#dbeafe" opacity=".7"/></g>
+            <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On light</text></g></g><g class="cv-card" transform="translate(764 278)"><g class="cv-lift"><g clip-path="url(#ilClip)"><rect width="160" height="96" rx="9" fill="#1f1d1a"/><rect width="160" height="96" fill="#0e0d0c"/><rect x="50" y="16" width="60" height="60" rx="18" fill="#37332b"/><path d="M66 28h22l10 10v26a5 5 0 0 1-5 5H66a5 5 0 0 1-5-5V33a5 5 0 0 1 5-5z" fill="#3b82f6"/><path d="M88 28v5a5 5 0 0 0 5 5h5z" fill="#1d4ed8"/><rect x="67" y="50" width="18" height="3.5" rx="1.75" fill="#dbeafe" opacity=".7"/></g>
             <rect width="160" height="96" rx="9" fill="none" stroke="rgba(255,255,255,.12)"/><text x="2" y="114" class="cv-lbl">On dark</text></g></g>
         </svg></div>
           </div>
@@ -1377,13 +1411,39 @@
           <h3>All the tooling</h3>
           <p>A Builder that composes new illustrations from the pieces, recipes that return three options for a concept, and scripts that keep the library tagged and valid.</p>
           <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener">Open the Builder <span>&rarr;</span></a></div>
-          <div class="dslide-vis is-split">
-          <div class="sp-cell sp-expl"><svg class="tp" viewBox="0 0 400 480" aria-hidden="true">
-            <text x="28" y="44" class="tp-h">The tooling</text>
-            <g transform="translate(28 64)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Illustration Builder</text><text x="16" y="42" class="tp-s">Compose from typed pieces, with a shape browser</text></g><g transform="translate(28 130)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Recipes</text><text x="16" y="42" class="tp-s">Ask for a concept, get three options back</text></g><g transform="translate(28 196)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Library scripts</text><text x="16" y="42" class="tp-s">Normalize, tag, validate and index every asset</text></g><g transform="translate(28 262)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Gallery + Customizer</text><text x="16" y="42" class="tp-s">Browse illustrations, theme them with icons</text></g><g transform="translate(28 328)"><rect width="344" height="56" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="16" y="24" class="tp-c">Next: generation</text><text x="16" y="42" class="tp-s">Internal only, with human review before use</text></g>
-          </svg></div>
-          <a class="sp-cell sp-file" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener" style="background:#fbfbfb"><img src="shot-builder.webp" alt="The Windows Illustration Builder: layers on the left, a composed illustration on the canvas, and the shape browser on the right" loading="lazy"><span class="sp-tag">Open the Builder &nearr;</span></a>
-        </div>
+          <div class="dslide-vis is-tools">
+          <div class="tl-list">
+            <button class="tl-item is-on" type="button" data-t="0" aria-pressed="true"><span class="tl-n">Illustration Builder</span><span class="tl-s">Compose from typed pieces, with a shape browser</span></button>
+            <button class="tl-item" type="button" data-t="1" aria-pressed="false"><span class="tl-n">Gallery</span><span class="tl-s">Browse the illustrations in every style</span></button>
+            <button class="tl-item" type="button" data-t="2" aria-pressed="false"><span class="tl-n">Customizer</span><span class="tl-s">Theme illustrations alongside icons</span></button>
+            <button class="tl-item" type="button" data-t="3" aria-pressed="false"><span class="tl-n">Recipes</span><span class="tl-s">Ask for a concept, get three options back</span></button>
+            <button class="tl-item" type="button" data-t="4" aria-pressed="false"><span class="tl-n">Library scripts</span><span class="tl-s">Normalize, tag, validate and index every asset</span></button>
+            <div class="tl-next"><span>Next</span> Generation, internal only, with human review before use</div>
+          </div>
+          <div class="tl-view">
+            <a class="browser tl-pane is-on" data-t="0" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/builder</span><span class="browser-open">Open &nearr;</span></span><img src="shot-builder.webp" alt="The Windows Illustration Builder: layers on the left, a composed illustration on the canvas, and the shape browser on the right" loading="lazy"></a>
+            <a class="browser tl-pane" data-t="1" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library</span><span class="browser-open">Open &nearr;</span></span><img src="shot-illo-gallery.webp" alt="The Gallery showing the M365 illustrations, with Standard, Outline and Filled styles in the detail panel" loading="lazy"></a>
+            <a class="browser tl-pane" data-t="2" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">expressive-assets-library/customizer</span><span class="browser-open">Open &nearr;</span></span><img src="shot-illo-theming.webp" alt="The Customizer in Roles mode with the illustration set, themed from one seed color" loading="lazy"></a>
+            <div class="browser tl-pane" data-t="3" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">illustration recipes</span><span class="browser-open tl-drawn">Drawn</span></span><svg viewBox="0 0 900 471" aria-hidden="true">
+<rect width="900" height="471" fill="#f7f6f3"/>
+<text x="40" y="70" class="tr-h">Recipes</text><text x="40" y="96" class="tr-s">Ask for a concept, get three options back, all built from typed pieces.</text>
+<rect x="40" y="118" width="300" height="34" rx="8" fill="#fff" stroke="#dcd8d1"/><text x="54" y="140" class="tr-in">Concept: security</text>
+<rect x="352" y="118" width="118" height="34" rx="8" fill="#22c55e"/><text x="411" y="140" text-anchor="middle" class="tr-b">Get options</text>
+<g transform="translate(40 180)"><rect width="176" height="244" rx="12" fill="#fff" stroke="#e6e3de"/><g transform="translate(0 22)"><rect x="38" y="30" width="100" height="100" rx="30" fill="#c9c3b8"/><path d="M88 50l26 10v22c0 16-11 26-26 32-15-6-26-16-26-32V60z" fill="#3b82f6"/><path d="M88 50v64c-15-6-26-16-26-32V60z" fill="#1d4ed8"/></g><text x="16" y="222" class="tr-l">Option A &middot; shield</text></g><g transform="translate(232 180)"><rect width="176" height="244" rx="12" fill="#fff" stroke="#e6e3de"/><g transform="translate(0 22)"><rect x="38" y="30" width="100" height="100" rx="30" fill="#c9c3b8"/><rect x="64" y="72" width="48" height="40" rx="8" fill="#3b82f6"/><path d="M74 72v-8a14 14 0 0 1 28 0v8" fill="none" stroke="#1d4ed8" stroke-width="7"/><circle cx="88" cy="91" r="5" fill="#dbeafe"/></g><text x="16" y="222" class="tr-l">Option B &middot; lock</text></g><g transform="translate(424 180)"><rect width="176" height="244" rx="12" fill="#fff" stroke="#e6e3de"/><g transform="translate(0 22)"><rect x="38" y="30" width="100" height="100" rx="30" fill="#c9c3b8"/><path d="M70 50h26l12 12v42a6 6 0 0 1-6 6H70a6 6 0 0 1-6-6V56a6 6 0 0 1 6-6z" fill="#3b82f6"/><path d="M96 50v8a4 4 0 0 0 4 4h8z" fill="#1d4ed8"/><circle cx="112" cy="106" r="14" fill="#fff" stroke="#e879a0" stroke-width="3"/><path d="M106 106.5l4 4 7-7.5" fill="none" stroke="#e879a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><text x="16" y="222" class="tr-l">Option C &middot; file + check</text></g>
+<g transform="translate(632 180)"><rect width="228" height="244" rx="12" fill="#fff" stroke="#e6e3de"/><text x="18" y="32" class="tr-k">EACH OPTION USES</text>
+<rect x="18" y="50" width="14" height="14" rx="4" fill="#c9c3b8"/><text x="42" y="62" class="tr-l">Base shape</text>
+<rect x="18" y="80" width="14" height="14" rx="3" fill="#3b82f6"/><text x="42" y="92" class="tr-l">Secondary shape</text>
+<circle cx="25" cy="117" r="7" fill="#fff" stroke="#e879a0" stroke-width="2"/><text x="42" y="122" class="tr-l">Tertiary badge</text>
+<line x1="18" y1="190" x2="210" y2="190" stroke="#eee"/><text x="18" y="216" class="tr-s">Same color roles as the icons</text></g>
+</svg></div>
+            <div class="browser tl-pane" data-t="4" style="--ar:1.9088"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">library scripts</span><span class="browser-open tl-drawn">Drawn</span></span><svg viewBox="0 0 900 471" aria-hidden="true">
+<rect width="900" height="471" fill="#121110"/>
+<text x="40" y="70" class="tt-h">Library scripts</text><text x="40" y="96" class="tt-s">Run before anything lands in the library</text>
+<text x="40" y="150" class="tt-p">&rsaquo;</text><text x="62" y="150" class="tt-c">normalize</text><text x="220" y="150" class="tt-ok">&#10003;</text><text x="244" y="150" class="tt-s">paths cleaned, artboards sized</text><text x="40" y="202" class="tt-p">&rsaquo;</text><text x="62" y="202" class="tt-c">tag</text><text x="220" y="202" class="tt-ok">&#10003;</text><text x="244" y="202" class="tt-s">every shape gets a type and a color role</text><text x="40" y="254" class="tt-p">&rsaquo;</text><text x="62" y="254" class="tt-c">validate</text><text x="220" y="254" class="tt-ok">&#10003;</text><text x="244" y="254" class="tt-s">checked on light and dark</text><text x="40" y="306" class="tt-p">&rsaquo;</text><text x="62" y="306" class="tt-c">index</text><text x="220" y="306" class="tt-ok">&#10003;</text><text x="244" y="306" class="tt-s">manifest updated for the Gallery</text>
+<rect x="40" y="378" width="820" height="1" fill="#2a2724"/><text x="40" y="414" class="tt-s">Output feeds the Gallery, the Customizer and the Builder</text>
+</svg></div>
+          </div>
+          </div>
         </div>
       </div>
       <div class="deck-dots">
@@ -1605,6 +1665,20 @@
     }
     row.insertBefore(make(-1), row.firstChild);
     row.appendChild(make(1));
+  });
+</script>
+<script>
+  // Tooling slide: each tool on the left swaps the preview in the browser on the right
+  document.querySelectorAll('.is-tools').forEach(function (box) {
+    var items = box.querySelectorAll('.tl-item'), panes = box.querySelectorAll('.tl-pane');
+    function pick(t) {
+      items.forEach(function (b) { var on = b.dataset.t === t; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      panes.forEach(function (p) { p.classList.toggle('is-on', p.dataset.t === t); });
+    }
+    items.forEach(function (b) {
+      b.addEventListener('click', function () { pick(b.dataset.t); });
+      b.addEventListener('mouseenter', function () { if (matchMedia('(hover: hover)').matches) pick(b.dataset.t); });
+    });
   });
 </script>
 <script src="wvs-gate.js" data-mode="page"></script>
