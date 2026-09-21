@@ -66,7 +66,7 @@
   .eco { font-size: 12px; color: var(--cream3); }
   .case-title { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
   .case-title em { font-style: italic; color: var(--accent); }
-  .case-subtitle { font-size: 17px; font-weight: 300; color: var(--cream2); line-height: 1.72; max-width: 760px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+  .case-subtitle { font-size: 17px; font-weight: 300; color: var(--cream2); line-height: 1.72; max-width: none; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
   .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; }
   .meta-item { padding: 20px 0; border-right: 1px solid var(--border); }
   .meta-item:last-child { border-right: none; }
@@ -79,7 +79,7 @@
   .hero-img-wrap { margin: 0; opacity: 0; animation: fadeIn 1s ease forwards 0.7s; }
   .hero-img-wrap img { width: 100%; height: auto; display: block; }
 
-  .case-body { max-width: var(--col); margin: 0 auto; padding: 80px 48px; }
+  .case-body { max-width: calc(var(--col) + 96px); margin: 0 auto; padding: 80px 48px; }
 
   .slabel { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
   .slabel::before { content: ''; width: 9px; height: 9px; flex-shrink: 0; background-color: currentColor; -webkit-mask: var(--bolt) no-repeat center/contain; mask: var(--bolt) no-repeat center/contain; }
@@ -144,7 +144,7 @@
   /* ---- additions for this page ---- */
 
   /* Jump index across the streams */
-  .stream-index { max-width: var(--col); margin: 56px auto 0; padding: 0 48px; }
+  .stream-index { max-width: calc(var(--col) + 96px); margin: 56px auto 0; padding: 0 48px; }
   .stream-index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .sx { background: var(--bg2); padding: 20px 22px; text-decoration: none; display: block; transition: background 0.2s; }
   .sx:hover { background: var(--bg3); }

@@ -66,7 +66,7 @@
     pointer-events: none;
   }
   .about-hero-inner {
-    max-width: 900px;
+    max-width: none;
   }
   .about-hero-headline-row {
     display: flex;
@@ -101,7 +101,7 @@
   .about-hero h1 em { font-style: italic; color: var(--accent-pink); }
   .about-hero-bio {
     font-size: 18px; font-weight: 300; color: var(--cream2); line-height: 1.75;
-    max-width: 620px; margin-bottom: 40px;
+    max-width: none; margin-bottom: 40px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
   }
   .about-hero-bio strong { font-weight: 500; color: var(--cream); }
@@ -265,6 +265,7 @@
 
   @media (max-width: 900px) {
     /* about.html */
+    .about-hero { padding: 116px 20px 64px; }
     .values-section { padding: 64px 20px; }
     .values-grid { grid-template-columns: 1fr; gap: 14px; }
     .contact-cta-btns { flex-wrap: wrap; flex-shrink: 1; }
