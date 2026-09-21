@@ -506,7 +506,6 @@
   .dslide-vis.is-art { padding: 0; background: #161616; }
   .dslide-vis.is-art svg { width: 100%; height: 100%; }
   .cv-meta { font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; fill: #8a8a8a; }
-  .cv-title { font: 600 40px var(--sans); letter-spacing: -.02em; fill: #f5f5f5; }
   .cv-desc { font: 400 15px var(--sans); fill: #a8a8a8; }
   .cv-pill { font: 500 13px var(--sans); fill: #22c55e; }
   .cv-chips text { font: 500 12px var(--sans); fill: #bdbdbd; }
@@ -519,14 +518,37 @@
   .cv .cv-card:hover { opacity: 1; }
   .cv .cv-card:hover .cv-lift { transform: translateY(-5px); }
   .cv .cv-card:hover .cv-ok { transform: scale(1.25); }
+  .cv-season { font: 600 12px var(--sans); letter-spacing: .16em; text-transform: uppercase; fill: #22c55e; }
+  .cv-title { font: 500 44px var(--serif); letter-spacing: -.02em; fill: #f5f5f5; }
+  .cv-k { font: 600 10.5px var(--sans); letter-spacing: .12em; text-transform: uppercase; fill: #7a7a7a; }
+  .cv-v { font: 500 13px var(--sans); fill: #d6d6d6; }
+  .lp-h { font: 400 22px var(--serif); fill: #f0ebe2; }
+  .lp-n { font: 500 12px var(--serif); fill: #22c55e; letter-spacing: .06em; }
+  .lp-e { font: 600 10.5px var(--sans); letter-spacing: .1em; text-transform: uppercase; fill: #8a847b; }
+  .lp-g { font: 500 12px var(--sans); fill: #22c55e; }
+  .dslide-vis.is-split { display: grid; grid-template-columns: .82fr 1.18fr; align-items: stretch; align-self: stretch; height: 100%; gap: 14px; padding: 0; background: none; border: 0; overflow: visible; }
+  .sp-cell { position: relative; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; min-width: 0; min-height: 0; }
+  .sp-expl { background: #161616; display: flex; }
+  .sp-cell { height: 100%; }
+  .sp-expl svg { width: 100%; height: 100%; }
+  .sp-file { background: #3c3c3c; display: flex; align-items: center; justify-content: center; }
+  .dslide-vis .sp-file img { width: 100%; height: 100%; object-fit: contain; }
+  .sp-tag { position: absolute; right: 10px; top: 10px; font-size: 10.5px; font-weight: 500; color: var(--cream2);
+            background: rgba(14,13,12,.8); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 100px; transition: color .2s, border-color .2s; }
+  .sp-file:hover .sp-tag { color: var(--accent); border-color: rgba(34,197,94,.5); }
+  .tp-n { font: 500 12px var(--serif); fill: #22c55e; }
+  .tp-h { font: 500 14px var(--sans); fill: #f0ebe2; }
+  .tp-c { font: 500 12px var(--sans); fill: #cfc8bd; }
+  .tp-slot { font: 500 10px var(--sans); letter-spacing: .06em; text-transform: uppercase; fill: #6b6560; }
+  .tp-slot-in { fill: #f5f5f5; }
+  .tp-s { font: 400 11.5px var(--sans); fill: #8a847b; }
+  @media (max-width: 860px) { .dslide-vis.is-split { grid-template-columns: 1fr; aspect-ratio: auto; } .sp-expl { aspect-ratio: 400 / 480; max-height: 420px; } .sp-file { aspect-ratio: 1.53; } }
   .lp-k { font: 600 10.5px var(--sans); letter-spacing: .12em; fill: #22c55e; }
   .lp-t { font: 500 17px var(--sans); fill: #f0ebe2; }
   .lp-s { font: 400 12px var(--sans); fill: #8a847b; }
   .lp-edge { font: 500 12px var(--sans); fill: #8a847b; }
   .lp-edge-g { fill: #22c55e; }
-  .lp-flow { stroke-dasharray: 6 6; animation: lp-flow 1.4s linear infinite; }
-  @keyframes lp-flow { to { stroke-dashoffset: -12; } }
-  @media (prefers-reduced-motion: reduce) { .lp-flow { animation: none; } .lp-dot { display: none; } .cv-card, .cv-lift { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .cv-card, .cv-lift { transition: none; } }
   /* A real capture sits in a drawn browser, the same frame the work hub uses:
      it is a page at a URL, and clicking it opens that page. The panel behind
      it goes away so the window floats on the deck instead of in a dark box. */
@@ -829,23 +851,18 @@
             <pattern id="cvDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.06)"/></pattern>
           </defs>
           <rect width="960" height="540" fill="#161616"/><rect width="960" height="540" fill="url(#cvDots)"/>
-          <text x="48" y="64" class="cv-meta">Windows Design Systems  ·  Marketing</text>
-          <g transform="translate(62 108)" fill="#22c55e">
-            <circle cx="-8" cy="-8" r="9"/><circle cx="8" cy="-8" r="9"/><circle cx="-8" cy="8" r="9"/><circle cx="8" cy="8" r="9"/>
-            <path d="M4 12 q8 14 2 26" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <text x="48" y="186" class="cv-title">Spring 2026</text>
-          <text x="48" y="232" class="cv-title">Marketing</text>
-          <text x="48" y="278" class="cv-title">Compendium</text>
-          <text x="48" y="320" class="cv-desc"><tspan x="48">Windows surfaces, features and products,</tspan><tspan x="48" dy="22">refined and approved for marketing use.</tspan></text>
-          <g transform="translate(48 364)"><rect width="212" height="34" rx="17" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)"/>
-            <circle cx="20" cy="17" r="8" fill="#22c55e"/><path d="M16.4 17.2l2.5 2.5 4.8-5.2" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="36" y="22" class="cv-pill">Approved for marketing</text></g>
-          <g transform="translate(48 424)" class="cv-chips">
-            <rect width="84" height="28" rx="14" fill="none" stroke="rgba(255,255,255,.18)"/><text x="42" y="19" text-anchor="middle">Surfaces</text>
-            <rect x="94" width="84" height="28" rx="14" fill="none" stroke="rgba(255,255,255,.18)"/><text x="136" y="19" text-anchor="middle">Features</text>
-            <rect x="188" width="84" height="28" rx="14" fill="none" stroke="rgba(255,255,255,.18)"/><text x="230" y="19" text-anchor="middle">Products</text>
-          </g>
+          <text x="56" y="72" class="cv-meta">Windows Design Systems</text>
+          <rect x="56" y="90" width="28" height="2" fill="#22c55e"/>
+          <text x="56" y="146" class="cv-season">Spring 2026</text>
+          <text x="56" y="200" class="cv-title">Marketing</text>
+          <text x="56" y="250" class="cv-title">Compendium</text>
+          <text x="56" y="298" class="cv-desc"><tspan x="56">The approved source for how Windows</tspan><tspan x="56" dy="22">looks in marketing: every surface, feature</tspan><tspan x="56" dy="22">and product, held to what shipped.</tspan></text>
+          <line x1="56" y1="384" x2="324" y2="384" stroke="rgba(255,255,255,.1)"/>
+          <text x="56" y="420" class="cv-k">Includes</text>
+          <text x="56" y="442" class="cv-v">Surfaces · Features · Products</text>
+          <text x="56" y="476" class="cv-k">Status</text>
+          <circle cx="62" cy="493" r="5" fill="#22c55e"/><path d="M59.6 493.2l1.7 1.7 3.2-3.5" fill="none" stroke="#0e0d0c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="73" y="498" class="cv-v">Approved for marketing</text>
           <g class="cv-card" style="--i:0" transform="translate(404 58)"><g class="cv-lift">
             <rect width="160" height="96" rx="9" fill="url(#cvWall)"/>
             <rect x="0" y="86" width="160" height="10" fill="rgba(245,245,245,.78)"/><g fill="#5b7fb5"><rect x="62" y="88.5" width="5" height="5" rx="1.2"/><rect x="70" y="88.5" width="5" height="5" rx="1.2"/><rect x="78" y="88.5" width="5" height="5" rx="1.2"/><rect x="86" y="88.5" width="5" height="5" rx="1.2"/><rect x="94" y="88.5" width="5" height="5" rx="1.2"/></g><rect x="14" y="14" width="10" height="10" rx="2" fill="rgba(255,255,255,.7)"/><rect x="14" y="30" width="10" height="10" rx="2" fill="rgba(255,255,255,.7)"/>
@@ -906,9 +923,35 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Built to scale</div>
           <h3>Templates</h3>
-          <p>Device templates for Windows 11 and Copilot+ PC at every spec, light and dark, so one layout scales across every marketing surface.</p>
+          <p>Templates adapt instead of being redrawn: predefined slots take in product screens and flex to color mode, market and audience, and automated Figma plugins export every version at scale.</p>
           <a class="slide-link" href="https://www.figma.com/design/eVlPXxepN2W78uIFeT0JQv/%F0%9F%8D%80-Spring-2026-Marketing-Compendium?node-id=2834-57626&amp;t=I3exIabwrYD97k5t-1" target="_blank" rel="noopener">Open in Figma <span>&rarr;</span></a></div>
-          <div class="dslide-vis is-shot"><a class="browser" href="https://www.figma.com/design/eVlPXxepN2W78uIFeT0JQv/%F0%9F%8D%80-Spring-2026-Marketing-Compendium?node-id=2834-57626&amp;t=I3exIabwrYD97k5t-1" target="_blank" rel="noopener" style="--ar:1.5304"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">figma.com / Spring 2026 Marketing Compendium</span><span class="browser-open">Open &nearr;</span></span><img src="shot-templates.webp" alt="Fall 2026 consumer templates: Windows 11 and Copilot+ PC device frames in light and dark, at 16x10, 16x9, 3x2, 2x3 tablet, 3x2 tablet and ultrawide specs" loading="lazy"></a></div>
+          <div class="dslide-vis is-split">
+          <div class="sp-cell sp-expl"><svg class="tp" viewBox="0 0 400 480" aria-hidden="true">
+            <defs><linearGradient id="tpWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
+              <marker id="tpA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker></defs>
+            <text x="28" y="40" class="tp-n">01</text><text x="54" y="40" class="tp-h">Inputs</text>
+            <g transform="translate(28 54)"><rect width="166" height="30" rx="8" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><rect x="9" y="9" width="14" height="11" rx="2" fill="url(#tpWall)"/><text x="30" y="19.5" class="tp-c">Product screen</text></g><g transform="translate(206 54)"><rect width="166" height="30" rx="8" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><circle cx="16" cy="15" r="6" fill="#f0ebe2"/><path d="M16 9a6 6 0 0 1 0 12z" fill="#0e0d0c" stroke="#f0ebe2" stroke-width="1"/><text x="30" y="19.5" class="tp-c">Color mode</text></g>
+            <g transform="translate(28 92)"><rect width="166" height="30" rx="8" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><circle cx="16" cy="15" r="6" fill="none" stroke="#8b9dc3" stroke-width="1.4"/><path d="M10 15h12M16 9c-3 3.5-3 8.5 0 12M16 9c3 3.5 3 8.5 0 12" fill="none" stroke="#8b9dc3" stroke-width="1.1"/><text x="30" y="19.5" class="tp-c">Market</text></g><g transform="translate(206 92)"><rect width="166" height="30" rx="8" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><circle cx="16" cy="12" r="3" fill="#e879a0"/><path d="M10.5 21a5.5 5.5 0 0 1 11 0" fill="#e879a0"/><text x="30" y="19.5" class="tp-c">Audience</text></g>
+            <line x1="200" y1="130" x2="200" y2="152" stroke="#8a847b" stroke-width="1.5" marker-end="url(#tpA)"/>
+            <text x="28" y="182" class="tp-n">02</text><text x="54" y="182" class="tp-h">Template with predefined slots</text>
+            <g transform="translate(28 196)">
+              <rect width="344" height="118" rx="10" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/>
+              <rect x="14" y="14" width="96" height="10" rx="5" fill="#3a352e"/><rect x="14" y="30" width="70" height="6" rx="3" fill="#2b2822"/>
+              <text x="14" y="58" class="tp-slot">headline</text>
+              <rect x="136" y="12" width="194" height="94" rx="7" fill="none" stroke="#22c55e" stroke-width="1.4" stroke-dasharray="5 4"/>
+              <rect x="146" y="22" width="174" height="74" rx="4" fill="url(#tpWall)" opacity=".9"/>
+              <rect x="146" y="88" width="174" height="8" fill="rgba(245,245,245,.8)"/>
+              <text x="233" y="62" text-anchor="middle" class="tp-slot tp-slot-in">screen slot</text>
+              <rect x="14" y="72" width="54" height="16" rx="8" fill="none" stroke="#6b6560" stroke-dasharray="3 3"/>
+              <text x="14" y="104" class="tp-slot">mode · market</text>
+            </g>
+            <line x1="200" y1="318" x2="200" y2="340" stroke="#8a847b" stroke-width="1.5" marker-end="url(#tpA)"/>
+            <text x="28" y="370" class="tp-n">03</text><text x="54" y="370" class="tp-h">Plugin exports every version</text>
+            <g transform="translate(40 386)"><rect x="0" y="0" width="40" height="25" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="46" y="0" width="42" height="24" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/><rect x="94" y="0" width="36" height="24" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="136" y="0" width="22" height="33" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/><rect x="164" y="0" width="58" height="20" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="228" y="0" width="40" height="25" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/><rect x="274" y="0" width="42" height="24" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="0" y="40" width="40" height="25" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/><rect x="46" y="40" width="42" height="24" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="94" y="40" width="36" height="24" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/><rect x="136" y="40" width="22" height="33" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="164" y="40" width="58" height="20" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/><rect x="228" y="40" width="40" height="25" rx="3" fill="#9cc1ef" stroke="rgba(255,255,255,.18)"/><rect x="274" y="40" width="42" height="24" rx="3" fill="#1a2a55" stroke="rgba(255,255,255,.18)"/></g>
+            <text x="28" y="470" class="tp-s">Every spec × light and dark × market, in one pass</text>
+          </svg></div>
+          <a class="sp-cell sp-file" href="https://www.figma.com/design/eVlPXxepN2W78uIFeT0JQv/%F0%9F%8D%80-Spring-2026-Marketing-Compendium?node-id=2834-57626&amp;t=I3exIabwrYD97k5t-1" target="_blank" rel="noopener"><img src="shot-templates.webp" alt="Fall 2026 consumer templates in the Figma file: Windows 11 and Copilot+ PC device frames in light and dark, at 16x10, 16x9, 3x2, 2x3 tablet, 3x2 tablet and ultrawide" loading="lazy"><span class="sp-tag">In the Figma file &nearr;</span></a>
+        </div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">The loop</div>
@@ -916,36 +959,44 @@
           <p>Marketing-ready assets go into production, and the pixel-perfect versions go back to product design teams to level up their starter assets.</p></div>
           <div class="dslide-vis is-art"><svg class="lp" viewBox="0 0 960 540" aria-hidden="true">
           <defs><linearGradient id="lpWall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc1ef"/><stop offset=".55" stop-color="#4f86d9"/><stop offset="1" stop-color="#2a4f9e"/></linearGradient>
-            <marker id="lpHead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l7 4-7 4" fill="none" stroke="#6b6560" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
-            <marker id="lpHeadG" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l7 4-7 4" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-          <path class="lp-flow" d="M228 206 C 250 160, 300 146, 358 146" fill="none" stroke="#6b6560" stroke-width="2" marker-end="url(#lpHead)"/>
-          <text x="236" y="150" text-anchor="end" class="lp-edge">refine + approve</text>
-          <path class="lp-flow" d="M602 146 C 660 146, 710 160, 732 206" fill="none" stroke="#6b6560" stroke-width="2" marker-end="url(#lpHead)"/>
-          <text x="724" y="150" class="lp-edge">into production</text>
-          <path id="lpBack" class="lp-flow lp-back" d="M800 408 C 760 512, 200 512, 160 408" fill="none" stroke="#22c55e" stroke-width="2.2" marker-end="url(#lpHeadG)"/>
-          <text x="480" y="530" text-anchor="middle" class="lp-edge lp-edge-g">pixel-perfect assets go back to product design</text>
-          <circle class="lp-dot" r="5" fill="#22c55e"><animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#lpBack"/></animateMotion></circle>
-          <g class="lp-node lp-a" transform="translate(160 300)">
-            <rect x="-116" y="-90" width="232" height="192" rx="16" fill="#161512" stroke="rgba(240,235,226,.14)"/>
-            <g transform="translate(-92 -66)"><rect width="184" height="88" rx="8" fill="#1f1d1a" stroke="#3a352e" stroke-dasharray="5 4"/><rect x="14" y="14" width="70" height="8" rx="4" fill="#3a352e"/><rect x="14" y="30" width="156" height="20" rx="5" fill="none" stroke="#3a352e" stroke-dasharray="4 3"/><rect x="14" y="58" width="60" height="16" rx="5" fill="#3a352e"/><rect x="82" y="60" width="44" height="12" rx="4" fill="none" stroke="#3a352e" stroke-dasharray="3 3"/></g>
-            <text x="-92" y="44" class="lp-k">PRODUCT DESIGN</text>
-            <text x="-92" y="64" class="lp-t">Starter assets</text>
-            <text x="-92" y="80" class="lp-s">Rough, per-team, inconsistent</text>
+            <marker id="lpA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#8a847b"/></marker>
+            <marker id="lpG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1l7 4-7 4z" fill="#22c55e"/></marker></defs>
+          <text x="48" y="96" class="lp-h">How assets move</text>
+          <text x="912" y="96" text-anchor="end" class="lp-s">Every hand-off reviewed against product's plan of record</text>
+          <g transform="translate(48 150)">
+            <rect width="248" height="236" rx="14" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="20" y="32" class="lp-n">01</text>
+            <line x1="20" y1="46" x2="228" y2="46" stroke="rgba(240,235,226,.08)"/>
+            <g transform="translate(20 60)"><rect width="208" height="100" rx="8" fill="#1f1d1a" stroke="#3a352e" stroke-dasharray="5 4"/><rect x="14" y="14" width="76" height="8" rx="4" fill="#3a352e"/><rect x="14" y="32" width="180" height="22" rx="5" fill="none" stroke="#3a352e" stroke-dasharray="4 3"/><rect x="14" y="66" width="64" height="18" rx="5" fill="#3a352e"/><rect x="86" y="68" width="48" height="14" rx="4" fill="none" stroke="#3a352e" stroke-dasharray="3 3"/></g>
+            <text x="20" y="186" class="lp-k">PRODUCT DESIGN</text>
+            <text x="20" y="206" class="lp-t">Starter assets</text>
+            <text x="20" y="224" class="lp-s">Rough, per-team, inconsistent</text>
           </g>
-          <g class="lp-node lp-b" transform="translate(480 146)">
-            <rect x="-116" y="-90" width="232" height="192" rx="16" fill="#161512" stroke="rgba(240,235,226,.14)"/>
-            <g transform="translate(-92 -66)"><rect width="184" height="88" rx="8" fill="url(#lpWall)"/><rect x="40" y="8" width="104" height="66" rx="6" fill="#f5f5f5"/><rect x="48" y="15" width="88" height="7" rx="3.5" fill="#e0e0e0"/><rect x="50" y="28" width="10" height="10" rx="2.5" fill="#3b82f6"/><rect x="64" y="28" width="10" height="10" rx="2.5" fill="#22c55e"/><rect x="78" y="28" width="10" height="10" rx="2.5" fill="#e879a0"/><rect x="92" y="28" width="10" height="10" rx="2.5" fill="#f59e0b"/><rect x="106" y="28" width="10" height="10" rx="2.5" fill="#0ea5e9"/><rect x="120" y="28" width="10" height="10" rx="2.5" fill="#8b5cf6"/><rect x="50" y="42" width="10" height="10" rx="2.5" fill="#3b82f6"/><rect x="64" y="42" width="10" height="10" rx="2.5" fill="#22c55e"/><rect x="78" y="42" width="10" height="10" rx="2.5" fill="#e879a0"/><rect x="92" y="42" width="10" height="10" rx="2.5" fill="#f59e0b"/><rect x="106" y="42" width="10" height="10" rx="2.5" fill="#0ea5e9"/><rect x="120" y="42" width="10" height="10" rx="2.5" fill="#8b5cf6"/><rect x="0" y="78" width="184" height="10" fill="rgba(245,245,245,.85)"/><circle cx="172" cy="12" r="9" fill="#22c55e"/><path d="M168 12.2l2.6 2.6 5-5.4" fill="none" stroke="#0e0d0c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <text x="-92" y="44" class="lp-k">COMPENDIUM</text>
-            <text x="-92" y="64" class="lp-t">Marketing-ready</text>
-            <text x="-92" y="80" class="lp-s">Refined, pixel-perfect, approved</text>
+          <g transform="translate(356 150)">
+            <rect width="248" height="236" rx="14" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="20" y="32" class="lp-n">02</text>
+            <line x1="20" y1="46" x2="228" y2="46" stroke="rgba(240,235,226,.08)"/>
+            <g transform="translate(20 60)"><rect width="208" height="100" rx="8" fill="url(#lpWall)"/><rect x="48" y="10" width="112" height="72" rx="6" fill="#f5f5f5"/><rect x="56" y="18" width="96" height="7" rx="3.5" fill="#e0e0e0"/><rect x="60" y="32" width="10" height="10" rx="2.5" fill="#3b82f6"/><rect x="75" y="32" width="10" height="10" rx="2.5" fill="#22c55e"/><rect x="90" y="32" width="10" height="10" rx="2.5" fill="#e879a0"/><rect x="105" y="32" width="10" height="10" rx="2.5" fill="#f59e0b"/><rect x="120" y="32" width="10" height="10" rx="2.5" fill="#0ea5e9"/><rect x="135" y="32" width="10" height="10" rx="2.5" fill="#8b5cf6"/><rect x="60" y="47" width="10" height="10" rx="2.5" fill="#3b82f6"/><rect x="75" y="47" width="10" height="10" rx="2.5" fill="#22c55e"/><rect x="90" y="47" width="10" height="10" rx="2.5" fill="#e879a0"/><rect x="105" y="47" width="10" height="10" rx="2.5" fill="#f59e0b"/><rect x="120" y="47" width="10" height="10" rx="2.5" fill="#0ea5e9"/><rect x="135" y="47" width="10" height="10" rx="2.5" fill="#8b5cf6"/><rect x="0" y="90" width="208" height="10" fill="rgba(245,245,245,.85)"/><circle cx="194" cy="14" r="8" fill="#22c55e"/><path d="M190.6 14.2l2.3 2.3 4.4-4.8" fill="none" stroke="#0e0d0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="20" y="186" class="lp-k">COMPENDIUM</text>
+            <text x="20" y="206" class="lp-t">Marketing-ready</text>
+            <text x="20" y="224" class="lp-s">Refined, pixel-perfect, approved</text>
           </g>
-          <g class="lp-node lp-c" transform="translate(800 300)">
-            <rect x="-116" y="-90" width="232" height="192" rx="16" fill="#161512" stroke="rgba(240,235,226,.14)"/>
-            <g transform="translate(-92 -66)"><rect width="110" height="88" rx="8" fill="url(#lpWall)"/><rect x="10" y="12" width="60" height="8" rx="4" fill="rgba(255,255,255,.85)"/><rect x="10" y="26" width="42" height="6" rx="3" fill="rgba(255,255,255,.6)"/><rect x="10" y="66" width="36" height="12" rx="6" fill="#fff"/><rect x="118" y="0" width="66" height="40" rx="6" fill="#f5f5f5"/><rect x="124" y="6" width="54" height="20" rx="3" fill="url(#lpWall)"/><rect x="124" y="30" width="30" height="4" rx="2" fill="#d4d4d4"/><rect x="118" y="48" width="66" height="40" rx="6" fill="#0e0d0c" stroke="#3a352e"/><path d="M146 60l12 8-12 8z" fill="#f0ebe2"/></g>
-            <text x="-92" y="44" class="lp-k">PRODUCTION</text>
-            <text x="-92" y="64" class="lp-t">Campaigns + retail</text>
-            <text x="-92" y="80" class="lp-s">Web, store, social, video</text>
+          <g transform="translate(664 150)">
+            <rect width="248" height="236" rx="14" fill="#161512" stroke="rgba(240,235,226,.14)"/>
+            <text x="20" y="32" class="lp-n">03</text>
+            <line x1="20" y1="46" x2="228" y2="46" stroke="rgba(240,235,226,.08)"/>
+            <g transform="translate(20 60)"><rect width="124" height="100" rx="8" fill="url(#lpWall)"/><rect x="12" y="14" width="66" height="8" rx="4" fill="rgba(255,255,255,.85)"/><rect x="12" y="28" width="46" height="6" rx="3" fill="rgba(255,255,255,.6)"/><rect x="12" y="76" width="40" height="12" rx="6" fill="#fff"/><rect x="132" y="0" width="76" height="46" rx="6" fill="#f5f5f5"/><rect x="138" y="6" width="64" height="24" rx="3" fill="url(#lpWall)"/><rect x="138" y="35" width="34" height="4" rx="2" fill="#d4d4d4"/><rect x="132" y="54" width="76" height="46" rx="6" fill="#0e0d0c" stroke="#3a352e"/><path d="M164 68l13 9-13 9z" fill="#f0ebe2"/></g>
+            <text x="20" y="186" class="lp-k">PRODUCTION</text>
+            <text x="20" y="206" class="lp-t">Campaigns + retail</text>
+            <text x="20" y="224" class="lp-s">Web, store, social, video</text>
           </g>
+          <line x1="300" y1="268" x2="350" y2="268" stroke="#8a847b" stroke-width="1.5" marker-end="url(#lpA)"/>
+          <text x="325" y="256" text-anchor="middle" class="lp-e">Refine</text>
+          <line x1="608" y1="268" x2="658" y2="268" stroke="#8a847b" stroke-width="1.5" marker-end="url(#lpA)"/>
+          <text x="633" y="256" text-anchor="middle" class="lp-e">Ship</text>
+          <path d="M788 386 V 450 H 172 V 392" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#lpG)"/>
+          <rect x="330" y="438" width="300" height="24" rx="12" fill="#0e0d0c"/>
+          <text x="480" y="455" text-anchor="middle" class="lp-g">Pixel-perfect assets return to product design</text>
         </svg></div>
         </div>
       </div>
