@@ -144,7 +144,7 @@
   /* ---- additions for this page ---- */
 
   /* Jump index across the streams */
-  .stream-index { max-width: var(--col); margin: -32px auto 0; padding: 0 48px; }
+  .stream-index { max-width: var(--col); margin: 56px auto 0; padding: 0 48px; }
   .stream-index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .sx { background: var(--bg2); padding: 20px 22px; text-decoration: none; display: block; transition: background 0.2s; }
   .sx:hover { background: var(--bg3); }
@@ -179,7 +179,7 @@
     .nav-links { display: none; }
     .case-hero { padding: 108px 20px 0; }
     .case-body { padding: 56px 20px; }
-    .stream-index { padding: 0 20px; margin-top: -20px; }
+    .stream-index { padding: 0 20px; margin-top: 36px; }
     .stream-index-grid { grid-template-columns: 1fr 1fr; }
     .meta-strip { grid-template-columns: 1fr 1fr; }
     .meta-item { border-bottom: 1px solid var(--border); }
@@ -822,24 +822,8 @@
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">What it produces</div>
           <h3>Test directions</h3>
-          <p>Default, Flat, Outline, Tinted, Chroma and Acrylic, all driven from a single seed. These are test directions, not proposals. They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled. Testing is early and has not surfaced much yet.</p></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <g>
-            <rect x="10" y="20" width="40" height="54" rx="12" fill="#22c55e" opacity=".9"/>
-            <rect x="58" y="20" width="40" height="54" rx="12" fill="#2b2822"/>
-            <rect x="106" y="20" width="40" height="54" rx="12" fill="none" stroke="#6b6560" stroke-width="2"/>
-            <rect x="154" y="20" width="40" height="54" rx="12" fill="#3b82f6" opacity=".5"/>
-            <rect x="202" y="20" width="40" height="54" rx="12" fill="#e879a0" opacity=".45"/>
-            <rect x="250" y="20" width="40" height="54" rx="12" fill="#37332b"/>
-          </g>
-          <rect x="10" y="88" width="280" height="2" rx="1" fill="#2b2822"/>
-          <g fill="#2b2822">
-            <rect x="10" y="104" width="40" height="10" rx="5"/><rect x="58" y="104" width="40" height="10" rx="5"/>
-            <rect x="106" y="104" width="40" height="10" rx="5"/><rect x="154" y="104" width="40" height="10" rx="5"/>
-            <rect x="202" y="104" width="40" height="10" rx="5"/><rect x="250" y="104" width="40" height="10" rx="5"/>
-          </g>
-          <text x="10" y="146" font-family="DM Sans, sans-serif" font-size="12" fill="#6b6560">identical conditions</text>
-        </svg></div>
+          <p>Flat, Outline, Roles, Tinted, Soft, Dichromic and Acrylic, set against the Default originals and all driven from a single seed. These are test directions, not proposals. They exist so the team can see what the range actually looks like before anyone commits, and nothing in them is settled. Testing is early and has not surfaced much yet.</p></div>
+          <div class="dslide-vis is-shot"><img src="shot-customizer-outline.webp" alt="The Customizer style list, with the Outline direction applied across the canvas" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Not bolted on</div>
@@ -947,7 +931,7 @@
       <div class="deck-crumbs" role="tablist">
         <button class="crumb crumb-live is-on" data-i="0" type="button">Gallery</button>
         <button class="crumb crumb-live" data-i="1" type="button">Customizer</button>
-        <button class="crumb" data-i="2" type="button">Builders</button>
+        <button class="crumb crumb-live" data-i="2" type="button">Builders</button>
         <button class="crumb crumb-live" data-i="3" type="button">System map</button>
         <span class="deck-count">1 / 4</span>
       </div>
@@ -956,65 +940,23 @@
           <div class="dslide-body"><div class="slide-kicker">Browse</div>
           <h3>The Gallery</h3>
           <p>Where the library gets looked at. Filter by collection, style and size, check any drawing against light and dark, copy or download it. It reads from the same published manifest everything else downstream does, and has a companion Figma file for people who would rather work in the file.</p>
-          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library" target="_blank" rel="noopener">Open the library site <span>&rarr;</span></a></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="16" y="16" width="180" height="22" rx="11" fill="#1e1c18"/>
-          <circle cx="30" cy="27" r="5.5" fill="none" stroke="#6b6560" stroke-width="1.6"/><path d="M34 31 l4 4" stroke="#6b6560" stroke-width="1.6" stroke-linecap="round"/>
-          <rect x="212" y="16" width="72" height="22" rx="11" fill="#1e1c18"/>
-          <g fill="#2b2822">
-            <rect x="16" y="52" width="60" height="46" rx="10"/><rect x="84" y="52" width="60" height="46" rx="10"/>
-            <rect x="220" y="52" width="64" height="46" rx="10"/>
-            <rect x="16" y="108" width="60" height="46" rx="10"/><rect x="84" y="108" width="60" height="46" rx="10"/>
-            <rect x="152" y="108" width="60" height="46" rx="10"/><rect x="220" y="108" width="64" height="46" rx="10"/>
-          </g>
-          <rect x="152" y="52" width="60" height="46" rx="10" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <circle cx="182" cy="75" r="11" fill="#22c55e" opacity=".8"/>
-        </svg></div>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/" target="_blank" rel="noopener">Open the Gallery <span>&rarr;</span></a></div>
+          <div class="dslide-vis is-shot"><img src="shot-gallery.webp" alt="The Gallery: 3,280 assets browsable by collection, with a detail panel for style, size and color" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">Alter</div>
           <h3>The Customizer</h3>
           <p>Style a set at once and tune it: palette, stroke, texture, surface. Any slot swaps for anything in the library. It is the piece that sits in both halves of this page, because making assets and theming them are the same operation seen from two ends.</p>
-          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library" target="_blank" rel="noopener">Open the library site <span>&rarr;</span></a></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="16" y="16" width="104" height="138" rx="11" fill="#1e1c18"/>
-          <circle cx="40" cy="42" r="13" fill="#22c55e"/>
-          <g fill="#2b2822"><rect x="62" y="36" width="44" height="6" rx="3"/><rect x="62" y="48" width="30" height="6" rx="3"/></g>
-          <g fill="#0e0d0c"><rect x="30" y="74" width="76" height="6" rx="3"/><rect x="30" y="94" width="76" height="6" rx="3"/><rect x="30" y="114" width="76" height="6" rx="3"/></g>
-          <circle cx="76" cy="77" r="6" fill="#f0ebe2" opacity=".85"/><circle cx="56" cy="97" r="6" fill="#f0ebe2" opacity=".85"/><circle cx="92" cy="117" r="6" fill="#f0ebe2" opacity=".85"/>
-          <g>
-            <rect x="136" y="26" width="46" height="46" rx="13" fill="#22c55e" opacity=".85"/>
-            <rect x="192" y="26" width="46" height="46" rx="13" fill="#22c55e" opacity=".6"/>
-            <rect x="248" y="26" width="36" height="46" rx="13" fill="#22c55e" opacity=".38"/>
-            <rect x="136" y="82" width="46" height="46" rx="13" fill="#22c55e" opacity=".5"/>
-            <rect x="192" y="82" width="46" height="46" rx="13" fill="#22c55e" opacity=".3"/>
-            <rect x="248" y="82" width="36" height="46" rx="13" fill="#22c55e" opacity=".18"/>
-          </g>
-        </svg></div>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener">Open the Customizer <span>&rarr;</span></a></div>
+          <div class="dslide-vis is-shot"><img src="shot-customizer.webp" alt="The Customizer: asset style modes on the left, a twelve-icon canvas, and controls on the right" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Make</div>
           <h3>The Builders</h3>
           <p>Three generators that assemble new assets from the typed pieces once there are good recipes: ask for a concept and get usable options back instead of a blank canvas. Built to run as separate modes first, then fold together, so the icon and illustration streams can move in parallel.</p>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/builder-windowswip.html" target="_blank" rel="noopener">Open the Illustration Builder <span>&rarr;</span></a>
           <!-- TODO Mason: name the three builders here, then delete this comment. --></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <g fill="#2b2822">
-            <rect x="14" y="52" width="34" height="34" rx="10"/><rect x="14" y="94" width="34" height="34" rx="10"/><rect x="14" y="10" width="34" height="34" rx="10"/>
-          </g>
-          <path d="M60 69 h20" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
-          <rect x="92" y="34" width="70" height="70" rx="18" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
-          <path d="M113 69 h28 M127 55 v28" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round"/>
-          <path d="M174 69 h20" stroke="#6b6560" stroke-width="2" stroke-linecap="round"/>
-          <g>
-            <rect x="206" y="18" width="38" height="38" rx="11" fill="#3b82f6" opacity=".6"/>
-            <rect x="252" y="18" width="34" height="38" rx="11" fill="#3b82f6" opacity=".35"/>
-            <rect x="206" y="66" width="38" height="38" rx="11" fill="#e879a0" opacity=".55"/>
-            <rect x="252" y="66" width="34" height="38" rx="11" fill="#e879a0" opacity=".3"/>
-            <rect x="206" y="114" width="80" height="38" rx="11" fill="#2b2822"/>
-          </g>
-        </svg></div>
+          <div class="dslide-vis is-shot"><img src="shot-builder.webp" alt="Windows Illustration Builder: layers on the left, a shield on a circle base in the canvas, shape picker and contrast checks on the right" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">How it fits together</div>
@@ -1053,48 +995,15 @@
           <div class="dslide-body"><div class="slide-kicker">The instrument</div>
           <h3>The Customizer, for theming</h3>
           <p>Seen from the theming end: pick a direction, push it through a whole family at once, and see it resolve under the same conditions every time. That last part is what makes two candidate directions actually comparable instead of one being a better mockup than the other.</p>
-          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library" target="_blank" rel="noopener">Open the library site <span>&rarr;</span></a></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="0" y="0" width="300" height="170" rx="14" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="16" y="16" width="86" height="138" rx="11" fill="#1e1c18"/>
-          <g fill="#2b2822"><rect x="28" y="30" width="62" height="7" rx="3.5"/></g>
-          <circle cx="40" cy="58" r="10" fill="#22c55e"/><circle cx="66" cy="58" r="10" fill="#3b82f6"/><circle cx="40" cy="84" r="10" fill="#e879a0"/><circle cx="66" cy="84" r="10" fill="#6b6560"/>
-          <g fill="#0e0d0c"><rect x="28" y="108" width="62" height="6" rx="3"/><rect x="28" y="126" width="62" height="6" rx="3"/></g>
-          <circle cx="72" cy="111" r="5.5" fill="#f0ebe2" opacity=".85"/><circle cx="50" cy="129" r="5.5" fill="#f0ebe2" opacity=".85"/>
-          <rect x="118" y="16" width="166" height="138" rx="12" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
-          <g>
-            <rect x="134" y="32" width="40" height="40" rx="12" fill="#22c55e" opacity=".85"/>
-            <rect x="184" y="32" width="40" height="40" rx="12" fill="#22c55e" opacity=".55"/>
-            <rect x="234" y="32" width="36" height="40" rx="12" fill="#22c55e" opacity=".3"/>
-            <rect x="134" y="82" width="40" height="40" rx="12" fill="#22c55e" opacity=".45"/>
-            <rect x="184" y="82" width="86" height="40" rx="12" fill="#1e1c18"/>
-          </g>
-          <rect x="134" y="132" width="136" height="10" rx="5" fill="#1e1c18"/>
-        </svg></div>
+          <a class="slide-link" href="https://masoncattdesign.github.io/expressive-assets-library/customizer.html" target="_blank" rel="noopener">Open the Customizer <span>&rarr;</span></a></div>
+          <div class="dslide-vis is-shot"><img src="shot-customizer-roles.webp" alt="The Customizer in Roles mode: one seed color theming the whole icon set through declared color groups" loading="lazy"></div>
         </div>
         <div class="dslide" data-i="1">
           <div class="dslide-body"><div class="slide-kicker">The pilot</div>
           <h3>Desktop Themer</h3>
           <p>Takes the same theming model out past the icon set and onto a prospective desktop: illustration, interface surfaces and wallpaper all moving together under one direction. It is where you find out whether a direction is actually a direction, or just a nice icon set.</p>
           <!-- TODO Mason: "Desktop Themer" is a working name for the old BentoOS. Swap to "Desktop Theming Pilot" if you prefer, then delete this comment. --></div>
-          <div class="dslide-vis"><svg viewBox="0 0 300 170" aria-hidden="true">
-          <rect x="0" y="0" width="300" height="170" rx="14" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
-          <rect x="8" y="8" width="284" height="132" rx="10" fill="#0e0d0c"/>
-          <rect x="8" y="8" width="284" height="132" rx="10" fill="#3b82f6" opacity=".12"/>
-          <g>
-            <rect x="24" y="24" width="52" height="52" rx="15" fill="#3b82f6" opacity=".7"/>
-            <rect x="86" y="24" width="52" height="52" rx="15" fill="#e879a0" opacity=".55"/>
-            <rect x="148" y="24" width="52" height="52" rx="15" fill="#22c55e" opacity=".5"/>
-            <rect x="210" y="24" width="66" height="52" rx="15" fill="#161512"/>
-            <rect x="226" y="40" width="34" height="8" rx="4" fill="#3b82f6" opacity=".7"/>
-            <rect x="226" y="54" width="22" height="8" rx="4" fill="#3b82f6" opacity=".4"/>
-          </g>
-          <rect x="24" y="90" width="120" height="34" rx="11" fill="#161512"/>
-          <rect x="38" y="102" width="60" height="10" rx="5" fill="#3b82f6" opacity=".5"/>
-          <rect x="156" y="90" width="120" height="34" rx="11" fill="#161512"/>
-          <rect x="170" y="102" width="86" height="10" rx="5" fill="#2b2822"/>
-          <rect x="96" y="150" width="108" height="12" rx="6" fill="#0e0d0c"/>
-        </svg></div>
+          <div class="dslide-vis is-shot"><img src="shot-desktop-themer.webp" alt="Desktop Themer: a prospective Windows desktop with Start, widgets and taskbar all themed from one seed color" loading="lazy"></div>
         </div>
       </div>
       <div class="deck-dots">
