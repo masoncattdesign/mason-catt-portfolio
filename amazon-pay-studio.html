@@ -235,6 +235,28 @@
     .deck-count { display: none; }
   }
   @media (prefers-reduced-motion: reduce) { .dslide { transition: none; } }
+  /* component shots are light artboards: give them a white mat instead of the dark one */
+  .dslide-vis.is-light { background: #fff; padding: 16px; }
+
+  /* ---------- Feature slot: pick a Feature component, see it in the real row ---------- */
+  .slot { display: grid; grid-template-columns: 190px 1fr; gap: 16px; margin: 24px 0 0; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+  .slot-picks { display: flex; flex-direction: column; gap: 2px; padding-top: 2px; }
+  .slot-picks .crumb { justify-content: flex-start; }
+  .slot-stage { display: grid; align-items: center; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px 28px; min-width: 0; }
+  .slot-fig { grid-area: 1 / 1; margin: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; opacity: 0; visibility: hidden; transition: opacity .25s ease; }
+  .slot-fig.is-on { opacity: 1; visibility: visible; }
+  .slot-card { position: relative; width: 100%; max-width: 440px; margin: 0 auto; }
+  .slot-card img { width: 100%; height: auto; display: block; filter: drop-shadow(0 8px 22px rgba(0,0,0,0.4)); }
+  .slot-ring { position: absolute; left: 23.1%; width: 74.8%; border: 1.5px dashed var(--accent); border-radius: 8px; background: rgba(34,197,94,0.07); pointer-events: none; }
+  .slot-fig figcaption { width: 100%; max-width: 440px; margin: 0 auto; font-size: 13.5px; color: var(--cream2); line-height: 1.6; }
+  .slot-fig figcaption strong { color: var(--cream); font-weight: 500; }
+  @media (max-width: 700px) {
+    .slot { grid-template-columns: 1fr; padding: 12px; }
+    .slot-picks { flex-direction: row; flex-wrap: wrap; }
+    .slot-stage { padding: 18px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .slot-fig { transition: none; } }
+
   /* inside .prose the slide title would inherit the serif h3; keep it sans, and sit it right under the kicker */
   .prose .dslide-body h3 { font-family: var(--sans); font-size: 17px; font-weight: 500; letter-spacing: 0; }
   .dslide-body { grid-template-rows: auto 1fr; }
@@ -670,56 +692,124 @@
       <div class="dia-cap">Primary payment method, selected, with Feature reward balance composed into its feature slot. Pulled from the component library, not redrawn.</div>
     </div>
 
-    <p style="margin-top:28px;">The feature slot is the part worth dwelling on. Rewards, installments, an expired card, a currency change and a re-verification prompt are five different product problems. In the library they are small components that drop into the same slot on the same row, so a new payment feature is a new Feature component, not a new version of the wallet.</p>
+    <p style="margin-top:28px;">The feature slot is the part worth dwelling on. Rewards, installments, an expired card, a currency change and a re-verification prompt are five different product problems. In the library they are small components that drop into the same slot on the same row, so a new payment feature is a new Feature component, not a new version of the wallet. Pick one to drop it into the slot.</p>
 
-    <div class="tags" aria-label="The full component inventory">
-      <span class="tag">Accordion</span>
-      <span class="tag">Alert</span>
-      <span class="tag a">Art</span>
-      <span class="tag">Balance payment method</span>
-      <span class="tag">Bottom sheet &amp; Modal</span>
-      <span class="tag">Box</span>
-      <span class="tag">Button</span>
-      <span class="tag">Checkbox</span>
-      <span class="tag">Claim code</span>
-      <span class="tag">Divider</span>
-      <span class="tag">Dropdown</span>
-      <span class="tag">Expander</span>
-      <span class="tag a">Feature card verify</span>
-      <span class="tag a">Feature currency</span>
-      <span class="tag a">Feature detail</span>
-      <span class="tag a">Feature expiration</span>
-      <span class="tag a">Feature financing</span>
-      <span class="tag a">Feature reward balance</span>
-      <span class="tag">Flag</span>
-      <span class="tag">Heading</span>
-      <span class="tag">Icon</span>
-      <span class="tag">Input amount</span>
-      <span class="tag">Input card</span>
-      <span class="tag">Input claim code</span>
-      <span class="tag">Input code</span>
-      <span class="tag">Input CVV</span>
-      <span class="tag">Input date birth</span>
-      <span class="tag">Input date expiration</span>
-      <span class="tag">Input text</span>
-      <span class="tag">Legal</span>
-      <span class="tag">Link</span>
-      <span class="tag">Navigation link</span>
-      <span class="tag">Network</span>
-      <span class="tag">Paragraph</span>
-      <span class="tag">Pay select header</span>
-      <span class="tag a">Primary payment method</span>
-      <span class="tag">Progressive disclosure</span>
-      <span class="tag">QR code</span>
-      <span class="tag">Radio</span>
-      <span class="tag">Redirect</span>
-      <span class="tag">Spacer</span>
-      <span class="tag">Spinner</span>
-      <span class="tag">Spotlight</span>
-      <span class="tag">Step indicator</span>
-      <span class="tag">Sticky footer</span>
-      <span class="tag a">Switch</span>
-      <span class="tag">Toast</span>
+    <div class="slot" data-slot>
+      <div class="slot-picks" role="tablist" aria-label="Feature components">
+        <button class="crumb slot-pick is-on" type="button">Reward balance</button>
+        <button class="crumb slot-pick" type="button">Financing</button>
+        <button class="crumb slot-pick" type="button">Expiration</button>
+        <button class="crumb slot-pick" type="button">Card verify</button>
+        <button class="crumb slot-pick" type="button">Currency</button>
+        <button class="crumb slot-pick" type="button">Detail</button>
+        <button class="crumb slot-pick" type="button">Empty</button>
+      </div>
+      <div class="slot-stage">
+        <figure class="slot-fig is-on">
+          <div class="slot-card"><img src="img-pay-studio-anatomy.png" width="1080" height="276" alt="Chase Sapphire card, selected, with a Use rewards points line and a switch"><span class="slot-ring" style="top:58.7%;height:34.8%" aria-hidden="true"></span></div>
+          <figcaption><strong>Feature reward balance.</strong> Points offered as payment, with a switch. Turn it on and an amount field opens for a partial redemption.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><img src="img-ps-slot-financing.webp" width="1080" height="312" alt="Pay by Bank App method, selected, with a Payment plans available button"><span class="slot-ring" style="top:51.9%;height:42.3%" aria-hidden="true"></span></div>
+          <figcaption><strong>Feature financing.</strong> A payment plans entry that leads into financing, here on a Pay by Bank App method.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><img src="img-ps-slot-expiration.webp" width="1080" height="606" alt="Chase Sapphire card marked Expired, with a new expiration date field and an Update button"><span class="slot-ring" style="top:26.7%;height:70.3%" aria-hidden="true"></span></div>
+          <figcaption><strong>Feature expiration.</strong> Flags an expired card and takes a new expiration date inline, without leaving the wallet.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><img src="img-ps-slot-verify.webp" width="1080" height="726" alt="Chase Sapphire card with a Verify your card prompt, a card number field and an Update button"><span class="slot-ring" style="top:22.3%;height:75.2%" aria-hidden="true"></span></div>
+          <figcaption><strong>Feature card verify.</strong> Asks for the card number again to confirm an authorized use, right in the row.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><img src="img-ps-slot-currency.webp" width="1080" height="258" alt="Chase Sapphire card with Currency: U.S. Dollar (USD) and a Change link"><span class="slot-ring" style="top:62.8%;height:30.2%" aria-hidden="true"></span></div>
+          <figcaption><strong>Feature currency.</strong> Shows the currency the card will be charged in. Change opens a bottom sheet on mobile and a modal on desktop.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><img src="img-ps-slot-detail.webp" width="1080" height="258" alt="Chase Sapphire card, dimmed, marked Not eligible for this product"><span class="slot-ring" style="top:62.8%;height:30.2%" aria-hidden="true"></span></div>
+          <figcaption><strong>Feature detail.</strong> One line of status. Here it marks a card as ineligible; elsewhere it carries an error, warning or info message.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><img src="img-ps-slot-empty.webp" width="1080" height="198" alt="Chase Sapphire card with no feature, basic state"></div>
+          <figcaption><strong>Empty slot.</strong> With nothing in the slot, the row collapses to its basic form.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <p style="margin-top:40px;">A few more from the library, straight off the spec sheet.</p>
+
+    <div class="deck" data-deck="components">
+      <div class="deck-crumbs" role="tablist">
+        <button class="crumb is-on" data-i="0" type="button">Art</button>
+        <button class="crumb" data-i="1" type="button">Alert</button>
+        <button class="crumb" data-i="2" type="button">Balance</button>
+        <button class="crumb" data-i="3" type="button">Claim code</button>
+        <button class="crumb" data-i="4" type="button">Input code</button>
+        <button class="crumb" data-i="5" type="button">Nav link</button>
+        <button class="crumb" data-i="6" type="button">QR code</button>
+        <button class="crumb" data-i="7" type="button">Toast</button>
+        <span class="deck-count">1 / 8</span>
+      </div>
+      <div class="deck-stage">
+        <div class="dslide is-on" data-i="0">
+          <div class="dslide-body"><div class="slide-kicker">Asset slot</div>
+          <h3>Art</h3>
+          <p>Spotlight marks, small card art and large card art, each at a fixed size, so any method fills the asset slot the same way, whether it is a Chase card, Venmo or an EBT glyph.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-art.webp" width="1870" height="1602" alt="The Art component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">Messaging</div>
+          <h3>Alert</h3>
+          <p>Page alerts and inline alerts in four severities: success, error, info and warning.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-alert.webp" width="1056" height="790" alt="The Alert component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="2">
+          <div class="dslide-body"><div class="slide-kicker">Wallet</div>
+          <h3>Balance payment method</h3>
+          <p>Gift card, EBT and FSA/HSA balances. A switch applies the balance, and methods that only cover part of an order, like EBT, open an amount field to choose how much.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-balance.webp" width="1574" height="710" alt="The Balance payment method component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="3">
+          <div class="dslide-body"><div class="slide-kicker">Wallet</div>
+          <h3>Claim code</h3>
+          <p>The gift card, promo code or voucher toggle. Expanded, it opens a code field with scan-to-add built in.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-claim.webp" width="1574" height="330" alt="The Claim code component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="4">
+          <div class="dslide-body"><div class="slide-kicker">Inputs</div>
+          <h3>Input code</h3>
+          <p>The six-digit verification field, empty and filled, used by the phone verification template.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-inputcode.webp" width="1677" height="315" alt="The Input code component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="5">
+          <div class="dslide-body"><div class="slide-kicker">Navigation</div>
+          <h3>Navigation link</h3>
+          <p>List and button variants, each with an optional detail line and leading icon. The add-a-payment-method list is built from these.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-navlink.webp" width="1574" height="862" alt="The Navigation link component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="6">
+          <div class="dslide-body"><div class="slide-kicker">Scan to pay</div>
+          <h3>QR code</h3>
+          <p>Branded codes for scan-to-pay methods, carrying the method's own mark in the center.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-qr.webp" width="1718" height="410" alt="The QR code component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+        <div class="dslide" data-i="7">
+          <div class="dslide-body"><div class="slide-kicker">Feedback</div>
+          <h3>Toast</h3>
+          <p>Confirmation once a method is verified, naming the exact card, and dismissible.</p></div>
+          <div class="dslide-vis is-light"><img src="img-ps-c-toast.webp" width="1107" height="267" alt="The Toast component as specified in the Pay Studio library" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="deck-dots">
+        <button class="ddot is-on" data-i="0" type="button" aria-label="Art"></button>
+        <button class="ddot" data-i="1" type="button" aria-label="Alert"></button>
+        <button class="ddot" data-i="2" type="button" aria-label="Balance payment method"></button>
+        <button class="ddot" data-i="3" type="button" aria-label="Claim code"></button>
+        <button class="ddot" data-i="4" type="button" aria-label="Input code"></button>
+        <button class="ddot" data-i="5" type="button" aria-label="Navigation link"></button>
+        <button class="ddot" data-i="6" type="button" aria-label="QR code"></button>
+        <button class="ddot" data-i="7" type="button" aria-label="Toast"></button>
+      </div>
     </div>
 
     <div class="img-full">
@@ -1002,6 +1092,30 @@
     }
     crumbs.forEach(function (c, i) { wire(c, i, true); });
     dots.forEach(function (d, i) { wire(d, i, false); });
+  });
+</script>
+
+<script>
+  // Feature slot: each pick swaps the real Primary payment method variant into the stage.
+  document.querySelectorAll('[data-slot]').forEach(function (slot) {
+    var picks = slot.querySelectorAll('.slot-pick');
+    var figs = slot.querySelectorAll('.slot-fig');
+    function show(i) {
+      picks.forEach(function (p, n) { p.classList.toggle('is-on', n === i); p.setAttribute('aria-selected', n === i ? 'true' : 'false'); });
+      figs.forEach(function (f, n) { f.classList.toggle('is-on', n === i); });
+    }
+    picks.forEach(function (p, i) {
+      p.setAttribute('role', 'tab');
+      p.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      p.addEventListener('click', function () { show(i); });
+      p.addEventListener('keydown', function (e) {
+        var d = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : (e.key === 'ArrowUp' || e.key === 'ArrowLeft') ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = (i + d + picks.length) % picks.length;
+        show(n); picks[n].focus();
+      });
+    });
   });
 </script>
 
