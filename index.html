@@ -371,11 +371,30 @@
 
   /* The drawn marks. Every loop is long and quiet so the grid of cards never
      reads as busy; transform-box keeps SVG transforms in the drawing's own units. */
-  .wv-t { animation: wv-seed 12s ease-in-out infinite, wv-drift 7s ease-in-out infinite;
-          animation-delay: calc(var(--i) * -.55s), calc(var(--i) * -1.1s); }
-  .wv-seg { animation: wv-seed 12s ease-in-out infinite; animation-delay: calc(var(--i) * -3s); }
-  @keyframes wv-seed { 0%,18% { fill: #22c55e; } 25%,43% { fill: #3b82f6; } 50%,68% { fill: #e879a0; } 75%,93% { fill: #3a352e; } 100% { fill: #22c55e; } }
-  @keyframes wv-drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+  /* Windows card: one seed color re-themes an expressive icon and the whole set behind it */
+  .wx-lt { animation: wx-lt 12s ease-in-out infinite; }
+  .wx-md { animation: wx-md 12s ease-in-out infinite; }
+  .wx-dk { animation: wx-dk 12s ease-in-out infinite; }
+  .wx-sl { animation: wx-sl 12s ease-in-out infinite; }
+  .wx-sm { animation: wx-sm 12s ease-in-out infinite; }
+  .wx-sd { animation: wx-sd 12s ease-in-out infinite; }
+  .wx-mini { animation-delay: calc(.35s + var(--i) * .09s); animation-fill-mode: backwards; }
+  .wx-ring { animation: wx-ring 12s cubic-bezier(.3,.8,.3,1) infinite; }
+  @keyframes wx-ring { 0%, 21% { transform: translateY(0); } 25%, 46% { transform: translateY(26px); } 50%, 71% { transform: translateY(52px); } 75%, 96% { transform: translateY(78px); } 100% { transform: translateY(0); } }
+  .wx-pulse { animation: wx-pulse 3s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes wx-pulse { 0%, 6% { opacity: 0; transform: translateX(0); } 12% { opacity: 1; } 36% { opacity: 1; transform: translateX(22px); } 44%, 100% { opacity: 0; transform: translateX(22px); } }
+  .wx-back { animation: wx-bob 6s ease-in-out infinite; }
+  .wx-front { animation: wx-bob 6s ease-in-out infinite -1.6s; }
+  .wx-shine { animation: wx-bob 6s ease-in-out infinite -3s; }
+  @keyframes wx-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  .wx-spark { transform-box: fill-box; transform-origin: center; animation: wx-spark 3s ease-in-out infinite; }
+  @keyframes wx-spark { 0%, 100% { transform: scale(.6) rotate(0deg); opacity: .5; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
+  @keyframes wx-lt { 0%, 21% { stop-color: #86efac; } 25%, 46% { stop-color: #93c5fd; } 50%, 71% { stop-color: #f9a8d4; } 75%, 96% { stop-color: #fcd34d; } 100% { stop-color: #86efac; } }
+  @keyframes wx-md { 0%, 21% { stop-color: #22c55e; } 25%, 46% { stop-color: #3b82f6; } 50%, 71% { stop-color: #e879a0; } 75%, 96% { stop-color: #f59e0b; } 100% { stop-color: #22c55e; } }
+  @keyframes wx-dk { 0%, 21% { stop-color: #15803d; } 25%, 46% { stop-color: #1d4ed8; } 50%, 71% { stop-color: #be185d; } 75%, 96% { stop-color: #b45309; } 100% { stop-color: #15803d; } }
+  @keyframes wx-sl { 0%, 21% { fill: #86efac; } 25%, 46% { fill: #93c5fd; } 50%, 71% { fill: #f9a8d4; } 75%, 96% { fill: #fcd34d; } 100% { fill: #86efac; } }
+  @keyframes wx-sm { 0%, 21% { fill: #22c55e; } 25%, 46% { fill: #3b82f6; } 50%, 71% { fill: #e879a0; } 75%, 96% { fill: #f59e0b; } 100% { fill: #22c55e; } }
+  @keyframes wx-sd { 0%, 21% { fill: #15803d; } 25%, 46% { fill: #1d4ed8; } 50%, 71% { fill: #be185d; } 75%, 96% { fill: #b45309; } 100% { fill: #15803d; } }
 
   .ps-chip { animation: ps-in 8s cubic-bezier(.2,.75,.25,1) infinite; animation-delay: calc(var(--i) * .35s); }
   @keyframes ps-in { 0% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
@@ -769,7 +788,27 @@
           <rect width="440" height="220" fill="#141310"/><rect width="440" height="220" fill="url(#wvsg)"/>
           <g stroke="rgba(240,235,226,0.05)" stroke-width="1"><path d="M0 55h440M0 110h440M0 165h440"/><path d="M55 0v220M110 0v220M165 0v220M220 0v220M275 0v220M330 0v220M385 0v220"/></g>
         </svg>
-        <div class="ca-illo" style="--x:34px;--w:27%"><svg viewBox="0 0 160 140" aria-hidden="true"><rect class="wv-t" style="--i:0" x="8" y="12" width="42" height="42" rx="12" fill="#22c55e"/><rect x="21" y="25" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:1" x="58" y="12" width="42" height="42" rx="12" fill="#22c55e"/><rect x="71" y="25" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:2" x="108" y="12" width="42" height="42" rx="12" fill="#22c55e"/><rect x="121" y="25" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:3" x="8" y="62" width="42" height="42" rx="12" fill="#22c55e"/><rect x="21" y="75" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:4" x="58" y="62" width="42" height="42" rx="12" fill="#22c55e"/><rect x="71" y="75" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-t" style="--i:5" x="108" y="62" width="42" height="42" rx="12" fill="#22c55e"/><rect x="121" y="75" width="16" height="16" rx="5" fill="#0e0d0c" opacity=".55"/><rect class="wv-seg" style="--i:0" x="8.0" y="120" width="35" height="10" rx="5" fill="#22c55e"/><rect class="wv-seg" style="--i:1" x="45.5" y="120" width="35" height="10" rx="5" fill="#22c55e"/><rect class="wv-seg" style="--i:2" x="83.0" y="120" width="35" height="10" rx="5" fill="#22c55e"/><rect class="wv-seg" style="--i:3" x="120.5" y="120" width="35" height="10" rx="5" fill="#22c55e"/></svg></div>
+        <div class="ca-illo" style="--x:26px;--w:29%"><svg viewBox="0 0 184 140" aria-hidden="true">
+            <defs>
+              <linearGradient id="wxBack" x1="0" y1="0" x2="1" y2="1"><stop class="wx-md" offset="0" stop-color="#22c55e"/><stop class="wx-dk" offset="1" stop-color="#15803d"/></linearGradient>
+              <linearGradient id="wxFront" x1="0" y1="0" x2=".8" y2="1"><stop class="wx-lt" offset="0" stop-color="#86efac"/><stop class="wx-md" offset="1" stop-color="#22c55e"/></linearGradient>
+              <linearGradient id="wxGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <filter id="wxSh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity=".45"/></filter>
+            </defs>
+            <rect x="4" y="16" width="20" height="108" rx="10" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/>
+            <circle cx="14" cy="30" r="6.5" fill="#22c55e"/><circle cx="14" cy="56" r="6.5" fill="#3b82f6"/><circle cx="14" cy="82" r="6.5" fill="#e879a0"/><circle cx="14" cy="108" r="6.5" fill="#f59e0b"/>
+            <circle class="wx-ring" cx="14" cy="30" r="10" fill="none" stroke="#f0ebe2" stroke-width="1.6"/>
+            <path d="M28 70h14" stroke="rgba(240,235,226,.18)" stroke-width="1.4" stroke-dasharray="2 3"/>
+            <g class="wx-pulse"><circle class="wx-sm" cx="29" cy="70" r="2.2"/></g>
+            <g filter="url(#wxSh)">
+              <g class="wx-back"><rect x="46" y="30" width="72" height="72" rx="20" fill="url(#wxBack)"/></g>
+              <g class="wx-front"><path d="M58 64a10 10 0 0 1 10-10h16l7 7h13a10 10 0 0 1 10 10v24a10 10 0 0 1-10 10H68a10 10 0 0 1-10-10z" fill="url(#wxFront)"/></g>
+              <g class="wx-shine"><path d="M61 64a7 7 0 0 1 7-7h14l6 6" fill="none" stroke="url(#wxGloss)" stroke-width="3" stroke-linecap="round"/></g>
+            </g>
+            <g class="wx-spark"><path class="wx-sl" d="M113 22c1 4.5 2.5 6 7 7-4.5 1-6 2.5-7 7-1-4.5-2.5-6-7-7 4.5-1 6-2.5 7-7z"/></g>
+            <rect x="46" y="112" width="72" height="8" rx="4" fill="#1b1a16"/><rect class="wx-sm" x="46" y="112" width="30" height="8" rx="4"/>
+            <g style="--i:0"><rect x="132" y="22" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><rect class="wx-sm wx-mini" x="135" y="25" width="14" height="14" rx="4"/></g><g style="--i:1"><rect x="156" y="22" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><circle class="wx-sl wx-mini" cx="166" cy="32" r="7.5"/></g><g style="--i:2"><rect x="132" y="48" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><path class="wx-sl wx-mini" d="M142 50.5 150 65 H134 Z" stroke-linejoin="round"/></g><g style="--i:3"><rect x="156" y="48" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><rect class="wx-sd wx-mini" x="158" y="53" width="16" height="10" rx="5"/></g><g style="--i:4"><rect x="132" y="74" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><rect class="wx-sd wx-mini" x="135" y="77" width="14" height="14" rx="4"/></g><g style="--i:5"><rect x="156" y="74" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><circle class="wx-sm wx-mini" cx="166" cy="84" r="7.5"/></g><g style="--i:6"><rect x="132" y="100" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><path class="wx-sm wx-mini" d="M142 102.5 150 117 H134 Z" stroke-linejoin="round"/></g><g style="--i:7"><rect x="156" y="100" width="20" height="20" rx="6" fill="#1b1a16" stroke="rgba(240,235,226,.08)"/><rect class="wx-sm wx-mini" x="158" y="105" width="16" height="10" rx="5"/></g>
+          </svg></div>
         <div class="mf mf-browser mf-bob" style="--x:39%;--y:30px;--yp:10.0%;--w:55%;--r:0deg;--z:2;--hx:0px;--hy:-8px;--hr:0deg;--d:0s"><img src="thumb-wvs-gallery.webp" alt="The Expressive Assets Gallery" loading="lazy"></div>
         <div class="mf mf-browser mf-bob" style="--x:52%;--y:122px;--yp:40.7%;--w:46%;--r:0deg;--z:3;--hx:0px;--hy:-14px;--hr:0deg;--d:-4s"><img src="thumb-wvs-customizer.webp" alt="The Customizer theming the icon set from one seed color" loading="lazy"></div>
       </div>
