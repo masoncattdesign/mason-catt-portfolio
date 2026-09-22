@@ -1297,7 +1297,7 @@
   .ov-stats div { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; background: rgba(240,235,226,.02); }
   .ov-stats b { display: block; font: 400 24px/1.1 var(--serif); color: var(--accent); }
   .ov-stats span { display: block; font-size: 11px; line-height: 1.35; color: var(--cream3); margin-top: 4px; }
-  .dslide-vis.is-ov.ov-flip { grid-template-columns: 1.02fr .98fr; }
+  .dslide-vis.is-ov.ov-flip { grid-template-columns: .98fr 1.02fr; }
   .ab-trio { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; padding: 46px 14px 16px; align-items: center; }
   .ab-trio figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .ab-trio .pair-art { aspect-ratio: 1; border: 1px solid var(--border); border-radius: 10px; background: #1a1916; display: flex; align-items: center; justify-content: center; padding: 8px; }
@@ -1313,6 +1313,8 @@
   .uc-shot { margin: 0; background: #fff; border-radius: 14px; overflow: hidden; }
   .uc-shot img { width: 100%; display: block; }
   @media (max-width: 860px) { .dslide-vis.fitbox { aspect-ratio: auto !important; } .ab-trio { gap: 6px; } .cb.cb-mini { zoom: .62; } .ov-stats b { font-size: 20px; } }
+  [data-deck="layers"] .dslide-body { display: none; }
+  [data-deck="layers"] .dslide { grid-template-rows: minmax(0,1fr); }
 </style>
 </head>
 <body>
@@ -1859,7 +1861,7 @@
     </div><figure class="uc-shot"><img src="img-pay-studio-use-cases.png" alt="The BANCOMAT Pay use case in the Figma file: four existing templates wired into one journey" loading="lazy"></figure></div></div></div>
         </div>
         <div class="dslide is-ov-s" data-i="4">
-          <div class="dslide-vis is-ov ov-flip"><div class="ov-art ab-cbart"><span class="ov-tag">From the component board</span><div class="cb cb-mini"><div class="cb-group">
+          <div class="dslide-vis is-ov ov-flip"><div class="ov-copy"><div class="ov-kicker">Amazon Business Card &middot; Spring 2024</div><h3 class="ov-title">Business Credit Card</h3><p class="ov-desc">The Existing Card Member page, where card holders check their balance, pay their bill and track rewards. Led design end to end with PM and engineering, and built it on C3, a widget framework on top of Pay Studio.</p><div class="ov-stats"><div><b>+15</b><span>NPS where C3 shipped</span></div><div><b>2&ndash;3 mo</b><span>dev time, down from 6&ndash;8</span></div><div><b>20+</b><span>payment products it extends to</span></div></div><dl class="ov-facts"><div><dt>Shipped</dt><dd>Spring 2024, Amazon Shopping app</dd></div><div><dt>Team wins</dt><dd>12 engineering weeks saved, approvals halved</dd></div></dl></div><div class="ov-art ab-cbart"><span class="ov-tag">From the component board</span><div class="cb cb-mini"><div class="cb-group">
           <div class="cb-lbl">Top bar</div>
           <div class="cb-card cb-topbar">
             <span class="cb-thumb" aria-hidden="true"></span>
@@ -1892,7 +1894,7 @@
           <div class="cb-lbl">Status / Alerts</div>
           <div class="cb-card cb-alert k-warn"><span>A minimum payment of $50.00 for your Prime Visa ending in 1111 is due in 3 days</span></div>
           <div class="cb-card cb-alert k-info cb-verify"><span class="cb-v-msg">Verify via Chase to see transactions, installments details and other servicing features. <button class="cb-link" type="button">Verify now</button></span></div>
-        </div></div></div><div class="ov-copy"><div class="ov-kicker">Amazon Business Card &middot; Spring 2024</div><h3 class="ov-title">Business Credit Card</h3><p class="ov-desc">The Existing Card Member page, where card holders check their balance, pay their bill and track rewards. Led design end to end with PM and engineering, and built it on C3, a widget framework on top of Pay Studio.</p><div class="ov-stats"><div><b>+15</b><span>NPS where C3 shipped</span></div><div><b>2&ndash;3 mo</b><span>dev time, down from 6&ndash;8</span></div><div><b>20+</b><span>payment products it extends to</span></div></div><dl class="ov-facts"><div><dt>Shipped</dt><dd>Spring 2024, Amazon Shopping app</dd></div><div><dt>Team wins</dt><dd>12 engineering weeks saved, approvals halved</dd></div></dl></div></div>
+        </div></div></div></div>
         </div>
         <div class="dslide" data-i="5">
           <div class="dslide-body"><div class="slide-kicker">All together</div>
@@ -1993,7 +1995,7 @@
   // Decks: one 16:10 slide at a time. Crumbs on top, dots underneath, both drive it.
   document.querySelectorAll('[data-deck]').forEach(function (deck) {
     var slides = deck.querySelectorAll('.dslide');
-    var crumbs = deck.querySelectorAll('.crumb');
+    var crumbs = deck.querySelectorAll('.deck-crumbs .crumb');
     var dots   = deck.querySelectorAll('.ddot');
     var count  = deck.querySelector('.deck-count');
     if (!slides.length) return;
