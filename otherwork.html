@@ -780,6 +780,15 @@
   .trio figure { margin: 0; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); background: #fff; aspect-ratio: 1; }
   .trio img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .sp-white { background: #fff; }
+  .ah-pair { display: grid; grid-template-columns: 1.55fr 1fr; gap: 14px; }
+  .ah-pair figure { margin: 0; position: relative; background: #fff; border-radius: var(--radius-sm); overflow: hidden; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 0; }
+  .dslide-vis.ah-pair { display: grid; height: 100%; min-height: 0; align-self: stretch; grid-template-rows: minmax(0, 1fr); }
+  .ah-pair figure { height: 100%; }
+  .ah-pair img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+  .ah-ex img { padding: 24px; } .ah-pk img { padding: 12px 20px 34px; }
+  .ah-pair figcaption { position: absolute; left: 12px; bottom: 10px; font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #6b6560; }
+  @media (max-width: 860px) { .ah-pair { grid-template-columns: 1fr; } .dslide-vis.ah-pair { height: auto; grid-template-rows: auto; } .ah-pair figure { height: auto; } .ah-ex { aspect-ratio: 2.1; } .ah-pk { aspect-ratio: .75; } }
+
   .ck-wrap { padding: 22px; } .ck-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; align-content: center; }
   .ck-grid img { width: 100%; height: auto; aspect-ratio: 768 / 500; object-fit: contain; min-width: 0; }
   .ck-quad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; height: 100%; align-content: center; }
@@ -972,9 +981,10 @@
     <div class="deck" data-deck="buck">
       <div class="deck-crumbs" role="tablist">
         <button class="crumb is-on" data-i="0" type="button">Overview</button>
-        <button class="crumb" data-i="1" type="button">Libra icons</button>
-        <button class="crumb" data-i="2" type="button">Illustration</button>
-        <span class="deck-count">1 / 3</span>
+        <button class="crumb" data-i="1" type="button">Apple Home</button>
+        <button class="crumb" data-i="2" type="button">Libra icons</button>
+        <button class="crumb" data-i="3" type="button">Illustration</button>
+        <span class="deck-count">1 / 4</span>
       </div>
       <div class="deck-stage">
         <div class="dslide is-on is-ov-s" data-i="0">
@@ -989,13 +999,19 @@
           </div>
         </div>
         <div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">Apple Home</div>
+          <h3>Icons for the Home app</h3>
+          <p>Explorations that pushed the Home app&#39;s layered style out to lighting, heating and cooling, and sound (those stayed explorations), alongside the device glyphs that shipped in the Choose Icon picker, where each one takes the color you pick.</p></div>
+          <div class="dslide-vis is-trio ah-pair"><figure class="ah-ex"><img src="buck/applehome-explorations.webp" alt="Icon explorations in the layered Home style: house, light bulb, fan and speaker" loading="lazy"><figcaption>Explorations &middot; not used</figcaption></figure><figure class="ah-pk"><img src="buck/applehome-picker.webp" alt="The Home app Choose Icon picker: a color row above a grid of room and object glyphs" loading="lazy"><figcaption>Shipped &middot; Choose Icon</figcaption></figure></div>
+        </div>
+        <div class="dslide" data-i="2">
           <div class="dslide-body"><div class="slide-kicker">Facebook Libra</div>
           <h3>A custom icon system</h3>
           <p>An icon system built to explain a global currency to people who had never seen one, with the visual guidelines that held it together.</p>
           <a class="slide-link" href="facebook-libra.html">Read the Libra case study <span>&rarr;</span></a></div>
           <div class="dslide-vis sp-white" style="padding:28px"><img src="img-libra-icons.webp" alt="The Libra icon set: outlined icons in deep purple with mint and periwinkle accents" loading="lazy"></div>
         </div>
-        <div class="dslide" data-i="2">
+        <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">Facebook Libra</div>
           <h3>Editorial illustration</h3>
           <p>An illustration set for the site and white papers, turning abstract ideas like a reserve and a blockchain into something you could picture.</p>
@@ -1008,6 +1024,7 @@
         <button class="ddot is-on" data-i="0" type="button" aria-label="Slide 1"></button>
         <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
         <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
+        <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
       </div>
     </div>
   </div>
