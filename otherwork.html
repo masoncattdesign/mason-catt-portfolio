@@ -832,8 +832,117 @@
   .dslide-vis > img { min-width: 0; min-height: 0; max-width: 100%; max-height: 100%; }
   .trio figure { min-width: 0; }
   .sp-navy { background: #232f3e; position: relative; overflow: hidden; }
-  .sx-grid3 { grid-template-columns: repeat(3, 1fr) !important; }
-  @media (max-width: 860px) { .dslide-vis.is-split { grid-template-columns: minmax(0, 1fr); } .sp-navy { aspect-ratio: 1.78; } .dslide-vis.is-trio { aspect-ratio: auto; } .trio { gap: 8px; } .ph { aspect-ratio: 1.6; } .sx-grid3 { grid-template-columns: 1fr !important; } }
+  .sx-grid4 { grid-template-columns: repeat(3, 1fr) !important; }
+  @media (max-width: 860px) { .dslide-vis.is-split { grid-template-columns: minmax(0, 1fr); } .sp-navy { aspect-ratio: 1.78; } .dslide-vis.is-trio { aspect-ratio: auto; } .trio { gap: 8px; } .ph { aspect-ratio: 1.6; } .sx-grid4 { grid-template-columns: 1fr !important; } }
+
+  /* Amazon Business (from the Pay Studio and card pages) */
+.ps-anim .pa-t, .ps-anim .pa-hl, .ps-anim .pa-sheet, .ps-anim .pa-final{ transform-box: fill-box; transform-origin: center; }
+.ps-anim .pa-halo{ opacity: 0; }
+.ps-anim .pa-src{ opacity: .4; }
+.ps-anim .pa-step{ opacity: 0; }
+.ps-anim .pa-draw{ stroke-dasharray: 1; stroke-dashoffset: 0; }
+.ps-anim.play .pa-t{ animation: pa-pop .45s cubic-bezier(.2,.75,.25,1) both; animation-delay: calc(var(--i) * 45ms); }
+.ps-anim.play .pa-hl{ animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) .62s both; }
+.ps-anim.play .pa-halo{ animation: pa-halo 2.6s ease-in-out 1.3s infinite; }
+.ps-anim.play .pa-sheet{ animation: pa-pop .45s cubic-bezier(.2,.75,.25,1) both; }
+.ps-anim.play .pa-src{ animation: pa-launch .45s ease var(--d) both; }
+.ps-anim.play .pa-fly{ animation: pa-fly .6s cubic-bezier(.2,.75,.25,1) var(--d) both; }
+.ps-anim.play .pa-nudge{ animation: pa-nudge 1.8s ease-in-out 1.4s infinite; }
+.ps-anim.play .pa-step{ animation: pa-step .95s ease var(--d) both; }
+.ps-anim.play .pa-draw{ animation: pa-draw .3s ease-out var(--d) both; }
+.ps-anim.play .pa-head{ animation: pa-fade .2s ease var(--d) both; }
+.ps-anim.play .pa-final{ animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) 2.7s both; }
+@keyframes pa-pop{ from { opacity: 0; transform: translateY(5px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes pa-halo{ 0%, 100% { opacity: 0; } 50% { opacity: .28; } }
+@keyframes pa-launch{ from { opacity: 1; } to { opacity: .4; } }
+@keyframes pa-fly{ from { opacity: 0; transform: translate(var(--dx), var(--dy)); } 30% { opacity: 1; } to { opacity: 1; transform: none; } }
+@keyframes pa-nudge{ 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+@keyframes pa-step{ 0% { opacity: 0; } 20%, 70% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes pa-draw{ from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes pa-fade{ from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce){.ps-anim.play *{ animation: none !important; }}
+.dslide-vis.is-pair{ background: none; border: 0; padding: 0; overflow: visible; gap: 16px; container-type: size; }
+.pair-cell{ --s: min(calc((100cqw - 16px) / 2), 100cqh); width: var(--s); height: var(--s); flex: none;
+               position: relative; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.pair-art{ background: var(--bg3); display: flex; align-items: center; justify-content: center; padding: 5%; }
+.pair-art svg{ width: 100%; height: 100%; }
+.pair-shot{ background: #f5f6f6; }
+.dslide-vis .pair-shot img{ width: 100%; height: 100%; object-fit: cover; }
+.pair-tag{ position: absolute; left: 10px; bottom: 10px; font-size: 10.5px; font-weight: 500; letter-spacing: .02em;
+              color: var(--cream2); background: rgba(14,13,12,.78); border: 1px solid var(--border2);
+              padding: 3px 9px; border-radius: 100px; }
+@media (max-width: 560px){.pair-tag{ display: none; }}
+@media (max-width: 860px){.dslide-vis.is-pair{ aspect-ratio: 2.1 / 1; padding: 0; gap: 10px; }
+.pair-cell{ --s: min(calc((100cqw - 10px) / 2), 100cqh); }
+.pair-tag{ font-size: 9.5px; left: 7px; bottom: 7px; padding: 2px 7px; }}
+.ps-anim .pa-t, .ps-anim .pa-hl, .ps-anim .pa-sheet, .ps-anim .pa-final{ transform-box: fill-box; transform-origin: center; }
+.ps-anim .pa-halo{ opacity: 0; }
+.ps-anim .pa-src{ opacity: .4; }
+.ps-anim .pa-step{ opacity: 0; }
+.ps-anim .pa-draw{ stroke-dasharray: 1; stroke-dashoffset: 0; }
+.ps-anim.play .pa-t{ animation: pa-pop .45s cubic-bezier(.2,.75,.25,1) both; animation-delay: calc(var(--i) * 45ms); }
+.ps-anim.play .pa-hl{ animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) .62s both; }
+.ps-anim.play .pa-halo{ animation: pa-halo 2.6s ease-in-out 1.3s infinite; }
+.ps-anim.play .pa-sheet{ animation: pa-pop .45s cubic-bezier(.2,.75,.25,1) both; }
+.ps-anim.play .pa-src{ animation: pa-launch .45s ease var(--d) both; }
+.ps-anim.play .pa-fly{ animation: pa-fly .6s cubic-bezier(.2,.75,.25,1) var(--d) both; }
+.ps-anim.play .pa-nudge{ animation: pa-nudge 1.8s ease-in-out 1.4s infinite; }
+.ps-anim.play .pa-step{ animation: pa-step .95s ease var(--d) both; }
+.ps-anim.play .pa-draw{ animation: pa-draw .3s ease-out var(--d) both; }
+.ps-anim.play .pa-head{ animation: pa-fade .2s ease var(--d) both; }
+.ps-anim.play .pa-final{ animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) 2.7s both; }
+@media (prefers-reduced-motion: reduce){.ps-anim.play *{ animation: none !important; }}
+.dslide-vis.is-pair{ background: none; border: 0; padding: 0; overflow: visible; gap: 16px; container-type: size; }
+.pair-cell{ --s: min(calc((100cqw - 16px) / 2), 100cqh); width: var(--s); height: var(--s); flex: none;
+               position: relative; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.pair-art{ background: var(--bg3); display: flex; align-items: center; justify-content: center; padding: 5%; }
+.pair-art svg{ width: 100%; height: 100%; }
+.pair-shot{ background: #f5f6f6; }
+.dslide-vis .pair-shot img{ width: 100%; height: 100%; object-fit: cover; }
+.pair-tag{ position: absolute; left: 10px; bottom: 10px; font-size: 10.5px; font-weight: 500; letter-spacing: .02em;
+              color: var(--cream2); background: rgba(14,13,12,.78); border: 1px solid var(--border2);
+              padding: 3px 9px; border-radius: 100px; }
+@media (max-width: 560px){.pair-tag{ display: none; }}
+@media (max-width: 860px){.dslide-vis.is-pair{ aspect-ratio: 2.1 / 1; padding: 0; gap: 10px; }
+.pair-cell{ --s: min(calc((100cqw - 10px) / 2), 100cqh); }
+.pair-tag{ font-size: 9.5px; left: 7px; bottom: 7px; padding: 2px 7px; }}
+.ab-anim .ab-pop, .ab-anim .ab-conv, .ab-anim .ab-fly{ transform-box: fill-box; transform-origin: center; }
+.ab-anim .ab-halo{ opacity: 0; }
+.ab-anim .ab-dim{ opacity: .4; }
+.ab-anim .ab-draw{ stroke-dasharray: 1; stroke-dashoffset: 0; }
+.ab-anim.play .ab-pop{ animation: pa-pop .5s cubic-bezier(.2,.75,.25,1) var(--d, 0s) both; }
+.ab-anim.play .ab-conv{ animation: ab-conv .7s cubic-bezier(.2,.75,.25,1) var(--d, 0s) both; }
+.ab-anim.play .ab-fly{ animation: ab-fly .55s cubic-bezier(.2,.75,.25,1) var(--d, 0s) both; }
+.ab-anim.play .ab-draw{ animation: pa-draw .5s ease-out var(--d, 0s) both; }
+.ab-anim.play .ab-fade{ animation: pa-fade .35s ease var(--d, 0s) both; }
+.ab-anim.play .ab-dim{ animation: ab-dim .4s ease var(--d, 0s) both; }
+.ab-anim.play .ab-halo{ animation: pa-halo 2.6s ease-in-out var(--d, 1s) infinite; }
+.ab-anim .ab-dot{ fill: #3a352e; animation: ab-dot 4s steps(1) var(--d, 0s) infinite; }
+@keyframes ab-conv{ from { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, 0px)); } to { opacity: 1; transform: none; } }
+@keyframes ab-fly{ from { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, 0px)); } to { opacity: 1; transform: none; } }
+@keyframes ab-dim{ from { opacity: 1; } to { opacity: .4; } }
+@keyframes ab-dot{ 0% { fill: #22c55e; } 25%, 100% { fill: #3a352e; } }
+@media (prefers-reduced-motion: reduce){.ab-anim.play *, .ab-anim .ab-dot{ animation: none !important; }}
+.dslide-vis.is-phone{ padding: 0; }
+.pc-fit{ position: absolute; inset: 12px; overflow: hidden; }
+.pc-canvas{ position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.dslide-vis svg.pc-lines{ position: absolute; left: 0; top: 0; width: auto; height: auto; overflow: visible; pointer-events: none; z-index: 3; }
+.pc-lines .ld{ fill: none; stroke: #6b6560; stroke-width: 1.3; }
+.pc-lines .dot{ fill: var(--bg3); stroke: var(--accent); stroke-width: 1.6; }
+.pc-lines .rl{ stroke: #e879a0; stroke-width: 1.3; fill: none; }
+.pc-lines text{ font: 600 12px var(--sans); fill: #e879a0; }
+.pc-lines .br{ fill: none; stroke: var(--accent); stroke-width: 1.6; }
+.dslide-vis img.pc-img{ position: absolute; display: block; height: auto; object-fit: fill; border-radius: 14px; box-shadow: 0 18px 44px rgba(0,0,0,.5); }
+.pc-call, .pc-lab{ position: absolute; font-family: var(--sans); line-height: 1.4; }
+.pc-call{ width: 150px; }
+.pc-call[data-side="left"]{ left: 0; text-align: right; }
+.pc-call[data-side="right"]{ left: 810px; }
+.pc-lab{ text-align: center; }
+.pc-call b, .pc-lab b{ display: block; font-size: 15px; font-weight: 500; color: var(--cream); margin-bottom: 3px; }
+.pc-call span, .pc-lab span{ display: block; font-size: 13.5px; color: var(--cream2); }
+@media (max-width: 860px){.dslide-vis.is-phone{ aspect-ratio: 4 / 5 !important; }
+.pc-call, .pc-lab, .pc-lines{ display: none; }}
+  .ab-sub { margin: 56px 0 0; }
 </style>
 </head>
 <body>
@@ -844,21 +953,21 @@
   <div class="case-eyebrow">
     <span class="etag">Iconography &middot; Illustration &middot; Product &middot; Systems</span>
     <span class="ediv">&middot;</span>
-    <span class="eco">Before Microsoft &middot; 2014 &ndash; 2020</span>
+    <span class="eco">Before Microsoft &middot; 2014 &ndash; 2024</span>
   </div>
   <h1 class="case-title">Other <em>work</em></h1>
-  <p class="case-subtitle">Three stops before Microsoft: building the AWS brand and icon system as one of its first four designers, campaign illustration at BUCK, and Tax, debit and a first Figma library at Credit Karma.</p>
+  <p class="case-subtitle">Four stops before Microsoft: building the AWS brand and icon system as one of its first four designers, campaign illustration at BUCK, Tax, debit and a first Figma library at Credit Karma, and Pay Studio plus the Business Credit Card at Amazon Business.</p>
 
   <div class="meta-strip">
     <div class="meta-item"><div class="ml">Amazon</div><div class="mv">Interaction Designer</div></div>
     <div class="meta-item"><div class="ml">BUCK</div><div class="mv">UI/UX Designer</div></div>
     <div class="meta-item"><div class="ml">Credit Karma</div><div class="mv">Senior Designer</div></div>
-    <div class="meta-item"><div class="ml">Years</div><div class="mv">2014 &ndash; 2020</div></div>
+    <div class="meta-item"><div class="ml">Amazon Business</div><div class="mv">Visual Experience Design Lead</div></div>
   </div>
 </div>
 
 <div class="stream-index">
-  <div class="stream-index-grid sx-grid3">
+  <div class="stream-index-grid sx-grid4">
     <a class="sx" href="#aws">
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true"><g fill="none" stroke-width="2.4"><rect x="0" y="14" width="44" height="44" rx="10" stroke="#ff9900"/><rect x="52" y="14" width="44" height="44" rx="10" stroke="#3b82f6"/><rect x="104" y="14" width="44" height="44" rx="10" stroke="#6b6560"/><rect x="156" y="14" width="44" height="44" rx="10" stroke="#22c55e"/></g><rect x="0" y="74" width="200" height="6" rx="3" fill="#2b2822"/><rect x="0" y="74" width="120" height="6" rx="3" fill="#ff9900" opacity=".7"/></svg></div>
       <div class="sx-body">
@@ -880,6 +989,14 @@
       <div class="sx-body">
         <div class="sx-name">Credit Karma</div>
         <div class="sx-note">Tax, debit and credit, and a first Figma library</div>
+        <div class="sx-go">Read<span>&rarr;</span></div>
+      </div>
+    </a>
+    <a class="sx" href="#amazon-business">
+      <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true"><rect x="0" y="8" width="86" height="80" rx="12" fill="#1e1c18" stroke="#3a352e"/><rect x="10" y="18" width="18" height="14" rx="3" fill="#22c55e" opacity=".8"/><rect x="34" y="18" width="18" height="14" rx="3" fill="#3b82f6" opacity=".8"/><rect x="58" y="18" width="18" height="14" rx="3" fill="#2b2822" opacity=".8"/><rect x="10" y="38" width="18" height="14" rx="3" fill="#2b2822" opacity=".8"/><rect x="34" y="38" width="18" height="14" rx="3" fill="#e879a0" opacity=".8"/><rect x="58" y="38" width="18" height="14" rx="3" fill="#3b82f6" opacity=".8"/><rect x="10" y="58" width="18" height="14" rx="3" fill="#22c55e" opacity=".8"/><rect x="34" y="58" width="18" height="14" rx="3" fill="#2b2822" opacity=".8"/><rect x="58" y="58" width="18" height="14" rx="3" fill="#2b2822" opacity=".8"/><path d="M96 48h16" stroke="#6b6560" stroke-width="2" stroke-dasharray="2 4"/><rect x="122" y="0" width="52" height="96" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6"/><rect x="130" y="12" width="36" height="22" rx="4" fill="#3b82f6" opacity=".8"/><rect x="130" y="42" width="36" height="8" rx="4" fill="#2b2822"/><rect x="130" y="56" width="36" height="8" rx="4" fill="#2b2822"/><rect x="130" y="74" width="36" height="12" rx="6" fill="#22c55e" opacity=".8"/></svg></div>
+      <div class="sx-body">
+        <div class="sx-name">Amazon Business</div>
+        <div class="sx-note">Pay Studio and the Business Credit Card</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
       </div>
     </a>
@@ -1112,6 +1229,220 @@
     </div>
   </div>
 
+
+  <div class="prose" id="amazon-business">
+    <div class="slabel">Amazon Business &middot; 2020 &ndash; 2024</div>
+    <div class="stream-head"><h2>Amazon Business</h2></div>
+    <p class="stream-lede">Four years leading visual direction for Amazon Business Payments: Pay Studio, the payment design system every method is built from, and the Business Credit Card servicing page it carried into.</p>
+    <div class="deck" data-deck="layers">
+      <div class="deck-crumbs" role="tablist">
+        <button class="crumb is-on" data-i="0" type="button">Overview</button>
+        <button class="crumb" data-i="1" type="button">Components</button>
+        <button class="crumb" data-i="2" type="button">Templates</button>
+        <button class="crumb" data-i="3" type="button">Use cases</button>
+        <span class="deck-count">1 / 4</span>
+      </div>
+      <div class="deck-stage">
+        <div class="dslide is-on is-ov-s" data-i="0">
+          <div class="dslide-vis is-ov">
+            <div class="ov-copy">
+            <div class="ov-kicker">Amazon Business Payments &middot; 2023</div>
+            <h3 class="ov-title">Pay Studio</h3>
+            <p class="ov-desc">An atomic design system for Amazon Business payments: components, templates and use cases for every payment method. One of the first shared libraries of its kind at Amazon, and the first in Amazon Business Payments.</p>
+            <dl class="ov-facts"><div><dt>Role</dt><dd>Visual Experience Design Lead</dd></div><div><dt>Library</dt><dd>47 components, templates, use cases</dd></div><div><dt>Adoption</dt><dd>80% in its first eight months</dd></div></dl>
+            </div>
+            <div class="ov-art"><span class="ov-tag">Pay Studio</span><svg viewBox="0 0 460 300" aria-hidden="true"><g transform="translate(40 16)"><rect width="150" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp4016"><rect x="6" y="6" width="138" height="260" rx="13"/></clipPath><image href="thumb-ps-screen.webp" x="6" y="6" width="138" height="304" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp4016)"/></g><g transform="translate(214 26)"><rect width="220" height="138" rx="12" fill="#fff"/><image href="img-ps-ppm-art.webp" x="10" y="8" width="200" height="122"/></g><g transform="translate(214 176)"><rect width="104" height="104" rx="12" fill="#1e1c18"/><image href="img-ps-pair-components.webp" x="4" y="4" width="96" height="96"/></g><g transform="translate(330 176)"><rect width="104" height="104" rx="12" fill="#1e1c18"/><text x="52" y="52" text-anchor="middle" style="font:500 30px var(--serif);fill:#22c55e">47</text><text x="52" y="72" text-anchor="middle" style="font:500 10px var(--sans);fill:#b8b0a4">components</text></g></svg></div>
+          </div>
+        </div>
+        <div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">Layer one</div>
+          <h3>Components</h3>
+          <p>The parts a payment screen is made of, like Primary payment method, Input card and Sticky footer. Each one owns its states, so templates never have to.</p></div>
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <rect class="pa-t" style="--i:0" x="16" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:1" x="132" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:2" x="16" y="69" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <rect class="pa-t" style="--i:3" x="74" y="69" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:4" x="132" y="69" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:5" x="16" y="105" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:6" x="74" y="105" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:7" x="132" y="105" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <rect class="pa-t" style="--i:8" x="16" y="141" width="52" height="26" rx="8" fill="#2b2822"/>
+          <rect class="pa-t" style="--i:9" x="74" y="141" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <rect class="pa-t" style="--i:10" x="132" y="141" width="52" height="26" rx="8" fill="#2b2822"/>
+          <g class="pa-hl">
+            <rect class="pa-halo" x="70" y="29" width="60" height="34" rx="11" fill="none" stroke="#22c55e" stroke-width="5"/>
+            <rect x="74" y="33" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+            <rect x="81" y="41" width="14" height="10" rx="3" fill="#22c55e" opacity=".6"/>
+            <rect x="100" y="42" width="19" height="3" rx="1.5" fill="#22c55e"/>
+            <rect x="100" y="48" width="12" height="2.5" rx="1.25" fill="#22c55e" opacity=".5"/>
+          </g>
+        </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-ps-pair-components.webp" alt="The Primary payment method component in the Pay Studio Figma file, wired to its card logos, the gift card row and the Continue footer" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
+        </div>
+        </div>
+        <div class="dslide" data-i="2">
+          <div class="dslide-body"><div class="slide-kicker">Layer two</div>
+          <h3>Templates</h3>
+          <p>Complete screens for one task: pick a method, add a card, verify a number. All built on one base sheet, so they stay consistent on their own.</p></div>
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <g fill="#2b2822">
+            <rect class="pa-src" style="--d:.30s" x="12" y="50" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.45s" x="12" y="74" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.60s" x="12" y="98" width="46" height="16" rx="6"/>
+            <rect class="pa-src" style="--d:.75s" x="12" y="122" width="46" height="16" rx="6"/>
+          </g>
+          <rect x="12" y="146" width="46" height="16" rx="6" fill="none" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <g class="pa-nudge" stroke="#6b6560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M66 106 h20"/><path d="M80 100 l7 6 l-7 6"/>
+          </g>
+          <g class="pa-sheet">
+            <rect x="98" y="22" width="90" height="156" rx="14" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+            <rect x="110" y="36" width="20" height="5" rx="2.5" fill="#3a352e"/>
+            <circle cx="176" cy="38.5" r="4" fill="none" stroke="#3a352e" stroke-width="1.6"/>
+          </g>
+          <rect class="pa-fly" style="--d:.30s;--dx:-98px;--dy:-6px" x="110" y="56" width="56" height="8" rx="4" fill="#f0ebe2" fill-opacity=".8"/>
+          <rect class="pa-fly" style="--d:.45s;--dx:-98px;--dy:0px" x="110" y="74" width="66" height="22" rx="7" fill="#2b2822"/>
+          <rect class="pa-fly" style="--d:.60s;--dx:-98px;--dy:-4px" x="110" y="102" width="66" height="22" rx="7" fill="#2b2822"/>
+          <rect class="pa-fly" style="--d:.75s;--dx:-98px;--dy:-30px" x="110" y="152" width="66" height="14" rx="7" fill="#22c55e" fill-opacity=".55"/>
+        </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-ps-pair-templates.webp" alt="Two Pay Studio templates in the Figma file, Add a credit or debit card and a base sheet, linked by prototype connectors" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
+        </div>
+        </div>
+        <div class="dslide" data-i="3">
+          <div class="dslide-body"><div class="slide-kicker">Layer three</div>
+          <h3>Use cases</h3>
+          <p>Templates wired into a journey. This is where the product decisions live, which screens and in what order. Nothing new gets drawn here.</p></div>
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="22" y="18" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="32" y="28" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="32" y="40" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="56" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="73" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect x="116" y="18" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="126" y="28" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="126" y="40" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="126" y="56" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="126" y="73" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect x="116" y="114" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="126" y="124" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="126" y="136" width="42" height="28" rx="6" fill="#2b2822"/>
+          <rect x="126" y="169" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect x="22" y="114" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="32" y="124" width="42" height="6" rx="3" fill="#2b2822"/>
+          <rect x="32" y="136" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="152" width="42" height="12" rx="5" fill="#2b2822"/>
+          <rect x="32" y="169" width="42" height="8" rx="4" fill="#3a352e"/>
+          <rect class="pa-step" style="--d:0.15s" x="22" y="18" width="62" height="68" rx="11" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <rect class="pa-step" style="--d:0.95s" x="116" y="18" width="62" height="68" rx="11" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <rect class="pa-step" style="--d:1.75s" x="116" y="114" width="62" height="68" rx="11" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <g stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path class="pa-draw" style="--d:.70s" pathLength="1" d="M90 52 H109"/>
+            <path class="pa-head" style="--d:.95s" d="M104 47 l5 5 l-5 5"/>
+            <path class="pa-draw" style="--d:1.50s" pathLength="1" d="M147 92 V107"/>
+            <path class="pa-head" style="--d:1.75s" d="M142 102 l5 5 l5 -5"/>
+            <path class="pa-draw" style="--d:2.30s" pathLength="1" d="M110 148 H91"/>
+            <path class="pa-head" style="--d:2.55s" d="M96 143 l-5 5 l5 5"/>
+          </g>
+          <g class="pa-final">
+            <rect x="22" y="114" width="62" height="68" rx="11" fill="#0e0d0c" stroke="#22c55e" stroke-width="2"/>
+            <rect x="32" y="124" width="42" height="6" rx="3" fill="#2b2822"/>
+            <rect x="32" y="136" width="42" height="12" rx="5" fill="#2b2822"/>
+            <rect x="32" y="152" width="42" height="12" rx="5" fill="#22c55e" opacity=".5"/>
+            <rect x="32" y="169" width="42" height="8" rx="4" fill="#22c55e" opacity=".6"/>
+          </g>
+        </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-ps-pair-use-cases.webp" alt="The last two steps of the BANCOMAT Pay use case: register a phone number, then back to the wallet with BANCOMAT Pay selected" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
+        </div>
+        </div>
+        
+      </div>
+      <div class="deck-dots">
+        <button class="ddot is-on" data-i="0" type="button" aria-label="Slide 1"></button>
+        <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
+        <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
+        <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
+      </div>
+    </div>
+    <div class="ab-sub"><div class="slabel">Business Credit Card</div></div>
+    <div class="deck" data-deck="abcard">
+      <div class="deck-crumbs" role="tablist">
+        <button class="crumb is-on" data-i="0" type="button">Overview</button>
+        <button class="crumb" data-i="1" type="button">The hub</button>
+        <button class="crumb" data-i="2" type="button">Customer needs</button>
+        <button class="crumb" data-i="3" type="button">Structure</button>
+        <span class="deck-count">1 / 4</span>
+      </div>
+      <div class="deck-stage">
+        <div class="dslide is-on is-ov-s" data-i="0">
+          <div class="dslide-vis is-ov">
+            <div class="ov-copy">
+            <div class="ov-kicker">Amazon Business Card &middot; Spring 2024</div>
+            <h3 class="ov-title">Business Credit Card</h3>
+            <p class="ov-desc">The Existing Card Member page, where Amazon Business card holders check their balance, pay their bill and track rewards. Led design end to end, from research through production, with PM and engineering.</p>
+            <dl class="ov-facts"><div><dt>Role</dt><dd>Design lead, end to end</dd></div><div><dt>Shipped</dt><dd>Spring 2024, Amazon Shopping app</dd></div><div><dt>Impact</dt><dd>NPS up 15 points where C3 shipped</dd></div></dl>
+            </div>
+            <div class="ov-art"><span class="ov-tag">The shipped screens</span><svg viewBox="0 0 460 300" aria-hidden="true"><g transform="translate(26 14)"><rect width="128" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp2614"><rect x="6" y="6" width="116" height="260" rx="13"/></clipPath><image href="img-abc-topfold1.webp" x="6" y="6" width="116" height="255" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp2614)"/></g><g transform="translate(166 14)"><rect width="128" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp16614"><rect x="6" y="6" width="116" height="260" rx="13"/></clipPath><image href="img-abc-rewards1.webp" x="6" y="6" width="116" height="255" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp16614)"/></g><g transform="translate(306 14)"><rect width="128" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp30614"><rect x="6" y="6" width="116" height="260" rx="13"/></clipPath><image href="img-abc-tx.webp" x="6" y="6" width="116" height="255" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp30614)"/></g></svg></div>
+          </div>
+        </div>
+        <div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">All together</div>
+          <h3>The hub</h3>
+          <p>The global section up top, widgets underneath. Same frame for every card, and the widgets swap in per card.</p></div>
+          <div class="dslide-vis is-phone" role="img" aria-label="The hub: the top fold global section beside the Points and rewards and Transactions widgets, bracketed as global section and widgets"><div class="pc-fit"><div class="pc-canvas" data-w="960" data-h="680" data-mx="80" data-mw="800" style="width:960px;height:680px"><svg class="pc-lines" width="960" height="680" aria-hidden="true"><g class="pc-static"><path class="br" d="M92 549V557H332V549"/><path class="br" d="M360 453V461H868V453"/></g><g class="pc-dyn"></g></svg><img class="pc-img" data-n="0" src="img-abc-topfold1.webp" width="240" height="481" style="left:92px;top:60px;width:240px" alt="" loading="lazy"><img class="pc-img" data-n="1" src="img-abc-rewards1.webp" width="240" height="385" style="left:360px;top:60px;width:240px" alt="" loading="lazy"><img class="pc-img" data-n="2" src="img-abc-tx.webp" width="240" height="385" style="left:628px;top:60px;width:240px" alt="" loading="lazy"><div class="pc-lab" style="left:92px;width:240px;top:569px"><b>Global section</b><span>The same for every card.</span></div><div class="pc-lab" style="left:360px;width:508px;top:473px"><b>Widgets</b><span>Rewards, transactions and more. Each one is a template, and they swap in per card.</span></div></div></div></div>
+        </div>
+        <div class="dslide" data-i="2">
+          <div class="dslide-body"><div class="slide-kicker">Customer needs</div>
+          <h3>Four questions</h3>
+          <p>Research with 23 card members sorted their top 10 jobs into four questions: what do I owe, what are my benefits, where do I get help, and what’s happening with my account. The page is organized around them, in that order.</p></div>
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg class="ab-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <g class="ab-pop" style="--d:0.05s"><rect x="16" y="22" width="168" height="34" rx="8" fill="#1e1c18" stroke="#2b2822" stroke-width="1.2"/><circle cx="29" cy="39" r="5" fill="#22c55e"/><rect x="42" y="30" width="64" height="6" rx="3" fill="#f0ebe2" fill-opacity=".8"/></g><rect class="ab-fly" style="--d:0.35s;--dx:-34px" x="42" y="42" width="14" height="6" rx="3" fill="#22c55e" fill-opacity=".55"/><rect class="ab-fly" style="--d:0.40s;--dx:-34px" x="60" y="42" width="14" height="6" rx="3" fill="#22c55e" fill-opacity=".55"/><rect class="ab-fly" style="--d:0.45s;--dx:-34px" x="78" y="42" width="14" height="6" rx="3" fill="#22c55e" fill-opacity=".55"/><rect class="ab-fly" style="--d:0.50s;--dx:-34px" x="96" y="42" width="14" height="6" rx="3" fill="#22c55e" fill-opacity=".55"/><rect class="ab-fly" style="--d:0.55s;--dx:-34px" x="114" y="42" width="14" height="6" rx="3" fill="#22c55e" fill-opacity=".55"/>
+          <g class="ab-pop" style="--d:0.13s"><rect x="16" y="66" width="168" height="34" rx="8" fill="#1e1c18" stroke="#2b2822" stroke-width="1.2"/><circle cx="29" cy="83" r="5" fill="#6b6560"/><rect x="42" y="74" width="64" height="6" rx="3" fill="#6b6560"/></g><rect class="ab-fly" style="--d:0.47s;--dx:-34px" x="42" y="86" width="14" height="6" rx="3" fill="#3a352e"/><rect class="ab-fly" style="--d:0.52s;--dx:-34px" x="60" y="86" width="14" height="6" rx="3" fill="#3a352e"/><rect class="ab-fly" style="--d:0.57s;--dx:-34px" x="78" y="86" width="14" height="6" rx="3" fill="#3a352e"/>
+          <g class="ab-pop" style="--d:0.21s"><rect x="16" y="110" width="168" height="34" rx="8" fill="#1e1c18" stroke="#2b2822" stroke-width="1.2"/><circle cx="29" cy="127" r="5" fill="#6b6560"/><rect x="42" y="118" width="64" height="6" rx="3" fill="#6b6560"/></g><rect class="ab-fly" style="--d:0.59s;--dx:-34px" x="42" y="130" width="14" height="6" rx="3" fill="#3a352e"/>
+          <g class="ab-pop" style="--d:0.29s"><rect x="16" y="154" width="168" height="34" rx="8" fill="#1e1c18" stroke="#2b2822" stroke-width="1.2"/><circle cx="29" cy="171" r="5" fill="#6b6560"/><rect x="42" y="162" width="64" height="6" rx="3" fill="#6b6560"/></g><rect class="ab-fly" style="--d:0.71s;--dx:-34px" x="42" y="174" width="14" height="6" rx="3" fill="#3a352e"/>
+          <rect class="ab-pop" style="--d:1.1s" x="13" y="19" width="174" height="40" rx="10" fill="none" stroke="#22c55e" stroke-width="1.8"/>
+          <rect class="ab-halo" style="--d:1.5s" x="13" y="19" width="174" height="40" rx="10" fill="none" stroke="#22c55e" stroke-width="5"/>
+        </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-abc-simplify.webp" alt="Simplify board: the current page grouped by feature beside the proposed design grouped by the four customer questions" style="object-fit:contain"><span class="pair-tag">From the project</span></div>
+        </div>
+        </div>
+        <div class="dslide" data-i="3">
+          <div class="dslide-body"><div class="slide-kicker">Structure</div>
+          <h3>Fixed on top</h3>
+          <p>Card art, purchase power, balance, the payment CTA and navigation stay put above the first fold, the same for every card.</p></div>
+          <div class="dslide-vis is-pair">
+          <div class="pair-cell pair-art"><svg class="ab-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="50" y="8" width="100" height="184" rx="14" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/><rect x="58" y="16" width="84" height="8" rx="4" fill="#2b2822"/>
+          <g class="ab-pop" style="--d:.05s">
+            <rect x="78" y="32" width="44" height="28" rx="4" fill="#3b82f6" fill-opacity=".5"/>
+            <rect x="62" y="68" width="76" height="6" rx="3" fill="#6b6560"/>
+            <rect x="62" y="78" width="76" height="10" rx="4" fill="#2b2822"/>
+            <rect x="62" y="94" width="76" height="10" rx="5" fill="#22c55e" fill-opacity=".6"/>
+            <circle cx="70" cy="116" r="5" fill="#2b2822"/><circle cx="90" cy="116" r="5" fill="#2b2822"/><circle cx="110" cy="116" r="5" fill="#2b2822"/><circle cx="130" cy="116" r="5" fill="#2b2822"/>
+          </g>
+          <rect class="ab-fade" style="--d:.55s" x="56" y="27" width="88" height="98" rx="8" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <path class="ab-fade" style="--d:.8s" d="M40 132 H160" stroke="#e879a0" stroke-opacity=".7" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect class="ab-fly" style="--d:.95s;--dy:16px" x="62" y="140" width="76" height="20" rx="4" fill="#2b2822"/>
+          <rect class="ab-fly" style="--d:1.1s;--dy:16px" x="62" y="166" width="76" height="18" rx="4" fill="#2b2822"/>
+        </svg></div>
+          <div class="pair-cell pair-shot"><img src="img-abc-page-build-1.webp" alt="Page structure annotation: global section with card art, purchase power, balance info, payment CTA and navigation above the first fold"><span class="pair-tag">From the project</span></div>
+        </div>
+        </div>
+        
+      </div>
+      <div class="deck-dots">
+        <button class="ddot is-on" data-i="0" type="button" aria-label="Slide 1"></button>
+        <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
+        <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
+        <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
@@ -1187,6 +1518,119 @@
     row.insertBefore(make(-1), row.firstChild);
     row.appendChild(make(1));
   });
+</script>
+<script>
+  // Layer illustrations: play when the deck first comes into view, when a slide is shown, and on hover.
+  (function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var deck = document.querySelector('[data-deck="layers"]');
+    if (!deck) return;
+    function play(svg) {
+      if (!svg) return;
+      svg.classList.remove('play');
+      void svg.getBoundingClientRect();
+      svg.classList.add('play');
+    }
+    deck.querySelectorAll('.ps-anim').forEach(function (svg) {
+      (svg.closest('.pair-art') || svg.parentNode).addEventListener('mouseenter', function () { play(svg); });
+    });
+    var seen = false;
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        var t = m.target;
+        if (seen && t.classList.contains('dslide') && t.classList.contains('is-on') && m.oldValue && m.oldValue.indexOf('is-on') === -1) play(t.querySelector('.ps-anim'));
+      });
+    }).observe(deck, { subtree: true, attributes: true, attributeFilter: ['class'], attributeOldValue: true });
+    new IntersectionObserver(function (entries, io) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        seen = true;
+        play(deck.querySelector('.dslide.is-on .ps-anim'));
+        io.disconnect();
+      });
+    }, { threshold: 0.35 }).observe(deck);
+  })();
+</script>
+<script>
+  // Card page illustrations: play when a deck or picker first comes into view, when a slide or template is shown, and on hover.
+  (function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function play(svg) {
+      if (!svg) return;
+      svg.classList.remove('play');
+      void svg.getBoundingClientRect();
+      svg.classList.add('play');
+    }
+    document.querySelectorAll('.ab-anim').forEach(function (svg) {
+      (svg.closest('.pair-art, .slot-card') || svg.parentNode).addEventListener('mouseenter', function () { play(svg); });
+    });
+    function watch(root, itemClass) {
+      var seen = false;
+      new MutationObserver(function (muts) {
+        muts.forEach(function (m) {
+          var t = m.target;
+          if (seen && t.classList.contains(itemClass) && t.classList.contains('is-on') && m.oldValue && m.oldValue.indexOf('is-on') === -1) play(t.querySelector('.ab-anim'));
+        });
+      }).observe(root, { subtree: true, attributes: true, attributeFilter: ['class'], attributeOldValue: true });
+      new IntersectionObserver(function (entries, io) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          seen = true;
+          play(root.querySelector('.' + itemClass + '.is-on .ab-anim'));
+          io.disconnect();
+        });
+      }, { threshold: 0.35 }).observe(root);
+    }
+    document.querySelectorAll('[data-deck]').forEach(function (d) { watch(d, 'dslide'); });
+    document.querySelectorAll('[data-slot]').forEach(function (s) { watch(s, 'slot-fig'); });
+  })();
+</script>
+<script>
+  // Shipped screens: fit each canvas to its slide, then stack callouts and draw leaders to spots on the exported screens.
+  (function () {
+    var canvases = document.querySelectorAll('.pc-canvas');
+    if (!canvases.length) return;
+    var mobile = window.matchMedia('(max-width: 860px)');
+    function fit(cv) {
+      var box = cv.parentElement, cw = box.clientWidth, ch = box.clientHeight;
+      if (!cw || !ch) return false;
+      var W = +cv.dataset.w, H = +cv.dataset.h, X = 0;
+      if (mobile.matches) { X = +cv.dataset.mx; W = +cv.dataset.mw; }
+      var k = Math.min(cw / W, ch / H);
+      cv.style.transform = 'translate(' + ((cw - W * k) / 2 - X * k) + 'px,' + ((ch - H * k) / 2) + 'px) scale(' + k + ')';
+      return true;
+    }
+    function layout(cv) {
+      if (mobile.matches) return;
+      var imgs = cv.querySelectorAll('.pc-img'), s = '';
+      ['left', 'right'].forEach(function (side) {
+        var items = [].slice.call(cv.querySelectorAll('.pc-call[data-side="' + side + '"]')).map(function (c) {
+          var im = imgs[+c.dataset.n], k = im.offsetWidth / 375, r = c.dataset.r.split(',').map(Number);
+          var t = { x: im.offsetLeft + r[0] * k, y: im.offsetTop + r[1] * k, w: r[2] * k, h: r[3] * k };
+          return { c: c, im: im, t: t, want: t.y + t.h / 2 };
+        }).sort(function (a, b) { return a.want - b.want; });
+        var prev = -1e9;
+        items.forEach(function (it) {
+          var top = Math.max(it.want - 11, prev + 18);
+          it.c.style.top = top + 'px'; prev = top + it.c.offsetHeight; it.ly = top + 11;
+        });
+        items.forEach(function (it) {
+          var t = it.t, ty = t.y + t.h / 2, lx, ex, tx;
+          if (side === 'left') { lx = it.c.offsetLeft + it.c.offsetWidth + 10; ex = it.im.offsetLeft - 12; tx = t.x - 3; }
+          else { lx = it.c.offsetLeft - 10; ex = it.im.offsetLeft + it.im.offsetWidth + 12; tx = t.x + t.w + 3; }
+          s += '<polyline class="ld" points="' + lx + ',' + it.ly + ' ' + ex + ',' + it.ly + ' ' + tx + ',' + ty + '"/><circle class="dot" cx="' + tx + '" cy="' + ty + '" r="3.6"/>';
+        });
+      });
+      cv.querySelector('.pc-dyn').innerHTML = s;
+    }
+    function run(cv) { if (fit(cv)) layout(cv); }
+    function all() { canvases.forEach(run); }
+    if (window.ResizeObserver) { var ro = new ResizeObserver(function (es) { es.forEach(function (e) { run(e.target.querySelector('.pc-canvas')); }); }); canvases.forEach(function (cv) { ro.observe(cv.parentElement); }); }
+    canvases.forEach(function (cv) { cv.querySelectorAll('.pc-img').forEach(function (im) { if (!im.complete) im.addEventListener('load', function () { run(cv); }); }); });
+    window.addEventListener('resize', all);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(all);
+    all();
+  })();
 </script>
 </body>
 </html>
