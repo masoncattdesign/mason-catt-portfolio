@@ -780,6 +780,12 @@
   .trio figure { margin: 0; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); background: #fff; aspect-ratio: 1; }
   .trio img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .sp-white { background: #fff; }
+  .ck-wrap { padding: 22px; } .ck-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; align-content: center; }
+  .ck-grid img { width: 100%; height: auto; aspect-ratio: 768 / 500; object-fit: contain; min-width: 0; }
+  .ck-quad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; height: 100%; align-content: center; }
+  .ck-quad img { width: 100%; height: auto; aspect-ratio: 1.92; object-fit: cover; border-radius: 8px; min-width: 0; display: block; }
+  @media (max-width: 860px) { .ck-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; } .ck-wrap { aspect-ratio: auto !important; padding: 12px; } .ck-quad { gap: 6px; } }
+
   .aw-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; padding: 44px 22px 22px; width: 100%; align-content: center; }
   .aw-grid img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; position: static !important; }
   .aws-wall { display: flex; }
@@ -806,7 +812,7 @@
     <span class="eco">Before Microsoft &middot; 2014 &ndash; 2020</span>
   </div>
   <h1 class="case-title">Other <em>work</em></h1>
-  <p class="case-subtitle">Three stops before Microsoft: building the AWS brand and icon system as one of its first four designers, campaign illustration at BUCK, and a product launch plus a first Figma library at Credit Karma.</p>
+  <p class="case-subtitle">Three stops before Microsoft: building the AWS brand and icon system as one of its first four designers, campaign illustration at BUCK, and Tax, debit and a first Figma library at Credit Karma.</p>
 
   <div class="meta-strip">
     <div class="meta-item"><div class="ml">Amazon</div><div class="mv">Interaction Designer</div></div>
@@ -838,7 +844,7 @@
       <div class="sx-art"><svg viewBox="0 0 200 96" aria-hidden="true"><rect x="0" y="0" width="52" height="96" rx="12" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6"/><rect x="8" y="14" width="36" height="24" rx="6" fill="#22c55e" opacity=".85"/><path d="M8 64l10-6 10 3 10-10 8 4" stroke="#22c55e" stroke-width="2" fill="none"/><path d="M64 48h22" stroke="#6b6560" stroke-width="2" stroke-dasharray="2 4"/><rect x="96" y="10" width="30" height="22" rx="6" fill="#22c55e" opacity=".75"/><rect x="132" y="10" width="30" height="22" rx="6" fill="#3b82f6" opacity=".75"/><rect x="168" y="10" width="30" height="22" rx="6" fill="#2b2822" opacity=".75"/><rect x="96" y="38" width="30" height="22" rx="6" fill="#2b2822" opacity=".75"/><rect x="132" y="38" width="30" height="22" rx="6" fill="#e879a0" opacity=".75"/><rect x="168" y="38" width="30" height="22" rx="6" fill="#3b82f6" opacity=".75"/><rect x="96" y="66" width="30" height="22" rx="6" fill="#22c55e" opacity=".75"/><rect x="132" y="66" width="30" height="22" rx="6" fill="#2b2822" opacity=".75"/><rect x="168" y="66" width="30" height="22" rx="6" fill="#2b2822" opacity=".75"/></svg></div>
       <div class="sx-body">
         <div class="sx-name">Credit Karma</div>
-        <div class="sx-note">A Savings launch and a first Figma library</div>
+        <div class="sx-note">Tax, debit and credit, and a first Figma library</div>
         <div class="sx-go">Read<span>&rarr;</span></div>
       </div>
     </a>
@@ -1010,13 +1016,15 @@
   <div class="prose" id="creditkarma">
     <div class="slabel">Intuit Credit Karma &middot; 2019 &ndash; 2020</div>
     <div class="stream-head"><h2>Credit Karma</h2></div>
-    <p class="stream-lede">A new Savings product taken from concept through launch, and the company&#39;s first centralized Figma library.</p>
+    <p class="stream-lede">Visual and experience design for Credit Karma Tax and the emerging debit and credit products, plus a Savings launch and the company&#39;s first centralized Figma library.</p>
     <div class="deck" data-deck="creditkarma">
       <div class="deck-crumbs" role="tablist">
         <button class="crumb is-on" data-i="0" type="button">Overview</button>
-        <button class="crumb" data-i="1" type="button">Savings</button>
-        <button class="crumb" data-i="2" type="button">Figma library</button>
-        <span class="deck-count">1 / 3</span>
+        <button class="crumb" data-i="1" type="button">Tax</button>
+        <button class="crumb" data-i="2" type="button">Debit and credit</button>
+        <button class="crumb" data-i="3" type="button">Savings</button>
+        <button class="crumb" data-i="4" type="button">Figma library</button>
+        <span class="deck-count">1 / 5</span>
       </div>
       <div class="deck-stage">
         <div class="dslide is-on is-ov-s" data-i="0">
@@ -1024,24 +1032,36 @@
             <div class="ov-copy">
             <div class="ov-kicker">Intuit Credit Karma &middot; 2019 &ndash; 2020</div>
             <h3 class="ov-title">Credit Karma</h3>
-            <p class="ov-desc">Senior Designer on contract. Led UX strategy, research and launch for a new Savings product, and set up the company&#39;s first centralized Figma library and asset repository.</p>
-            <dl class="ov-facts"><div><dt>Role</dt><dd>Senior Designer, contract</dd></div><div><dt>Product</dt><dd>Savings, from concept through launch</dd></div><div><dt>Systems</dt><dd>First centralized Figma library</dd></div></dl>
+            <p class="ov-desc">Senior Designer on contract, focused on visual and experience design for Credit Karma Tax and the emerging debit and credit products. Along the way, UX for a new Savings product and the company&#39;s first centralized Figma library.</p>
+            <dl class="ov-facts"><div><dt>Role</dt><dd>Senior Designer, contract</dd></div><div><dt>Products</dt><dd>Tax, debit and credit, Savings</dd></div><div><dt>Systems</dt><dd>First centralized Figma library</dd></div></dl>
             </div>
-            <div class="ov-art"><span class="ov-tag">Product and library</span><svg viewBox="0 0 460 300" aria-hidden="true"><rect x="0" y="0" width="460" height="300" fill="#161616"/><g transform="translate(40 24)"><rect width="140" height="252" rx="22" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><rect x="14" y="30" width="112" height="70" rx="12" fill="#22c55e" opacity=".85"/><rect x="26" y="44" width="50" height="7" rx="3.5" fill="#0e0d0c" opacity=".5"/><rect x="26" y="62" width="76" height="14" rx="4" fill="#0e0d0c" opacity=".7"/><path d="M22 164l20-12 20 6 22-20 20 8 18-18" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="196" width="112" height="16" rx="8" fill="#2b2822"/><rect x="14" y="220" width="112" height="16" rx="8" fill="#22c55e" opacity=".8"/></g><path d="M200 150h36" stroke="#6b6560" stroke-width="2" stroke-dasharray="3 5"/><g transform="translate(250 60)"><rect width="180" height="180" rx="16" fill="#1f1d1a" stroke="rgba(240,235,226,.12)"/><text x="16" y="28" class="cv-lbl" style="font-size:11px">One Figma library</text><rect x="16" y="44" width="44" height="34" rx="8" fill="#3b82f6" opacity=".8"/><rect x="68" y="44" width="44" height="34" rx="8" fill="#22c55e" opacity=".8"/><rect x="120" y="44" width="44" height="34" rx="8" fill="#2b2822" opacity=".8"/><rect x="16" y="86" width="44" height="34" rx="8" fill="#2b2822" opacity=".8"/><rect x="68" y="86" width="44" height="34" rx="8" fill="#e879a0" opacity=".8"/><rect x="120" y="86" width="44" height="34" rx="8" fill="#3b82f6" opacity=".8"/><rect x="16" y="128" width="44" height="34" rx="8" fill="#22c55e" opacity=".8"/><rect x="68" y="128" width="44" height="34" rx="8" fill="#2b2822" opacity=".8"/><rect x="120" y="128" width="44" height="34" rx="8" fill="#2b2822" opacity=".8"/></g></svg></div>
+            <div class="ov-art"><span class="ov-tag">Credit Karma Tax illustration</span><svg viewBox="0 0 460 300" aria-hidden="true"><g transform="translate(20 16)"><rect width="204" height="132" rx="12" fill="#fff"/><image href="ck/tax-w2arrived.webp" x="4" y="2" width="196" height="128"/></g><g transform="translate(234 16)"><rect width="204" height="132" rx="12" fill="#fff"/><image href="ck/tax-maxrefund.webp" x="4" y="2" width="196" height="128"/></g><g transform="translate(20 156)"><rect width="204" height="132" rx="12" fill="#fff"/><image href="ck/tax-savingspiggy.webp" x="4" y="2" width="196" height="128"/></g><g transform="translate(234 156)"><rect width="204" height="132" rx="12" fill="#fff"/><image href="ck/tax-taxopen.webp" x="4" y="2" width="196" height="128"/></g></svg></div>
           </div>
         </div>
         <div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">Credit Karma Tax</div>
+          <h3>Visual and experience design for Tax</h3>
+          <p>Visual and experience design for Credit Karma Tax, including the illustration set behind the advice cards that walk members through tax season, from the W-2 arriving to the max refund.</p></div>
+          <div class="dslide-vis sp-white ck-wrap"><div class="ck-grid"><img src="ck/tax-w2arrived.webp" alt="Credit Karma Tax advice card illustration: w2arrived" loading="lazy"><img src="ck/tax-maxrefund.webp" alt="Credit Karma Tax advice card illustration: maxrefund" loading="lazy"><img src="ck/tax-savingspiggy.webp" alt="Credit Karma Tax advice card illustration: savingspiggy" loading="lazy"><img src="ck/tax-taxopen.webp" alt="Credit Karma Tax advice card illustration: taxopen" loading="lazy"><img src="ck/tax-estimate.webp" alt="Credit Karma Tax advice card illustration: estimate" loading="lazy"><img src="ck/tax-home.webp" alt="Credit Karma Tax advice card illustration: home" loading="lazy"><img src="ck/tax-car.webp" alt="Credit Karma Tax advice card illustration: car" loading="lazy"><img src="ck/tax-gifts.webp" alt="Credit Karma Tax advice card illustration: gifts" loading="lazy"><img src="ck/tax-growth.webp" alt="Credit Karma Tax advice card illustration: growth" loading="lazy"><img src="ck/tax-taxguarantee.webp" alt="Credit Karma Tax advice card illustration: taxguarantee" loading="lazy"><img src="ck/tax-newyears.webp" alt="Credit Karma Tax advice card illustration: newyears" loading="lazy"><img src="ck/tax-valentines.webp" alt="Credit Karma Tax advice card illustration: valentines" loading="lazy"></div></div>
+        </div>
+        <div class="dslide" data-i="2">
+          <div class="dslide-body"><div class="slide-kicker">Emerging products</div>
+          <h3>Debit and credit</h3>
+          <p>Early vision for the debit and credit products. The debit card directions were explored with the studio Character, taking each concept from the card itself to the welcome mailer and the phone wallet.</p></div>
+          <div class="dslide-vis is-trio ck-quadwrap"><div class="ck-quad"><img src="ck/debit-65.webp" alt="Six debit card concepts floating together" loading="lazy"><img src="ck/debit-67.webp" alt="One card concept, front and back" loading="lazy"><img src="ck/debit-76.webp" alt="The welcome mailer for a card concept" loading="lazy"><img src="ck/debit-91.webp" alt="A card concept in the phone wallet and at the register" loading="lazy"></div></div>
+        </div>
+        <div class="dslide" data-i="3">
           <div class="dslide-body"><div class="slide-kicker">Product</div>
           <h3>The Savings launch</h3>
-          <p>Led UX strategy, research and launch for a brand new Savings product, and contributed early vision concepts for Debit and Credit.</p></div>
+          <p>Led UX strategy, research and launch for a brand new Savings product.</p></div>
           <div class="dslide-vis is-split">
           <div class="sp-cell sp-expl"><svg class="tp" viewBox="0 0 400 480" aria-hidden="true">
 <text x="28" y="44" class="tp-h">Savings, concept to launch</text>
 <g transform="translate(28 76)"><rect width="344" height="76" rx="12" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="18" y="32" class="tp-n">01</text><text x="48" y="32" class="tp-c">UX strategy</text><text x="48" y="54" class="tp-s">What a new Savings product should be</text></g><path d="M200 152v18" stroke="#6b6560" stroke-width="2"/><g transform="translate(28 172)"><rect width="344" height="76" rx="12" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="18" y="32" class="tp-n">02</text><text x="48" y="32" class="tp-c">Research</text><text x="48" y="54" class="tp-s">Tested with members before building</text></g><path d="M200 248v18" stroke="#6b6560" stroke-width="2"/><g transform="translate(28 268)"><rect width="344" height="76" rx="12" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="18" y="32" class="tp-n">03</text><text x="48" y="32" class="tp-c">Design</text><text x="48" y="54" class="tp-s">UX and visual direction end to end</text></g><path d="M200 344v18" stroke="#6b6560" stroke-width="2"/><g transform="translate(28 364)"><rect width="344" height="76" rx="12" fill="#1f1d1a" stroke="rgba(240,235,226,.14)"/><text x="18" y="32" class="tp-n">04</text><text x="48" y="32" class="tp-c">Launch</text><text x="48" y="54" class="tp-s">Shipped, then early vision for Debit and Credit</text></g></svg></div>
-          <div class="sp-cell ph"><b>Screens coming</b><span>Drop Savings screens here</span></div>
+          <div class="sp-cell sp-file sp-white"><img style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14px" src="ck/savings-phone.webp" alt="Credit Karma Savings on a phone: current balance, APY, and a transfer from a linked bank" loading="lazy"></div>
           </div>
         </div>
-        <div class="dslide" data-i="2">
+        <div class="dslide" data-i="4">
           <div class="dslide-body"><div class="slide-kicker">Systems</div>
           <h3>The first Figma library</h3>
           <p>Onboarded the team into Figma and established the company&#39;s first centralized Figma library and asset repository.</p></div>
@@ -1064,6 +1084,8 @@
         <button class="ddot is-on" data-i="0" type="button" aria-label="Slide 1"></button>
         <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
         <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
+        <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
+        <button class="ddot" data-i="4" type="button" aria-label="Slide 5"></button>
       </div>
     </div>
   </div>
