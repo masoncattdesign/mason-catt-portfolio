@@ -835,7 +835,6 @@
   .sx-grid4 { grid-template-columns: repeat(3, 1fr) !important; }
   @media (max-width: 860px) { .dslide-vis.is-split { grid-template-columns: minmax(0, 1fr); } .sp-navy { aspect-ratio: 1.78; } .dslide-vis.is-trio { aspect-ratio: auto; } .trio { gap: 8px; } .ph { aspect-ratio: 1.6; } .sx-grid4 { grid-template-columns: 1fr !important; } }
 
-  /* Amazon Business (from the Pay Studio and card pages) */
 .ps-anim .pa-t, .ps-anim .pa-hl, .ps-anim .pa-sheet, .ps-anim .pa-final{ transform-box: fill-box; transform-origin: center; }
 .ps-anim .pa-halo{ opacity: 0; }
 .ps-anim .pa-src{ opacity: .4; }
@@ -942,7 +941,378 @@
 .pc-call span, .pc-lab span{ display: block; font-size: 13.5px; color: var(--cream2); }
 @media (max-width: 860px){.dslide-vis.is-phone{ aspect-ratio: 4 / 5 !important; }
 .pc-call, .pc-lab, .pc-lines{ display: none; }}
-  .ab-sub { margin: 56px 0 0; }
+.dia{ background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 32px; margin: 30px 0 0; }
+.dia svg{ width: 100%; height: auto; display: block; overflow: visible; }
+.dia-cap{ font-size: 12px; color: var(--cream3); font-style: italic; margin-top: 10px; padding: 0 4px; line-height: 1.6; }
+.dia-legend{ list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; margin: 24px 0 0; padding-top: 22px; border-top: 1px solid var(--border); }
+.dia-legend li{ display: flex; gap: 11px; font-size: 13.5px; color: var(--cream2); line-height: 1.6; }
+.dia-legend b{ flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; background: var(--bg); border: 1px solid rgba(34,197,94,0.4); color: var(--accent); font-size: 10.5px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+.dia-legend strong{ color: var(--cream); font-weight: 500; }
+.dia-legend em{ font-style: normal; color: var(--accent); }
+.ppm-host{ container-type: inline-size; --u: calc(100cqw / 360); }
+.ppm{ position: relative; display: grid; grid-template-columns: calc(var(--u) * 64) minmax(0, 1fr); column-gap: calc(var(--u) * 12.5);
+         padding: calc(var(--u) * 10); border: calc(var(--u) * 2) solid #007185; border-radius: calc(var(--u) * 8);
+         background: #f7feff; color: #0f1111; text-align: left;
+         font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 400;
+         box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+.ppm .ppm-art{ width: calc(var(--u) * 64); height: calc(var(--u) * 40); border-radius: calc(var(--u) * 3.5); display: block; object-fit: cover; }
+.ppm-body{ min-width: 0; display: flex; flex-direction: column; }
+.ppm-title{ font-size: calc(var(--u) * 15.25); line-height: 1.25; margin-top: calc(var(--u) * 1.6); white-space: nowrap; }
+.ppm-sub{ font-size: calc(var(--u) * 13); line-height: 1.3; color: #595959; margin-top: calc(var(--u) * 3); white-space: nowrap; }
+.ppm-feat{ position: relative; display: flex; align-items: center; gap: calc(var(--u) * 10); margin-top: calc(var(--u) * 2.5); }
+.ppm-feat > span{ flex: 1; min-width: 0; font-size: calc(var(--u) * 13); line-height: 1.3; white-space: nowrap; }
+:where(.ppm) button, :where(.ppm) input{ font: inherit; color: inherit; margin: 0; }
+.ppm-switch{ flex: none; position: relative; width: calc(var(--u) * 40); height: calc(var(--u) * 24); border-radius: calc(var(--u) * 12);
+                border: 0; padding: 0; background: #c8cccc; cursor: pointer; transition: background .2s ease; }
+.ppm-switch::after{ content: ''; position: absolute; left: calc(var(--u) * 2); top: calc(var(--u) * 2); width: calc(var(--u) * 20); height: calc(var(--u) * 20);
+                       border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(15,17,17,.3); transition: transform .22s cubic-bezier(.2,.75,.25,1); }
+.ppm-switch[aria-checked="true"]{ background: #007185; }
+.ppm-switch[aria-checked="true"]::after{ transform: translateX(calc(var(--u) * 16)); }
+.ppm-switch:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+.ppm-amt{ display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+.ppm-amt > div{ overflow: hidden; }
+.ppm.is-on .ppm-amt{ grid-template-rows: 1fr; }
+.ppm-amt label{ display: block; padding-top: calc(var(--u) * 10); font-size: calc(var(--u) * 12); color: #595959; }
+.ppm-field{ display: flex; align-items: center; margin-top: calc(var(--u) * 4); width: calc(var(--u) * 150); height: calc(var(--u) * 30);
+               border: 1px solid #888c8c; border-radius: calc(var(--u) * 4); background: #fff; color: #0f1111; padding: 0 calc(var(--u) * 8); font-size: calc(var(--u) * 14); box-shadow: inset 0 1px 2px rgba(15,17,17,.12); }
+.ppm-field input{ flex: 1; min-width: 0; border: 0; outline: 0; background: none; padding: 0 0 0 calc(var(--u) * 3); font-size: calc(var(--u) * 14); }
+.ppm-field:focus-within{ border-color: #007185; box-shadow: 0 0 0 calc(var(--u) * 2) rgba(0,113,133,.2); }
+.ppm-amt small{ display: block; margin-top: calc(var(--u) * 4); font-size: calc(var(--u) * 11); color: #595959; }
+.ppm-ring{ position: absolute; left: calc(var(--u) * -6.5); right: calc(var(--u) * -5); top: calc(var(--u) * -1); bottom: calc(var(--u) * -7);
+              border: 1.5px dashed var(--accent); border-radius: 8px; background: rgba(34,197,94,0.07); pointer-events: none; }
+.anat.ppm-host .anat-pin{ z-index: 2; }
+.anat .ppm-amt{ display: none; }
+.slot-card.ppm-host .ppm{ box-shadow: 0 8px 22px rgba(0,0,0,.4); }
+.ppm-sub i{ font-style: normal; margin: 0 calc(var(--u) * 5); }
+.ppm .ppm-art{ max-width: none; filter: none; }
+.flow{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 30px 0 0; }
+.flow-step{ background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.flow-art{ background: var(--bg3); border-bottom: 1px solid var(--border); padding: 16px 16px 12px; }
+.flow-art svg{ width: 100%; height: auto; display: block; }
+.flow-body{ padding: 14px 16px 16px; }
+.flow-num{ font-family: var(--serif); font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+.flow-name{ font-size: 13px; font-weight: 500; color: var(--cream); line-height: 1.35; margin-bottom: 4px; }
+.flow-note{ font-size: 12px; color: var(--cream3); line-height: 1.5; }
+.fl-anim .fl-sel, .fl-anim .fl-tap, .fl-anim .fl-type{ transform-box: fill-box; transform-origin: center; }
+.fl-anim .fl-type{ transform-origin: left center; }
+.fl-anim .fl-tap{ opacity: 0; }
+.fl-anim .fl-halo{ opacity: 0; }
+.fl-anim .fl-check{ stroke-dasharray: 1; stroke-dashoffset: 0; }
+.fl-anim.play .fl-sel{ animation: fl-sel .5s cubic-bezier(.2,.75,.25,1) calc(var(--s) + .1s) both; }
+.fl-anim.play .fl-tap{ animation: fl-tap .7s ease-out calc(var(--s) + .05s) both; }
+.fl-anim.play .fl-type{ animation: fl-type .35s ease-out calc(var(--s) + var(--t)) both; }
+.fl-anim.play .fl-fill{ animation: fl-fade .4s ease calc(var(--s) + .55s) both; }
+.fl-anim.play .fl-check{ animation: fl-draw .35s ease-out calc(var(--s) + .3s) both; }
+.fl-anim.solo{ --s: 0s !important; }
+.flow.live .flow-step:nth-child(1) .fl-halo{ animation: fl-halo 6s ease-in-out 2.2s infinite; }
+.flow.live .flow-step:nth-child(2) .fl-halo{ animation: fl-halo 6s ease-in-out 3.7s infinite; }
+.flow.live .flow-step:nth-child(3) .fl-halo{ animation: fl-halo 6s ease-in-out 5.2s infinite; }
+.flow.live .flow-step:nth-child(4) .fl-halo{ animation: fl-halo 6s ease-in-out 6.7s infinite; }
+@keyframes fl-sel{ from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes fl-tap{ 0% { opacity: .9; transform: scale(.4); } 100% { opacity: 0; transform: scale(2.6); } }
+@keyframes fl-type{ from { transform: scaleX(0); } to { transform: none; } }
+@keyframes fl-fade{ from { opacity: 0; } to { opacity: 1; } }
+@keyframes fl-draw{ from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes fl-halo{ 0%, 30%, 100% { opacity: 0; } 14% { opacity: .3; } }
+@media (prefers-reduced-motion: reduce){.fl-anim.play *, .flow.live .fl-halo{ animation: none !important; }}
+@media (max-width: 900px){.flow{ grid-template-columns: 1fr 1fr; }
+.dia{ padding: 22px 20px; }
+.dia-legend{ grid-template-columns: 1fr; }}
+@media (max-width: 560px){.stream-index-grid, .stat-strip, .flow{ grid-template-columns: 1fr; }
+.dia{ padding: 20px 14px; }}
+.pb{ display: grid; grid-template-columns: 188px minmax(0, 1fr) 236px; grid-template-areas: "pal stage props" "code code code";
+        margin: 30px 0 0; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; text-align: left; }
+:where(.pb) button{ font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: inherit; }
+.pb button:focus-visible, .pb input:focus-visible, .pb select:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+.pb-ttl{ font-size: 10.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); margin: 0 0 10px; }
+.pb-pal{ grid-area: pal; padding: 16px 12px; border-right: 1px solid var(--border); }
+.pb-pal-list{ display: flex; flex-direction: column; gap: 2px; }
+.pb-cat{ font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); opacity: .7; margin: 10px 0 4px 8px; }
+.pb-cat:first-child{ margin-top: 0; }
+.pb-pi{ display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 7px; font-size: 12.5px; line-height: 1.3; white-space: nowrap; color: var(--cream2); cursor: grab; transition: background .15s, color .15s; user-select: none; }
+.pb-pi:hover{ background: var(--bg3); color: var(--cream); }
+.pb-pi:active{ cursor: grabbing; }
+.pb-pi::before{ content: ''; width: 6px; height: 10px; flex: none; opacity: .5;
+                   background: radial-gradient(circle, var(--cream3) 1px, transparent 1.3px) 0 0 / 3px 3.4px; }
+.pb-pi .pb-plus{ margin-left: auto; font-size: 14px; line-height: 1; color: var(--cream3); opacity: 0; transition: opacity .15s; }
+.pb-pi:hover .pb-plus{ opacity: 1; }
+.pb-stage{ grid-area: stage; background: var(--bg3); display: flex; justify-content: center; align-items: flex-start; padding: 22px 16px; min-width: 0; }
+.pb-phone{ width: 100%; max-width: 312px; border-radius: 30px; background: #0b0b0d; padding: 8px; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+.pb-scrim{ height: 34px; border-radius: 22px 22px 0 0; background: #3b3d40; }
+.pb-sheet{ background: #fff; border-radius: 16px 16px 22px 22px; margin-top: -12px; position: relative; min-height: 420px; padding: 0 0 12px;
+              font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #0f1111; font-size: 12.5px; line-height: 1.35; }
+.pb-sheet-top{ display: flex; justify-content: center; align-items: center; height: 26px; position: relative; }
+.pb-grab{ width: 34px; height: 4px; border-radius: 2px; background: #d5d9d9; }
+.pb-close{ position: absolute; right: 12px; top: 4px; font-size: 18px; color: #0f1111; }
+.pb-body{ position: relative; padding: 0 12px; min-height: 380px; display: flex; flex-direction: column; gap: 8px; }
+.pb-empty{ border: 1.5px dashed #c9cfcf; border-radius: 10px; color: #6b7070; text-align: center; padding: 28px 12px; font-size: 12px; }
+.pb-ins{ position: absolute; left: 10px; right: 10px; height: 2px; border-radius: 1px; background: var(--accent); box-shadow: 0 0 0 3px rgba(34,197,94,.2); pointer-events: none; display: none; }
+.pb-item{ position: relative; border-radius: 9px; outline: 1.5px solid transparent; outline-offset: 3px; transition: outline-color .15s, opacity .15s; cursor: pointer; }
+.pb-item:hover{ outline-color: rgba(34,197,94,.35); }
+.pb-item.is-sel{ outline-color: var(--accent); }
+.pb-item.is-drag{ opacity: .35; }
+.pb-item.is-new{ animation: pb-in .35s cubic-bezier(.2,.75,.25,1); }
+@keyframes pb-in{ from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
+.pb-x{ position: absolute; top: -9px; right: -9px; width: 20px; height: 20px; border-radius: 50%; background: #0e0d0c !important; color: #fff !important;
+          font-size: 13px; line-height: 20px; text-align: center !important; opacity: 0; transition: opacity .15s; z-index: 2; }
+.pb-item:hover .pb-x, .pb-item.is-sel .pb-x{ opacity: 1; }
+.pb-hd{ display: flex; justify-content: space-between; align-items: baseline; padding: 2px 2px 0; }
+.pb-hd-t{ font-style: italic; font-size: 14.5px; }
+.pb-link{ color: #007185; font-size: 12px; }
+.pb-pm{ display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; box-shadow: inset 0 0 0 1px #d5d9d9; background: #fff; }
+.pb-pm.is-on{ box-shadow: inset 0 0 0 2px #007185; background: #f2fafb; }
+.pb-art{ width: 44px; height: 28px; border-radius: 4px; flex: none; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.pb-art.a-blue{ background: linear-gradient(135deg, #0a1f45, #1f4d95 60%, #0d2a5a); }
+.pb-art.a-red{ background: linear-gradient(135deg, #8d0f1c, #d0283a 60%, #9c1422); }
+.pb-art.a-teal{ background: linear-gradient(135deg, #0b5563, #19a0b4 60%, #0c6474); }
+.pb-art.a-violet{ background: linear-gradient(135deg, #3b2a8f, #6a4fe0 60%, #402f99); }
+.pb-art.a-dark{ background: #232f3e; }
+.pb-art.a-dark::after{ content: ''; display: block; width: 22px; height: 6px; margin: 13px auto 0; border-bottom: 2px solid #ff9900; border-radius: 0 0 50% 50%; }
+.pb-pm-t{ display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.pb-pm-t b{ font-weight: 400; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-pm-t span{ color: #565959; font-size: 11px; }
+.pb-badge{ display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 3px; background: #ffd814; font-size: 10px; font-weight: 700; vertical-align: 1px; }
+.pb-sw{ position: relative; width: 34px; height: 20px; border-radius: 10px; background: #c5c9c9; flex: none; transition: background .2s; }
+.pb-sw::after{ content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+.pb-sw.is-on{ background: #0b6f7c; }
+.pb-sw.is-on::after{ transform: translateX(14px); }
+.pb-claim{ padding: 10px; border-radius: 8px; box-shadow: inset 0 0 0 1px #d5d9d9; }
+.pb-claim-r{ display: flex; align-items: center; gap: 10px; }
+.pb-claim-r > span:first-child{ flex: 1; font-size: 12px; }
+.pb-field{ margin-top: 8px; height: 30px; border-radius: 5px; box-shadow: inset 0 0 0 1px #888c8c; display: flex; align-items: center; padding: 0 9px; color: #6b7070; font-size: 11.5px; }
+.pb-in-l{ font-style: italic; font-size: 11.5px; margin: 0 0 4px 1px; }
+.pb-in .pb-field{ margin-top: 0; justify-content: space-between; }
+.pb-net{ width: 26px; height: 16px; border-radius: 3px; box-shadow: inset 0 0 0 1px #d5d9d9; position: relative; }
+.pb-net::before, .pb-net::after{ content: ''; position: absolute; top: 4px; width: 8px; height: 8px; border-radius: 50%; }
+.pb-net::before{ left: 6px; background: #d5d9d9; }
+.pb-net::after{ left: 11px; background: #b9bfbf; }
+.pb-alert{ position: relative; padding: 9px 10px 9px 18px; border-radius: 8px; font-size: 11.5px; line-height: 1.45; box-shadow: inset 0 0 0 1px #d5d9d9; }
+.pb-alert::before{ content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 3px; border-radius: 2px; background: var(--c); }
+.pb-alert.s-warning{ --c: #f0b400; }
+.pb-alert.s-error{ --c: #cc0c39; }
+.pb-alert.s-info{ --c: #007185; }
+.pb-alert.s-success{ --c: #2a9d4b; }
+.pb-div{ display: flex; align-items: center; gap: 10px; color: #6b7070; font-size: 11px; }
+.pb-div::before, .pb-div::after{ content: ''; flex: 1; height: 1px; background: #d5d9d9; }
+.pb-btn-c{ height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 12.5px; }
+.pb-btn-c.v-primary{ background: #ffd814; }
+.pb-btn-c.v-secondary{ background: #fff; box-shadow: inset 0 0 0 1px #d5d9d9, 0 1px 2px rgba(15,17,17,.12); }
+.pb-legal{ display: flex; justify-content: center; align-items: center; gap: 5px; color: #565959; font-size: 10.5px; }
+.pb-legal svg{ width: 10px; height: 12px; }
+.pb-props{ grid-area: props; padding: 16px 14px; border-left: 1px solid var(--border); min-width: 0; }
+.pb-props-h{ display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+.pb-props-n{ font-size: 13.5px; font-weight: 500; color: var(--cream); line-height: 1.3; }
+.pb-rm{ font-size: 11.5px; color: var(--cream3) !important; flex: none; }
+.pb-rm:hover{ color: #f87171 !important; }
+.pb-f{ display: block; margin: 0 0 12px; }
+.pb-f > span{ display: block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); margin-bottom: 5px; }
+.pb-f input, .pb-f select{ width: 100%; height: 32px; border-radius: 7px; border: 1px solid var(--border2); background: var(--bg); color: var(--cream);
+          font: 13px var(--sans); padding: 0 9px; }
+.pb-f select{ appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--cream3) 50%), linear-gradient(135deg, var(--cream3) 50%, transparent 50%);
+          background-position: calc(100% - 14px) 13px, calc(100% - 9px) 13px; background-size: 5px 5px; background-repeat: no-repeat; }
+.pb-fb{ display: flex; justify-content: space-between; align-items: center; margin: 0 0 12px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream3); }
+.pb-tg{ position: relative; width: 34px; height: 20px; border-radius: 10px !important; background: #3a352e !important; transition: background .2s; }
+.pb-tg::after{ content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--cream); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+.pb-tg[aria-checked="true"]{ background: var(--accent) !important; }
+.pb-tg[aria-checked="true"]::after{ transform: translateX(14px); }
+.pb-hint{ font-size: 12.5px; color: var(--cream3); line-height: 1.6; }
+.pb-code{ grid-area: code; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: var(--bg); }
+.pb-jsx{ flex: 1; min-width: 0; margin: 0; max-height: 132px; overflow: auto; font: 11.5px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--cream2); white-space: pre; }
+.pb-jsx .t{ color: #7dd3fc; }
+.pb-jsx .a{ color: #c4b5fd; }
+.pb-jsx .s{ color: #86efac; }
+.pb-code-btns{ display: flex; gap: 8px; flex: none; }
+.pb-btn{ height: 30px; padding: 0 12px !important; border-radius: 7px !important; font-size: 12px; border: 1px solid var(--border2) !important; color: var(--cream2) !important; transition: border-color .15s, color .15s, background .15s; }
+.pb-btn:hover{ color: var(--cream) !important; border-color: var(--cream3) !important; }
+.pb-btn.is-pri{ background: var(--accent) !important; border-color: var(--accent) !important; color: #0e0d0c !important; font-weight: 500; }
+@media (max-width: 900px){.pb{ grid-template-columns: minmax(0, 1fr); grid-template-areas: "pal" "stage" "props" "code"; }
+.pb-pal, .pb-props, .pb-code{ min-width: 0; }
+.pb-code{ align-items: stretch; }
+.pb-jsx{ max-width: 100%; }
+.pb-pal{ border-right: 0; border-bottom: 1px solid var(--border); }
+.pb-pal-list{ flex-direction: row; flex-wrap: wrap; gap: 6px; }
+.pb-cat{ display: none; }
+.pb-pi{ border: 1px solid var(--border2); border-radius: 100px; padding: 6px 11px; font-size: 12px; }
+.pb-pi .pb-plus{ opacity: 1; }
+.pb-props{ border-left: 0; border-top: 1px solid var(--border); }
+.pb-code{ flex-direction: column; }
+.pb-code-btns{ align-self: flex-end; }}
+@media (prefers-reduced-motion: reduce){.pb *{ transition: none !important; animation: none !important; }}
+.slot{ display: grid; grid-template-columns: 190px 1fr; gap: 16px; margin: 24px 0 0; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.slot-picks{ display: flex; flex-direction: column; gap: 2px; padding-top: 2px; }
+.slot-picks .crumb{ justify-content: flex-start; }
+.slot-stage{ display: grid; align-items: center; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px 28px; min-width: 0; }
+.slot-fig{ grid-area: 1 / 1; margin: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; opacity: 0; visibility: hidden; transition: opacity .25s ease; }
+.slot-fig.is-on{ opacity: 1; visibility: visible; }
+.slot-card{ position: relative; width: 100%; max-width: 440px; margin: 0 auto; }
+.slot-card img{ width: 100%; height: auto; display: block; filter: drop-shadow(0 8px 22px rgba(0,0,0,0.4)); }
+.slot-ring{ position: absolute; left: 23.1%; width: 74.8%; border: 1.5px dashed var(--accent); border-radius: 8px; background: rgba(34,197,94,0.07); pointer-events: none; }
+.slot-fig figcaption{ width: 100%; max-width: 440px; margin: 0 auto; font-size: 13.5px; color: var(--cream2); line-height: 1.6; }
+.slot-fig figcaption strong{ color: var(--cream); font-weight: 500; }
+@media (max-width: 700px){.slot{ grid-template-columns: 1fr; padding: 12px; }
+.slot-picks{ flex-direction: row; flex-wrap: wrap; }
+.slot-stage{ padding: 18px 14px; }}
+@media (prefers-reduced-motion: reduce){.slot-fig{ transition: none; }}
+.slot-card svg{ width: 100%; height: auto; display: block; }
+.cb{ --ink: #0f1111; --ink2: #565959; --teal: #007185; --line: #d5d9d9; --sky: #d7ecf7; --yel: #ffd814;
+        display: grid; grid-template-columns: 1.08fr 1fr 1fr; gap: 18px; align-items: start;
+        margin: 36px 0 0; padding: 22px; background: #eef1f2; border-radius: var(--radius); color: var(--ink);
+        font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 12.5px; line-height: 1.35; text-align: left; }
+.cb + .img-cap{ margin-top: 10px; }
+:where(.cb) button{ font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: inherit; -webkit-tap-highlight-color: transparent; }
+.cb button:focus-visible{ outline: 2px solid var(--teal); outline-offset: 2px; }
+.cb-col{ display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.cb-lbl{ font-size: 12px; color: var(--ink2); margin: 0 0 7px; }
+.cb-card{ background: #fff; border-radius: 10px; box-shadow: 0 0 0 1px rgba(15,17,17,.05), 0 1px 3px rgba(15,17,17,.06); padding: 12px; }
+.cb-b{ font-weight: 700; }
+.cb-sub{ color: var(--ink2); font-size: 11.5px; }
+.cb-sm{ font-size: 11.5px; }
+.cb-link{ color: var(--teal) !important; font-size: 11.5px; }
+.cb-link:hover{ text-decoration: underline; }
+.cb-topbar{ display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.cb-thumb{ width: 42px; height: 27px; border-radius: 4px; flex: none; background: linear-gradient(135deg, #0b1a36 0%, #1a3767 55%, #0e1f3f 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.cb-tb-text{ display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3; }
+.cb-tb-text .cb-b{ font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cb-icon{ position: relative; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; flex: none; border-radius: 50%; transition: background .15s; }
+.cb-icon:hover{ background: #f2f4f4; }
+.cb-bell i{ position: absolute; top: 4px; right: 5px; width: 7px; height: 7px; border-radius: 50%; background: #e03e5c; box-shadow: 0 0 0 1.5px #fff; transform: scale(0); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+.cb-bell.is-new i{ transform: scale(1); }
+.cb-menu{ flex-direction: column; gap: 3.5px; }
+.cb-menu span{ display: block; width: 16px; height: 1.8px; background: var(--ink); border-radius: 1px; transition: transform .22s, opacity .18s; }
+.cb-menu[aria-expanded="true"] span:nth-child(1){ transform: translateY(5.3px) rotate(45deg); }
+.cb-menu[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.cb-menu[aria-expanded="true"] span:nth-child(3){ transform: translateY(-5.3px) rotate(-45deg); }
+.cb-chips{ display: flex; flex-wrap: wrap; gap: 6px; }
+.cb-chip{ border: 1.5px solid; border-radius: 100px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; background: #fff; transition: background .15s, color .15s, transform .1s; }
+.cb-chip:active{ transform: scale(.95); }
+.cb-chip.k-new{ border-color: #a36bd6; color: #6a2fa0; }
+.cb-chip.k-two{ border-color: #6fbfb2; color: #1d8a7a; background: #eef8f6; }
+.cb-chip.k-five{ border-color: #f5cf4f; color: #d9a300; background: #fffaea; }
+.cb-chip.k-offer{ border-color: #3a3d3d; color: var(--ink); }
+.cb-chip[aria-pressed="true"].k-new{ background: #6a2fa0; color: #fff; }
+.cb-chip[aria-pressed="true"].k-two{ background: #1d8a7a; color: #fff; }
+.cb-chip[aria-pressed="true"].k-five{ background: #f5b700; color: #fff; border-color: #f5b700; }
+.cb-chip[aria-pressed="true"].k-offer{ background: var(--ink); color: #fff; }
+.cb-pay{ display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 36px; border-radius: 8px !important;
+            background: var(--yel) !important; box-shadow: 0 1px 0 #e7c200; font-size: 12.5px; font-weight: 500; transition: filter .15s, transform .1s; }
+.cb-pay:hover{ filter: brightness(.97); }
+.cb-pay:active{ transform: scale(.985); }
+.cb-pay.is-busy .cb-pay-t::after{ content: ''; display: inline-block; width: 10px; height: 10px; margin-left: 8px; vertical-align: -1px; border-radius: 50%;
+            border: 2px solid rgba(15,17,17,.25); border-top-color: var(--ink); animation: cb-spin .7s linear infinite; }
+.cb-pay.is-done{ background: #e7f5ea !important; box-shadow: 0 0 0 1px #9fd3ab inset; color: #1f7a38; }
+@keyframes cb-spin{ to { transform: rotate(360deg); } }
+.cb-acts{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 14px 0 12px; }
+.cb-act{ display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cb-circ{ width: 44px; height: 44px; border-radius: 50%; background: var(--sky); display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s, transform .1s; }
+.cb-act:hover .cb-circ{ background: #c7e3f3; }
+.cb-act:active .cb-circ{ transform: scale(.92); }
+.cb-freeze[aria-pressed="true"] .cb-circ{ background: var(--teal); color: #fff; }
+.cb-act-l{ font-size: 10.5px; color: var(--ink); text-align: center !important; white-space: nowrap; }
+.cb-secs{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cb-sec{ height: 32px; border-radius: 8px !important; background: #fff !important; box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(15,17,17,.08); font-size: 11.5px; font-weight: 700; text-align: center !important; transition: background .15s; }
+.cb-sec:hover{ background: #f7fafa !important; }
+.cb-alert{ position: relative; padding: 11px 12px 11px 20px; font-size: 11.5px; line-height: 1.45; margin-bottom: 10px; transition: box-shadow .2s; }
+.cb-alert::before{ content: ''; position: absolute; left: 9px; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: #f0b400; transition: background .25s; }
+.cb-alert.k-info::before{ background: var(--teal); }
+.cb-alert.is-ok::before{ background: #2a9d4b; }
+.cb-alert.is-ok{ box-shadow: 0 0 0 1px #bfe3c8, 0 1px 3px rgba(15,17,17,.06); }
+.cb-ctrls{ display: flex; flex-direction: column; gap: 13px; padding: 14px; }
+.cb-row{ display: grid; grid-template-columns: 68px 1fr; align-items: center; }
+.cb-row .cb-b{ font-size: 11.5px; }
+.cb-bar{ display: block; height: 7px; border-radius: 4px; background: #e6e8e8; overflow: hidden; width: 100%; }
+.cb-bar i{ display: block; height: 100%; border-radius: 4px; background: #4c9aae; transition: width .6s cubic-bezier(.2,.75,.25,1); }
+.cb-prog i{ background: #3d8ddc; }
+.cb-prog.is-run i{ transition: width 1.4s ease-in-out; }
+.cb-sw{ position: relative; width: 34px; height: 20px; border-radius: 10px !important; background: #c5c9c9 !important; transition: background .2s; }
+.cb-sw i{ position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s cubic-bezier(.2,.75,.25,1); }
+.cb-sw.is-on{ background: #0b6f7c !important; }
+.cb-sw.is-on i{ transform: translateX(14px); }
+.cb-set{ display: flex; gap: 22px; }
+.cb-cbx{ width: 16px; height: 16px; border-radius: 3px !important; box-shadow: inset 0 0 0 1.5px #8a8f8f; background: #fff !important; position: relative; transition: background .15s, box-shadow .15s; }
+.cb-cbx.is-on{ background: #0b6f7c !important; box-shadow: none; }
+.cb-cbx.is-on::after{ content: ''; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.cb-cbx.k-line.is-on{ background: #fff !important; box-shadow: inset 0 0 0 1.5px #0b6f7c; }
+.cb-cbx.k-line.is-on::after{ border-color: #0b6f7c; }
+.cb-rad{ width: 16px; height: 16px; border-radius: 50% !important; box-shadow: inset 0 0 0 1.5px #8a8f8f; background: #fff !important; position: relative; transition: box-shadow .15s; }
+.cb-rad[aria-checked="true"]{ box-shadow: inset 0 0 0 1.5px #0b6f7c; }
+.cb-rad[aria-checked="true"]::after{ content: ''; position: absolute; inset: 4px; border-radius: 50%; background: #0b6f7c; }
+.cb-cal{ padding: 12px 12px 8px; }
+.cb-cal-h{ display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.cb-cal-t{ font-size: 12.5px; }
+.cb-cal-nav{ width: 22px; height: 22px; border-radius: 50%; font-size: 16px !important; line-height: 1; color: var(--ink2) !important; text-align: center !important; }
+.cb-cal-nav:hover{ background: #f2f4f4 !important; }
+.cb-cal-g{ display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 2px; text-align: center; }
+.cb-cal-g .d{ font-size: 9.5px; color: var(--ink2); font-weight: 700; padding: 3px 0 6px; }
+.cb-cal-g button{ height: 24px; width: 24px; margin: 0 auto; border-radius: 50%; font-size: 10.5px; text-align: center !important; transition: background .15s, color .15s; }
+.cb-cal-g button:hover{ background: #eef5f9 !important; }
+.cb-cal-g button.is-on{ background: #cfe6f5 !important; color: var(--teal); font-weight: 700; }
+.cb-chart-h{ display: flex; justify-content: space-between; align-items: baseline; }
+.cb-big{ font-size: 20px; font-weight: 700; margin-top: 8px; letter-spacing: -.01em; }
+.cb-sub2{ font-size: 11.5px; color: var(--ink); }
+.cb-chart-svg{ width: 100%; height: auto; display: block; margin: 8px 0 2px; }
+.cb-ser{ transition: opacity .25s; }
+.cb-ser.is-off{ opacity: 0; }
+.cb-months{ display: flex; justify-content: space-between; font-size: 9.5px; color: var(--ink2); padding: 0 4px; }
+.cb-legend{ display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+.cb-legend button{ display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; transition: opacity .2s; }
+.cb-legend button i{ width: 10px; height: 4px; border-radius: 2px; }
+.cb-legend button[aria-pressed="false"]{ opacity: .35; }
+.cb-nav{ display: grid; grid-template-columns: repeat(5, 1fr); padding: 10px 6px 8px; }
+.cb-nav button{ display: flex; flex-direction: column; align-items: center; gap: 4px; color: #3b3f3f !important; font-size: 10px; transition: color .15s; }
+.cb-nav button.is-on{ color: var(--teal) !important; font-weight: 700; }
+.cb-cc-wrap{ display: block; width: 100%; perspective: 900px; }
+.cb-cc{ position: relative; display: block; aspect-ratio: 1.586; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.75,.25,1); transform: rotateY(var(--flip, 0deg)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+.cb-cc-wrap.is-back .cb-cc{ --flip: 180deg; }
+.cb-cc-f, .cb-cc-b{ position: absolute; inset: 0; border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden;
+    background: radial-gradient(120% 90% at 85% 10%, #22467e 0%, rgba(34,70,126,0) 55%), linear-gradient(135deg, #0a1730 0%, #132b55 50%, #0b1a37 100%);
+    box-shadow: 0 10px 24px rgba(10,23,48,.35), inset 0 0 0 1px rgba(255,255,255,.07); color: #fff; }
+.cb-cc-f::after{ content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(100deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px); }
+.cb-cc-b{ transform: rotateY(180deg); }
+.cb-cc-brand{ position: absolute; top: 10%; right: 7%; font-size: 11px; font-weight: 700; letter-spacing: .02em; color: #9fc7ff; }
+.cb-chipart{ position: absolute; left: 7%; top: 38%; width: 15%; height: auto; }
+.cb-nfc{ position: absolute; left: 25%; top: 40%; width: 5.5%; height: auto; opacity: .85; }
+.cb-cc-name{ position: absolute; left: 7%; bottom: 11%; font-size: 10.5px; letter-spacing: .08em; font-weight: 500; }
+.cb-cc-tier{ position: absolute; right: 7%; bottom: 11%; font-size: 10px; font-weight: 700; letter-spacing: .04em; color: rgba(255,255,255,.85); }
+.cb-cc-stripe{ position: absolute; left: 0; right: 0; top: 14%; height: 20%; background: #05080f; }
+.cb-cc-num{ position: absolute; left: 7%; top: 52%; font-size: 12px; letter-spacing: .1em; font-weight: 500; }
+.cb-cc-cvv{ position: absolute; right: 7%; bottom: 13%; font-size: 10px; letter-spacing: .06em; color: rgba(255,255,255,.8); }
+.cb-bal{ padding: 14px 14px 12px; }
+.cb-bal-top{ text-align: center; border-radius: 8px; box-shadow: 0 0 0 1px #edf0f0; padding: 12px 10px 12px; margin-bottom: 12px; }
+.cb-money{ font-size: 26px; font-weight: 700; margin: 2px 0 10px; letter-spacing: -.01em; transition: color .3s; }
+.cb-money.is-tick{ color: #1f7a38; }
+.cb-bar-l{ width: 88%; margin: 0 auto 8px; height: 7px; }
+.cb-kv{ display: flex; justify-content: space-between; font-size: 11.5px; padding: 3px 0; }
+.cb-see{ margin: 4px 0 8px; }
+.cb-auto{ display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 0 12px; border-top: 1px solid #edf0f0; margin-bottom: 10px; }
+.cb-auto-t{ display: flex; flex-direction: column; flex: 1; line-height: 1.35; }
+.cb-auto em{ font-style: normal; color: #b12704; transition: color .2s; }
+.cb-auto.is-on em{ color: #1f8a4c; }
+@media (max-width: 900px){.cb{ grid-template-columns: 1fr 1fr; padding: 16px; gap: 14px; }
+.cb-col-3{ grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }}
+@media (max-width: 560px){.cb{ grid-template-columns: 1fr; padding: 14px; }
+.cb-col-3{ display: flex; }}
+@media (prefers-reduced-motion: reduce){.cb *, .cb *::after{ transition: none !important; animation: none !important; }}
+  /* Amazon Business combined deck */
+  .ov-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 16px; }
+  .ov-stats div { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; background: rgba(240,235,226,.02); }
+  .ov-stats b { display: block; font: 400 24px/1.1 var(--serif); color: var(--accent); }
+  .ov-stats span { display: block; font-size: 11px; line-height: 1.35; color: var(--cream3); margin-top: 4px; }
+  .dslide-vis.is-ov.ov-flip { grid-template-columns: 1.02fr .98fr; }
+  .ab-trio { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; padding: 46px 14px 16px; align-items: center; }
+  .ab-trio figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .ab-trio .pair-art { aspect-ratio: 1; border: 1px solid var(--border); border-radius: 10px; background: #1a1916; display: flex; align-items: center; justify-content: center; padding: 8px; }
+  .ab-trio .pair-art svg { width: 100%; height: 100%; }
+  .ab-trio figcaption { font-size: 11px; font-weight: 500; color: var(--cream2); text-align: center; }
+  .ab-cbart { background: #eceef0 !important; padding: 44px 14px 14px; overflow: hidden; }
+  .ab-cbart { display: flex !important; align-items: center; justify-content: center; }
+  .cb.cb-mini { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; max-width: 380px; align-content: center; zoom: .8; }
+  .cb.cb-mini .cb-group { min-width: 0; }
+  .fitbox { padding: 0 !important; background: none !important; border: 0 !important; overflow: hidden; display: block !important; position: relative; min-height: 0; }
+  .fitin { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  .uc-wrap { display: grid; gap: 18px; }
+  .uc-shot { margin: 0; background: #fff; border-radius: 14px; overflow: hidden; }
+  .uc-shot img { width: 100%; display: block; }
+  @media (max-width: 860px) { .dslide-vis.fitbox { aspect-ratio: auto !important; } .ab-trio { gap: 6px; } .cb.cb-mini { zoom: .62; } .ov-stats b { font-size: 20px; } }
 </style>
 </head>
 <body>
@@ -1233,33 +1603,22 @@
   <div class="prose" id="amazon-business">
     <div class="slabel">Amazon Business &middot; 2020 &ndash; 2024</div>
     <div class="stream-head"><h2>Amazon Business</h2></div>
-    <p class="stream-lede">Four years leading visual direction for Amazon Business Payments: Pay Studio, the payment design system every method is built from, and the Business Credit Card servicing page it carried into.</p>
+    <p class="stream-lede">Four years leading visual direction for Amazon Business Payments: Pay Studio, the payment design system every method is built from, and the Business Credit Card servicing page built on top of it.</p>
     <div class="deck" data-deck="layers">
       <div class="deck-crumbs" role="tablist">
-        <button class="crumb is-on" data-i="0" type="button">Overview</button>
+        <button class="crumb is-on" data-i="0" type="button">Pay Studio</button>
         <button class="crumb" data-i="1" type="button">Components</button>
         <button class="crumb" data-i="2" type="button">Templates</button>
         <button class="crumb" data-i="3" type="button">Use cases</button>
-        <span class="deck-count">1 / 4</span>
+        <button class="crumb" data-i="4" type="button">Credit Card</button>
+        <button class="crumb" data-i="5" type="button">The hub</button>
+        <button class="crumb" data-i="6" type="button">Customer needs</button>
+        <button class="crumb" data-i="7" type="button">Widget templates</button>
+        <span class="deck-count">1 / 8</span>
       </div>
       <div class="deck-stage">
         <div class="dslide is-on is-ov-s" data-i="0">
-          <div class="dslide-vis is-ov">
-            <div class="ov-copy">
-            <div class="ov-kicker">Amazon Business Payments &middot; 2023</div>
-            <h3 class="ov-title">Pay Studio</h3>
-            <p class="ov-desc">An atomic design system for Amazon Business payments: components, templates and use cases for every payment method. One of the first shared libraries of its kind at Amazon, and the first in Amazon Business Payments.</p>
-            <dl class="ov-facts"><div><dt>Role</dt><dd>Visual Experience Design Lead</dd></div><div><dt>Library</dt><dd>47 components, templates, use cases</dd></div><div><dt>Adoption</dt><dd>80% in its first eight months</dd></div></dl>
-            </div>
-            <div class="ov-art"><span class="ov-tag">Pay Studio</span><svg viewBox="0 0 460 300" aria-hidden="true"><g transform="translate(40 16)"><rect width="150" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp4016"><rect x="6" y="6" width="138" height="260" rx="13"/></clipPath><image href="thumb-ps-screen.webp" x="6" y="6" width="138" height="304" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp4016)"/></g><g transform="translate(214 26)"><rect width="220" height="138" rx="12" fill="#fff"/><image href="img-ps-ppm-art.webp" x="10" y="8" width="200" height="122"/></g><g transform="translate(214 176)"><rect width="104" height="104" rx="12" fill="#1e1c18"/><image href="img-ps-pair-components.webp" x="4" y="4" width="96" height="96"/></g><g transform="translate(330 176)"><rect width="104" height="104" rx="12" fill="#1e1c18"/><text x="52" y="52" text-anchor="middle" style="font:500 30px var(--serif);fill:#22c55e">47</text><text x="52" y="72" text-anchor="middle" style="font:500 10px var(--sans);fill:#b8b0a4">components</text></g></svg></div>
-          </div>
-        </div>
-        <div class="dslide" data-i="1">
-          <div class="dslide-body"><div class="slide-kicker">Layer one</div>
-          <h3>Components</h3>
-          <p>The parts a payment screen is made of, like Primary payment method, Input card and Sticky footer. Each one owns its states, so templates never have to.</p></div>
-          <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+          <div class="dslide-vis is-ov"><div class="ov-copy"><div class="ov-kicker">Amazon Business Payments &middot; 2023</div><h3 class="ov-title">Pay Studio</h3><p class="ov-desc">An atomic design system for every Amazon Business payment method, built in three layers: components, templates made from them, and use cases wired from templates. One of the first shared libraries of its kind at Amazon, and the first in Amazon Business Payments.</p><div class="ov-stats"><div><b>47</b><span>components, Accordion to Toast</span></div><div><b>80%</b><span>adoption in 8 months</span></div><div><b>3</b><span>layers, part to journey</span></div></div><dl class="ov-facts"><div><dt>Role</dt><dd>Visual Experience Design Lead</dd></div><div><dt>Used by</dt><dd>Amazon Business designers globally</dd></div></dl></div><div class="ov-art ab-trio"><span class="ov-tag">Components &rarr; templates &rarr; use cases</span><figure><div class="pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <rect class="pa-t" style="--i:0" x="16" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
           <rect class="pa-t" style="--i:1" x="132" y="33" width="52" height="26" rx="8" fill="#2b2822"/>
           <rect class="pa-t" style="--i:2" x="16" y="69" width="52" height="26" rx="8" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.6" stroke-dasharray="5 4"/>
@@ -1278,16 +1637,7 @@
             <rect x="100" y="42" width="19" height="3" rx="1.5" fill="#22c55e"/>
             <rect x="100" y="48" width="12" height="2.5" rx="1.25" fill="#22c55e" opacity=".5"/>
           </g>
-        </svg></div>
-          <div class="pair-cell pair-shot"><img src="img-ps-pair-components.webp" alt="The Primary payment method component in the Pay Studio Figma file, wired to its card logos, the gift card row and the Continue footer" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
-        </div>
-        </div>
-        <div class="dslide" data-i="2">
-          <div class="dslide-body"><div class="slide-kicker">Layer two</div>
-          <h3>Templates</h3>
-          <p>Complete screens for one task: pick a method, add a card, verify a number. All built on one base sheet, so they stay consistent on their own.</p></div>
-          <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+        </svg></div><figcaption>Components</figcaption></figure><figure><div class="pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <g fill="#2b2822">
             <rect class="pa-src" style="--d:.30s" x="12" y="50" width="46" height="16" rx="6"/>
             <rect class="pa-src" style="--d:.45s" x="12" y="74" width="46" height="16" rx="6"/>
@@ -1307,16 +1657,7 @@
           <rect class="pa-fly" style="--d:.45s;--dx:-98px;--dy:0px" x="110" y="74" width="66" height="22" rx="7" fill="#2b2822"/>
           <rect class="pa-fly" style="--d:.60s;--dx:-98px;--dy:-4px" x="110" y="102" width="66" height="22" rx="7" fill="#2b2822"/>
           <rect class="pa-fly" style="--d:.75s;--dx:-98px;--dy:-30px" x="110" y="152" width="66" height="14" rx="7" fill="#22c55e" fill-opacity=".55"/>
-        </svg></div>
-          <div class="pair-cell pair-shot"><img src="img-ps-pair-templates.webp" alt="Two Pay Studio templates in the Figma file, Add a credit or debit card and a base sheet, linked by prototype connectors" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
-        </div>
-        </div>
-        <div class="dslide" data-i="3">
-          <div class="dslide-body"><div class="slide-kicker">Layer three</div>
-          <h3>Use cases</h3>
-          <p>Templates wired into a journey. This is where the product decisions live, which screens and in what order. Nothing new gets drawn here.</p></div>
-          <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
+        </svg></div><figcaption>Templates</figcaption></figure><figure><div class="pair-art"><svg class="ps-anim" viewBox="0 0 200 200" aria-hidden="true">
           <rect x="22" y="18" width="62" height="68" rx="11" fill="#1e1c18" stroke="#2b2822" stroke-width="1.5"/>
           <rect x="32" y="28" width="42" height="6" rx="3" fill="#2b2822"/>
           <rect x="32" y="40" width="42" height="12" rx="5" fill="#2b2822"/>
@@ -1354,47 +1695,212 @@
             <rect x="32" y="152" width="42" height="12" rx="5" fill="#22c55e" opacity=".5"/>
             <rect x="32" y="169" width="42" height="8" rx="4" fill="#22c55e" opacity=".6"/>
           </g>
-        </svg></div>
-          <div class="pair-cell pair-shot"><img src="img-ps-pair-use-cases.webp" alt="The last two steps of the BANCOMAT Pay use case: register a phone number, then back to the wallet with BANCOMAT Pay selected" loading="lazy"><span class="pair-tag">From the Figma file</span></div>
-        </div>
-        </div>
-        
-      </div>
-      <div class="deck-dots">
-        <button class="ddot is-on" data-i="0" type="button" aria-label="Slide 1"></button>
-        <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
-        <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
-        <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
-      </div>
-    </div>
-    <div class="ab-sub"><div class="slabel">Business Credit Card</div></div>
-    <div class="deck" data-deck="abcard">
-      <div class="deck-crumbs" role="tablist">
-        <button class="crumb is-on" data-i="0" type="button">Overview</button>
-        <button class="crumb" data-i="1" type="button">The hub</button>
-        <button class="crumb" data-i="2" type="button">Customer needs</button>
-        <button class="crumb" data-i="3" type="button">Structure</button>
-        <span class="deck-count">1 / 4</span>
-      </div>
-      <div class="deck-stage">
-        <div class="dslide is-on is-ov-s" data-i="0">
-          <div class="dslide-vis is-ov">
-            <div class="ov-copy">
-            <div class="ov-kicker">Amazon Business Card &middot; Spring 2024</div>
-            <h3 class="ov-title">Business Credit Card</h3>
-            <p class="ov-desc">The Existing Card Member page, where Amazon Business card holders check their balance, pay their bill and track rewards. Led design end to end, from research through production, with PM and engineering.</p>
-            <dl class="ov-facts"><div><dt>Role</dt><dd>Design lead, end to end</dd></div><div><dt>Shipped</dt><dd>Spring 2024, Amazon Shopping app</dd></div><div><dt>Impact</dt><dd>NPS up 15 points where C3 shipped</dd></div></dl>
-            </div>
-            <div class="ov-art"><span class="ov-tag">The shipped screens</span><svg viewBox="0 0 460 300" aria-hidden="true"><g transform="translate(26 14)"><rect width="128" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp2614"><rect x="6" y="6" width="116" height="260" rx="13"/></clipPath><image href="img-abc-topfold1.webp" x="6" y="6" width="116" height="255" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp2614)"/></g><g transform="translate(166 14)"><rect width="128" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp16614"><rect x="6" y="6" width="116" height="260" rx="13"/></clipPath><image href="img-abc-rewards1.webp" x="6" y="6" width="116" height="255" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp16614)"/></g><g transform="translate(306 14)"><rect width="128" height="272" rx="18" fill="#0e0d0c" stroke="#3a352e" stroke-width="2"/><clipPath id="cp30614"><rect x="6" y="6" width="116" height="260" rx="13"/></clipPath><image href="img-abc-tx.webp" x="6" y="6" width="116" height="255" preserveAspectRatio="xMidYMin slice" clip-path="url(#cp30614)"/></g></svg></div>
-          </div>
+        </svg></div><figcaption>Use cases</figcaption></figure></div></div>
         </div>
         <div class="dslide" data-i="1">
+          <div class="dslide-body"><div class="slide-kicker">Layer one</div>
+          <h3>Components</h3>
+          <p>Pay Studio came with a builder, so designers could browse every component, set its props and copy the code instead of hunting through a Figma file. Try it: drag components into the sheet, then tap one to edit it.</p></div>
+          <div class="dslide-vis fitbox fit-pb"><div class="fitin" style="width:1040px"><div class="pb" data-pb>
+      <div class="pb-pal">
+        <div class="pb-ttl">Components</div>
+        <div class="pb-pal-list"></div>
+      </div>
+      <div class="pb-stage">
+        <div class="pb-phone">
+          <div class="pb-scrim"></div>
+          <div class="pb-sheet">
+            <div class="pb-sheet-top"><span class="pb-grab"></span><span class="pb-close" aria-hidden="true">&times;</span></div>
+            <div class="pb-body" aria-label="Sheet, drop components here"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-props">
+        <div class="pb-ttl">Properties</div>
+        <div class="pb-props-in"></div>
+      </div>
+      <div class="pb-code">
+        <pre class="pb-jsx"></pre>
+        <div class="pb-code-btns"><button class="pb-btn" type="button" data-act="reset">Reset</button><button class="pb-btn is-pri" type="button" data-act="copy">Copy JSX</button></div>
+      </div>
+    </div></div></div>
+        </div>
+        <div class="dslide" data-i="2">
+          <div class="dslide-body"><div class="slide-kicker">Layer two</div>
+          <h3>Templates</h3>
+          <p>Every template starts from one base sheet with a fixed skeleton, and only its body slot changes. Consistency becomes something the file can&#39;t break.</p></div>
+          <div class="dslide-vis fitbox"><div class="fitin" style="width:760px"><div class="dia">
+      <svg viewBox="0 0 640 240" role="img" aria-labelledby="template-title">
+        <title id="template-title">Anatomy of the base template: chrome, title block, body slot, primary action, security note</title>
+
+        <rect x="196" y="16" width="248" height="200" rx="16" fill="#161512" stroke="#22c55e" stroke-width="1.8"/>
+        <path d="M304 38 q16 9 32 0" stroke="#6b6560" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M414 33 l12 12 M426 33 l-12 12" stroke="#6b6560" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M214 33 l-8 6 l8 6" stroke="#6b6560" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="214" y="62" width="150" height="11" rx="5.5" fill="#f0ebe2" opacity=".82"/>
+        <rect x="214" y="82" width="200" height="7" rx="3.5" fill="#6b6560"/>
+        <rect x="214" y="104" width="212" height="62" rx="9" fill="#0e0d0c" stroke="#3a352e" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <rect x="230" y="120" width="120" height="8" rx="4" fill="#2b2822"/>
+        <rect x="230" y="138" width="88" height="8" rx="4" fill="#2b2822"/>
+        <rect x="214" y="178" width="212" height="20" rx="10" fill="#22c55e" opacity=".6"/>
+        <rect x="256" y="206" width="128" height="5" rx="2.5" fill="#3a352e"/>
+
+        <g stroke="#3a352e" stroke-width="1.2" stroke-dasharray="4 4" fill="none">
+          <path d="M196 40 H140"/>
+          <path d="M196 74 H140"/>
+          <path d="M444 132 H504"/>
+          <path d="M444 188 H480 V176 H504"/>
+          <path d="M444 209 H480 V222 H504"/>
+        </g>
+        <g fill="#0e0d0c" stroke="#22c55e" stroke-width="1.3">
+          <circle cx="128" cy="40" r="11"/>
+          <circle cx="128" cy="74" r="11"/>
+          <circle cx="516" cy="132" r="11"/>
+          <circle cx="516" cy="176" r="11"/>
+          <circle cx="516" cy="222" r="11"/>
+        </g>
+        <g fill="#22c55e" font-family="DM Sans, system-ui, sans-serif" font-size="11" font-weight="500" text-anchor="middle">
+          <text x="128" y="44">1</text>
+          <text x="128" y="78">2</text>
+          <text x="516" y="136">3</text>
+          <text x="516" y="180">4</text>
+          <text x="516" y="226">5</text>
+        </g>
+      </svg>
+      <ol class="dia-legend">
+        <li><b>1</b><span><strong>Sheet chrome.</strong> Back, brand mark, dismiss. Never changes.</span></li>
+        <li><b>2</b><span><strong>Title block.</strong> Heading and optional subcopy.</span></li>
+        <li><b>3</b><span><strong>Body slot.</strong> The only part a template changes.</span></li>
+        <li><b>4</b><span><strong>Primary action.</strong> One per sheet, always in the same spot.</span></li>
+        <li><b>5</b><span><strong>Security note.</strong> Wherever credentials are entered.</span></li>
+      </ol>
+      <div class="dia-cap">The base every template inherits from.</div>
+    </div></div></div>
+        </div>
+        <div class="dslide" data-i="3">
+          <div class="dslide-body"><div class="slide-kicker">Layer three</div>
+          <h3>Use cases</h3>
+          <p>Use cases are repeatable flows: designers drag in existing templates and wire them into a journey. Even an awkward method like BANCOMAT Pay, which registers with a phone number, is four templates that already exist.</p></div>
+          <div class="dslide-vis fitbox"><div class="fitin" style="width:1040px"><div class="uc-wrap"><div class="flow">
+      <div class="flow-step">
+        <div class="flow-art"><svg class="fl-anim" style="--s:0s" viewBox="0 0 120 96" aria-hidden="true">
+          <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="18" y="16" width="40" height="6" rx="3" fill="#3a352e"/>
+          <rect x="18" y="30" width="84" height="18" rx="6" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="27" width="90" height="24" rx="9" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="30" width="84" height="18" rx="6" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+          <rect x="18" y="54" width="84" height="16" rx="6" fill="#2b2822"/>
+          <rect x="18" y="76" width="84" height="12" rx="6" fill="#3a352e"/>
+        </svg></div>
+        <div class="flow-body">
+          <div class="flow-num">01</div>
+          <div class="flow-name">Wallet</div>
+          <div class="flow-note">Saved methods, plus Add new</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-art"><svg class="fl-anim" style="--s:.45s" viewBox="0 0 120 96" aria-hidden="true">
+          <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="18" y="14" width="56" height="6" rx="3" fill="#3a352e"/>
+          <g fill="#2b2822">
+            <rect x="18" y="28" width="84" height="12" rx="5"/>
+            <rect x="18" y="60" width="84" height="12" rx="5"/>
+            <rect x="18" y="76" width="84" height="12" rx="5"/>
+          </g>
+          <rect x="18" y="44" width="84" height="12" rx="5" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="41" width="90" height="18" rx="8" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="44" width="84" height="12" rx="5" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+          <rect x="22" y="47" width="6" height="6" rx="2" fill="#22c55e"/>
+          <circle class="fl-tap" cx="25" cy="50" r="5" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+        </svg></div>
+        <div class="flow-body">
+          <div class="flow-num">02</div>
+          <div class="flow-name">Add a method</div>
+          <div class="flow-note">One list row per method type</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-art"><svg class="fl-anim" style="--s:.9s" viewBox="0 0 120 96" aria-hidden="true">
+          <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="18" y="14" width="64" height="6" rx="3" fill="#3a352e"/>
+          <rect x="18" y="28" width="84" height="20" rx="6" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="25" width="90" height="26" rx="9" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="28" width="84" height="20" rx="6" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+          <rect class="fl-type" style="--t:.2s" x="24" y="34" width="44" height="4" rx="2" fill="#6b6560"/>
+          <rect class="fl-type" style="--t:.38s" x="24" y="41" width="28" height="4" rx="2" fill="#3a352e"/>
+          <rect x="18" y="54" width="84" height="16" rx="6" fill="#2b2822"/>
+          <rect x="18" y="77" width="84" height="12" rx="6" fill="#2b2822"/>
+          <rect class="fl-fill" x="18" y="77" width="84" height="12" rx="6" fill="#22c55e" fill-opacity=".6"/>
+        </svg></div>
+        <div class="flow-body">
+          <div class="flow-num">03</div>
+          <div class="flow-name">Register</div>
+          <div class="flow-note">Phone number, not a card number</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-art"><svg class="fl-anim" style="--s:1.35s" viewBox="0 0 120 96" aria-hidden="true">
+          <rect x="6" y="4" width="108" height="88" rx="10" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/>
+          <rect x="18" y="14" width="40" height="6" rx="3" fill="#3a352e"/>
+          <rect x="18" y="26" width="84" height="14" rx="5" fill="#2b2822"/>
+          <rect x="18" y="44" width="84" height="18" rx="6" fill="#161512"/>
+          <rect class="fl-halo" x="15" y="41" width="90" height="24" rx="9" fill="none" stroke="#22c55e" stroke-width="4"/>
+          <rect class="fl-sel" x="18" y="44" width="84" height="18" rx="6" fill="none" stroke="#22c55e" stroke-width="1.6"/>
+          <path class="fl-check" pathLength="1" d="M26 53 l4 4 l8 -9" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="18" y="66" width="84" height="10" rx="5" fill="#2b2822"/>
+          <rect x="18" y="80" width="84" height="10" rx="5" fill="#3a352e"/>
+        </svg></div>
+        <div class="flow-body">
+          <div class="flow-num">04</div>
+          <div class="flow-name">Back to the wallet</div>
+          <div class="flow-note">New method saved and selected</div>
+        </div>
+      </div>
+    </div><figure class="uc-shot"><img src="img-pay-studio-use-cases.png" alt="The BANCOMAT Pay use case in the Figma file: four existing templates wired into one journey" loading="lazy"></figure></div></div></div>
+        </div>
+        <div class="dslide is-ov-s" data-i="4">
+          <div class="dslide-vis is-ov ov-flip"><div class="ov-art ab-cbart"><span class="ov-tag">From the component board</span><div class="cb cb-mini"><div class="cb-group">
+          <div class="cb-lbl">Top bar</div>
+          <div class="cb-card cb-topbar">
+            <span class="cb-thumb" aria-hidden="true"></span>
+            <span class="cb-tb-text"><span class="cb-b">Prime Visa •••• 1111</span><span class="cb-sub">David Williams</span></span>
+            <button class="cb-icon cb-bell is-new" type="button" aria-label="Notifications, 1 new"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><i></i></button>
+            <button class="cb-icon cb-menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+          </div>
+        </div><div class="cb-group">
+          <div class="cb-lbl">Chips / Tags</div>
+          <div class="cb-chips">
+            <button class="cb-chip k-new" type="button" aria-pressed="false">New</button>
+            <button class="cb-chip k-two" type="button" aria-pressed="false">2% back</button>
+            <button class="cb-chip k-five" type="button" aria-pressed="false">5% back</button>
+            <button class="cb-chip k-offer" type="button" aria-pressed="false">Offer</button>
+          </div>
+        </div><div class="cb-group">
+          <div class="cb-lbl">Buttons</div>
+          <button class="cb-pay" type="button"><span class="cb-pay-t">Make a payment</span></button>
+          <div class="cb-acts">
+            <button class="cb-act cb-freeze" type="button" aria-pressed="false"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M4 20 20 4"/></svg></span><span class="cb-act-l">Freeze card</span></button>
+            <button class="cb-act" type="button"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="15" height="11" rx="2"/><path d="M3 11h15"/><path d="m20 3 .9 1.9L23 5.2l-1.5 1.4.4 2-1.9-1-1.9 1 .4-2L17 5.2l2.1-.3z" fill="currentColor" stroke="none"/></svg></span><span class="cb-act-l">Card benefits</span></button>
+            <button class="cb-act" type="button"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 15h5M10 18h3"/></svg></span><span class="cb-act-l">Statements</span></button>
+            <button class="cb-act" type="button"><span class="cb-circ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.4"/><circle cx="12" cy="16.8" r=".6" fill="currentColor"/></svg></span><span class="cb-act-l">Help</span></button>
+          </div>
+          <div class="cb-secs">
+            <button class="cb-sec" type="button">Account details</button>
+            <button class="cb-sec" type="button">Make a payment</button>
+          </div>
+        </div><div class="cb-group">
+          <div class="cb-lbl">Status / Alerts</div>
+          <div class="cb-card cb-alert k-warn"><span>A minimum payment of $50.00 for your Prime Visa ending in 1111 is due in 3 days</span></div>
+          <div class="cb-card cb-alert k-info cb-verify"><span class="cb-v-msg">Verify via Chase to see transactions, installments details and other servicing features. <button class="cb-link" type="button">Verify now</button></span></div>
+        </div></div></div><div class="ov-copy"><div class="ov-kicker">Amazon Business Card &middot; Spring 2024</div><h3 class="ov-title">Business Credit Card</h3><p class="ov-desc">The Existing Card Member page, where card holders check their balance, pay their bill and track rewards. Led design end to end with PM and engineering, and built it on C3, a widget framework on top of Pay Studio.</p><div class="ov-stats"><div><b>+15</b><span>NPS where C3 shipped</span></div><div><b>2&ndash;3 mo</b><span>dev time, down from 6&ndash;8</span></div><div><b>20+</b><span>payment products it extends to</span></div></div><dl class="ov-facts"><div><dt>Shipped</dt><dd>Spring 2024, Amazon Shopping app</dd></div><div><dt>Team wins</dt><dd>12 engineering weeks saved, approvals halved</dd></div></dl></div></div>
+        </div>
+        <div class="dslide" data-i="5">
           <div class="dslide-body"><div class="slide-kicker">All together</div>
           <h3>The hub</h3>
           <p>The global section up top, widgets underneath. Same frame for every card, and the widgets swap in per card.</p></div>
           <div class="dslide-vis is-phone" role="img" aria-label="The hub: the top fold global section beside the Points and rewards and Transactions widgets, bracketed as global section and widgets"><div class="pc-fit"><div class="pc-canvas" data-w="960" data-h="680" data-mx="80" data-mw="800" style="width:960px;height:680px"><svg class="pc-lines" width="960" height="680" aria-hidden="true"><g class="pc-static"><path class="br" d="M92 549V557H332V549"/><path class="br" d="M360 453V461H868V453"/></g><g class="pc-dyn"></g></svg><img class="pc-img" data-n="0" src="img-abc-topfold1.webp" width="240" height="481" style="left:92px;top:60px;width:240px" alt="" loading="lazy"><img class="pc-img" data-n="1" src="img-abc-rewards1.webp" width="240" height="385" style="left:360px;top:60px;width:240px" alt="" loading="lazy"><img class="pc-img" data-n="2" src="img-abc-tx.webp" width="240" height="385" style="left:628px;top:60px;width:240px" alt="" loading="lazy"><div class="pc-lab" style="left:92px;width:240px;top:569px"><b>Global section</b><span>The same for every card.</span></div><div class="pc-lab" style="left:360px;width:508px;top:473px"><b>Widgets</b><span>Rewards, transactions and more. Each one is a template, and they swap in per card.</span></div></div></div></div>
         </div>
-        <div class="dslide" data-i="2">
+        <div class="dslide" data-i="6">
           <div class="dslide-body"><div class="slide-kicker">Customer needs</div>
           <h3>Four questions</h3>
           <p>Research with 23 card members sorted their top 10 jobs into four questions: what do I owe, what are my benefits, where do I get help, and what’s happening with my account. The page is organized around them, in that order.</p></div>
@@ -1410,27 +1916,50 @@
           <div class="pair-cell pair-shot"><img src="img-abc-simplify.webp" alt="Simplify board: the current page grouped by feature beside the proposed design grouped by the four customer questions" style="object-fit:contain"><span class="pair-tag">From the project</span></div>
         </div>
         </div>
-        <div class="dslide" data-i="3">
-          <div class="dslide-body"><div class="slide-kicker">Structure</div>
-          <h3>Fixed on top</h3>
-          <p>Card art, purchase power, balance, the payment CTA and navigation stay put above the first fold, the same for every card.</p></div>
-          <div class="dslide-vis is-pair">
-          <div class="pair-cell pair-art"><svg class="ab-anim" viewBox="0 0 200 200" aria-hidden="true">
-          <rect x="50" y="8" width="100" height="184" rx="14" fill="#0e0d0c" stroke="#2b2822" stroke-width="1.5"/><rect x="58" y="16" width="84" height="8" rx="4" fill="#2b2822"/>
-          <g class="ab-pop" style="--d:.05s">
-            <rect x="78" y="32" width="44" height="28" rx="4" fill="#3b82f6" fill-opacity=".5"/>
-            <rect x="62" y="68" width="76" height="6" rx="3" fill="#6b6560"/>
-            <rect x="62" y="78" width="76" height="10" rx="4" fill="#2b2822"/>
-            <rect x="62" y="94" width="76" height="10" rx="5" fill="#22c55e" fill-opacity=".6"/>
-            <circle cx="70" cy="116" r="5" fill="#2b2822"/><circle cx="90" cy="116" r="5" fill="#2b2822"/><circle cx="110" cy="116" r="5" fill="#2b2822"/><circle cx="130" cy="116" r="5" fill="#2b2822"/>
-          </g>
-          <rect class="ab-fade" style="--d:.55s" x="56" y="27" width="88" height="98" rx="8" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <path class="ab-fade" style="--d:.8s" d="M40 132 H160" stroke="#e879a0" stroke-opacity=".7" stroke-width="1.2" stroke-dasharray="3 3"/>
-          <rect class="ab-fly" style="--d:.95s;--dy:16px" x="62" y="140" width="76" height="20" rx="4" fill="#2b2822"/>
-          <rect class="ab-fly" style="--d:1.1s;--dy:16px" x="62" y="166" width="76" height="18" rx="4" fill="#2b2822"/>
-        </svg></div>
-          <div class="pair-cell pair-shot"><img src="img-abc-page-build-1.webp" alt="Page structure annotation: global section with card art, purchase power, balance info, payment CTA and navigation above the first fold"><span class="pair-tag">From the project</span></div>
-        </div>
+        <div class="dslide" data-i="7">
+          <div class="dslide-body"><div class="slide-kicker">Design system</div>
+          <h3>Widget templates</h3>
+          <p>C3 is made of widgets: one building block with a fixed anatomy. Four templates cover everything on the page, so every card member gets a personalized page with no one-off layouts. Pick one.</p></div>
+          <div class="dslide-vis fitbox"><div class="fitin" style="width:860px"><div class="slot" data-slot>
+      <div class="slot-picks" role="tablist" aria-label="Widget templates">
+        <button class="crumb slot-pick is-on" type="button">01 Simple</button>
+        <button class="crumb slot-pick" type="button">02 Image</button>
+        <button class="crumb slot-pick" type="button">03 Two column</button>
+        <button class="crumb slot-pick" type="button">04 Scrollable</button>
+      </div>
+      <div class="slot-stage">
+        <figure class="slot-fig is-on">
+          <div class="slot-card"><svg class="ab-anim" viewBox="0 0 240 160" aria-hidden="true"><rect x="8" y="8" width="224" height="144" rx="12" fill="#161512" stroke="#2b2822" stroke-width="1.5"/><rect x="22" y="22" width="84" height="8" rx="4" fill="#f0ebe2" fill-opacity=".8"/><circle cx="214" cy="21" r="1.8" fill="#6b6560"/><circle cx="214" cy="26" r="1.8" fill="#6b6560"/><circle cx="214" cy="31" r="1.8" fill="#6b6560"/>
+            <rect class="ab-pop" x="22" y="44" width="196" height="78" rx="7" fill="#2b2822"/>
+            <rect class="ab-fade" style="--d:.3s" x="16" y="38" width="208" height="90" rx="10" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5 4"/><rect x="22" y="134" width="40" height="6" rx="3" fill="#22c55e" fill-opacity=".75"/></svg></div>
+          <figcaption><strong>Template 01, simple content.</strong> One content block, like the account banner, transactions or benefits.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><svg class="ab-anim" viewBox="0 0 240 160" aria-hidden="true"><rect x="8" y="8" width="224" height="144" rx="12" fill="#161512" stroke="#2b2822" stroke-width="1.5"/>
+            <rect x="22" y="20" width="84" height="10" rx="5" fill="none" stroke="#3a352e" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <g class="ab-pop"><rect x="22" y="44" width="80" height="78" rx="6" fill="#3b82f6" fill-opacity=".45"/>
+            <rect x="112" y="50" width="96" height="7" rx="3.5" fill="#6b6560"/><rect x="112" y="64" width="76" height="6" rx="3" fill="#3a352e"/><rect x="112" y="76" width="86" height="6" rx="3" fill="#3a352e"/><rect x="112" y="88" width="60" height="6" rx="3" fill="#3a352e"/></g>
+            <rect class="ab-fade" style="--d:.3s" x="16" y="38" width="208" height="90" rx="10" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5 4"/><rect x="22" y="134" width="40" height="6" rx="3" fill="#22c55e" fill-opacity=".75"/></svg></div>
+          <figcaption><strong>Template 02, image and content.</strong> Card art beside its details. The header can hide.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><svg class="ab-anim" viewBox="0 0 240 160" aria-hidden="true"><rect x="8" y="8" width="224" height="144" rx="12" fill="#161512" stroke="#2b2822" stroke-width="1.5"/><rect x="22" y="22" width="84" height="8" rx="4" fill="#f0ebe2" fill-opacity=".8"/><circle cx="214" cy="21" r="1.8" fill="#6b6560"/><circle cx="214" cy="26" r="1.8" fill="#6b6560"/><circle cx="214" cy="31" r="1.8" fill="#6b6560"/>
+            <g class="ab-pop"><rect x="22" y="44" width="124" height="52" rx="7" fill="#2b2822"/><rect x="152" y="44" width="66" height="52" rx="7" fill="#2b2822"/></g>
+            <rect class="ab-pop" style="--d:.15s" x="22" y="104" width="196" height="18" rx="9" fill="none" stroke="#6b6560" stroke-width="1.2"/><rect x="106" y="111" width="28" height="4" rx="2" fill="#6b6560"/>
+            <rect class="ab-fade" style="--d:.3s" x="16" y="38" width="208" height="90" rx="10" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5 4"/></svg></div>
+          <figcaption><strong>Template 03, two columns and a CTA.</strong> Balance details with a full-width primary action.</figcaption>
+        </figure>
+        <figure class="slot-fig">
+          <div class="slot-card"><svg class="ab-anim" viewBox="0 0 240 160" aria-hidden="true"><rect x="8" y="8" width="224" height="144" rx="12" fill="#161512" stroke="#2b2822" stroke-width="1.5"/><rect x="22" y="22" width="84" height="8" rx="4" fill="#f0ebe2" fill-opacity=".8"/><circle cx="214" cy="21" r="1.8" fill="#6b6560"/><circle cx="214" cy="26" r="1.8" fill="#6b6560"/><circle cx="214" cy="31" r="1.8" fill="#6b6560"/>
+            <rect x="22" y="36" width="120" height="5" rx="2.5" fill="#3a352e"/>
+            <g class="ab-fly" style="--dx:24px"><rect x="22" y="48" width="150" height="62" rx="7" fill="#2b2822"/><path d="M158 55 l7 7 M165 55 l-7 7" stroke="#6b6560" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="178" y="48" width="46" height="62" rx="7" fill="#2b2822" fill-opacity=".5"/></g>
+            <circle class="ab-dot" style="--d:0s" cx="108" cy="119" r="2.3"/><circle class="ab-dot" style="--d:1s" cx="116" cy="119" r="2.3"/><circle class="ab-dot" style="--d:2s" cx="124" cy="119" r="2.3"/><circle class="ab-dot" style="--d:3s" cx="132" cy="119" r="2.3"/>
+            <rect class="ab-fade" style="--d:.3s" x="16" y="32" width="208" height="96" rx="10" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5 4"/><rect x="22" y="134" width="40" height="6" rx="3" fill="#22c55e" fill-opacity=".75"/></svg></div>
+          <figcaption><strong>Template 04, scrollable.</strong> Dismissible offers and notifications, with pagination.</figcaption>
+        </figure>
+      </div>
+    </div></div></div>
         </div>
         
       </div>
@@ -1439,6 +1968,10 @@
         <button class="ddot" data-i="1" type="button" aria-label="Slide 2"></button>
         <button class="ddot" data-i="2" type="button" aria-label="Slide 3"></button>
         <button class="ddot" data-i="3" type="button" aria-label="Slide 4"></button>
+        <button class="ddot" data-i="4" type="button" aria-label="Slide 5"></button>
+        <button class="ddot" data-i="5" type="button" aria-label="Slide 6"></button>
+        <button class="ddot" data-i="6" type="button" aria-label="Slide 7"></button>
+        <button class="ddot" data-i="7" type="button" aria-label="Slide 8"></button>
       </div>
     </div>
   </div>
@@ -1630,6 +2163,264 @@
     window.addEventListener('resize', all);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(all);
     all();
+  })();
+</script>
+<script>
+  // Builder: drag or tap palette items into the sheet, reorder by dragging, tap an item to edit its props.
+  document.querySelectorAll('[data-pb]').forEach(function (pb) {
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var lock = '<svg viewBox="0 0 10 12" aria-hidden="true"><rect x="1" y="5" width="8" height="6.5" rx="1.3" fill="#565959"/><path d="M3 5V3.6a2 2 0 0 1 4 0V5" fill="none" stroke="#565959" stroke-width="1.3"/></svg>';
+    var M = {
+      header:  { cat: 'Layout',   name: 'Pay select header',      jsx: 'PaySelectHeader',
+                 props: { title: ['text', 'Paying with'], addNew: ['bool', true, 'Add new link'] },
+                 r: function (p) { return '<div class="pb-hd"><span class="pb-hd-t">' + esc(p.title) + '</span>' + (p.addNew ? '<span class="pb-link">+ Add new</span>' : '') + '</div>'; } },
+      method:  { cat: 'Payment',  name: 'Primary payment method', jsx: 'PrimaryPaymentMethod',
+                 props: { title: ['text', 'Chase Sapphire •••• 1111'], subtitle: ['text', 'David Williams · 07/2024'], art: ['select', 'blue', ['blue', 'red', 'teal', 'violet', 'dark']], badge: ['text', ''], selected: ['bool', false] },
+                 r: function (p) { return '<div class="pb-pm' + (p.selected ? ' is-on' : '') + '"><span class="pb-art a-' + p.art + '"></span><span class="pb-pm-t"><b>' + esc(p.title) + (p.badge ? '<span class="pb-badge">' + esc(p.badge) + '</span>' : '') + '</b><span>' + esc(p.subtitle) + '</span></span></div>'; } },
+      balance: { cat: 'Payment',  name: 'Balance payment method', jsx: 'BalancePaymentMethod',
+                 props: { title: ['text', 'Use Amazon gift card'], subtitle: ['text', '$50.00 balance'], on: ['bool', false, 'Applied'] },
+                 r: function (p) { return '<div class="pb-pm"><span class="pb-art a-dark"></span><span class="pb-pm-t"><b>' + esc(p.title) + '</b><span>' + esc(p.subtitle) + '</span></span><span class="pb-sw' + (p.on ? ' is-on' : '') + '" data-flip="on"></span></div>'; } },
+      claim:   { cat: 'Payment',  name: 'Claim code',             jsx: 'ClaimCode',
+                 props: { label: ['text', 'Add a gift card, promo code, or voucher'], expanded: ['bool', false] },
+                 r: function (p) { return '<div class="pb-claim"><div class="pb-claim-r"><span>' + esc(p.label) + '</span><span class="pb-sw' + (p.expanded ? ' is-on' : '') + '" data-flip="expanded"></span></div>' + (p.expanded ? '<div class="pb-field">Enter code</div>' : '') + '</div>'; } },
+      input:   { cat: 'Inputs',   name: 'Input card',             jsx: 'InputCard',
+                 props: { label: ['text', 'Card number'], placeholder: ['text', 'Enter card number'], network: ['bool', true, 'Network badge'] },
+                 r: function (p) { return '<div class="pb-in"><div class="pb-in-l">' + esc(p.label) + '</div><div class="pb-field"><span>' + esc(p.placeholder) + '</span>' + (p.network ? '<span class="pb-net"></span>' : '') + '</div></div>'; } },
+      alert:   { cat: 'Feedback', name: 'Alert',                  jsx: 'Alert',
+                 props: { severity: ['select', 'warning', ['warning', 'error', 'info', 'success']], text: ['text', 'A minimum payment of $50.00 is due in 3 days'] },
+                 r: function (p) { return '<div class="pb-alert s-' + p.severity + '">' + esc(p.text) + '</div>'; } },
+      divider: { cat: 'Layout',   name: 'Divider',                jsx: 'Divider',
+                 props: { text: ['text', 'or'] },
+                 r: function (p) { return '<div class="pb-div">' + esc(p.text) + '</div>'; } },
+      button:  { cat: 'Actions',  name: 'Button',                 jsx: 'Button',
+                 props: { label: ['text', 'Continue'], variant: ['select', 'primary', ['primary', 'secondary']] },
+                 r: function (p) { return '<div class="pb-btn-c v-' + p.variant + '">' + esc(p.label) + '</div>'; } },
+      legal:   { cat: 'Layout',   name: 'Legal',                  jsx: 'Legal',
+                 props: { text: ['text', 'Your information is encrypted and secure'], icon: ['bool', true, 'Lock icon'] },
+                 r: function (p) { return '<div class="pb-legal">' + (p.icon ? lock : '') + esc(p.text) + '</div>'; } }
+    };
+    var order = ['header', 'method', 'balance', 'claim', 'input', 'alert', 'divider', 'button', 'legal'];
+    function defaults(type, over) { var o = {}, pr = M[type].props; for (var k in pr) o[k] = pr[k][1]; for (var j in (over || {})) o[j] = over[j]; return o; }
+    var uid = 0;
+    function make(type, over) { return { id: 'c' + (++uid), type: type, p: defaults(type, over) }; }
+    function start() {
+      return [make('header'),
+              make('method', { selected: true }),
+              make('method', { title: 'Bank of America Rewards •••• 2139', art: 'red' }),
+              make('balance'), make('claim'), make('button')];
+    }
+    var items = start(), sel = null, fresh = null;
+    var body = pb.querySelector('.pb-body'), propsEl = pb.querySelector('.pb-props-in'), jsxEl = pb.querySelector('.pb-jsx');
+
+    // palette
+    var list = pb.querySelector('.pb-pal-list'), lastCat = '', html = '';
+    ['Layout', 'Payment', 'Inputs', 'Feedback', 'Actions'].forEach(function (cat) {
+      html += '<div class="pb-cat">' + cat + '</div>';
+      order.filter(function (t) { return M[t].cat === cat; }).forEach(function (t) {
+        html += '<button type="button" class="pb-pi" draggable="true" data-type="' + t + '" aria-label="Add ' + M[t].name + '">' + M[t].name + '<span class="pb-plus" aria-hidden="true">+</span></button>';
+      });
+    });
+    list.innerHTML = html;
+
+    function find(id) { for (var i = 0; i < items.length; i++) if (items[i].id === id) return i; return -1; }
+    function renderItem(it) {
+      return '<div class="pb-item' + (it.id === sel ? ' is-sel' : '') + (it.id === fresh ? ' is-new' : '') + '" draggable="true" tabindex="0" data-id="' + it.id + '" aria-label="' + M[it.type].name + '">' +
+             M[it.type].r(it.p) + '<button type="button" class="pb-x" aria-label="Remove ' + M[it.type].name + '">&times;</button></div>';
+    }
+    function render() {
+      body.innerHTML = (items.length ? items.map(renderItem).join('') : '<div class="pb-empty">Drag components here, or tap one in the list</div>') + '<div class="pb-ins"></div>';
+      fresh = null;
+      renderJSX();
+    }
+    function renderJSX() {
+      var out = ['<span class="t">&lt;Sheet&gt;</span>'];
+      items.forEach(function (it) {
+        var s = '  <span class="t">&lt;' + M[it.type].jsx + '</span>';
+        for (var k in it.p) {
+          var v = it.p[k];
+          if (v === true) s += ' <span class="a">' + k + '</span>';
+          else if (v !== false && v !== '') s += ' <span class="a">' + k + '</span>=<span class="s">"' + esc(v) + '"</span>';
+        }
+        out.push(s + ' <span class="t">/&gt;</span>');
+      });
+      out.push('<span class="t">&lt;/Sheet&gt;</span>');
+      jsxEl.innerHTML = out.join('\n');
+    }
+    function renderProps() {
+      var i = find(sel);
+      if (i < 0) { propsEl.innerHTML = '<div class="pb-hint">Tap a component in the sheet to edit it. Drag to reorder.</div>'; return; }
+      var it = items[i], pr = M[it.type].props, h = '<div class="pb-props-h"><span class="pb-props-n">' + M[it.type].name + '</span><button type="button" class="pb-rm">Remove</button></div>';
+      for (var k in pr) {
+        var d = pr[k], lab = d[2] && d[0] === 'bool' ? d[2] : k.replace(/([A-Z])/g, ' $1');
+        if (d[0] === 'text') h += '<label class="pb-f"><span>' + lab + '</span><input type="text" data-k="' + k + '" value="' + esc(it.p[k]) + '"></label>';
+        if (d[0] === 'select') h += '<label class="pb-f"><span>' + lab + '</span><select data-k="' + k + '">' + d[2].map(function (o) { return '<option' + (o === it.p[k] ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select></label>';
+        if (d[0] === 'bool') h += '<div class="pb-fb"><span>' + lab + '</span><button type="button" class="pb-tg" role="switch" data-k="' + k + '" aria-checked="' + !!it.p[k] + '" aria-label="' + lab + '"></button></div>';
+      }
+      propsEl.innerHTML = h;
+    }
+    function update(it) {
+      var el = body.querySelector('[data-id="' + it.id + '"]');
+      if (el) { var tmp = document.createElement('div'); tmp.innerHTML = renderItem(it); el.replaceWith(tmp.firstChild); }
+      renderJSX();
+    }
+    function select(id) { sel = id; body.querySelectorAll('.pb-item').forEach(function (e) { e.classList.toggle('is-sel', e.dataset.id === id); }); renderProps(); }
+    function add(type, at) {
+      var it = make(type); if (at == null || at > items.length) at = items.length;
+      items.splice(at, 0, it); fresh = it.id; sel = it.id; render(); renderProps();
+    }
+    function remove(id) { var i = find(id); if (i < 0) return; items.splice(i, 1); if (sel === id) sel = null; render(); renderProps(); }
+
+    // sheet clicks: select, remove, and live toggles on the components themselves
+    body.addEventListener('click', function (e) {
+      var item = e.target.closest('.pb-item'); if (!item) return;
+      var it = items[find(item.dataset.id)];
+      if (e.target.closest('.pb-x')) { remove(it.id); return; }
+      var flip = e.target.closest('[data-flip]');
+      if (flip) { it.p[flip.dataset.flip] = !it.p[flip.dataset.flip]; }
+      else if (it.type === 'method') { items.forEach(function (o) { if (o.type === 'method') { var was = o.p.selected; o.p.selected = o === it; if (was !== o.p.selected && o !== it) update(o); } }); }
+      update(it); select(it.id);
+    });
+    body.addEventListener('keydown', function (e) {
+      var item = e.target.closest('.pb-item'); if (!item) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(item.dataset.id); }
+      if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); remove(item.dataset.id); }
+    });
+
+    // props edits
+    propsEl.addEventListener('input', function (e) { var k = e.target.dataset.k; if (!k) return; var it = items[find(sel)]; it.p[k] = e.target.value; update(it); });
+    propsEl.addEventListener('change', function (e) { var k = e.target.dataset.k; if (!k || e.target.tagName !== 'SELECT') return; var it = items[find(sel)]; it.p[k] = e.target.value; update(it); });
+    propsEl.addEventListener('click', function (e) {
+      if (e.target.closest('.pb-rm')) { remove(sel); return; }
+      var t = e.target.closest('.pb-tg'); if (!t) return;
+      var it = items[find(sel)], k = t.dataset.k; it.p[k] = !it.p[k]; t.setAttribute('aria-checked', it.p[k]);
+      if (it.type === 'method' && k === 'selected' && it.p[k]) items.forEach(function (o) { if (o !== it && o.type === 'method' && o.p.selected) { o.p.selected = false; update(o); } });
+      update(it); select(it.id);
+    });
+
+    // palette: tap to add, or drag
+    list.addEventListener('click', function (e) { var b = e.target.closest('.pb-pi'); if (b) add(b.dataset.type); });
+    var drag = null;
+    list.addEventListener('dragstart', function (e) { var b = e.target.closest('.pb-pi'); if (!b) return; drag = { kind: 'new', type: b.dataset.type }; e.dataTransfer.effectAllowed = 'copy'; e.dataTransfer.setData('text/plain', b.dataset.type); });
+    body.addEventListener('dragstart', function (e) { var el = e.target.closest('.pb-item'); if (!el) return; drag = { kind: 'move', id: el.dataset.id }; el.classList.add('is-drag'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', el.dataset.id); });
+    body.addEventListener('dragend', function (e) { var el = e.target.closest('.pb-item'); if (el) el.classList.remove('is-drag'); hideIns(); drag = null; });
+    function slot(y) {
+      var els = [].slice.call(body.querySelectorAll('.pb-item')), r0 = body.getBoundingClientRect();
+      for (var i = 0; i < els.length; i++) { var r = els[i].getBoundingClientRect(); if (y < r.top + r.height / 2) return { i: i, top: r.top - r0.top - 5 }; }
+      var last = els[els.length - 1]; return { i: els.length, top: last ? last.getBoundingClientRect().bottom - r0.top + 3 : 4 };
+    }
+    function hideIns() { var ins = body.querySelector('.pb-ins'); if (ins) ins.style.display = 'none'; }
+    body.addEventListener('dragover', function (e) {
+      if (!drag) return; e.preventDefault(); e.dataTransfer.dropEffect = drag.kind === 'new' ? 'copy' : 'move';
+      var s = slot(e.clientY), ins = body.querySelector('.pb-ins'); ins.style.top = s.top + 'px'; ins.style.display = 'block';
+    });
+    body.addEventListener('dragleave', function (e) { if (!body.contains(e.relatedTarget)) hideIns(); });
+    body.addEventListener('drop', function (e) {
+      if (!drag) return; e.preventDefault(); var s = slot(e.clientY);
+      if (drag.kind === 'new') add(drag.type, s.i);
+      else { var from = find(drag.id); if (from > -1) { var it = items.splice(from, 1)[0]; items.splice(s.i > from ? s.i - 1 : s.i, 0, it); sel = it.id; render(); renderProps(); } }
+      drag = null;
+    });
+
+    // reset + copy
+    pb.querySelector('[data-act="reset"]').addEventListener('click', function () { items = start(); sel = null; render(); renderProps(); });
+    pb.querySelector('[data-act="copy"]').addEventListener('click', function () {
+      var b = this, txt = jsxEl.textContent;
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy JSX'; }, 1400); };
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done); else done();
+    });
+
+    render(); renderProps();
+  });
+</script>
+<script>
+  // Primary payment method: the switch works, and turning it on opens the amount field.
+  document.querySelectorAll('[data-ppm]').forEach(function (c) {
+    var sw = c.querySelector('.ppm-switch'), inp = c.querySelector('.ppm-amt input');
+    sw.addEventListener('click', function () {
+      var on = sw.getAttribute('aria-checked') !== 'true';
+      sw.setAttribute('aria-checked', on); c.classList.toggle('is-on', on); inp.tabIndex = on ? 0 : -1;
+    });
+  });
+</script>
+<script>
+  // Use-case strip: play the four steps in order when it scrolls into view, replay a card on hover.
+  (function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var flow = document.querySelector('.flow');
+    if (!flow) return;
+    var svgs = flow.querySelectorAll('.fl-anim');
+    function play(svg, solo) {
+      svg.classList.remove('play');
+      svg.classList.toggle('solo', !!solo);
+      void svg.getBoundingClientRect();
+      svg.classList.add('play');
+    }
+    var started = false;
+    svgs.forEach(function (svg) {
+      svg.closest('.flow-step').addEventListener('mouseenter', function () { if (started) play(svg, true); });
+    });
+    new IntersectionObserver(function (entries, io) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        started = true;
+        svgs.forEach(function (svg) { play(svg, false); });
+        flow.classList.add('live');
+        io.disconnect();
+      });
+    }, { threshold: 0.4 }).observe(flow);
+  })();
+</script>
+<script>
+  // Feature slot: each pick swaps the real Primary payment method variant into the stage.
+  document.querySelectorAll('[data-slot]').forEach(function (slot) {
+    var picks = slot.querySelectorAll('.slot-pick');
+    var figs = slot.querySelectorAll('.slot-fig');
+    function show(i) {
+      picks.forEach(function (p, n) { p.classList.toggle('is-on', n === i); p.setAttribute('aria-selected', n === i ? 'true' : 'false'); });
+      figs.forEach(function (f, n) { f.classList.toggle('is-on', n === i); });
+    }
+    picks.forEach(function (p, i) {
+      p.setAttribute('role', 'tab');
+      p.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      p.addEventListener('click', function () { show(i); });
+      p.addEventListener('keydown', function (e) {
+        var d = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : (e.key === 'ArrowUp' || e.key === 'ArrowLeft') ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = (i + d + picks.length) % picks.length;
+        show(n); picks[n].focus();
+      });
+    });
+  });
+</script>
+<script>  // Fit wide embedded pieces (builder, template map, flows, widget picker) into their slide
+  (function () {
+    var boxes = document.querySelectorAll('.fitbox');
+    var mob = matchMedia('(max-width: 860px)');
+    function fit(box) {
+      var inn = box.firstElementChild, W = parseFloat(inn.style.width);
+      var H = inn.offsetHeight, bw = box.clientWidth;
+      if (!bw || !H) return;
+      if (mob.matches) { var s = Math.min(1, bw / W); box.style.height = (H * s) + 'px'; inn.style.left = '0px'; inn.style.top = '0px'; inn.style.transform = 'scale(' + s + ')'; return; }
+      box.style.height = '';
+      var bh = box.clientHeight, s2 = Math.min(bw / W, bh / H, 1.15);
+      inn.style.left = ((bw - W * s2) / 2) + 'px'; inn.style.top = ((bh - H * s2) / 2) + 'px'; inn.style.transform = 'scale(' + s2 + ')';
+    }
+    function all() { boxes.forEach(fit); }
+    window.addEventListener('resize', all); window.addEventListener('load', all);
+    document.querySelectorAll('[data-deck]').forEach(function (d) { new MutationObserver(function () { requestAnimationFrame(all); }).observe(d, { subtree: true, attributes: true, attributeFilter: ['class'] }); });
+    if (window.ResizeObserver) boxes.forEach(function (b) { new ResizeObserver(function () { fit(b); }).observe(b.firstElementChild); });
+    all();
+  })();
+  // Replay every layer illustration on the Pay Studio cover when it is shown
+  (function () {
+    function play(svg) { if (!svg) return; svg.classList.remove('play'); void svg.getBoundingClientRect(); svg.classList.add('play'); }
+    document.querySelectorAll('.ab-trio').forEach(function (t) {
+      var slide = t.closest('.dslide');
+      new MutationObserver(function () { if (slide.classList.contains('is-on')) t.querySelectorAll('.ps-anim').forEach(play); }).observe(slide, { attributes: true, attributeFilter: ['class'] });
+      new IntersectionObserver(function (es, io) { es.forEach(function (e) { if (e.isIntersecting) { t.querySelectorAll('.ps-anim').forEach(play); io.disconnect(); } }); }, { threshold: .3 }).observe(t);
+      t.querySelectorAll('figure').forEach(function (f) { f.addEventListener('mouseenter', function () { play(f.querySelector('.ps-anim')); }); });
+    });
   })();
 </script>
 </body>
